@@ -4,8 +4,9 @@ import {useEffect} from 'react'
 
 const List = () => {
   useEffect(() => {
-    window.R = Router
-    console.log('R: ', window.R)
+    // window.r = Router
+    // console.log(`window: `, window)
+    // console.log('R: ', window.R)
     return () => {}
   }, [])
   useEffect(() => {
