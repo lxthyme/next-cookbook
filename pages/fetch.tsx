@@ -1,7 +1,9 @@
 import fetch from 'isomorphic-unfetch'
 import Error from './_error'
+import { NextPage } from 'next'
 
-export const Fetch = ({star, code}) => {
+
+export const Fetch: NextPage<{star: number, code: number}> = ({star, code}) => {
   //   console.log('props: ', props)
   if (code) {
     return <Error statusCode={code} />
@@ -20,7 +22,7 @@ Fetch.getInitialProps = async ({pathname, query, asPath, err}) => {
   // console.log(`>>>asPath: `, asPath)
   // console.log(`>>>err: `, err)
   const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  const code = res.statusCode > 200 ? res.statusCode : false
+  const code = res.status > 200 ? res.status : 0
   const json = await res.json()
   return {code, star: json.stargazers_count}
 }

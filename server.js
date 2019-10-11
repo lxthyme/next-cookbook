@@ -10,7 +10,7 @@ app.prepare().then(() => {
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true)
     const {pathname, query} = parsedUrl
-
+    console.log('pathname: ', pathname, '\t\tquery: ', query)
     if (pathname === '/a') {
       app.render(req, res, '/b', query)
     } else if (pathname === '/b') {
