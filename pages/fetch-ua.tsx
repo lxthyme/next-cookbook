@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import { NextPage } from 'next'
+import React from 'react'
+// import { NextPage } from 'next'
 
 // export default class FetchUA extends Component {
 //   static async getInitialProps({req}) {
@@ -17,7 +17,15 @@ import { NextPage } from 'next'
 //   }
 // }
 
-const Home: NextPage<{ userAgent: string}> = ({userAgent}) => (<>
+// const Home: NextPage<{ userAgent: string}> = ({userAgent}) => (<>
+//   <p>Hello world!</p>
+//   <p>user agent: {userAgent}</p>
+// </>)
+
+interface XProps {
+  userAgent: String
+}
+const Home: React.FunctionComponent<XProps> = ({userAgent}) => (<>
   <p>Hello world!</p>
   <p>user agent: {userAgent}</p>
 </>)

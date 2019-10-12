@@ -2,9 +2,11 @@
 
 import dynamic from 'next/dynamic'
 
-export const Hello = () => <p>Hello!</p>
+// const DComponent = dynamic(() =>
+// import('./hello').then(t => t.Hello)
+// )
 
-const DComponent = dynamic(() => import('./list')).then(t => t.Hello)
+const DComponent = dynamic(() => import('./hello').then(mod => mod.Hello))
 
 const Home = () => {
   return (

@@ -1,10 +1,19 @@
-module.exports = (phase, ctx) => {
-    console.log('phase: ', phase)
-    console.log('ctx: ', ctx)
-    return {
-        poweredByHeader: false,
-    }
-}
+const withTypescript = require('@zeit/next-typescript')
+module.exports = withTypescript({
+  webpack(config, options) {
+    console.log('config: ', config)
+    console.log('options: ', options)
+    return config
+  },
+})
+
+// module.exports = (phase, ctx) => {
+//     console.log('phase: ', phase)
+//     console.log('ctx: ', ctx)
+//     return {
+//         poweredByHeader: false,
+//     }
+// }
 
 /**
 const ctx = {

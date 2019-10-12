@@ -1,7 +1,9 @@
-const { say } = require('cowsay-browser')
+const {say} = require('cowsay-browser')
 
 import Link from 'next/link'
-import Head from 'next/head'
+// import Head from 'next/head'
+
+import MobileLayout from '../layout/Mobile'
 
 const CowsayHi = () => (
   <>
@@ -9,12 +11,12 @@ const CowsayHi = () => (
   </>
 )
 
-const Home = () => (
-  <>
-    <Head>
+const Home: React.FunctionComponent = () => (
+  <MobileLayout title="Home">
+    {/* <Head>
       <title>Next.js</title>
       <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1.0" />
-    </Head>
+    </Head> */}
     <h4>Welcome to Next.js!</h4>
     <img className="v-modal" src="/img/rescure/bg_modal.png" alt="" />
     <CowsayHi />
@@ -47,12 +49,12 @@ const Home = () => (
     <Link href="dynamic" as="dynamic">
       <a>Dynamic</a>
     </Link>
-    <Link href="dynamic2" as="dynamic2">
+    {/* <Link href="dynamic2" as="dynamic2">
       <a>Dynamic2</a>
-    </Link>
-    <Link href="dynamic3" as="dynamic3">
+    </Link> */}
+    {/* <Link href="dynamic3" as="dynamic3">
       <a>Dynamic3</a>
-    </Link>
+    </Link> */}
     <Link href="dynamic4" as="dynamic4">
       <a>Dynamic4</a>
     </Link>
@@ -73,7 +75,7 @@ const Home = () => (
         display: block;
       }
     `}</style>
-  </>
+  </MobileLayout>
 )
 
 export default Home

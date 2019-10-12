@@ -1,8 +1,6 @@
 // With Custom Loading Component
-
+// import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import {resolve} from 'url'
-import {rejects} from 'assert'
 
 const DComponent = dynamic(
   () =>
@@ -11,7 +9,7 @@ const DComponent = dynamic(
         resolve(import('./list'))
       }, 1000)
     ),
-  {loading: () => <p>Loading...</p>}
+  { loading: () => <p>Loading...</p> }
 )
 
 const Home = () => {
