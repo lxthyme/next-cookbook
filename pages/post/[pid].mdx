@@ -1,0 +1,41 @@
+// import { useRouter } from 'next/router'
+// import fetch from 'isomorphic-unfetch'
+import React from 'react'
+
+class Post extends React.Component {
+    static async getInitialProps(ctx) {
+        const req = ctx.req
+        const query = ctx.query
+        Object.keys(ctx).forEach(k => k !== 'req' && k !== 'res' && k !== 'AppTree' && console.log(`[${k}]: `, ctx[k]))
+        const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
+        // const router = useRouter()
+        // const query = router.query
+        // console.log('query: ', query)
+        // const pid = query.pid || 0
+        return { userAgent, pid: query.pid || 0 }
+    }
+    render() {
+        return <div>
+            <p>Post: {this.props.pid}</p>
+            {/* <p>Next stars: {stars}</p> */}
+        </div>
+    }
+}
+
+// const Post = () => {
+//     const router = useRouter()
+//     const query = router.query
+//     console.log('query: ', query)
+//     const pid = query.pid || 0
+//     return <div>
+//         <p>Post: {pid}</p>
+//         <p>Next stars: {stars}</p>
+//     </div>
+// }
+// Post.getInitialProps = async ({ req }) => {
+//     const res = await fetch('https://api.github.com/repos/zeit/next.js')
+//     const json = await res.json()
+//     return { stars: json.stargazers_count }
+// }
+
+export default Post
