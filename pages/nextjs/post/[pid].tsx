@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router'
 
-import MobileLayout from '../../layout/Mobile'
+import MobileLayout from '../../../layout/Mobile'
 
 const Post = () => {
   const router = useRouter()

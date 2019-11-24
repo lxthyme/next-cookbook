@@ -23,7 +23,6 @@ module.exports = {
   ],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
-    'maxLen': 80,
+    'react-hooks/exhaustive-deps': 'warn'
   }
 }

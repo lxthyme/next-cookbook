@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch'
-import Error from './_error'
+import Error from '../_error'
 import { NextPage } from 'next'
 
 
