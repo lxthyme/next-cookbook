@@ -22,7 +22,7 @@ const Home: React.FunctionComponent = () => (
     <CowsayHi />
 
     <h4>Main</h4>
-    <Link href="about" as="about">
+    <Link href="/about" as="/about">
       <a>About</a>
     </Link>
     <Link href="index2" as="index2">
