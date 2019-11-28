@@ -13,6 +13,12 @@ module.exports = (phase, { defaultConfig }) => {
   };
 };
 
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
+});
+
+module.exports = withBundleAnalyzer({});
+
 // const withTypescript = require('@zeit/next-typescript')
 // module.exports = withTypescript({
 //   webpack(config, options) {
