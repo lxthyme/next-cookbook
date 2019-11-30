@@ -1,8 +1,8 @@
 // import React from 'react'
-// import Link from 'next/link'
+import Link from 'next/link'
 // import Head from 'next/head'
 // import Head from '../components/head/head'
-// import Nav from '../components/nav'
+import Nav from '../components/nav'
 
 const Home = () => (
   <div>

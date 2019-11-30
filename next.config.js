@@ -38,13 +38,13 @@ module.exports = {
 }
 
 /**
+ * cross-env
  * @next/bundle-analyzer
  * webpack-bundle-analyzer
  */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
-
 module.exports = withBundleAnalyzer({})
 
 /**

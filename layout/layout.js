@@ -10,17 +10,26 @@ const layoutStyle = {
 }
 
 export default function Layout (props) {
-  return (
+  return <>
     <div style={layoutStyle}>
-      <div>
-        <Link href="index">
+      <div className="header-wrapper">
+        <Link href="/nextjs/demo/news/index">
           <a style={linkStyle}>Home</a>
         </Link>
-        <Link href="about">
+        <Link href="/nextjs/demo/news/about">
           <a style={linkStyle}>About</a>
         </Link>
       </div>
       {props.children}
     </div>
-  )
+    <style jsx>{`
+    .header-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 44px;
+      box-shadow: 0 0 3px 0 #999;
+    }
+    `}</style>
+  </>
 }

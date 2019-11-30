@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import {
   Paper,
   FormLabel,
@@ -10,9 +10,9 @@ import {
   Radio,
   ButtonBase,
   Typography
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flexGrow: 1
@@ -26,12 +26,12 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper2: {
       padding: theme.spacing(2),
-      textAlign: "center",
+      textAlign: 'center',
       color: theme.palette.text.secondary
     },
     paper3: {
       padding: theme.spacing(2),
-      margin: "auto",
+      margin: 'auto',
       maxWidth: 500
     },
     image: {
@@ -39,24 +39,24 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 128
     },
     img: {
-      margin: "auto",
-      display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%"
+      margin: 'auto',
+      display: 'block',
+      maxWidth: '100%',
+      maxHeight: '100%'
     }
   })
-);
+)
 
 const GridScreen = props => {
-  const [spacing, setSpacing] = React.useState<GridSpacing>(2);
-  const cls = useStyles(props);
+  const [spacing, setSpacing] = React.useState(2)
+  const cls = useStyles(props)
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event) => {
     const spacing = Number(
-      (event.target as HTMLInputElement).value
-    ) as GridSpacing;
-    console.log("spacing: ", spacing);
-    setSpacing(spacing);
+      event.targe.value
+    )
+    console.log('spacing: ', spacing)
+    setSpacing(spacing)
   };
 
   return (
@@ -181,7 +181,7 @@ const GridScreen = props => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="body2" style={{ cursor: "pointer" }}>
+                  <Typography variant="body2" style={{ cursor: 'pointer' }}>
                     Remove
                   </Typography>
                 </Grid>
@@ -193,8 +193,8 @@ const GridScreen = props => {
           </Grid>
         </Paper>
       </div>
-      <style jsx>{``}</style>
+      <style jsx>{''}</style>
     </>
-  );
+  )
 };
-export default GridScreen;
+export default GridScreen

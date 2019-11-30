@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const PostLink = ({ id, title }) => (
   <li>
-    <Link href="/p/[id]" as={`/p/${id}`}>
+    <Link href="/nextjs/demo/news/p/[id]" as={`/nextjs/demo/news/p/${id}`}>
       <a> [{id}] - {title} </a>
     </Link>
   </li>
