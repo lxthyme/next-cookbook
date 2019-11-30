@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link'
 // import Head from 'next/head'
 
-import MobileLayout from "../layout/Mobile";
+import MobileLayout from '../layout/Mobile'
 
-const Home: React.FunctionComponent = () => (
+const Home = () => (
   <MobileLayout title="Home">
     <p>Next.js</p>
     <Link href="nextjs/index" as="nextjs/index">
@@ -14,8 +14,8 @@ const Home: React.FunctionComponent = () => (
       <a>material/index</a>
     </Link>
 
-    <style jsx>{``}</style>
+    <style jsx>{''}</style>
   </MobileLayout>
-);
+)
 
-export default Home;
+export default Home

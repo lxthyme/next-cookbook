@@ -1,10 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import Head from "next/head";
-import { theme } from "../theme/theme";
-interface LayoutProps {
-  title?: string;
-}
+import React from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
+import { theme } from '../theme/theme'
 
 // const layoutStyle = {
 //   margin: 20,
@@ -12,7 +9,7 @@ interface LayoutProps {
 //   border: "1px solid #ddd"
 // };
 
-const Mobile: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
+const Mobile = ({ children, title }) => {
   return (
     <>
       <Head>
@@ -41,17 +38,17 @@ const Mobile: React.FunctionComponent<LayoutProps> = ({ children, title }) => {
         <nav>
           <Link href="/">
             <a>Home</a>
-          </Link>{" "}
-          |{" "}
-          <Link href="about">
+          </Link>{' '}
+          |{' '}
+          <Link href="/about">
             <a>About</a>
-          </Link>{" "}
-          |{" "}
+          </Link>{' '}
+          |{' '}
         </nav>
       </header>
       {children}
     </>
-  );
-};
+  )
+}
 
-export default Mobile;
+export default Mobile

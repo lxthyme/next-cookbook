@@ -1,24 +1,81 @@
-const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* development only config options here */
-    };
+    }
   }
 
   return {
     /* config options for all phases except development here */
-    pageExtensions: ["mdx", "jsx", "js"]
-  };
-};
+    pageExtensions: ['mdx', 'jsx', 'js']
+  }
+}
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
-});
+/** MDX
+ * @next/mdx
+ * @mdx-js/loader
+ */
 
-module.exports = withBundleAnalyzer({});
+module.exports = {
+  webpack: (config, { defaultLoaders }) => {
+    config.module.rules.push({
+      test: /\.css$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: require('styled-jsx/webpack').loader,
+          options: {
+            type: 'scoped'
+          }
+        }
+      ]
+    })
 
+    return config
+  }
+}
+
+/**
+ * @next/bundle-analyzer
+ * webpack-bundle-analyzer
+ */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
+
+module.exports = withBundleAnalyzer({})
+
+/**
+ * @zeit/next-sass
+ * node-sass
+ */
+const withSass = require('@zeit/next-sass')
+module.exports = withSass({
+  cssModules: true,
+  webpack: function (config) {
+    return config
+  }
+})
+
+/** @zeit/next-css */
+const withCSS = require('@zeit/next-css')
+module.exports = withCSS({
+  // cssModules: true,
+  cssLoaderOptions: {
+    importLoaders: 1,
+    localIdentName: '[local]___[hash:base64:5]'
+  },
+  webpack: function (config) {
+    return config
+  }
+})
+
+/**
+ * @zeit/next-typescript
+ * typescript
+ */
 // const withTypescript = require('@zeit/next-typescript')
 // module.exports = withTypescript({
 //   webpack(config, options) {

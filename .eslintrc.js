@@ -3,26 +3,35 @@ module.exports = {
     browser: true,
     es6: true
   },
-  extends: [
-    'standard'
-  ],
+  extends: ["standard"],
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly"
   },
   parserOptions: {
     ecmaFeatures: {
       jsx: true
     },
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: "module"
   },
-  plugins: [
-    'react',
-    'react-hooks'
-  ],
+  plugins: ["react", "react-hooks"],
   rules: {
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "quotes": [1, "single"],
+    "max-len": [
+      "error",
+      {
+        code: 200,
+        // 'ignorePattern': "",
+        ignoreComments: true,
+        ignoreTrailingComments: true,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+        ignoreRegExpLiterals: true
+      }
+    ]
   }
-}
+};

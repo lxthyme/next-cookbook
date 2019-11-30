@@ -1,17 +1,17 @@
-const { say } = require("cowsay-browser");
-
-import Link from "next/link";
+import Link from 'next/link'
 // import Head from 'next/head'
 
-import MobileLayout from "../../layout/Mobile";
+import MobileLayout from '../../layout/Mobile'
+
+const { say } = require('cowsay-browser')
 
 const CowsayHi = () => (
   <>
-    <pre>{say({ text: "hi, I'm there!" })}</pre>
+    <pre>{say({ text: 'hi, I\'m there!' })}</pre>
   </>
-);
+)
 
-const Home: React.FunctionComponent = () => (
+const Home = () => (
   <MobileLayout title="Next.js">
     {/* <Head>
       <title>Next.js</title>
@@ -76,6 +76,6 @@ const Home: React.FunctionComponent = () => (
       }
     `}</style>
   </MobileLayout>
-);
+)
 
-export default Home;
+export default Home
