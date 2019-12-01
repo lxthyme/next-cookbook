@@ -1,11 +1,11 @@
-import withLayout from "../../../layout/mobile2";
+import withLayout from '../../../layout/withLayout';
 
 const Page = () => {
   return (
     <>
       <p>Hello, withLayout</p>
-      <style jsx>{``}</style>
+      <style jsx>{''}</style>
     </>
-  );
+  )
 };
-export default withLayout(Page);
+export default withLayout(Page)

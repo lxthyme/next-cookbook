@@ -31,7 +31,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           <link rel="stylesheet" href="../../../../css/normalize.css" />
-          <link rel="stylesheet" href="../../../../css/common.css"/>
+          <link rel="stylesheet" href="../../../../css/common.css" />
+          <link rel="stylesheet" href="../../../../css/next-wd.css" />
         </Head>
         <body>
           <Main />

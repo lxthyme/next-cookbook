@@ -12,12 +12,13 @@ import ReactGA from 'react-ga'
  * options.useExistingGa: Optional. Skips call to window.ga(), assuming you have manually run it.
  */
 export const initGA = props => {
+  //   console.log('Props: ', props)
   const {
     name = 'next-wd',
     titleCase = false,
     alwaysSendToDefaultTracker = true,
     gaOptions = {}
-  } = props
+  } = props || {}
   console.log('>>>[initGA]')
   ReactGA.initialize('UA-151913383-3', {
     // debug: process.env.NODE_ENV !== 'production',

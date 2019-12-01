@@ -20,7 +20,7 @@ const Index = ({ shows }) => {
                 href="/nextjs/learn/fetch-data/p/[id]"
                 as={`/nextjs/learn/fetch-data/p/${t.id}`}
               >
-                <a className="v-item-title">{t.name}</a>
+                <a className="v-item-title v-btn">{t.name}</a>
               </Link>
             </li>
           ))}
@@ -43,7 +43,6 @@ const Index = ({ shows }) => {
           align-items: stretch;
           flex-direction: column;
           padding: 16px;
-          box-shadow: 0 0 1px 0 #999;
           flex: 1 1 33%;
           box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px;
         }
@@ -53,12 +52,6 @@ const Index = ({ shows }) => {
         .v-item-title {
           height: 2.81rem;
           line-height: 2.8rem;
-          border-radius: 7px;
-          background-color: #0070f3;
-          box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
-          color: white;
-          margin: 16px 10px;
-          text-align: center;
         }
       `}</style>
     </>
