@@ -1,4 +1,5 @@
 import React from 'react'
+import Base from './base'
 
 import Header from '../components/head/head'
 const style = {
@@ -9,10 +10,10 @@ const style = {
 
 const withLayout = (Page) => {
   return () => (
-    <div style={style}>
+    <Base style={style}>
       <Header />
       <Page />
-    </div>
+    </Base>
   )
 }
 
