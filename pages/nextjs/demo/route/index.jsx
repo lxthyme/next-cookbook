@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
-const Post = () => {
+const Post = props => {
   const router = useRouter()
+  console.log('Router: ', router)
+  console.log('Props: ', props)
   const { slug } = router.query
   return (
     <>

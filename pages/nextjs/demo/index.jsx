@@ -24,6 +24,10 @@ const Index = () => {
       <Link href="/nextjs/demo/route?slug=something" as="/nextjs/demo/route/something">
         <a className="v-btn">Route Slug</a>
       </Link>
+      <h4>Custom</h4>
+      <Link href="/nextjs/demo/route?slug=123" as="/q/123">
+        <a className="v-btn">/q/123</a>
+      </Link>
     </>
   )
 }
