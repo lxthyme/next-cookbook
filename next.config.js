@@ -1,5 +1,15 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
+module.exports = {
+  webpack: config => {
+    // Fixes npm packages that depend on `fs` module
+    config.node = {
+      fs: 'empty'
+    }
+    return config
+  }
+}
+
 module.exports = (phase, { defaultConfig }) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
