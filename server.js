@@ -1,3 +1,6 @@
+// This file doesn't go through babel or webpack transformation.
+// Make sure the syntax and sources this file requires are compatible with the current node version you are running
+// See https://github.com/zeit/next.js/issues/1245 for discussions on Universal Webpack or universal Babel
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
@@ -7,34 +10,23 @@ const routes = require('./routes')
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-const handle = app.getRequestHandler()
-// const handle = routes.getRequestHandler(app)
+// const handle = app.getRequestHandler()
+const handle = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
   createServer((req, res) => {
+    // Be sure to pass `true` as the second argument to `url.parse`.
+    // This tells it to parse the query portion of the URL.
     const parsedUrl = parse(req.url, true)
-    const { pathname, query = {} } = parsedUrl
-    console.log('>>>pathname: ', pathname, '\t\tquery: ', query)
-    if (pathname.startsWith('/q/')) {
-      const slug = pathname.replace('/post/', '')
-      console.log('get special pathname: ', pathname)
-      query.slug = slug
-      app.render(req, res, `/nextjs/demo/route?slug=${slug}`, query)
-    } else if (pathname.includes('/post/')) {
-      // console.log('>>>req: ', Object.keys(req))
-      // logReq(req)
-      // logRes(res)
-      const slug = pathname.replace('/post/', '')
-      console.log('slug: ', slug)
-      query.slug = slug
-      app.render(req, res, `/nextjs/demo/route?slug=${slug}`, query)
-    } else if (pathname === '/a') {
-      app.render(req, res, '/b', query)
-    } else if (pathname === '/b') {
-      app.render(req, res, '/a', query)
+    // const { pathname, query = {} } = parsedUrl
+
+    if (req.headers.host === 'my-app.com') {
+      app.setAssetPrefix('https://cdn.com/myapp')
     } else {
-      handle(req, res, parsedUrl)
+      app.setAssetPrefix('')
     }
+
+    handle(req, res, parsedUrl)
   }).listen(port, err => {
     if (err) throw err
     console.log(`>>> Ready on http://localhost:${port}`)

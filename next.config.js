@@ -95,13 +95,13 @@ module.exports = withCSS({
 //   },
 // })
 
-// module.exports = (phase, ctx) => {
-//     console.log('phase: ', phase)
-//     console.log('ctx: ', ctx)
-//     return {
-//         poweredByHeader: false,
-//     }
-// }
+module.exports = (phase, ctx) => {
+  // console.log('phase: ', phase)
+  // console.log('ctx: ', ctx)
+  return {
+    poweredByHeader: false
+  }
+}
 
 // const withSass = require("@zeit/next-sass");
 // const withImages = require("next-images");
