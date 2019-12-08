@@ -1,5 +1,20 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
+// const isProd = process.env.NODE_ENV === 'production'
+
+const cssInJS = require('./next-config/css-in-js.config')
+module.exports = cssInJS.withSass
+module.exports = cssInJS.withCSS
+
+const bundleAnalyzer = require('./next-config/bundle-analyzer')
+module.exports = bundleAnalyzer.withBundleAnalyzer({})
+
+const env = require('./next-config/env.config')
+module.exports = env.ENV
+
+const cdn = require('./next-config/cdn.config')
+module.exports = cdn.CDN
+
 module.exports = {
   webpack: config => {
     // Fixes npm packages that depend on `fs` module
@@ -23,78 +38,6 @@ module.exports = (phase, { defaultConfig }) => {
   }
 }
 
-/** MDX
- * @next/mdx
- * @mdx-js/loader
- */
-
-module.exports = {
-  webpack: (config, { defaultLoaders }) => {
-    config.module.rules.push({
-      test: /\.css$/,
-      use: [
-        defaultLoaders.babel,
-        {
-          loader: require('styled-jsx/webpack').loader,
-          options: {
-            type: 'scoped'
-          }
-        }
-      ]
-    })
-
-    return config
-  }
-}
-
-/**
- * cross-env
- * @next/bundle-analyzer
- * webpack-bundle-analyzer
- */
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
-})
-module.exports = withBundleAnalyzer({})
-
-/**
- * @zeit/next-sass
- * node-sass
- */
-const withSass = require('@zeit/next-sass')
-module.exports = withSass({
-  cssModules: true,
-  webpack: function (config) {
-    return config
-  }
-})
-
-/** @zeit/next-css */
-const withCSS = require('@zeit/next-css')
-module.exports = withCSS({
-  // cssModules: true,
-  cssLoaderOptions: {
-    importLoaders: 1,
-    localIdentName: '[local]___[hash:base64:5]'
-  },
-  webpack: function (config) {
-    return config
-  }
-})
-
-/**
- * @zeit/next-typescript
- * typescript
- */
-// const withTypescript = require('@zeit/next-typescript')
-// module.exports = withTypescript({
-//   webpack(config, options) {
-//     console.log('config: ', config)
-//     console.log('options: ', options)
-//     return config
-//   },
-// })
-
 module.exports = (phase, ctx) => {
   // console.log('phase: ', phase)
   // console.log('ctx: ', ctx)
@@ -102,29 +45,6 @@ module.exports = (phase, ctx) => {
     poweredByHeader: false
   }
 }
-
-// const withSass = require("@zeit/next-sass");
-// const withImages = require("next-images");
-// module.exports = withImages(
-//   withSass({
-//     webpack(config) {
-//       config.module.rules.push({
-//         test: /\.(png|svg|eot|otf|ttf|woff|woff2)$/,
-//         use: {
-//           loader: "url-loader",
-//           options: {
-//             limit: 100000,
-//             publicPath: "./",
-//             outputPath: "static/",
-//             name: "[name].[ext]"
-//           }
-//         }
-//       });
-
-//       return config;
-//     }
-//   })
-// );
 
 /**
 const ctx = {
@@ -173,3 +93,10 @@ const ctx = {
     }
 }
  */
+
+// module.exports = {
+//   publicRuntimeConfig: {
+//     API_TEST: process.env.API_URL,
+//     API_BETA: 'https://apibeta.vaffle.com'
+//   }
+// }
