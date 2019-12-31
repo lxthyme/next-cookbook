@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "space-before-function-paren": "never",
     "quotes": [1, "single"],
     "max-len": [
       "error",

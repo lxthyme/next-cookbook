@@ -1,19 +1,20 @@
-{
-  "presets": [
-    "next/babel"
-    // "@zeit/next-typescript/babel"
-  ]
-}
 // {
 //   "presets": [
-//     [
-//       "next/babel",
-//       "@zeit/next-typescript/babel",
-//       {
-//         "styled-jsx": {
-//           "plugins": ["styled-jsx-plugin-postcss"]
-//         }
-//       }
-//     ]
+//     "next/babel"
+//     // "@zeit/next-typescript/babel"
 //   ]
 // }
+{
+  "presets": [
+    [
+      "next/babel",
+      // "@zeit/next-typescript/babel",
+      // {
+      //   "styled-jsx": {
+      //     "plugins": ["styled-jsx-plugin-postcss"]
+      //   }
+      // }
+    ]
+  ],
+  "plugins": [ "inline-react-svg" ]
+}

@@ -4,26 +4,26 @@
  */
 // const withSass = require('@zeit/next-sass')
 // module.exports = withSass({
-exports.withSass = require('@zeit/next-sass')({
-  cssModules: true,
-  webpack: function (config) {
-    return config
-  }
-})
+// exports.withSass = require('@zeit/next-sass')({
+//   cssModules: true,
+//   webpack: function (config) {
+//     return config
+//   }
+// })
 
 /** @zeit/next-css */
 // const withCSS = require('@zeit/next-css')
 // module.exports = withCSS({
-exports.withCSS = require('@zeit/next-css')({
-  // cssModules: true,
-  cssLoaderOptions: {
-    importLoaders: 1,
-    localIdentName: '[local]___[hash:base64:5]'
-  },
-  webpack: function (config) {
-    return config
-  }
-})
+// exports.withCSS = require('@zeit/next-css')({
+//   // cssModules: true,
+//   cssLoaderOptions: {
+//     importLoaders: 1,
+//     localIdentName: '[local]___[hash:base64:5]'
+//   },
+//   webpack: function (config) {
+//     return config
+//   }
+// })
 
 // const withSass = require("@zeit/next-sass");
 // const withImages = require("next-images");

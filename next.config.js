@@ -7,7 +7,7 @@ module.exports = cssInJS.withSass
 module.exports = cssInJS.withCSS
 
 const bundleAnalyzer = require('./next-config/bundle-analyzer')
-module.exports = bundleAnalyzer.withBundleAnalyzer({})
+module.exports = bundleAnalyzer.defaultBundleAnalyzer
 
 const env = require('./next-config/env.config')
 module.exports = env.ENV

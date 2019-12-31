@@ -23,4 +23,5 @@ const nextConfig = {
     return config
   }
 }
-exports.withBundleAnalyzer = withBundleAnalyzer(nextConfig)
+exports.defaultBundleAnalyzer = withBundleAnalyzer({})
+exports.bundleAnalyzer = withBundleAnalyzer(nextConfig)
