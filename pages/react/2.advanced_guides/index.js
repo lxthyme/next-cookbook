@@ -1,26 +1,65 @@
 import Link from 'next/link'
 
+const info = [
+  {
+    name: 'Context',
+    route: 'context'
+  },
+  {
+    name: 'Refs',
+    route: 'refs'
+  },
+  {
+    name: 'HOC',
+    route: 'hoc'
+  },
+  {
+    name: 'Portals',
+    route: 'portals'
+  },
+  {
+    name: 'Default Props',
+    route: 'default-props'
+  },
+  {
+    name: 'mixin',
+    route: 'Mixin'
+  },
+  {
+    name: 'Refs & Dom',
+    route: 'refs&dom'
+  },
+  {
+    name: 'Render Props(MouseTracker)',
+    route: 'render_props.MouseTracker'
+  },
+  {
+    name: 'Uncontrolled Components',
+    route: 'uncontrolled_components'
+  },
+  {
+    name: 'Web Components',
+    route: 'web_components'
+  },
+  {
+    name: '',
+    route: ''
+  }
+]
 const Index = () => {
   return (
     <>
-      <Link href="/react/2.advanced_guides/context" as="/react/2.advanced_guides/context">
-        <a className="v-btn">Context</a>
-      </Link>
-      <Link href="/react/2.advanced_guides/refs" as="/react/2.advanced_guides/refs">
-        <a className="v-btn">Refs</a>
-      </Link>
-      <Link href="/react/2.advanced_guides/hoc" as="/react/2.advanced_guides/hoc">
-        <a className="v-btn">HOC</a>
-      </Link>
-      <Link href="/react/2.advanced_guides/portals" as="/react/2.advanced_guides/portals">
-        <a className="v-btn">Portals</a>
-      </Link>
-      <Link href="/react/2.advanced_guides/default-props" as="/react/2.advanced_guides/default-props">
-        <a className="v-btn">Default Props</a>
-      </Link>
-      <Link href="/react/2.advanced_guides/mixin" as="/react/2.advanced_guides/mixin">
-        <a className="v-btn">Mixin</a>
-      </Link>
+      {info
+        .filter(t => t.name)
+        .map(t => (
+          <Link
+            key={t.name}
+            href={`/react/2.advanced_guides/${t.route}`}
+            as={`/react/2.advanced_guides/${t.route}`}
+          >
+            <a className="v-btn">{t.name}</a>
+          </Link>
+        ))}
     </>
   )
 }
