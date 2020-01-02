@@ -1,3 +1,4 @@
+import React from 'react'
 import Cat from '../../public/svg/cat.svg'
 
 const SVGDemo = () => {

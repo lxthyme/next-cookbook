@@ -1,5 +1,5 @@
 import React from 'react'
-import withPropsLog from './logProps'
+import withPropsLog from '../../../components/react/logProps'
 
 const FancyButton = React.forwardRef((props, ref) => (
   <button ref={ref} className="FancyButton">
