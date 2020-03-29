@@ -2,6 +2,11 @@
 
 # dependencies
 /node_modules
+/node_modules.*
+/node_modules.*/**
+/node_modules.osx/**
+/node_modules.osx
+node_modules.osx
 /.pnp
 .pnp.js
 
