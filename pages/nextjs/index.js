@@ -1,46 +1,31 @@
-// import Layout from "../../layout/nextjs/layout";
-// import withLayout from "../../layout/nextjs/withLayout";
-import ContentLayout from "../../layout/nextjs/contentLayout";
-import BlogList from "../../components/nextjs/blogList";
+import Link from "next/link";
+import withLayout from "../../layout/withLayout";
 
-/// Method 1
-// const Index = props => {
-//   return (
-//     <>
-//       <Layout>
-//         <p>Hello Next.js</p>
-//       </Layout>
-//       {/* <style jsx>{``}</style> */}
-//     </>
-//   );
-// };
-
-// Index.propTypes = {};
-
-// export default Index;
-
-/// Method 2: Layout as a Higher Order Component
-// const Index = props => {
-//   return (
-//     <>
-//       <p>Hello Next.js</p>
-//       {/* <style jsx>{``}</style> */}
-//     </>
-//   );
-// };
-
-// Index.propTypes = {};
-
-// export default withLayout(Index);
-
-/// Method 3: Page content as a prop
-const IndexContent = (
-  <>
-    <p>Hello Next.js</p>
-    <BlogList />
+const Home = () => (
+  <div className="container">
+    <Link href="/nextjs/amp">
+      <a className="btn-x-blue">AMP</a>
+    </Link>
+    <Link href="/nextjs/tv">
+      <a className="btn-x-blue">Batman TV</a>
+    </Link>
+    <Link href="/nextjs/blog">
+      <a className="btn-x-blue">Blog</a>
+    </Link>
+    <Link href="/nextjs/about">
+      <a className="btn-x-blue">About</a>
+    </Link>
+    <Link href="/nextjs/agent">
+      <a className="btn-x-blue">User Agent</a>
+    </Link>
+    <Link href="/nextjs/md">
+      <a className="btn-x-blue">Markdown</a>
+    </Link>
+    <Link href='/nextjs/post?title=Hello Next.js'>
+      <a className="btn-x-blue">Post</a>
+    </Link>
     {/* <style jsx>{``}</style> */}
-  </>
+  </div>
 );
-// IndexContent.propTypes = {};
 
-export default () => <ContentLayout content={IndexContent} />;
+export default withLayout(Home);

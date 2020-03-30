@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import withLayout from "../../layout/nextjs/withLayout";
+import withLayout from "../../../layout/nextjs/withLayout";
 
 const PostContent = props => {
   const router = useRouter();

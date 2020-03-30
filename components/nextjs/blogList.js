@@ -8,7 +8,7 @@ const PostLink = ({ post }) => {
           <a>1: {post.title}</a>
         </Link>
         <span> - [</span>
-        <Link href="/nextjs/[pid]" as={`/nextjs/${post.id}`}>
+        <Link href="/nextjs/blog/[pid]" as={`/nextjs/blog/${post.id}`}>
           <a>2: {post.id}</a>
         </Link>
         <span>]</span>
