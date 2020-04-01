@@ -22,10 +22,7 @@ import React from 'react'
 //   <p>user agent: {userAgent}</p>
 // </>)
 
-interface XProps {
-  userAgent: String
-}
-const Home: React.FunctionComponent<XProps> = ({userAgent}) => (<>
+const Home = ({userAgent}) => (<>
   <p>Hello world!</p>
   <p>user agent: {userAgent}</p>
 </>)

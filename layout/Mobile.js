@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { theme } from '../theme/theme'
+import Base from './base'
 
 // const layoutStyle = {
 //   margin: 20,
@@ -9,9 +10,9 @@ import { theme } from '../theme/theme'
 //   border: "1px solid #ddd"
 // };
 
-const Mobile = ({ children, title }) => {
+const Mobile = ({ children, title = '' }) => {
   return (
-    <>
+    <Base>
       <Head>
         <meta key="charSet" charSet="utf-8" />
         <meta key="viewport" name="viewport" content="minimal-ui" />
@@ -38,16 +39,16 @@ const Mobile = ({ children, title }) => {
         <nav>
           <Link href="/">
             <a>Home</a>
-          </Link>{' '}
-          |{' '}
+          </Link>
+          |
           <Link href="/about">
             <a>About</a>
-          </Link>{' '}
-          |{' '}
+          </Link>
+          |
         </nav>
       </header>
       {children}
-    </>
+    </Base>
   )
 }
 

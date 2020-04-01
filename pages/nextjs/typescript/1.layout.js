@@ -1,7 +1,6 @@
 import Layout from "../../../layout/mobile3";
-import { ReactElement } from "react";
 
-const indexContent: ReactElement = (
+const indexContent = (
   <>
     <p>Hello, Next.js</p>
     <style jsx>{``}</style>

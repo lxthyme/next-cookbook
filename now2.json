@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "next-wd",
+  "routes": [
+    {
+      "src": "q/(.*)",
+      "dest": "/nextjs/demo/route?slug=$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/www/$1"
+    }
+  ]
+}
