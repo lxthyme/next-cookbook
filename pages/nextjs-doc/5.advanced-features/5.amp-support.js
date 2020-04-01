@@ -1,7 +1,7 @@
 export const config = { amp: true };
 
 const Page = props => {
-  const date = new Date();
+  const date = new Date(1585723847355 - 3600 * 1000)
   if (typeof window !== "undefined") {
     window.t = this;
     window.td = date;

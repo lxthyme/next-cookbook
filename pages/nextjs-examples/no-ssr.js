@@ -1,5 +1,5 @@
 import React from 'react'
-import NoSSR from 'react-no-ssr'
+// import NoSSR from 'react-no-ssr'
 import Loading from '../../components/loading'
 
 export default () => (
@@ -8,13 +8,13 @@ export default () => (
       <h1>This section is server-side rendered.</h1>
     </section>
 
-    <NoSSR onSSR={<Loading />}>
+    {/* <NoSSR onSSR={<Loading />}>
       <section>
         <h2>
           This section is <em>only</em> client-side rendered.
         </h2>
       </section>
-    </NoSSR>
+    </NoSSR> */}
 
     <style jsx>{`
       section {
