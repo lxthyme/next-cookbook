@@ -10,9 +10,9 @@ const layoutStyle = {
 }
 
 export default function Layout (props) {
-  return (
+  return <>
     <div style={layoutStyle}>
-      <div>
+      <div className="header-wrapper">
         <Link href="index">
           <a style={linkStyle}>Home</a>
         </Link>
@@ -22,5 +22,14 @@ export default function Layout (props) {
       </div>
       {props.children}
     </div>
-  )
+    <style jsx>{`
+    .header-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 44px;
+      box-shadow: 0 0 3px 0 #999;
+    }
+    `}</style>
+  </>
 }

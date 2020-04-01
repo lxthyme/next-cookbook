@@ -1,10 +1,9 @@
-import React from "react";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
+import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
 
-import MobileLayout from "../../../layout/Mobile";
+import MobileLayout from '../../../layout/Mobile'
 
-const BoxScreen: React.FunctionComponent = () => (
+const BoxScreen = () => (
   <>
     <MobileLayout title="Box">
       <h4>1. Base</h4>
@@ -21,6 +20,6 @@ const BoxScreen: React.FunctionComponent = () => (
       </Box>
     </MobileLayout>
   </>
-);
+)
 
-export default BoxScreen;
+export default BoxScreen

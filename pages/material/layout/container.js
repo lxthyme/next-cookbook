@@ -1,5 +1,5 @@
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
+import Container from '@material-ui/core/Container'
+import Typography from '@material-ui/core/Typography'
 
 const ContainerScreen = () => {
   return (
@@ -7,7 +7,7 @@ const ContainerScreen = () => {
       <Container maxWidth="sm">
         <Typography
           component="div"
-          style={{ backgroundColor: "#cfe8fc", height: "100vh" }}
+          style={{ backgroundColor: '#cfe8fc', height: '100vh' }}
         />
       </Container>
 
@@ -15,7 +15,7 @@ const ContainerScreen = () => {
       <Container fixed>
         <Typography
           component="div"
-          style={{ backgroundColor: "#cfe8fc", height: "100vh" }}
+          style={{ backgroundColor: '#cfe8fc', height: '100vh' }}
         />
       </Container>
       <style jsx>{`
@@ -25,6 +25,6 @@ const ContainerScreen = () => {
         }
       `}</style>
     </>
-  );
-};
-export default ContainerScreen;
+  )
+}
+export default ContainerScreen
