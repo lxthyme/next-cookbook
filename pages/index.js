@@ -9,6 +9,9 @@ const Home = () => (
     <Link href="/nextjs">
       <a className="btn-x-blue">Nextjs learn demo</a>
     </Link>
+    <Link href="/nextjs-doc">
+      <a className="btn-x-blue">Nextjs doc</a>
+    </Link>
     {/* <style jsx>{``}</style> */}
   </div>
 );
