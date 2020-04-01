@@ -1,11 +1,19 @@
 import Link from 'next/link'
-// import Head from 'next/head'
-
-import MobileLayout from '../layout/Mobile'
+import withLayout from '../layout/withLayout'
 
 const Home = () => (
-  <MobileLayout title="Home">
-    <p>Next.js</p>
+  <div className="container">
+    <Link href="/apiQuote?author=123">
+      <a className="btn-x-blue">apiQuote</a>
+    </Link>
+    <Link href="/nextjs">
+      <a className="btn-x-blue">Nextjs learn demo</a>
+    </Link>
+    <Link href="/nextjs-doc">
+      <a className="btn-x-blue">Nextjs doc</a>
+    </Link>
+    <hr />
+    <p>Next.js - v3.9.1</p>
     <Link href="nextjs/index" as="nextjs/index">
       <a>nextjs/index</a>
     </Link>
@@ -21,9 +29,8 @@ const Home = () => (
     <Link href="react" as="react">
       <a>React Official</a>
     </Link>
-
-    <style jsx>{''}</style>
-  </MobileLayout>
+    {/* <style jsx>{``}</style> */}
+  </div>
 )
 
-export default Home
+export default withLayout(Home)

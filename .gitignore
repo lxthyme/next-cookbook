@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/node_modules.*
 /.pnp
 .pnp.js
 
@@ -14,7 +15,6 @@
 
 # production
 /build
-/dist
 
 # misc
 .DS_Store
@@ -26,5 +26,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Environment Variables
-.env
-.env.build
+# .env
+# .env.build

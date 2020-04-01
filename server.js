@@ -26,6 +26,14 @@ app.prepare().then(() => {
       app.setAssetPrefix('')
     }
 
+    if (pathname === "/a") {
+      app.render(req, res, "/b", query);
+    } else if (pathname === "/b") {
+      app.render(req, res, "/a", query);
+    } else {
+      handle(req, res, parsedUrl);
+    }
+
     handle(req, res, parsedUrl)
   }).listen(port, err => {
     if (err) throw err
