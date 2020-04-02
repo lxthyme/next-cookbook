@@ -30,8 +30,8 @@ const Page = props => {
         }
       `}</style>
     </>
-  );
-};
+  )
+}
 
 // Page.propTypes = {}
 // export const getStaticPaths = async () => { return { paths, fallback: true }; }
@@ -39,4 +39,4 @@ const Page = props => {
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // Page.getInitialProps = async ({ req }) => {}
 
-export default Page;
+export default Page

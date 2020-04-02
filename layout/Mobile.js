@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { theme } from '../theme/theme'
@@ -15,13 +14,8 @@ const Mobile = ({ children, title = '' }) => {
     <Base>
       <Head>
         <meta key="charSet" charSet="utf-8" />
-        <meta key="viewport" name="viewport" content="minimal-ui" />
+        {/* <meta key="viewport" name="viewport" content="minimal-ui" /> */}
         {/* Use minimum-scale=1 to enable GPU rasterization */}
-        <meta
-          key="viewport"
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-        />
         <meta
           key="viewport"
           name="viewport"

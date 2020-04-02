@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 // import React from 'react'
 // import PropTypes from 'prop-types'
@@ -13,20 +13,20 @@ const Button = React.forwardRef(({ onClick, href }, ref) => {
       </a>
       {/* <style jsx>{``}</style> */}
     </>
-  );
-});
+  )
+})
 
 const Page = () => {
   const imgTapped = e => {
-    console.log("E: ", e);
-  };
+    console.log('E: ', e)
+  }
   return (
     <>
       <Link href="/nextjs/about" passHref>
         <Button />
       </Link>
       <hr />
-      <Link href={{ pathname: "/nextjs/about", query: { name: "ZEIT" } }}>
+      <Link href={{ pathname: '/nextjs/about', query: { name: 'ZEIT' } }}>
         <a>About US</a>
       </Link>
       <hr />
@@ -35,8 +35,8 @@ const Page = () => {
       </Link>
       {/* <style jsx>{``}</style> */}
     </>
-  );
-};
+  )
+}
 
 // Page.propTypes = {}
 // export const getStaticPaths = async () => { return { paths, fallback: true }; }
@@ -44,4 +44,4 @@ const Page = () => {
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // Page.getInitialProps = async ({ req }) => {}
 
-export default Page;
+export default Page

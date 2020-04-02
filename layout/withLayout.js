@@ -17,3 +17,5 @@ const withLayout = Page => {
 }
 
 export default withLayout
+
+// export default withLayout(Page)

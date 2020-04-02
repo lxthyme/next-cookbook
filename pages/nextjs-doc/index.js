@@ -1,5 +1,5 @@
-import Link from "next/link";
-import withLayout from "../../layout/withLayout";
+import Link from 'next/link'
+import withLayout from '../../layout/withLayout'
 
 const Page = () => (
   <div className="container">
@@ -18,8 +18,11 @@ const Page = () => (
     <Link href="/nextjs-doc/9.api-reference">
       <a className="btn-x-blue">9. API Reference</a>
     </Link>
+    <Link href="/nextjs-doc/grid">
+      <a className="btn-x-blue">Grid</a>
+    </Link>
     {/* <style jsx>{``}</style> */}
   </div>
-);
+)
 
-export default withLayout(Page);
+export default withLayout(Page)

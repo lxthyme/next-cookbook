@@ -1,4 +1,3 @@
-import React from 'react'
 import { initGA, logPageView } from '../plugins/analytics'
 
 export default class Base extends React.Component {

@@ -10,7 +10,7 @@ const layoutStyle = {
   border: '1px solid #DDD'
 }
 
-export default function Layout (props) {
+export default ({ children }) => {
   return (
     <Base>
       <div style={layoutStyle}>
@@ -36,3 +36,5 @@ export default function Layout (props) {
     </Base>
   )
 }
+
+// export default <Layout>...</Layout>

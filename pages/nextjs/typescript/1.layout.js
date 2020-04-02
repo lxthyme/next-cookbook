@@ -1,4 +1,4 @@
-import Layout from "../../../layout/mobile3";
+import ContentLayout from "../../../layout/contentLayout";
 
 const indexContent = (
   <>
@@ -7,5 +7,5 @@ const indexContent = (
   </>
 );
 export default function Index() {
-  return <Layout content={indexContent} />;
+  return <ContentLayout content={indexContent} />;
 }

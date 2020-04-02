@@ -30,10 +30,7 @@
   ],
   "dependencies": {
     "@material-ui/core": "^4.7.0",
-    "@zeit/next-css": "^1.0.1",
-    "@zeit/next-sass": "^1.0.1",
     "cowsay-browser": "^1.1.8",
-    "express-session": "^1.17.0",
     "firebase": "^6.5.0",
     "isomorphic-unfetch": "^3.0.0",
     "next-routes": "^1.4.2",
@@ -41,7 +38,6 @@
     "react-spring": "^8.0.27",
     "react-virtualized": "^9.21.2",
     "react-window": "^1.8.5",
-    "unfetch": "^4.1.0",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "micro-dev": "^3.0.0",
@@ -52,25 +48,13 @@
     "swr": "^0.1.18"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.1.4",
-    "@types/next": "^9.0.0",
-    "@types/node": "^12.12.11",
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.9.4",
-    "@zeit/next-bundle-analyzer": "^0.1.2",
-    "babel-plugin-inline-react-svg": "^1.1.0",
-    "cross-env": "^6.0.3",
     "eslint": "^6.2.1",
     "eslint-config-standard": "^14.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "i": "^0.3.6",
-    "node-sass": "^4.13.0",
-    "path-match": "^1.2.4",
-    "webpack-bundle-analyzer": "^3.6.0"
+    "eslint-plugin-standard": "^4.0.1"
   }
 }

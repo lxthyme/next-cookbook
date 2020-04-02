@@ -6,6 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import { theme } from '../theme/theme'
 
 import '../public/css/common.css'
+import '../public/css/normalize.css'
+import '../public/css/next-wd.css'
 
 export default class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for
@@ -36,6 +38,10 @@ export default class MyApp extends App {
         <React.Fragment>
           <Head>
             <title>Next WD</title>
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            />
           </Head>
           <ThemeProvider theme={theme}>
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

@@ -4,6 +4,8 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
  * cross-env
  * @next/bundle-analyzer
  * webpack-bundle-analyzer
+ * ----
+ * @zeit/next-bundle-analyzer
  */
 const nextConfig = {
   enabled: process.env.ANALYZE === 'true',
