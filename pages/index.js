@@ -1,11 +1,23 @@
 import Link from 'next/link'
 import withLayout from '../layout/withLayout'
+import dynamic from 'next/dynamic'
+
+// import { Button } from 'element-react'
+
+const Button = dynamic(() => import('element-react/next').then(t => t.Button), {
+  ssr: false,
+})
+
+// import 'element-theme-default'
 
 const Home = () => (
   <div className="container">
-  <Link href="material">
-    <a className="btn-x-blue">Material UI</a>
-  </Link>
+    <div className="v-button">
+      <Button type="primary">Button</Button>
+    </div>
+    <Link href="material">
+      <a className="btn-x-blue">Material UI</a>
+    </Link>
     <Link href="nextjs">
       <a className="btn-x-blue">nextjs</a>
     </Link>
@@ -37,7 +49,11 @@ const Home = () => (
     <Link href="/index3">
       <a className="btn-x-blue">index3</a>
     </Link>
-    {/* <style jsx>{``}</style> */}
+    <style jsx>{`
+      .v-button {
+        height: 500px;
+      }
+    `}</style>
   </div>
 )
 

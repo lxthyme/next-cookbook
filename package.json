@@ -31,30 +31,34 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "cowsay-browser": "^1.1.8",
+    "element-react": "^1.4.34",
     "firebase": "^6.5.0",
     "isomorphic-unfetch": "^3.0.0",
-    "next-routes": "^1.4.2",
-    "react-ga": "^2.7.0",
-    "react-spring": "^8.0.27",
-    "react-virtualized": "^9.21.2",
-    "react-window": "^1.8.5",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
     "micro-dev": "^3.0.0",
+    "mongodb": "^3.5.5",
     "next": "9.3.1",
+    "next-connect": "^0.6.1",
+    "next-routes": "^1.4.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-ga": "^2.7.0",
     "react-markdown": "^4.3.1",
+    "react-spring": "^8.0.27",
+    "react-virtualized": "^9.21.2",
+    "react-window": "^1.8.5",
     "swr": "^0.1.18"
   },
   "devDependencies": {
     "eslint": "^6.2.1",
     "eslint-config-standard": "^14.0.0",
-    "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "react-hot-loader": "^4.12.20"
   }
 }

@@ -1,8 +1,3 @@
-console.log({
-  SECRET: process.env.SECRET,
-  ANOTHER_SECRET: process.env.ANOTHER_SECRET
-})
-
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -14,8 +9,13 @@ const isProd = process.env.NODE_ENV === 'production'
 // const bundleAnalyzer = require('./next-config/bundle-analyzer')
 // module.exports = bundleAnalyzer.defaultBundleAnalyzer
 
-// const env = require('./next-config/env.config')
-// module.exports = env.ENV
+const env = require('./next-config/env.config')
+module.exports = env.ENV
+
+console.log({
+  SECRET: process.env.SECRET,
+  ANOTHER_SECRET: process.env.ANOTHER_SECRET
+})
 
 // const cdn = require('./next-config/cdn.config')
 // module.exports = cdn.CDN
