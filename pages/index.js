@@ -8,8 +8,6 @@ const Button = dynamic(() => import('element-react/next').then(t => t.Button), {
   ssr: false,
 })
 
-// import 'element-theme-default'
-
 const Home = () => (
   <div className="container">
     <div className="v-button">
@@ -48,6 +46,13 @@ const Home = () => (
     </Link>
     <Link href="/index3">
       <a className="btn-x-blue">index3</a>
+    </Link>
+    <h4>3RD</h4>
+    <Link href="/react-window">
+      <a className="btn-x-blue">React Window</a>
+    </Link>
+    <Link href="/react-virtualized">
+      <a className="btn-x-blue">React Virtualized</a>
     </Link>
     <style jsx>{`
       .v-button {

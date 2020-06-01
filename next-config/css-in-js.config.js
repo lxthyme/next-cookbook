@@ -1,4 +1,18 @@
 /**
+ * @zeit/next-less less
+ * less
+ */
+const withLess = require('@zeit/next-less')
+module.exports = withLess({
+  /* config options here */
+  // 在项目中使用cssModule
+  cssModules: true,
+  lessLoaderOptions: {
+    javascriptEnabled: true,
+  },
+})
+
+/**
  * @zeit/next-sass
  * node-sass
  */
