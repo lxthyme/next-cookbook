@@ -1,0 +1,18 @@
+<plist version="1.0">
+    <dict>
+        <key>pings</key>
+        <array />
+        <key>jingleDocType</key>
+        <string>inAppSuccess</string>
+        <key>jingleAction</key>
+        <string>inAppPendingTransactions</string>
+        <key>dsid</key>
+        <string>111111</string>
+        <key>download-queue-item-count</key>
+        <integer>0</integer>
+        <key>app-list</key>
+        <array>
+        </array>
+        <!-- dataSource: [n/a]-->
+    </dict>
+</plist>
