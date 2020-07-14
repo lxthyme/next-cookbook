@@ -1,0 +1,12 @@
+.btn-x-gray {
+  display: inline-block;
+  margin: 4px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  color: white;
+  background: rgb(37, 37, 37);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 14px 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}

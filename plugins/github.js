@@ -349,6 +349,7 @@ export const user = {
       `
   },
   search: (from, to) => {
+    // return `SELECT * FROM \`user\` LIMIT ${from}, ${to}`
     return `SELECT * FROM \`user\` LIMIT ${from}, ${to}`
   },
   insert: (list) => {
