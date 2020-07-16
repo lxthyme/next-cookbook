@@ -6,13 +6,14 @@ import { Button } from 'antd'
 // import VStarredList from '@/components/star/v-starred-list'
 import VLeftSession from '../../components/star/v-left-session'
 import VStarredList from '../../components/star/v-starred-list'
+import VRightSession from '../../components/star/v-right-session'
 import { useRouter } from 'next/router'
 
 // import MockUserInfo from '@/model/mock/lx314'
 // import MockStarredList from '@/model/mock/starred'
 import MockUserInfo from '../../model/mock/lx314'
 import MockStarredList from '../../model/mock/starred'
-import GitHub from '../../plugins/github'
+import GitHub, { insertData } from '../../plugins/github'
 // export const config = { amp: true };
 
 const ClientID = 'bce5a494a0aaf5e10b2d'
@@ -29,6 +30,7 @@ const GitHubToken = {
 //   scope: 'repo,gist,user',
 // }
 const Page = (props) => {
+  const router = useRouter()
   const [starredData, setStarredData] = useState({
     list: null,
   })
@@ -38,9 +40,21 @@ const Page = (props) => {
       GitHub,
       check,
       test,
+      router,
     }
     window.GitHub = GitHub
     loadData(0, 10)
+    get(
+      'https://raw.githubusercontent.com/rexxars/react-markdown/master/README.md',
+      {},
+      {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+        },
+      },
+    ).then((res) => {
+      console.log('RES: ', res)
+    })
   }, [])
   //   const { data, error } = useGet({ url: 'https://api.github.com/users/lx314' })
   //   const { data, error } = useGet({
@@ -176,15 +190,6 @@ const Page = (props) => {
       list: list,
     })
   }
-  const insertData = ({ type = '', list = [] }) => {
-    if (!list || list.length <= 0) {
-      return Promise.resolve()
-    }
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/repo/insert',
-      params: { type, list },
-    })
-  }
   const loadData = (from, to) => {
     return post({
       url: 'http://0.0.0.0:3003/api/github/repo/list',
@@ -213,7 +218,9 @@ const Page = (props) => {
           </section>
           {starredData.list && <VStarredList list={starredData.list} />}
         </session>
-        <session className="v-session-right">right</session>
+        <session className="v-session-right">
+          <VRightSession />
+        </session>
       </session>
       <style jsx>{`
         .v-session-star {
@@ -229,6 +236,7 @@ const Page = (props) => {
         }
         .v-session-right {
           flex: 1 1 55%;
+          padding: 16px;
         }
       `}</style>
     </>

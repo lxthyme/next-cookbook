@@ -1,5 +1,6 @@
 import StarrdedList from '../model/mock/starred'
 import { useGet, usePost } from '../plugins/api'
+import { post } from '../plugins/api'
 // import { query } from '../plugins/db'
 
 const LX_Regex_Remove_Comment = /\/\/\/[a-zA-Z0-9_ ]*\n/gs
@@ -230,7 +231,7 @@ export const repo = {
         `
   },
   search: (from, to) => {
-    return `SELECT * FROM \`repo\` LIMIT ${from}, ${to}`
+    return `SELECT * FROM \`repo\` ORDER BY idx DESC LIMIT ${from}, ${to}`
   },
   insert: (list) => {
     // const values = repo.sqlValues(model)
@@ -400,28 +401,87 @@ export const repo_note = {
         \`repo_id\`, \`note\`, \`create_at\`, \`update_at\`
         `
   },
-  sqlValues: (item) => {
+  sqlValues: ({ repo_id, note }) => {
     const timestamp = new Date().getTime()
     return `
         /// repo_id
-        ${item.id},
+        ${repo_id},
         /// note
-        "${item.note || ''}",
+        "${note || ''}",
         /// create_at
         "${timestamp}",
         /// update_at
         "${timestamp}"
         `
   },
-  insert: (item) => {
-    const values = repo_note.sqlValues(item).replace(LX_Regex_Remove_Comment, '')
+  insert: (data) => {
+    const values = repo_note
+      .sqlValues(data)
+      .replace(LX_Regex_Remove_Comment, '')
     return `REPLACE INTO \`repo_note\` ( ${repo_note.sqlColumns()} ) VALUES ( ${values} )`
+  },
+  search: (repo_id) => {
+    return `SELECT * FROM \`repo_note\` WHERE repo_id = ${repo_id}`
   },
 }
 
+export const tag = {
+  sqlColumns: () => {
+    return `\`name\``
+  },
+  sqlValues: (name) => {
+    return `
+    "${name}"
+    `
+  },
+  insert: (name) => {
+    const values = tag.sqlValues(name).replace(LX_Regex_Remove_Comment, '')
+    return `Insert INTO \`tag\` ( ${tag.sqlColumns()} ) VALUES ( ${values} )`
+  },
+  search: (from, to) => {
+    return `SELECT * FROM \`tag\` LIMIT ${from}, ${to}`
+  },
+}
+export const repo_tag = {
+  sqlColumns: () => {
+    return `\`repo_id\`, \`tag_id\``
+  },
+  sqlValues: ({ repo_id, tag_list }) => {
+    return `
+    ${repo_id},
+    "${tag_list}"
+    `
+  },
+  insert: (data) => {
+    const values = repo_tag.sqlValues(data).replace(LX_Regex_Remove_Comment, '')
+    return `REPLACE INTO \`repo_tag\` ( ${repo_tag.sqlColumns()} ) VALUES ( ${values} )`
+  },
+  search: (repo_id) => {
+    return `SELECT * FROM \`repo_tag\` WHERE repo_id = ${repo_id}`
+  },
+}
+
+export const insertData = ({ type = '', list, data }) => {
+  if ((!list || list.length <= 0) && !data) {
+    return Promise.resolve('list.length <= 0')
+  }
+  return post({
+    url: 'http://0.0.0.0:3003/api/github/repo/insert',
+    params: { type, list, data },
+  })
+}
+
 export default {
+  // repo list
   repo,
+  // repo note
   repo_note,
+  // user
   user,
+  // license
   license,
+  /// repo's tag
+  tag,
+  repo_tag,
+  insertData,
 }

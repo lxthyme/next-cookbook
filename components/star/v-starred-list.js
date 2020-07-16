@@ -5,48 +5,19 @@ import ListItem from '@material-ui/core/ListItem'
 import { Icon, InlineIcon } from '@iconify/react'
 import gitBranch from '@iconify/icons-octicon/git-branch'
 import starIcon from '@iconify/icons-octicon/star'
-import VNoteModal from '../../components/star/v-note-modal'
 import { post } from '../../plugins/api'
+import { useRouter } from 'next/router'
 
 // export const config = { amp: true };
 
 const VStarredList = ({ list = [] }) => {
-  const ref = useRef(0)
-  useEffect(() => {
-    window.ref = ref
-  }, [])
-  const itemTapped = (item) => {
-    setNoteData((t) => ({ ...t, id: item.id }))
-    noteModalFunc.onShow()
-  }
-  const [noteData, setNoteData] = useState({
+  const router = useRouter()
+  const [currentSelected, setCurrentSelected] = useState({
     id: null,
-    note: '',
   })
-  const [noteVisible, setNoteVisible] = useState(false)
-  const noteModalFunc = {
-    onShow: () => {
-      setNoteVisible(true)
-    },
-    onDismiss: () => {
-      setNoteVisible(false)
-    },
-    onSubmit: (v) => {
-      if (!v) {
-        return
-      }
-      console.log('V: ', v)
-      setNoteData((t) => ({ ...t, note: v }))
-      insertNote({ id: noteData.id, note: v })
-    },
-  }
-  const insertNote = (data) => {
-    post({
-      url: 'http://0.0.0.0:3003/api/github/repo/insert',
-      params: { type: 'repo_note', data },
-    }).then((res) => {
-      noteModalFunc.onDismiss()
-    })
+  const onItemTapped = (item) => {
+    router.push(`/star?id=${item.id}`, undefined, { shadllow: true })
+    setCurrentSelected((t) => ({ ...t, id: item.id }))
   }
   return (
     <>
@@ -55,12 +26,12 @@ const VStarredList = ({ list = [] }) => {
         {list.map((t) => (
           <ListItem
             key={t.id}
-            selected={t.id === noteData.id}
+            selected={t.id === currentSelected.id}
             alignItems="flex-start"
             button
             divider
             className="v-repo-item"
-            onClick={itemTapped.bind(this, t)}
+            onClick={onItemTapped.bind(this, t)}
           >
             {/* <div className="v-starred-item" key={t.id}> */}
             <div className="v-line1">
@@ -90,12 +61,6 @@ const VStarredList = ({ list = [] }) => {
           </ListItem>
         ))}
       </List>
-      <VNoteModal
-        ref={ref}
-        visible={noteVisible}
-        onSubmit={noteModalFunc.onSubmit}
-        onDismiss={noteModalFunc.onDismiss}
-      />
       {/* </div> */}
       <style jsx>{`
         :global(.v-repo-item) {

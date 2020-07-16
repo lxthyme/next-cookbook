@@ -1,6 +1,8 @@
 import useSWR from 'swr'
 import axios from 'axios'
 
+import { message } from 'antd'
+
 const $axios = axios.create({
   baseURL: 'https://some-domain.com/api/',
   timeout: 30000,
@@ -288,7 +290,7 @@ export const get = (url, params, { initialData, headers, ...config } = {}) => {
         statusText,
         ...others
       } = res
-      console.log('RES: ', { data, error, others })
+      console.log(`[${config.url}]: `, { data, error, others })
       return { data, headers }
     })
     .catch((err) => {
@@ -314,10 +316,16 @@ export const post = (request, { initialData, ...config } = {}) => {
     // .post(url, JSON.parse(JSON.stringify({ repo_id: 233 })))
     .then((res) => {
       const { data, error, ...others } = res
-      console.log('RES: ', { data, error, others })
-      return data || {}
+      console.log(`[${others.config.url}]: `, { data, error, others })
+      if (data.code === 10000) {
+        return data || {}
+      } else {
+        message.error(data.msg)
+        throw new Error(data.msg)
+      }
     })
     .catch((err) => {
       console.log('Error: ', err)
+      message.error(err)
     })
 }

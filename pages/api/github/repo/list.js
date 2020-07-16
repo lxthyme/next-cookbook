@@ -3,7 +3,7 @@ import { query } from '../../../../plugins/db'
 import GitHub from '../../../../plugins/github'
 
 export default async (req, res) => {
-  const { type, from, to } = req.body
+  const { type, from, to, repo_id } = req.body
 
   try {
     let sqlString = ''
@@ -13,6 +13,12 @@ export default async (req, res) => {
       sqlString = GitHub.repo.search(from, to)
     } else if (type === 'license') {
       sqlString = GitHub.license.search(from, to)
+    } else if (type === 'tag') {
+      sqlString = GitHub.tag.search(from, to)
+    } else if (type === 'repo_tag') {
+      sqlString = GitHub.repo_tag.search(repo_id)
+    } else if (type === 'repo_note') {
+      sqlString = GitHub.repo_note.search(repo_id)
     }
     if (!sqlString) {
       res.status(200).json({

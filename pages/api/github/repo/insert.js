@@ -15,6 +15,10 @@ export default async (req, res) => {
       sqlString = GitHub.license.insert(list)
     } else if (type === 'repo_note') {
       sqlString = GitHub.repo_note.insert(data)
+    } else if (type === 'tag') {
+      sqlString = GitHub.tag.insert(data)
+    } else if (type === 'repo_tag') {
+      sqlString = GitHub.repo_tag.insert(data)
     }
     if (!sqlString) {
       res.status(200).json({

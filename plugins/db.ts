@@ -34,5 +34,6 @@ export const query = async (queryString) => {
         return result[0]
     } catch (err) {
         console.log('📌Query Error: ', err)
+        throw err
     }
 }
