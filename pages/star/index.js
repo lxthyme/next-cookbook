@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useGet, usePost, post, get } from '../../plugins/api'
+import { useGet, usePost, post, get, $axios, ax } from '../../plugins/api'
 import { Button } from 'antd'
 
 // import VLeftSession from '@/components/star/v-left-session'
@@ -41,20 +41,23 @@ const Page = (props) => {
       check,
       test,
       router,
+      get,
+      a: $axios,
+      ax,
     }
     window.GitHub = GitHub
-    loadData(0, 10)
-    get(
-      'https://raw.githubusercontent.com/rexxars/react-markdown/master/README.md',
-      {},
-      {
-        headers: {
-          'Content-Type': 'text/plain; charset=utf-8',
-        },
-      },
-    ).then((res) => {
-      console.log('RES: ', res)
-    })
+    loadData()
+    // get(
+    //   'https://raw.githubusercontent.com/rexxars/react-markdown/master/README.md',
+    //   {},
+    //   {
+    //     headers: {
+    //       'Content-Type': 'text/plain; charset=utf-8',
+    //     },
+    //   },
+    // ).then((res) => {
+    //   console.log('RES: ', res)
+    // })
   }, [])
   //   const { data, error } = useGet({ url: 'https://api.github.com/users/lx314' })
   //   const { data, error } = useGet({
@@ -91,6 +94,14 @@ const Page = (props) => {
   //       Authorization: `token ${GitHubToken.access_token}`,
   //     },
   //   })
+
+  const [currentSelected, setCurrentSelected] = useState({ id: -1 })
+  const currentSelectedFun = {
+    onSelected: (item) => {
+      router.push(`/star?id=${item.id}`, undefined, { shadllow: true })
+      setCurrentSelected(item)
+    },
+  }
   const test = () => {
     const t = get(
       'https://api.github.com/users/LX314/starred',
@@ -190,19 +201,22 @@ const Page = (props) => {
       list: list,
     })
   }
-  const loadData = (from, to) => {
+  const loadData = (tag_id = -1, from = 0, to = 10) => {
     return post({
       url: 'http://0.0.0.0:3003/api/github/repo/list',
-      params: { type: 'repo', from, to },
+      params: { type: 'repo', tag_id, from, to },
     }).then(({ data }) => {
       setStarredData((t) => ({ ...t, list: data || [] }))
     })
+  }
+  const refreshRepoList = (tag_id) => {
+    loadData(tag_id)
   }
   return (
     <>
       <session className="v-session-star">
         <session className="v-session-left">
-          <VLeftSession data={data} />
+          <VLeftSession data={data} refreshRepoList={refreshRepoList} />
         </session>
         <session className="v-session-middle">
           <a href="https://github.com/login/oauth/authorize?client_id=bce5a494a0aaf5e10b2d&scope=repo,gist,user">
@@ -216,10 +230,16 @@ const Page = (props) => {
             <button onClick={insertLicenseList}>Insert License</button>
             <button onClick={insertUserList}>Insert User</button>
           </section>
-          {starredData.list && <VStarredList list={starredData.list} />}
+          {starredData.list && (
+            <VStarredList
+              list={starredData.list}
+              currentSelected={currentSelected}
+              onSelected={currentSelectedFun.onSelected}
+            />
+          )}
         </session>
         <session className="v-session-right">
-          <VRightSession />
+          <VRightSession repo={currentSelected} />
         </session>
       </session>
       <style jsx>{`
@@ -227,16 +247,28 @@ const Page = (props) => {
           display: flex;
           justify-content: stretch;
           align-items: stretch;
+          height: 100vh;
         }
         .v-session-left {
           flex: 1 1 20%;
+          max-width: 20%;
+          overflow: auto;
         }
         .v-session-middle {
           flex: 1 1 25%;
+          max-width: 25%;
+          overflow: auto;
         }
         .v-session-right {
           flex: 1 1 55%;
+          max-width: 55%;
+          display: flex;
+          justify-content: stretch;
+          flex-direction: column;
+          align-items: stretch;
+          // overflow: auto;
           padding: 16px;
+          overflow: auto;
         }
       `}</style>
     </>

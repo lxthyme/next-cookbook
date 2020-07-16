@@ -3,14 +3,14 @@ import { query } from '../../../../plugins/db'
 import GitHub from '../../../../plugins/github'
 
 export default async (req, res) => {
-  const { type, from, to, repo_id } = req.body
+  const { type, from, to, repo_id, tag_id } = req.body
 
   try {
     let sqlString = ''
     if (type === 'user') {
       sqlString = GitHub.user.search(from, to)
     } else if (type === 'repo') {
-      sqlString = GitHub.repo.search(from, to)
+      sqlString = GitHub.repo.search(tag_id, from, to)
     } else if (type === 'license') {
       sqlString = GitHub.license.search(from, to)
     } else if (type === 'tag') {

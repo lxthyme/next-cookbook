@@ -3,14 +3,15 @@ import axios from 'axios'
 
 import { message } from 'antd'
 
-const $axios = axios.create({
+export const ax = axios
+export const $axios = axios.create({
   baseURL: 'https://some-domain.com/api/',
   timeout: 30000,
   headers: {
     // 'X-Custom-Header': 'foobar'
   },
   withCredentials: false,
-  responseType: 'json',
+  // responseType: 'json',
 
   // `maxContentLength` 定义允许的响应内容的最大尺寸
   maxContentLength: 2000,
@@ -104,37 +105,37 @@ console.log('$axios.onRequest: ', $axios.onRequest)
 if (typeof window !== 'undefined') {
   window.$axios = $axios
 }
-$axios.interceptors.request.use(
-  (config, a) => {
-    console.log('$axios.interceptors.request: ', { config, a })
-    if (config.method === 'get') {
-      return config
-    }
+// $axios.interceptors.request.use(
+//   (config, a) => {
+//     console.log('$axios.interceptors.request: ', { config, a })
+//     if (config.method === 'get') {
+//       return config
+//     }
 
-    if (config.url.includes('vaffle.com')) {
-      config.headers = {
-        ...config.headers,
-        timestamp: Math.round(new Date().getTime() / 1000),
-        'serial-number': '2fba0f6478845924cba2b2c1bfd70cd8',
-        tik:
-          'czJYSytDanZqTDQvL09qZWxINjRLYkhIcE1LU0VvNkNxZ25pa3I3cnNucGVyZE1JTThlQ0JQdXlWblZFQkVVdjlQU0JadFczeFdDYTd0QjNCVXhGNE5vQXRGWXBxL0JaNGdtMDh6RHdkQWIyVStMZTNwSXI1WmgzSDlCYUdHM00=',
-        version: '4.0.4',
-        device: 'web',
-        lang: 'en',
-      }
-    }
-    config.headers = {
-      ...config.headers,
-      'Access-Control-Allow-Origin': '*',
-      // 'Content-Type': 'application/json',
-    }
-    return config
-  },
-  (error, a) => {
-    console.log('$axios.interceptors.request.error: ', { error, a })
-    Promise.reject(error)
-  },
-)
+//     if (config.url.includes('vaffle.com')) {
+//       config.headers = {
+//         ...config.headers,
+//         timestamp: Math.round(new Date().getTime() / 1000),
+//         'serial-number': '2fba0f6478845924cba2b2c1bfd70cd8',
+//         tik:
+//           'czJYSytDanZqTDQvL09qZWxINjRLYkhIcE1LU0VvNkNxZ25pa3I3cnNucGVyZE1JTThlQ0JQdXlWblZFQkVVdjlQU0JadFczeFdDYTd0QjNCVXhGNE5vQXRGWXBxL0JaNGdtMDh6RHdkQWIyVStMZTNwSXI1WmgzSDlCYUdHM00=',
+//         version: '4.0.4',
+//         device: 'web',
+//         lang: 'en',
+//       }
+//     }
+//     config.headers = {
+//       ...config.headers,
+//       'Access-Control-Allow-Origin': '*',
+//       // 'Content-Type': 'application/json',
+//     }
+//     return config
+//   },
+//   (error, a) => {
+//     console.log('$axios.interceptors.request.error: ', { error, a })
+//     Promise.reject(error)
+//   },
+// )
 
 $axios.interceptors.response.use(
   (response, a) => {

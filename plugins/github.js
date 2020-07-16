@@ -230,8 +230,24 @@ export const repo = {
         "${repo.watchers || ''}"
         `
   },
-  search: (from, to) => {
-    return `SELECT * FROM \`repo\` ORDER BY idx DESC LIMIT ${from}, ${to}`
+  search: (tag_id, from, to) => {
+    if (!tag_id || tag_id <= 0) {
+      // return `SELECT * FROM \`repo\` ORDER BY idx DESC LIMIT ${from}, ${to}`
+      return `
+      SELECT * FROM repo LEFT JOIN repo_tag ON repo.id = repo_tag.repo_id
+      WHERE
+        repo_tag.tag_id IS NULL
+        ORDER BY id DESC
+        LIMIT 0,10
+      `
+    }
+    return `
+    SELECT * FROM repo LEFT JOIN repo_tag ON repo.id = repo_tag.repo_id
+    WHERE
+      repo_tag.tag_id LIKE '%${tag_id}%'
+      ORDER BY id DESC
+	    LIMIT 0,10
+    `
   },
   insert: (list) => {
     // const values = repo.sqlValues(model)

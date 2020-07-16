@@ -97,55 +97,57 @@ const Page = (props) => {
   }
   return (
     <>
-      <TagOutlined />
-      <Select
-        mode="multiple"
-        value={currentTags.selected}
-        onChange={onSelectChange}
-        placeholder="type the repo's tag..."
-        style={{ width: 240, marginLeft: 8 }}
-        dropdownRender={(menu) => (
-          <>
-            <div>
-              {menu}
-              <Divider style={{ margin: '4px 0' }} />
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'nowrap',
-                  padding: 8,
-                }}
-              >
-                <Input
-                  style={{ flex: 'auto' }}
-                  value={currentTags.name}
-                  onChange={onTagNameChanged}
-                />
-                <a
+      <div className="v-tag-wrapper">
+        <TagOutlined />
+        <Select
+          mode="multiple"
+          value={currentTags.selected}
+          onChange={onSelectChange}
+          placeholder="type the repo's tag..."
+          style={{ width: 240, marginLeft: 8 }}
+          dropdownRender={(menu) => (
+            <>
+              <div>
+                {menu}
+                <Divider style={{ margin: '4px 0' }} />
+                <div
                   style={{
-                    flex: 'none',
+                    display: 'flex',
+                    flexWrap: 'nowrap',
                     padding: 8,
-                    display: 'block',
-                    cursor: 'pointer',
                   }}
-                  onClick={addItem}
                 >
-                  <PlusOutlined />
-                  Add New Tag
-                </a>
+                  <Input
+                    style={{ flex: 'auto' }}
+                    value={currentTags.name}
+                    onChange={onTagNameChanged}
+                  />
+                  <a
+                    style={{
+                      flex: 'none',
+                      padding: 8,
+                      display: 'block',
+                      cursor: 'pointer',
+                    }}
+                    onClick={addItem}
+                  >
+                    <PlusOutlined />
+                    Add New Tag
+                  </a>
+                </div>
               </div>
-            </div>
-          </>
-        )}
-      >
-        {currentTags.list
-          .filter((t) => !currentTags.selected.find((s) => s === t.name))
-          .map((t) => (
-            <Option key={t.id} value={t.name}>
-              {t.name}
-            </Option>
-          ))}
-      </Select>
+            </>
+          )}
+        >
+          {currentTags.list
+            .filter((t) => !currentTags.selected.find((s) => s === t.name))
+            .map((t) => (
+              <Option key={t.id} value={t.name}>
+                {t.name}
+              </Option>
+            ))}
+        </Select>
+      </div>
       {/* <style jsx>{``}</style> */}
     </>
   )

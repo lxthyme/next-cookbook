@@ -5,20 +5,10 @@ import ListItem from '@material-ui/core/ListItem'
 import { Icon, InlineIcon } from '@iconify/react'
 import gitBranch from '@iconify/icons-octicon/git-branch'
 import starIcon from '@iconify/icons-octicon/star'
-import { post } from '../../plugins/api'
-import { useRouter } from 'next/router'
 
 // export const config = { amp: true };
 
-const VStarredList = ({ list = [] }) => {
-  const router = useRouter()
-  const [currentSelected, setCurrentSelected] = useState({
-    id: null,
-  })
-  const onItemTapped = (item) => {
-    router.push(`/star?id=${item.id}`, undefined, { shadllow: true })
-    setCurrentSelected((t) => ({ ...t, id: item.id }))
-  }
+const VStarredList = ({ list = [], currentSelected, onSelected }) => {
   return (
     <>
       {/* <div className="v-starred-list"> */}
@@ -31,7 +21,7 @@ const VStarredList = ({ list = [] }) => {
             button
             divider
             className="v-repo-item"
-            onClick={onItemTapped.bind(this, t)}
+            onClick={onSelected.bind(this, t)}
           >
             {/* <div className="v-starred-item" key={t.id}> */}
             <div className="v-line1">

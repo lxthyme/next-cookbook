@@ -1,6 +1,30 @@
+import React, { useState, useEffect } from 'react'
+
+import { List } from 'antd'
+import { post } from '../../plugins/api'
+
 // export const config = { amp: true };
 
-const Page = ({ data = {} }) => {
+const Page = ({ data = {}, refreshRepoList }) => {
+  const [tagData, setTagData] = useState({
+    list: [],
+    current: -1,
+  })
+  useEffect(() => {
+    loadTagList()
+  }, [])
+  const loadTagList = (from = 0, to = 20) => {
+    return post({
+      url: 'http://0.0.0.0:3003/api/github/repo/list',
+      params: { type: 'tag', from, to },
+    }).then(({ data }) => {
+      setTagData((t) => ({ ...t, list: data || [] }))
+    })
+  }
+  const onTagTapped = (id) => {
+    setTagData((t) => ({ ...t, current: id }))
+    refreshRepoList && refreshRepoList(id)
+  }
   return (
     <>
       <img src={data.avatar_url} alt="" className="v-avatar" />
@@ -42,7 +66,30 @@ const Page = ({ data = {} }) => {
         </a>
       </div>
       <div className="v-account-info"></div>
+      <div className="v-tag-wrapper">
+        <List
+          header={<div onClick={onTagTapped.bind(this, -1)}>Tag List</div>}
+          // footer={<div>Footer</div>}
+          bordered
+          dataSource={tagData.list}
+          sel
+          renderItem={(item) => (
+            <List.Item
+              onClick={onTagTapped.bind(this, item.id)}
+              style={{
+                backgroundColor:
+                  tagData.current === item.id ? 'rgba(0, 0, 0, 0.08)' : '',
+              }}
+            >
+              {item.name}
+            </List.Item>
+          )}
+        />
+      </div>
       <style jsx>{`
+        :global(.ant-list-item) {
+          cursor: pointer;
+        }
         .v-avatar {
           width: 70px;
         }
