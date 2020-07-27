@@ -36,8 +36,8 @@ const VNote = (props) => {
     setNoteContent(value)
   }
   const btnSubmitAction = () => {
-    if (!noteContent || noteContent.length < 5) {
-      message.error('备注的最小长度为 5!')
+    if (!noteContent || noteContent.length < 1) {
+      message.error('备注的最小长度为 1!')
       return
     }
     const repo_id = router.query.id
@@ -49,7 +49,13 @@ const VNote = (props) => {
     post({
       url: 'http://0.0.0.0:3003/api/github/repo/insert',
       params: { type: 'repo_note', data: { repo_id, note: noteContent } },
-    }).then((res) => {})
+    })
+      .then((res) => {
+        message.success('添加备注成功!')
+      })
+      .catch((e) => {
+        message.error('添加备注失败!')
+      })
   }
   return (
     <>

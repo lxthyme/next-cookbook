@@ -20,13 +20,13 @@ const Page = (props) => {
     name: '',
   })
   useEffect(() => {
-    loadData(0, 20)
+    loadData()
     window.r = router
   }, [])
   useEffect(() => {
     loadRepoTags()
   }, [router.query.id])
-  const loadData = (from = 0, to = 20) => {
+  const loadData = (from = 0, to = 100) => {
     return post({
       url: 'http://0.0.0.0:3003/api/github/repo/list',
       params: { type: 'tag', from, to },
@@ -63,12 +63,15 @@ const Page = (props) => {
       type: 'tag',
       data: name,
     }).then((res) => {
+      message.success('新增 repo tag 成功!')
       const data = res.data || {}
       setCurrentTags((t) => ({
         ...t,
         list: [...t.list, { id: data.insertId, name: t.name }],
         name: '',
-      }))
+      })).catch((e) => {
+        message.error('新增 repo tag 失败!')
+      })
     })
   }
   const onSelectChange = (items) => {
@@ -91,9 +94,14 @@ const Page = (props) => {
         repo_id,
         tag_list: JSON.stringify(tag_list),
       },
-    }).then((res) => {
-      setCurrentTags((t) => ({ ...t, selected: items }))
     })
+      .then((res) => {
+        message.success('tag 设置成功!')
+        setCurrentTags((t) => ({ ...t, selected: items }))
+      })
+      .catch((e) => {
+        message.error('tag 设置失败!')
+      })
   }
   return (
     <>
@@ -104,7 +112,7 @@ const Page = (props) => {
           value={currentTags.selected}
           onChange={onSelectChange}
           placeholder="type the repo's tag..."
-          style={{ width: 240, marginLeft: 8 }}
+          style={{ marginLeft: 8, flex: '1 1' }}
           dropdownRender={(menu) => (
             <>
               <div>
@@ -148,7 +156,13 @@ const Page = (props) => {
             ))}
         </Select>
       </div>
-      {/* <style jsx>{``}</style> */}
+      <style jsx>{`
+        .v-tag-wrapper {
+          display: flex;
+          justify-content: stretch;
+          align-items: center;
+        }
+      `}</style>
     </>
   )
 }

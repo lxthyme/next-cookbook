@@ -13,7 +13,7 @@ const Page = ({ data = {}, refreshRepoList }) => {
   useEffect(() => {
     loadTagList()
   }, [])
-  const loadTagList = (from = 0, to = 20) => {
+  const loadTagList = (from = 0, to = 100) => {
     return post({
       url: 'http://0.0.0.0:3003/api/github/repo/list',
       params: { type: 'tag', from, to },
