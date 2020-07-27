@@ -1,8 +1,6 @@
 import useSWR from 'swr'
 import axios from 'axios'
 
-import { message } from 'antd'
-
 export const ax = axios
 export const $axios = axios.create({
   baseURL: 'https://some-domain.com/api/',
@@ -142,6 +140,9 @@ $axios.interceptors.response.use(
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     console.log('$axios.interceptors.response: ', { response, a })
+    // if(response.headers['x-show-msg'] === '1') {
+    //   message.success(response.data.msg)
+    // }
     return response
   },
   (error, a) => {
@@ -296,6 +297,7 @@ export const get = (url, params, { initialData, headers, ...config } = {}) => {
     })
     .catch((err) => {
       console.log('Error: ', err)
+      throw err
     })
 }
 

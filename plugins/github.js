@@ -238,7 +238,7 @@ export const repo = {
       WHERE
         repo_tag.tag_id IS NULL
         ORDER BY id DESC
-        LIMIT 0,10
+        LIMIT ${from},${to}
       `
     }
     return `
@@ -246,7 +246,7 @@ export const repo = {
     WHERE
       repo_tag.tag_id LIKE '%${tag_id}%'
       ORDER BY id DESC
-	    LIMIT 0,10
+	    LIMIT ${from},${to}
     `
   },
   insert: (list) => {
@@ -479,7 +479,7 @@ export const repo_tag = {
 
 export const insertData = ({ type = '', list, data }) => {
   if ((!list || list.length <= 0) && !data) {
-    return Promise.resolve('list.length <= 0')
+    return Promise.reject('list.length <= 0')
   }
   return post({
     url: 'http://0.0.0.0:3003/api/github/repo/insert',
