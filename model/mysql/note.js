@@ -19,17 +19,43 @@ class Note extends Model {
         })
     })
   }
+  static vBuildList = (array) => {
+    return new Promise(async (resolve, reject) => {
+      const result = []
+      vLog.login('[NOTE]begin...')
+      for (let i = 0; i < array.length; i++) {
+        try {
+          vLog.login(`-->[NOTE]👉${i}: `)
+          const item = array[i]
+          const tmp = await this.vBuild(item)
+          vLog.login(`[Note-${i}]保存成功!`)
+          result.push(tmp)
+        } catch (error) {
+          vLog.errorin(`[Note-${i}]保存失败!`, error)
+          reject(error)
+          break
+        }
+      }
+      vLog.log('[NOTE]end...')
+      resolve(result)
+    })
+  }
 }
 Note.init(
   {
-    id: { type: V_Number, primaryKey: true, unique: true },
-    repo_id: V_Number,
+    id: { type: V_Number, primaryKey: true, autoIncrement: true },
     content: V_String,
   },
   {
     sequelize,
     timestamps: true,
-    // modelName: 'Note',
+    underscored: true,
+    // modelName: 'note',
+    underscored: true,
+    name: {
+      singular: 'note_list',
+      plural: 'note_list',
+    },
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
   },

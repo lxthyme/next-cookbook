@@ -8,7 +8,8 @@ import {
 } from '../../model/mysql/common'
 import User from '../../model/mysql/user'
 import License from '../../model/mysql/license'
-import Note from './note.js'
+import Note from './note'
+import Tag from './tag'
 import vLog from '../../plugins/logger'
 
 class Repo extends Model {
@@ -17,6 +18,8 @@ class Repo extends Model {
       let {
         owner: ownerInfo = {},
         license: licenseInfo = {},
+        tag: tagInfo = [],
+        note: noteInfo = [],
         ...repoInfo
       } = json
       // vLog.log('licenseInfo: ', licenseInfo)
@@ -34,6 +37,9 @@ class Repo extends Model {
       // })
       const license = await License.vBuild(licenseInfo)
       const user = await User.vBuild(ownerInfo)
+      const tagList = await Tag.vBuildList(tagInfo)
+      const noteList = await Note.vBuildList(noteInfo)
+      // vLog.log('tag: ', tagList)
       // const repo = Repo.build({
       //   owner: user.id,
       //   license: license.node_id,
@@ -48,7 +54,26 @@ class Repo extends Model {
         license_node_id: license.node_id,
         ...repoInfo,
       })
+      // const repoResult = await Repo.upsert(json, {
+      //   // inc
+      // })
       const [model, isCreated] = repoResult
+      model.setOwner(user)
+      model.setLicense(license)
+      // vLog.log('model.setTags: ', {
+      //   setTag: model.setTag,
+      //   setTags: model.setTags,
+      //   setTagList: model.setTagList,
+      //   setTagsList: model.setTagsList,
+      //   setTag_list: model.setTag_list,
+      //   setTags_list: model.setTags_list,
+      //   tagList: model.tagList,
+      //   tagList2: model.tagsList,
+      //   // tagList2: await model.getTags(),
+      // })
+      model.setTag_list(tagList)
+      model.setNote_list(noteList)
+      await model.save()
       vLog.login(`Repo: [${model.id} - ${isCreated}]` /** , model*/)
       return model
     } catch (error) {
@@ -99,11 +124,11 @@ class Repo extends Model {
   // }
   static vBuildList = (array) => {
     return new Promise(async (resolve, reject) => {
-      console.log('begin...')
+      vLog.login('begin...')
       const result = []
       for (let i = 0; i < array.length; i++) {
         try {
-          // console.log(`-->👉${i}: `)
+          vLog.login(`-->👉${i}: `)
           const item = array[i]
           // Repo.findOne({ where: { id: item.id } })
           // .then(obj => {
@@ -117,10 +142,10 @@ class Repo extends Model {
           //   }
           // })
           const tmp = await this.vBuild(item)
-          vLog.log(`${i}保存成功!`)
+          vLog.login(`${i}保存成功!`)
           result.push(tmp)
         } catch (error) {
-          vLog.error(`${i}保存失败!`, error)
+          vLog.errorin(`${i}保存失败!`, error)
           reject(error)
           break
         }
@@ -138,15 +163,14 @@ class Repo extends Model {
 Repo.init(
   {
     id: { type: V_Number, primaryKey: true, unique: true },
-    note_id: {
-      type: V_Number,
-      references: {
-        model: Note,
-        key: 'id',
-        deferrable: Deferrable.INITIALLY_IMMEDIATE,
-      },
-    },
-    // repo_id: V_Number,
+    // note_id: {
+    //   type: V_Number,
+    //   references: {
+    //     model: Note,
+    //     key: 'id',
+    //     deferrable: Deferrable.INITIALLY_IMMEDIATE,
+    //   },
+    // },
     node_id: V_String,
     name: V_String,
     full_name: V_String,
@@ -237,6 +261,7 @@ Repo.init(
   {
     sequelize,
     timestamps: true,
+    underscored: true,
     // modelName: 'repo',
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
@@ -246,23 +271,38 @@ Repo.init(
 // Repo.sync({ alter: true })
 
 User.hasMany(Repo, {
-  foreignKey: 'owner_id',
+  // foreignKey: 'owner_id',
 })
 Repo.belongsTo(User, {
-  targetKey: 'id',
-  foreignKey: 'owner_id',
-  as: 'owner',
+  // targetKey: 'id',
+  // foreignKey: 'owner_id',
+  // as: 'owner',
 })
 License.hasMany(Repo, {
-  foreignKey: 'license_node_id',
+  // foreignKey: 'license_node_id',
 })
 Repo.belongsTo(License, {
-  targetKey: 'node_id',
-  foreignKey: 'license_node_id',
-  as: 'license',
+  // targetKey: 'node_id',
+  // foreignKey: 'license_node_id',
+  // as: 'license',
 })
 Repo.hasMany(Note, {
-  foreignKey: 'id',
-  targetKey: 'note_id'
+  // foreignKey: 'id',
+  // targetKey: 'note_id',
+  // constraints: false,
+})
+Note.belongsTo(Repo, {})
+// Repo.hasMany(Tag, {})
+Repo.belongsToMany(Tag, {
+  through: 'RN_Repo_Note',
+  foreignKey: 'repo_id'
+})
+Tag.belongsToMany(Repo, {
+  through: 'RN_Repo_Note',
+  foreignKey: 'tag_name'
+  // as: {
+  //   singular: 'tag_list',
+  //   plural: 'tag_list',
+  // },
 })
 export default Repo

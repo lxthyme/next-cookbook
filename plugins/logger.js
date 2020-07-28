@@ -2,9 +2,18 @@ const vLog = {
   log: (...msg) => console.log('👉', msg, '\n👈'),
   login: (...msg) => console.log('👉', ...msg),
   logln: (...msg) => console.log('👉', ...msg, '👈'),
-  warn: (...msg) => console.warn('‼', msg, '\n👈'),
-  error: (...msg) => console.error('❌', msg, '\n👈'),
-  debug: (...msg) => console.debug('🕛', msg, '\n👈'),
+
+  warn: (...msg) => console.warn('‼', msg, '\n‼'),
+  warnin: (...msg) => console.warn('‼', msg),
+  warnln: (...msg) => console.warn('‼', msg, '‼'),
+
+  error: (...msg) => console.error('❌', msg, '\n❌'),
+  errorin: (...msg) => console.error('❌', msg),
+  errorln: (...msg) => console.error('❌', msg, '❌'),
+
+  debug: (...msg) => console.debug('🕛', msg, '\n🕛'),
+  debugin: (...msg) => console.debug('🕛', msg),
+  debugln: (...msg) => console.debug('🕛', msg, '🕛'),
 }
 export const vlog = vLog.log
 export const vlogWarning = vLog.warn

@@ -31,7 +31,8 @@ License.init(
   {
     sequelize,
     timestamps: true,
-    // modelName: 'license',
+    underscored: true,
+    modelName: 'license',
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
   },

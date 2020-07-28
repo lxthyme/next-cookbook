@@ -49,7 +49,8 @@ User.init(
   {
     sequelize,
     timestamps: true,
-    // modelName: 'owner',
+    underscored: true,
+    modelName: 'owner',
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
   },

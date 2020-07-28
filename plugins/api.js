@@ -149,6 +149,16 @@ $axios.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     console.log('$axios.interceptors.response.error: ', { error, a })
+    // const { response } = error
+    // if (response.status === 404) {
+    //   message.error('请求资源未发现')
+    // } else if (response.status === 403) {
+    //   message.error(response.data.msg, () => {
+    //     window.location.href = '/login'
+    //   })
+    // } else {
+    //   message.error(response.data.msg)
+    // }
     return Promise.reject(error)
   },
 )
@@ -303,32 +313,34 @@ export const get = (url, params, { initialData, headers, ...config } = {}) => {
 
 export const post = (request, { initialData, ...config } = {}) => {
   const { url, params, ...others } = request || {}
-  return $axios
-    .post(url, {
-      ...params,
-      // ...others,
-      // ...request,
-      // timeout: 30000,
-      // cancelToken: new CancelToken(function executor(c) {
-      //   // An executor function receives a cancel function as a parameter
-      //   cancel = c
-      // }),
-    })
-    // .post(url, { repo_id: 233 })
-    // .post(url, JSON.stringify({ repo_id: 233 }))
-    // .post(url, JSON.parse(JSON.stringify({ repo_id: 233 })))
-    .then((res) => {
-      const { data, error, ...others } = res
-      console.log(`[${others.config.url}]: `, { data, error, others })
-      if (data.code === 10000) {
-        return data || {}
-      } else {
-        message.error(data.msg)
-        throw new Error(data.msg)
-      }
-    })
-    .catch((err) => {
-      console.log('Error: ', err)
-      message.error(err)
-    })
+  return (
+    $axios
+      .post(url, {
+        ...params,
+        // ...others,
+        // ...request,
+        // timeout: 30000,
+        // cancelToken: new CancelToken(function executor(c) {
+        //   // An executor function receives a cancel function as a parameter
+        //   cancel = c
+        // }),
+      })
+      // .post(url, { repo_id: 233 })
+      // .post(url, JSON.stringify({ repo_id: 233 }))
+      // .post(url, JSON.parse(JSON.stringify({ repo_id: 233 })))
+      .then((res) => {
+        const { data, error, ...others } = res
+        console.log(`[${others.config.url}]: `, { data, error, others })
+        if (data.code === 10000) {
+          return data || {}
+        } else {
+          message.error(data.msg)
+          throw new Error(data.msg)
+        }
+      })
+      .catch((err) => {
+        console.log('Error: ', err)
+        message.error(err)
+      })
+  )
 }
