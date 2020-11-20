@@ -46,7 +46,7 @@
     "micro-cors": "^0.1.1",
     "micro-dev": "^3.0.0",
     "mongoose": "^5.9.24",
-    "next": "^9.4.4",
+    "next": "^10.0.2",
     "next-antd-aza-less": "^1.0.2",
     "next-compose-plugins": "^2.2.0",
     "next-connect": "^0.6.1",

@@ -3,7 +3,7 @@ import { Octokit } from '@octokit/rest'
 import { request } from '@octokit/request'
 import { createBasicAuth, createOAuthAppAuth } from '@octokit/auth'
 import { createTokenAuth } from '@octokit/auth-token'
-import { getStarredRepoList } from '../../plugins/octokit'
+// import { getStarredRepoList } from '../../plugins/octokit'
 import vLog, { vlog } from '../../plugins/logger'
 // export const config = { amp: true };
 
@@ -27,6 +27,11 @@ const RepoListPage = (props) => {
     // checkAuth()
     // getStarringList()
     // getStarredRepoList()
+    console.log('TOKEN: ', {
+      token: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+      a: process.env.NEXT_PUBLIC_ANOTHER_SECRET,
+      env: process.env
+    })
   }, [])
   const getToken = async () => {
     const auth = createBasicAuth({
@@ -55,7 +60,7 @@ const RepoListPage = (props) => {
     const auth = createOAuthAppAuth({
       clientId: '1234567890abcdef1234',
       clientSecret: '1234567890abcdef1234567890abcdef12345678',
-      code: 'random123', // code from OAuth web flow, see https://git.io/fhd1D
+      code: 'e91f4eb7c65bdf12c529', // code from OAuth web flow, see https://git.io/fhd1D
     })
 
     const appAuthentication = await auth({

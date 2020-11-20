@@ -19,19 +19,13 @@ import GitHub, { insertData } from '../../plugins/github'
 // export const config = { amp: true };
 const { Option } = Select
 
-const ClientID = 'bce5a494a0aaf5e10b2d'
-const ClientSecret = 'fbfa526d1ec6c7bbec98373ac5bf6eaac15f4efc'
-const GitHubToken = {
-  access_token: '468509e9474a965f14ddd75aea9c076557e79459',
-  scope: 'gist,repo,user',
-  token_type: 'bearer',
-}
 // const a = {
 //   client_id: 'bce5a494a0aaf5e10b2d',
 //   client_secret: 'fbfa526d1ec6c7bbec98373ac5bf6eaac15f4efc',
 //   code: '39fec70ced9c9e7e2d0d',
 //   scope: 'repo,gist,user',
 // }
+
 
 const QueryKeys = ['full_name', 'name', 'description']
 const Page = (props) => {
@@ -152,7 +146,7 @@ const Page = (props) => {
       {
         headers: {
           Accept: 'application/vnd.github.v3.star+json',
-          Authorization: 'token 5357fb77f46b31b93b14869cab3c648b3e1bb0cd',
+          Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
         },
       },
     )

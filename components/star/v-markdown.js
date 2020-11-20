@@ -29,7 +29,7 @@ const md = new MarkdownIt({
       try {
         return hljs.highlight(lang, str).value
       } catch (error) {
-        console.log('E: ', error);
+        console.log('E: ', error)
       }
     }
 
@@ -87,7 +87,7 @@ md.core.ruler.after('inline', 'replace-link', (state) => {
   }
   return false
 })
-window.$md = md
+window.md2 = md
 const VMarkdown = ({ fullName }) => {
   const [apiReadME, setApiReadME] = useState({})
   const [
@@ -102,22 +102,34 @@ const VMarkdown = ({ fullName }) => {
       loadReadMe,
       loadReadMeContent,
       setReadME,
+      apiReadME,
+      readME,
     }
     md.set({
       replaceLink: function (link, env, token) {
         const url = link || ''
         let fmt = ''
+        if (apiReadME && apiReadME.html_url) {
+          const idx = apiReadME.html_url.lastIndexOf('/')
+          if (idx >= 0) {
+            fmt = apiReadME.html_url.slice(0, idx)
+          }
+        }
         if (url.startsWith('#')) {
-          fmt = `https://github.com/${fullName}/blob/master/${apiReadME.path}${url}`
+          fmt = `${apiReadME.html_url}${url}`
         } else if (
           url.startsWith('http') ||
           url.startsWith('ftp') ||
           url.startsWith('//')
         ) {
           fmt = url
+        } else if (url.startsWith('./')) {
+          console.log('replace ./: ', { link, env, token })
+          /// https://github.com/ianstormtaylor/slate/blob/main/License.md
+          fmt = `${apiReadME.html_url}/${url.slice(2)}`
         } else {
           console.log('replace: ', { link, env, token })
-          fmt = `https://github.com/${fullName}/blob/master/${url}`
+          fmt = `${fmt}/${url}`
         }
         return fmt
       },
@@ -145,7 +157,7 @@ const VMarkdown = ({ fullName }) => {
       {
         headers: {
           Accept: 'application/vnd.github.v3.star+json',
-          Authorization: 'token 5357fb77f46b31b93b14869cab3c648b3e1bb0cd',
+          Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
         },
       },
     )
