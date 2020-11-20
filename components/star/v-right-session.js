@@ -11,11 +11,11 @@ const VMarkdown = dynamic(() => import('../../components/star/v-markdown'), {
 
 // export const config = { amp: true };
 
-const VRightSession = ({ repo }) => {
+const VRightSession = ({ repo, tagList, onUpdate }) => {
   return (
     <>
-      <VRepoTag />
-      <VNote />
+      <VRepoTag tagList={tagList} sTag={repo.tag} onUpdate={onUpdate} />
+      <VNote note={repo.note} onUpdate={onUpdate} />
       <VMarkdown fullName={repo.full_name} />
       {/* <style jsx>{``}</style> */}
     </>
@@ -27,6 +27,6 @@ const VRightSession = ({ repo }) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // VRightSession.getInitialProps = async ({ req }) => {}
-VRightSession.displayName = 'VRightSession'
+VRightSession.displayName = '🔗 VRightSession - COMPONENT'
 
 export default VRightSession

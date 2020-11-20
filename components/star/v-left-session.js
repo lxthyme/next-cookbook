@@ -5,25 +5,26 @@ import { post } from '../../plugins/api'
 
 // export const config = { amp: true };
 
-const Page = ({ data = {}, refreshRepoList }) => {
-  const [tagData, setTagData] = useState({
-    list: [],
-    current: -1,
-  })
-  useEffect(() => {
-    loadTagList()
-  }, [])
-  const loadTagList = (from = 0, to = 100) => {
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/repo/list',
-      params: { type: 'tag', from, to },
-    }).then(({ data }) => {
-      setTagData((t) => ({ ...t, list: data || [] }))
-    })
+const Page = ({
+  data = {},
+  tagList = {},
+  languageList = {},
+  loadData,
+  onLanguageRefresh = (e) => e.stopPropagation(),
+  onRefresh = (e) => e.stopPropagation(),
+}) => {
+  const [currentSelectedTag, setcurrentSelectedTag] = useState('')
+  const [currentSelectedLanguage, setcurrentSelectedLanguage] = useState('')
+  const onTagTapped = (tag_id) => {
+    setcurrentSelectedLanguage('')
+    setcurrentSelectedTag(tag_id)
+    loadData && loadData({ tag_id })
   }
-  const onTagTapped = (id) => {
-    setTagData((t) => ({ ...t, current: id }))
-    refreshRepoList && refreshRepoList(id)
+  const onLanguageTapped = (language) => {
+    console.log('language: ', language)
+    setcurrentSelectedLanguage(language)
+    setcurrentSelectedTag('')
+    loadData && loadData({ language })
   }
   return (
     <>
@@ -66,25 +67,67 @@ const Page = ({ data = {}, refreshRepoList }) => {
         </a>
       </div>
       <div className="v-account-info"></div>
-      <div className="v-tag-wrapper">
-        <List
-          header={<div onClick={onTagTapped.bind(this, -1)}>Tag List</div>}
-          // footer={<div>Footer</div>}
-          bordered
-          dataSource={tagData.list}
-          sel
-          renderItem={(item) => (
-            <List.Item
-              onClick={onTagTapped.bind(this, item.id)}
-              style={{
-                backgroundColor:
-                  tagData.current === item.id ? 'rgba(0, 0, 0, 0.08)' : '',
-              }}
-            >
-              {item.name}
-            </List.Item>
-          )}
-        />
+      <div className="v-bottom-panel">
+        <div className="v-language-wrapper">
+          <List
+            header={
+              <div
+                onClick={onLanguageRefresh.bind(this)}
+                style={{
+                  fontWeight: 'bold',
+                }}
+              >
+                Language List「{languageList.count}」
+              </div>
+            }
+            // footer={<div>Footer</div>}
+            bordered
+            dataSource={languageList.list || []}
+            renderItem={(item) => (
+              <List.Item
+                className="v-list-item"
+                onClick={onLanguageTapped.bind(this, item.language)}
+                style={{
+                  backgroundColor:
+                    currentSelectedLanguage === item.language
+                      ? 'rgba(0, 0, 0, 0.08)'
+                      : '',
+                }}
+              >
+                {item.language}「{item.count}」
+              </List.Item>
+            )}
+          />
+        </div>
+        <div className="v-tag-wrapper">
+          <List
+            header={
+              <div
+                onClick={onRefresh.bind(this)}
+                style={{
+                  fontWeight: 'bold',
+                }}
+              >
+                Tag List「{tagList.count}」
+              </div>
+            }
+            // footer={<div>Footer</div>}
+            bordered
+            dataSource={tagList.list || []}
+            renderItem={(item) => (
+              <List.Item
+                className="v-list-item"
+                onClick={onTagTapped.bind(this, item.id)}
+                style={{
+                  backgroundColor:
+                    currentSelectedTag === item.id ? 'rgba(0, 0, 0, 0.08)' : '',
+                }}
+              >
+                {item.name}「{item.count}」
+              </List.Item>
+            )}
+          />
+        </div>
       </div>
       <style jsx>{`
         :global(.ant-list-item) {
@@ -92,6 +135,27 @@ const Page = ({ data = {}, refreshRepoList }) => {
         }
         .v-avatar {
           width: 70px;
+        }
+        .v-bottom-panel {
+          display: flex;
+          justify-content: stretch;
+          align-items: stretch;
+          overflow-y: auto;
+        }
+        .v-language-wrapper {
+          flex: 1 1;
+          overflow-y: auto;
+        }
+        .v-tag-wrapper {
+          flex: 2 2;
+          overflow-y: auto;
+        }
+      `}</style>
+      <style jsx global>{`
+        .v-language-wrapper .v-list-item,
+        .v-tag-wrapper .v-list-item {
+          padding: 8px 4px;
+          font-size: 14px;
         }
       `}</style>
     </>
@@ -103,7 +167,7 @@ const Page = ({ data = {}, refreshRepoList }) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // Page.getInitialProps = async ({ req }) => {}
-Page.displayName = 'v-left-session'
+Page.displayName = '🔗 v-left-session - COMPONENT'
 
 export default Page
 

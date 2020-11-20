@@ -82,7 +82,9 @@ export const repo = {
         \`watchers\`
         `
   },
-  sqlValues: (repo) => {
+  sqlValues: (item) => {
+    const repo = item.repo
+    console.log('---------Repo: ', repo)
     return `
         /// id
         ${repo.id || 0},
@@ -370,7 +372,11 @@ export const user = {
     return `SELECT * FROM \`user\` LIMIT ${from}, ${to}`
   },
   insert: (list) => {
-    const values = list
+    const filterList = list.filter((t) => !!t)
+    if (filterList.length <= 0) {
+      filterList = [{}]
+    }
+    const values = filterList
       .map((t) => user.sqlValues(t).replace(LX_Regex_Remove_Comment, ''))
       .reduce((prev, cur) => (prev += `(${cur}),`), '')
       .slice(0, -1)
@@ -391,7 +397,7 @@ export const license = {
   },
   sqlValues: (item) => {
     return `
-    ${item.id},
+    ${item.id || 0},
     "${item.key || ''}",
     "${item.name || ''}",
     "${item.spdx_id || ''}",
@@ -403,8 +409,14 @@ export const license = {
     return `SELECT * FROM \`license\` LIMIT ${from}, ${to}`
   },
   insert: (list) => {
-    const values = list
-      .map((t) => license.sqlValues(t).replace(LX_Regex_Remove_Comment, ''))
+    const filterList = list.filter((t) => !!t)
+    if (filterList.length <= 0) {
+      return ''
+    }
+    const values = filterList
+      .map((t) =>
+        license.sqlValues(t || {}).replace(LX_Regex_Remove_Comment, ''),
+      )
       .reduce((prev, cur) => (prev += `(${cur}),`), '')
       .slice(0, -1)
     return `REPLACE INTO \`license\` ( ${license.sqlColumns()} ) VALUES ${values}`
@@ -477,6 +489,16 @@ export const repo_tag = {
   },
 }
 
+export const insertTag = ({ tag }) => {
+  if (!tag) {
+    return Promise.reject(`name: ${tag}`)
+  }
+  return post({
+    url: 'http://0.0.0.0:3003/api/github/tag/insert',
+    params: { tag },
+  })
+}
+
 export const insertData = ({ type = '', list, data }) => {
   if ((!list || list.length <= 0) && !data) {
     return Promise.reject('list.length <= 0')
@@ -485,6 +507,37 @@ export const insertData = ({ type = '', list, data }) => {
     url: 'http://0.0.0.0:3003/api/github/repo/insert',
     params: { type, list, data },
   })
+}
+
+export const sqlWrapper = {
+  list: (from = 0, to = 20, order_by = 'Repo.id', sort = 'DESC') => {
+    const sql_repo = `
+SELECT * from \`Repo\`
+ORDER BY ${order_by} ${sort}
+LIMIT ${from},${to}
+`
+    const sql_owner = `
+SELECT * from \`owner\`
+ORDER BY ${order_by} ${sort}
+LIMIT ${from},${to}
+`
+  },
+  filter: (id, order_by = 'Repo.id', sort = 'DESC') => {
+    const sql = `
+SELECT Repo.id, Repo.name, Repo.node_id,
+  license.\`key\`,
+  Note.content,
+  Tag.name
+  FROM \`Repo\`
+  RIGHT JOIN \`owner\` on \`owner\`.id = Repo.owner_id
+  RIGHT JOIN \`license\` on license.node_id = Repo.license_node_id
+  RIGHT JOIN Note on Note.repo_id = Repo.id
+  RIGHT JOIN Tag on Tag.repo_id = Repo.id
+  WHERE Repo.id = ${id}
+  ORDER BY ${order_by} ${sort}
+  LIMIT ${from},${to}
+    `
+  },
 }
 
 export default {

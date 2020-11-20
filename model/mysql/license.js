@@ -22,11 +22,11 @@ class License extends Model {
 }
 License.init(
   {
+    node_id: { type: V_String, primaryKey: true, unique: true },
     key: V_String,
     name: V_String,
     spdx_id: V_String,
     url: V_String,
-    node_id: { type: V_String, primaryKey: true, unique: true },
   },
   {
     sequelize,
@@ -37,6 +37,6 @@ License.init(
     updatedAt: 'f_updated_at',
   },
 )
-// License.sync()
+License.sync()
 // License.sync({ alter: true })
 export default License

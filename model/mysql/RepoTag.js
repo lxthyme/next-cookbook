@@ -2,19 +2,19 @@ import { Sequelize, Model } from 'sequelize'
 import { V_Number, V_String, V_Boolean, sequelize } from './common'
 import vLog from '../../plugins/logger'
 
-class Tag extends Model {
+class RepoTag extends Model {
   static vBuild = (json) => {
     // const note = Tag.build(json)
     // return note.save()
     return new Promise((resolve, reject) => {
-      Tag.upsert(json)
+      RepoTag.upsert(json)
         .then((a) => {
           const [model, isCreated] = a
-          vLog.login(`Tag: [${model.id} - ${isCreated}]` /** , model*/)
+          vLog.login(`RepoTag: [${model.id} - ${isCreated}]` /** , model*/)
           ;(model && resolve(model)) || reject(new Error(model))
         })
         .catch((e) => {
-          vLog.login('Tag.upsert.error: ', e)
+          vLog.login('RepoTag.upsert.error: ', e)
           reject(e)
         })
     })
@@ -22,31 +22,31 @@ class Tag extends Model {
   static vBuildList = (array) => {
     return new Promise(async (resolve, reject) => {
       const result = []
-      vLog.login('[TAG]begin...')
+      vLog.login('[RepoTag]begin...')
       for (let i = 0; i < array.length; i++) {
         try {
-          vLog.login(`-->[TAG]👉${i}: `)
+          vLog.login(`-->[RepoTag]👉${i}: `)
           const item = array[i]
           const tmp = await this.vBuild(item)
-          vLog.login(`[Tag-${i}]保存成功!`)
+          vLog.login(`[RepoTag-${i}]保存成功!`)
           result.push(tmp)
         } catch (error) {
-          vLog.errorin(`[Tag-${i}]保存失败!`, error)
+          vLog.errorin(`[RepoTag-${i}]保存失败!`, error)
           reject(error)
           break
         }
       }
-      vLog.log('[TAG]end...')
+      vLog.log('[RepoTag]end...')
       resolve(result)
     })
   }
 }
-Tag.init(
+RepoTag.init(
   {
-    id: { type: V_String, primaryKey: true },
-    name: { type: V_String },
-    order: V_Number,
-    // repo_id: V_Number,
+    // id: { type: V_Number, primaryKey: true, autoIncrement: true },
+    // name: { type: V_String },
+    repo_id: { type: V_Number, primaryKey: true },
+    tag_id: V_String,
   },
   {
     sequelize,
@@ -57,11 +57,11 @@ Tag.init(
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
     name: {
-      singular: 'tag',
-      plural: 'tag',
+      singular: 'RepoTag',
+      plural: 'RepoTag',
     },
   },
 )
-Tag.sync()
-// Tag.sync({ alter: true })
-export default Tag
+RepoTag.sync()
+// RepoTag.sync({ alter: true })
+export default RepoTag

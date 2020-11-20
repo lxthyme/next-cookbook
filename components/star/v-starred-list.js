@@ -102,6 +102,6 @@ const VStarredList = ({ list = [], currentSelected, onSelected }) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // VStarredList.getInitialProps = async ({ req }) => {}
-VStarredList.displayName = 'VStarredList'
+VStarredList.displayName = '🔗 VStarredList - COMPONENT'
 
 export default VStarredList

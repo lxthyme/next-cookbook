@@ -43,7 +43,8 @@ class Note extends Model {
 }
 Note.init(
   {
-    id: { type: V_Number, primaryKey: true, autoIncrement: true },
+    // id: { type: V_Number, primaryKey: true, autoIncrement: true },
+    repo_id: { type: V_Number, primaryKey: true },
     content: V_String,
   },
   {
@@ -53,13 +54,13 @@ Note.init(
     // modelName: 'note',
     underscored: true,
     name: {
-      singular: 'note_list',
-      plural: 'note_list',
+      singular: 'note',
+      plural: 'note',
     },
     createdAt: 'f_created_at',
     updatedAt: 'f_updated_at',
   },
 )
-// Note.sync()
+Note.sync()
 // Note.sync({ alter: true })
 export default Note

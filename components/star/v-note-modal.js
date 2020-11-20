@@ -78,5 +78,6 @@ const NoteModal = React.forwardRef(({ visible, onDismiss, onSubmit }, ref) => {
     </>
   )
 })
+NoteModal.displayName = '🔗 NoteModal - COMPONENT'
 
 export default NoteModal

@@ -8,16 +8,24 @@ import { post } from '../../plugins/api'
 const { TextArea } = Input
 // export const config = { amp: true };
 
-const VNote = (props) => {
+const VNote = ({ note , onUpdate }) => {
   const textareaRef = useRef(null)
   const router = useRouter()
   useEffect(() => {
-    window.ta = textareaRef
+    window.note = {
+      loadNoteData,
+    }
   }, [])
   useEffect(() => {
-    loadNoteData()
-  }, [router.query.id])
+    setNoteContent(note && note.content || '')
+  }, [note])
+  // useEffect(() => {
+  //   loadNoteData()
+  // }, [router.query.id])
   const [noteContent, setNoteContent] = useState('')
+  // useEffect(() => {
+  //   onUpdate && onUpdate()
+  // }, [noteContent])
   const loadNoteData = (from = 0, to = 20) => {
     const repo_id = router.query.id
     if (!repo_id) {
@@ -25,8 +33,8 @@ const VNote = (props) => {
       return
     }
     return post({
-      url: 'http://0.0.0.0:3003/api/github/repo/list',
-      params: { type: 'repo_note', repo_id },
+      url: 'http://0.0.0.0:3003/api/github/note/get',
+      params: { repo_id },
     }).then(({ data }) => {
       const first = data[0] || {}
       setNoteContent(first.note)
@@ -47,8 +55,8 @@ const VNote = (props) => {
     }
     console.log('Value: ', noteContent)
     post({
-      url: 'http://0.0.0.0:3003/api/github/repo/insert',
-      params: { type: 'repo_note', data: { repo_id, note: noteContent } },
+      url: 'http://0.0.0.0:3003/api/github/note/set',
+      params: { repo_id, note: noteContent },
     })
       .then((res) => {
         message.success('添加备注成功!')
@@ -111,6 +119,6 @@ const VNote = (props) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // VNote.getInitialProps = async ({ req }) => {}
-VNote.displayName = 'VNote'
+VNote.displayName = '🔗 VNote - COMPONENT'
 
 export default VNote

@@ -1,10 +1,11 @@
 import useSWR from 'swr'
 import axios from 'axios'
+import vLog from '../plugins/logger'
 
 export const ax = axios
 export const $axios = axios.create({
   baseURL: 'https://some-domain.com/api/',
-  timeout: 30000,
+  timeout: 60000,
   headers: {
     // 'X-Custom-Header': 'foobar'
   },
@@ -99,13 +100,13 @@ export const $axios = axios.create({
 //   // executor 函数接收一个 cancel 函数作为参数
 //   cancel = c;
 // })
-console.log('$axios.onRequest: ', $axios.onRequest)
+vLog.log('$axios.onRequest: ', $axios.onRequest)
 if (typeof window !== 'undefined') {
   window.$axios = $axios
 }
 // $axios.interceptors.request.use(
 //   (config, a) => {
-//     console.log('$axios.interceptors.request: ', { config, a })
+//     vLog.log('$axios.interceptors.request: ', { config, a })
 //     if (config.method === 'get') {
 //       return config
 //     }
@@ -130,7 +131,7 @@ if (typeof window !== 'undefined') {
 //     return config
 //   },
 //   (error, a) => {
-//     console.log('$axios.interceptors.request.error: ', { error, a })
+//     vLog.log('$axios.interceptors.request.error: ', { error, a })
 //     Promise.reject(error)
 //   },
 // )
@@ -139,7 +140,7 @@ $axios.interceptors.response.use(
   (response, a) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log('$axios.interceptors.response: ', { response, a })
+    vLog.log('$axios.interceptors.response: ', { response, a })
     // if(response.headers['x-show-msg'] === '1') {
     //   message.success(response.data.msg)
     // }
@@ -148,7 +149,7 @@ $axios.interceptors.response.use(
   (error, a) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log('$axios.interceptors.response.error: ', { error, a })
+    vLog.log('$axios.interceptors.response.error: ', { error, a })
     // const { response } = error
     // if (response.status === 404) {
     //   message.error('请求资源未发现')
@@ -173,7 +174,7 @@ export const useAxios = (request, { initialData, ...config } = {}) => {
         timeout: 30000,
       }).then((res) => {
         const { data, error, ...others } = res
-        console.log('RES: ', { data, error, others })
+        vLog.log('RES: ', { data, error, others })
         return data || {}
       }),
     {
@@ -214,7 +215,7 @@ export const useGet = (
         })
         .then((res) => {
           const { data, error, ...others } = res
-          console.log('RES: ', { data, error, others })
+          vLog.log('RES: ', { data, error, others })
           return data || {}
         }),
     {
@@ -258,11 +259,11 @@ export const usePost = (request, { initialData, ...config } = {}) => {
         // .post(url, JSON.parse(JSON.stringify({ repo_id: 233 })))
         .then((res) => {
           const { data, error, ...others } = res
-          console.log('RES: ', { data, error, others })
+          vLog.log('RES: ', { data, error, others })
           return data || {}
         })
         .catch((err) => {
-          console.log('Error: ', err)
+          vLog.log('Error: ', err)
         }),
     {
       initialData: initialData && {
@@ -302,11 +303,11 @@ export const get = (url, params, { initialData, headers, ...config } = {}) => {
         statusText,
         ...others
       } = res
-      console.log(`[${config.url}]: `, { data, error, others })
+      vLog.log(`[${config.url}]: `, { data, error, others })
       return { data, headers }
     })
     .catch((err) => {
-      console.log('Error: ', err)
+      vLog.log('Error: ', err)
       throw err
     })
 }
@@ -330,17 +331,16 @@ export const post = (request, { initialData, ...config } = {}) => {
       // .post(url, JSON.parse(JSON.stringify({ repo_id: 233 })))
       .then((res) => {
         const { data, error, ...others } = res
-        console.log(`[${others.config.url}]: `, { data, error, others })
+        vLog.log(`[${others.config.url}]: `, { data, error, others })
         if (data.code === 10000) {
           return data || {}
         } else {
-          message.error(data.msg)
+          vLog.log(data.msg)
           throw new Error(data.msg)
         }
       })
       .catch((err) => {
-        console.log('Error: ', err)
-        message.error(err)
+        vLog.error(err)
       })
   )
 }

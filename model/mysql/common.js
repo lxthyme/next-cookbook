@@ -13,7 +13,7 @@ export const sequelize = new Sequelize('github', 'root', '123456', {
   define: {
     freezeTableName: true,
   },
-//   logging: (...msg) => console.log('>>>👉', msg, '\n👈END'),
+  // logging: (...msg) => console.log('>>>👉', msg, '\n👈END'),
   logging: false
 })
 

@@ -15,7 +15,7 @@ class User extends Model {
       User.upsert(json)
         .then((a, b, c) => {
           const [model, isCreated] = a
-          vLog.login(`User: [${model.id} - ${isCreated}]`/** , model*/)
+          vLog.login(`User: [${model.id} - ${isCreated}]` /** , model*/)
           ;(model && resolve(model)) || reject(new Error(model))
         })
         .catch((e) => {
@@ -27,8 +27,8 @@ class User extends Model {
 }
 User.init(
   {
+    id: { type: V_Number, primaryKey: true, unique: false },
     login: V_String,
-    id: { type: V_Number, primaryKey: true, unique: true },
     node_id: V_String,
     avatar_url: V_String,
     gravatar_id: V_String,
@@ -45,6 +45,26 @@ User.init(
     received_events_url: V_String,
     type: V_String,
     site_admin: V_Boolean,
+    name: V_String,
+    company: V_String,
+    blog: V_String,
+    location: V_String,
+    email: V_String,
+    hireable: V_String,
+    bio: V_String,
+    twitter_username: V_String,
+    public_repos: V_Number,
+    public_gists: V_Number,
+    followers: V_Number,
+    following: V_Number,
+    created_at: V_String,
+    updated_at: V_String,
+    private_gists: V_Number,
+    total_private_repos: V_Number,
+    owned_private_repos: V_Number,
+    disk_usage: V_Number,
+    collaborators: V_Number,
+    two_factor_authentication: V_Boolean,
   },
   {
     sequelize,
@@ -55,6 +75,6 @@ User.init(
     updatedAt: 'f_updated_at',
   },
 )
-// User.sync()
+User.sync()
 // User.sync({ alter: true })
 export default User
