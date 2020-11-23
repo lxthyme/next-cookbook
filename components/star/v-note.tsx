@@ -1,46 +1,43 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, FC, LegacyRef, RefObject } from 'react'
 
 import { Input, Button, message } from 'antd'
 import { useRouter } from 'next/router'
 
 import { post } from '../../plugins/api'
+import { NoteModel } from '../../api/star/model'
+
 
 const { TextArea } = Input
 // export const config = { amp: true };
 
-const VNote = ({ note , onUpdate }) => {
-  const textareaRef = useRef(null)
+interface INoteProps {
+  note: NoteModel
+  onUpdate: (obj: object) => void
+}
+declare global {
+  interface Window {
+    note: {
+      textareaRef:  React.RefObject<HTMLTextAreaElement>
+    }
+  }
+}
+export interface TextAreaRef extends HTMLTextAreaElement {
+  resizableTextArea: any;
+}
+const VNote: FC<INoteProps> = ({ note, onUpdate }) => {
+  // const textareaRef = useRef<LegacyRef<TextArea> | null>(null)
+  // const textareaRef = useRef<HTMLTextAreaElement>(null) as RefObject<HTMLTextAreaElement>
+  const textareaRef = React.useRef<TextAreaRef>(null)
   const router = useRouter()
   useEffect(() => {
     window.note = {
-      loadNoteData,
+      textareaRef,
     }
-  }, [])
-  useEffect(() => {
-    setNoteContent(note && note.content || '')
+    setNoteContent((note && note.content) || '')
   }, [note])
-  // useEffect(() => {
-  //   loadNoteData()
-  // }, [router.query.id])
   const [noteContent, setNoteContent] = useState('')
-  // useEffect(() => {
-  //   onUpdate && onUpdate()
-  // }, [noteContent])
-  const loadNoteData = (from = 0, to = 20) => {
-    const repo_id = router.query.id
-    if (!repo_id) {
-      console.log('repo_id: ', repo_id, ' 不正确!')
-      return
-    }
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/note/get',
-      params: { repo_id },
-    }).then(({ data }) => {
-      const first = data[0] || {}
-      setNoteContent(first.note)
-    })
-  }
-  const onTextareaChange = ({ target: { value } }) => {
+  const onTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = event.target.value
     setNoteContent(value)
   }
   const btnSubmitAction = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, FC } from 'react'
 import { useGet, usePost, post, get, $axios, ax } from '../../plugins/api'
 import { Button, Pagination, Input, Select, Affix, Tag } from 'antd'
 
@@ -14,6 +14,8 @@ import { useRouter } from 'next/router'
 // import MockUserInfo from '../../model/mock/lx314'
 // import MockStarredList from '../../model/mock/starred'
 import GitHub, { insertData } from '../../plugins/github'
+import { LicenseModel, RepoModel, UserModel } from '../../api/star/model'
+import { LanguageItem } from '../../components/star/interface'
 // import MockStarredList2 from '../../model/mock/starred.2020-10-28'
 
 // export const config = { amp: true };
@@ -26,17 +28,47 @@ const { Option } = Select
 //   scope: 'repo,gist,user',
 // }
 
-
 const QueryKeys = ['full_name', 'name', 'description']
-const Page = (props) => {
+declare global {
+  interface Window {
+    t: {
+      me: any
+      GitHub: any
+      check: any
+      test: any
+      router: any
+      get: any
+      post: any
+      a: any
+      ax: any
+      // MockStarredList,
+      // MockStarredList2,
+      starredData: any
+      currentSelected: any
+      loadData: any
+      loadStarredList: any
+      insertRepoList: any
+      loadUserData: any
+      loadRepoTags: any
+    }
+  }
+}
+const Page: FC = ({}) => {
   const router = useRouter()
-  const [starredData, setStarredData] = useState({
+  const [starredData, setStarredData] = useState<{
+    page: number
+    current: number
+    pageSize: number
+    // totalpage: 200,
+    total: number
+    list?: RepoModel[]
+  }>({
     page: 1,
     current: 0,
     pageSize: 30,
     // totalpage: 200,
     total: 100,
-    list: null,
+    list: undefined,
   })
   const [tagList, setTagList] = useState({
     count: 0,
@@ -49,7 +81,7 @@ const Page = (props) => {
   const [repoQueryKey, setRepoQueryKey] = useState(QueryKeys[0])
   const [info, setInfo] = useState({
     curSelectedTag: '',
-    curSelectedRepo: '',
+    curSelectedRepo: -1,
   })
   // const rightSessionWrapper = useRef(null)
   const [rightSessionWrapper, setRightSessionWrapper] = useState(null)
@@ -74,7 +106,6 @@ const Page = (props) => {
       loadUserData,
       loadRepoTags,
     }
-    window.GitHub = GitHub
     loadData()
     loadUserData()
     loadRepoTags()
@@ -87,11 +118,14 @@ const Page = (props) => {
   //     loadData({ repo_id }, repo_id)
   //   }
   // }, [router.query.id])
-  const [currentSelected, setCurrentSelected] = useState({ id: -1 })
+  const [currentSelected, setCurrentSelected] = useState<RepoModel>()
   const currentSelectedFun = {
-    onSelected: (item) => {
+    onSelected: (
+      event: React.ChangeEvent<HTMLTextAreaElement>,
+      item: RepoModel,
+    ) => {
       setCurrentSelected(item)
-      router.push(`/star?id=${item.id}`, undefined, { shadllow: true })
+      router.push(`/star?id=${item.id}`, undefined, { shallow: true })
     },
   }
   const test = () => {
@@ -113,7 +147,7 @@ const Page = (props) => {
         console.log('List: ', list)
       })
   }
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState<UserModel>()
   const loadUserData = () => {
     // get(
     //   'https://api.github.com/users/lxthyme',
@@ -127,7 +161,7 @@ const Page = (props) => {
     // ).then((data) => {
     //   setUserData(data)
     // })
-    t.post({
+    post({
       url: 'http://0.0.0.0:3003/api/github/user/get',
       params: {
         id: 8361463,
@@ -209,12 +243,14 @@ const Page = (props) => {
       url: 'http://0.0.0.0:3003/api/github/repo/language',
       params: {},
     }).then(({ data }) => {
-      const fmt = data.map((t) => !t.language && (t.language = 'undefined'))
+      const fmt = data.map(
+        (t: LanguageItem) => !t.language && (t.language = 'undefined'),
+      )
       setLanguageList({ count: data.length, list: data })
     })
   }
   const repoFun = {
-    onChange: (page, pageSize) => {
+    onChange: (page: number, pageSize: number = 10) => {
       console.log('onChange: ', {
         page,
         pageSize,
@@ -227,7 +263,7 @@ const Page = (props) => {
       const from = Math.max(0, pageSize * (page - 1))
       loadData({ from, pageSize })
     },
-    onShowSizeChange: (current, pageSize) => {
+    onShowSizeChange: (current: number, pageSize: number) => {
       console.log('onShowSizeChange: ', {
         current,
         pageSize,
@@ -254,20 +290,29 @@ const Page = (props) => {
       list: list,
     })
   }
-  const insertLicenseList = (list = []) => {
+  const insertLicenseList = (list: LicenseModel[]) => {
     insertData({
       type: 'license',
       list: list,
     })
   }
-  const insertRepoList = (list = []) => {
+  const insertRepoList = (list: RepoModel[]) => {
     return insertData({
       type: 'repo',
       list: list,
     })
   }
-  const loadData = (p = {}, initialID = 0) => {
-    const {
+  // : FC<{
+  //   repo_id?: number
+  //   language?: string
+  //   search_value?: string
+  //     search_key?: string
+  //     tag_id?: string
+  //     from?: number
+  //     pageSize?: number
+  // }>
+  const loadData = (
+    {
       repo_id = -1,
       language = '',
       search_value = '',
@@ -275,7 +320,18 @@ const Page = (props) => {
       tag_id = '',
       from = 0,
       pageSize = starredData.pageSize,
-    } = p
+    },
+    initialID = 0,
+  ) => {
+    // const {
+    //   repo_id = -1,
+    //   language = '',
+    //   search_value = '',
+    //   search_key = '',
+    //   tag_id = '',
+    //   from = 0,
+    //   pageSize = starredData.pageSize,
+    // } = p
     setInfo({ curSelectedTag: tag_id.trim(), curSelectedRepo: repo_id })
     return post({
       url: 'http://0.0.0.0:3003/api/github/repo/list',
@@ -323,26 +379,26 @@ const Page = (props) => {
         }))
       })
   }
-  const onRefresh = (e) => {
+  const onRefresh = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.stopPropagation()
     loadRepoTags()
   }
-  const onRepoSearch = (value, e) => {
+  const onRepoSearch = (value: string, event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     loadData({ search_value: value, search_key: repoQueryKey })
   }
-  const onQueryKeySelect = (value) => {
+  const onQueryKeySelect = (value: string) => {
     console.log('search key: ', value)
     console.log('search key: ', value)
     setRepoQueryKey(value)
   }
-  const onLanguageRefresh = (e) => {
+  const onLanguageRefresh = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.stopPropagation()
     loadRepoLanguageList()
   }
   return (
     <>
-      <session className="v-session-star">
-        <session className="v-session-left">
+      <div className="v-session-star">
+        <div className="v-session-left">
           <VLeftSession
             data={userData}
             tagList={tagList}
@@ -351,8 +407,8 @@ const Page = (props) => {
             onRefresh={onRefresh}
             onLanguageRefresh={onLanguageRefresh}
           />
-        </session>
-        <session className="v-session-middle">
+        </div>
+        <div className="v-session-middle">
           <div className="v-top-wrapper">
             <a href="https://github.com/login/oauth/authorize?client_id=bce5a494a0aaf5e10b2d&scope=repo,gist,user">
               Login
@@ -361,9 +417,9 @@ const Page = (props) => {
               <button onClick={loadStarredList.bind(this, 1)}>
                 Load Starred List
               </button>
-              <button onClick={insertRepoList}> Insert Repo </button>
-              <button onClick={insertLicenseList}> Insert License </button>
-              <button onClick={insertUserList}> Insert User </button>
+              <button onClick={insertRepoList.bind(this, [])}> Insert Repo </button>
+              <button onClick={insertLicenseList.bind(this, [])}> Insert License </button>
+              <button onClick={insertUserList.bind(this, [])}> Insert User </button>
               <Input.Group compact>
                 <Select
                   defaultValue={QueryKeys[0]}
@@ -371,7 +427,9 @@ const Page = (props) => {
                   style={{ width: '40%' }}
                 >
                   {QueryKeys.map((tmp) => (
-                    <Option value={tmp} key={tmp}>{tmp}</Option>
+                    <Option value={tmp} key={tmp}>
+                      {tmp}
+                    </Option>
                   ))}
                 </Select>
                 <Input.Search
@@ -401,7 +459,7 @@ const Page = (props) => {
                 responsive
                 hideOnSinglePage
                 showSizeChanger
-                pageSizeOptions={[10, 30, 50]}
+                pageSizeOptions={['10', '30', '50']}
                 onChange={repoFun.onChange}
                 onShowSizeChange={repoFun.onShowSizeChange}
                 showTotal={(total, range) =>
@@ -410,8 +468,8 @@ const Page = (props) => {
               />
             </div>
           )}
-        </session>
-        <session className="v-session-right" ref={setRightSessionWrapper}>
+        </div>
+        <div className="v-session-right" ref={setRightSessionWrapper}>
           <Affix
             offsetTop={20}
             target={() => rightSessionWrapper}
@@ -423,10 +481,10 @@ const Page = (props) => {
           >
             <a
               className="btn-x-blue"
-              href={currentSelected.html_url}
+              href={currentSelected?.html_url}
               target="__blank"
             >
-              {currentSelected.full_name}
+              {currentSelected?.full_name}
             </a>
           </Affix>
           <Affix
@@ -440,7 +498,7 @@ const Page = (props) => {
           >
             <a
               className="btn-x-blue"
-              href={currentSelected.homepage}
+              href={currentSelected?.homepage}
               target="__blank"
             >
               homepage
@@ -452,8 +510,8 @@ const Page = (props) => {
             tagList={tagList.list}
             onUpdate={loadData}
           />
-        </session>
-      </session>
+        </div>
+      </div>
       <style jsx>
         {`
           .v-session-star {

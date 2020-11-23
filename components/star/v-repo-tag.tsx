@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 
 import { Select, Divider, Input, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -7,14 +7,30 @@ import { TagOutlined } from '@ant-design/icons'
 import { insertTag } from '../../plugins/github'
 import { post } from '../../plugins/api'
 import { useRouter } from 'next/router'
+import { TagModel } from '../../api/star/model'
 
 const { Option } = Select
 
 // export const config = { amp: true };
-
-const Page = ({ sTag, tagList = [], onUpdate }) => {
+declare global {
+  interface Window {
+    note: {
+      textareaRef:  React.RefObject<HTMLTextAreaElement>
+    }
+  }
+}
+interface IRepoTagProps {
+  sTag: TagModel[]
+  tagList: TagModel[]
+  onUpdate: () => void
+}
+const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
   const router = useRouter()
-  const [currentTags, setCurrentTags] = useState({
+  const [currentTags, setCurrentTags] = useState<{
+    list: TagModel[]
+    selected: string[]
+    name: string
+  }>({
     list: [],
     selected: [],
     name: '',

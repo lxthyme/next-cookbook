@@ -1,17 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, FC } from 'react'
 // import ReactMarkdown from 'react-markdown'
 import dynamic from 'next/dynamic'
 
-import VRepoTag from '../../components/star/v-repo-tag'
-import VNote from '../../components/star/v-note'
+import VRepoTag from './v-repo-tag'
+import VNote from './v-note'
+import { RepoModel, TagModel } from '../../api/star/model'
 
-const VMarkdown = dynamic(() => import('../../components/star/v-markdown'), {
+const VMarkdown = dynamic(() => import('./v-markdown'), {
   ssr: false,
 })
 
 // export const config = { amp: true };
 
-const VRightSession = ({ repo, tagList, onUpdate }) => {
+interface IRightSessionProps {
+  repo?: RepoModel
+  tagList: TagModel[]
+  onUpdate: () => void
+}
+const VRightSession: FC<IRightSessionProps> = ({ repo, tagList, onUpdate }) => {
   return (
     <>
       <VRepoTag tagList={tagList} sTag={repo.tag} onUpdate={onUpdate} />

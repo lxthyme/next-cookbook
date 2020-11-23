@@ -1,0 +1,21 @@
+@import '../../style/utils.scss';
+@import '../../style/animation.scss';
+
+$prefix:leo-message;
+
+.#{$prefix} {
+
+    &-base{
+        padding: 10px;
+        max-width: 90vw;
+        background-color: #fff;
+        text-align: center;
+        border-radius: 4px;
+        animation: fadeIn 0.5s linear forwards;
+        >span{
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    }
+
+}

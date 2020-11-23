@@ -1,11 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 
 import { List } from 'antd'
 import { post } from '../../plugins/api'
+import { UserModel, TagModel } from '../../api/star/model'
+import { LanguageItem } from './interface'
 
 // export const config = { amp: true };
 
-const Page = ({
+interface ILeftSessionProps {
+  data?: UserModel
+  tagList: {
+    count: number
+    list: TagModel[]
+  }
+  languageList: {
+    count: number
+    list: LanguageItem[]
+  }
+  loadData: (p: object) => void
+  onLanguageRefresh: (e: any) => void
+  onRefresh: (e: any) => void
+}
+const Page: FC<ILeftSessionProps> = ({
   data = {},
   tagList = {},
   languageList = {},
@@ -15,12 +31,12 @@ const Page = ({
 }) => {
   const [currentSelectedTag, setcurrentSelectedTag] = useState('')
   const [currentSelectedLanguage, setcurrentSelectedLanguage] = useState('')
-  const onTagTapped = (tag_id) => {
+  const onTagTapped = (tag_id: string) => {
     setcurrentSelectedLanguage('')
     setcurrentSelectedTag(tag_id)
     loadData && loadData({ tag_id })
   }
-  const onLanguageTapped = (language) => {
+  const onLanguageTapped = (language: string) => {
     console.log('language: ', language)
     setcurrentSelectedLanguage(language)
     setcurrentSelectedTag('')
@@ -82,8 +98,8 @@ const Page = ({
             }
             // footer={<div>Footer</div>}
             bordered
-            dataSource={languageList.list || []}
-            renderItem={(item) => (
+            dataSource={languageList.list}
+            renderItem={(item: LanguageItem) => (
               <List.Item
                 className="v-list-item"
                 onClick={onLanguageTapped.bind(this, item.language)}
@@ -113,8 +129,8 @@ const Page = ({
             }
             // footer={<div>Footer</div>}
             bordered
-            dataSource={tagList.list || []}
-            renderItem={(item) => (
+            dataSource={tagList.list}
+            renderItem={(item: TagModel) => (
               <List.Item
                 className="v-list-item"
                 onClick={onTagTapped.bind(this, item.id)}

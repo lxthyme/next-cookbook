@@ -1,29 +1,6 @@
 {
-  "presets": [
-    [
-      "next/babel"
-      // {
-      //   "preset-env": {},
-      //   "transform-runtime": {},
-      //   "styled-jsx": {},
-      //   "class-properties": {}
-      // }
-      // {
-      //   "styled-jsx": {
-      //     "plugins": ["styled-jsx-plugin-sass"]
-      //   }
-      // }
-    ]
-  ],
+  "presets": [["next/babel"]],
   "plugins": [
-    // [
-    //   "import",
-    //   {
-    //     "libraryName": "antd",
-    //     "libraryDirectory": "es",
-    //     "style": "css" // `style: true` 会加载 less 文件
-    //   }
-    // ],
     [
       "import",
       {
@@ -32,15 +9,5 @@
         "style": true
       }
     ]
-    // ["lodash"],
-    // ["@babel/plugin-transform-runtime"]
   ]
 }
-
-// [
-//   "import", {
-//     "libraryName": "react-use",
-//     "libraryDirectory": "lib",
-//     "camel2DashComponentName": false
-//   }
-// ]

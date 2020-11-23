@@ -1,14 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, FC } from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
 import { Icon, InlineIcon } from '@iconify/react'
 import gitBranch from '@iconify/icons-octicon/git-branch'
 import starIcon from '@iconify/icons-octicon/star'
+import { RepoModel } from '../../api/star/model'
 
 // export const config = { amp: true };
 
-const VStarredList = ({ list = [], currentSelected, onSelected }) => {
+interface IStarredListProps {
+  list: RepoModel[]
+  currentSelected?: RepoModel
+  onSelected: (event: React.ChangeEvent<HTMLTextAreaElement>, t: RepoModel) => void
+}
+const VStarredList: FC<IStarredListProps> = ({ list = [], currentSelected, onSelected }) => {
   return (
     <>
       {/* <div className="v-starred-list"> */}
@@ -21,7 +27,7 @@ const VStarredList = ({ list = [], currentSelected, onSelected }) => {
             button
             divider
             className="v-repo-item"
-            onClick={onSelected.bind(this, t)}
+            onClick={onSelected.bind(event, t)}
           >
             {/* <div className="v-starred-item" key={t.id}> */}
             <div className="v-line1">
