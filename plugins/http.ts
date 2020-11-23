@@ -22,6 +22,9 @@ interface AxiosResponse {
     config: AxiosRequest
     request?: any
 }
+interface AxiosFullResponse<T> extends AxiosResponse {
+    model: BaseHttpModel<T>
+}
 class BaseHttpModel<T = any> {
     code: number;
     msg: string;
@@ -42,7 +45,9 @@ interface IHeaderProps {
 class HttpApi {
     public static baseURL: string = '';
     public static header: IHeaderProps = {};
-    public static request<T = any>({ baseURL = HttpApi.baseURL, headers, method = "GET", url, data, params, responseType }: AxiosRequest): Promise<BaseHttpModel<T>> {
+    public static beforeRequest: (axiosRequest: AxiosRequest) => void;
+    public static request<T = any>({ baseURL = HttpApi.baseURL, headers, method = "GET", url, data, params, responseType }: AxiosRequest): Promise<AxiosFullResponse<T>> {
+        this.beforeRequest({ baseURL, headers, method, url, data, params, responseType })
         return new Promise((resolve, reject) => {
             axios({
                 baseURL,
@@ -55,14 +60,14 @@ class HttpApi {
             }).then((res) => {
                 const _newres: BaseHttpModel<T> = new BaseHttpModel<T>(res);
                 if (_newres.code === 10000) {
-                    resolve(_newres);
+                    resolve({ ...(res as AxiosResponse), model: _newres });
                 } else {
                     Message.error(_newres.msg);
                     reject(_newres)
                 }
             }).catch((err) => {
                 const message = err?.data?.errorMessage || err?.message || (url + '请求失败');
-                Message.error('Network Error');
+                // Message.error('Network Error');
                 reject(new BaseHttpModel({ code: err.status, msg: message }));
             });
         });

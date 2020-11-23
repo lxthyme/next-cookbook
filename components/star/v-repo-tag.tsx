@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useEffect, FC } from 'react'
 
 import { Select, Divider, Input, message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -8,25 +8,34 @@ import { insertTag } from '../../plugins/github'
 import { post } from '../../plugins/api'
 import { useRouter } from 'next/router'
 import { TagModel } from '../../api/star/model'
+import { useImmer } from 'use-immer'
 
 const { Option } = Select
 
 // export const config = { amp: true };
 declare global {
   interface Window {
-    note: {
-      textareaRef:  React.RefObject<HTMLTextAreaElement>
+    tag: {
+      currentTags: {
+        list: TagModel[]
+        selected: string[]
+        name: string
+      }
+      addItem: () => void
+      loadRepoTags: () => void
+      loadRepoBindedTags: () => void
+      onSelectChange: (key: string) => void
     }
   }
 }
 interface IRepoTagProps {
-  sTag: TagModel[]
+  sTag?: TagModel[]
   tagList: TagModel[]
-  onUpdate: () => void
+  onUpdate: (p: object, initialID: number) => void
 }
 const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
   const router = useRouter()
-  const [currentTags, setCurrentTags] = useState<{
+  const [currentTags, setCurrentTags] = useImmer<{
     list: TagModel[]
     selected: string[]
     name: string
@@ -51,25 +60,25 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       return
     }
     if (
-      new Set([...currentTags.selected, ...sTag].map((t) => t.id)).size ==
+      new Set([...currentTags.selected, ...sTag.map((t) => t.id)]).size ==
       currentTags.list.length
     ) {
       return
     }
     if (sTag && sTag.length > 0) {
-      setCurrentTags((t) => ({
-        ...t,
-        selected: [].concat(sTag.map((tmp) => tmp.name)),
-      }))
+      setCurrentTags((d) => {
+        d.selected = sTag.map((tmp) => tmp.name)
+      })
     } else {
-      setCurrentTags((t) => ({
-        ...t,
-        selected: [],
-      }))
+      setCurrentTags((d) => {
+        d.selected = []
+      })
     }
   }, [sTag])
   useEffect(() => {
-    setCurrentTags((t) => ({ ...t, list: tagList }))
+    setCurrentTags(d => {
+      d.list = tagList
+    })
   }, [tagList])
   // useEffect(() => {
   //   // loadRepoTags()
@@ -109,11 +118,9 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       //   .flatMap((t) => currentTags.list.find((tmp) => tmp.id === t))
       //   .filter((t) => t)
       //   .flatMap((t) => t.name)
-      setCurrentTags((t) => ({
-        ...t,
-        // selected: tag_list,
-        list: [].concat(data),
-      }))
+      setCurrentTags(d => {
+        d.list = data
+      })
     })
   }
   const loadRepoBindedTags = () => {
@@ -135,15 +142,16 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       //   .filter((t) => t)
       //   .flatMap((t) => t.name)
       console.log('bindList: ', data)
-      setCurrentTags((t) => ({
-        ...t,
-        selected: [].concat(data.map((tmp) => tmp.name)),
-      }))
+      setCurrentTags(d => {
+        d.selected = data.map((tmp) => tmp.name)
+      })
     })
   }
-  const onTagNameChanged = (e) => {
+  const onTagNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value
-    setCurrentTags((t) => ({ ...t, name }))
+    setCurrentTags(d => {
+      d.name = name
+    })
   }
   const addItem = () => {
     const name = currentTags.name
@@ -155,11 +163,10 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
         message.success('新增 repo tag 成功!')
         const data = (res.data && res.data.dataValues) || {}
         if (currentTags.list.findIndex((tmp) => tmp.name === name) < 0) {
-          setCurrentTags((t) => ({
-            ...t,
-            list: [...t.list, { id: data.id, name: data.name }],
-            name: '',
-          }))
+          setCurrentTags(d => {
+            d.list = [...d.list, { id: data.id, name: data.name }]
+            d.name = ''
+          })
         }
       })
       .catch((e) => {
@@ -167,8 +174,8 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       })
   }
 
-  const onDeSelectChange = (key, a, b, c) => {
-    console.log('onDeSelectChange: ', { key, a, b, c })
+  const onDeSelectChange = (key: string) => {
+    console.log('onDeSelectChange: ', { key })
     const repo_id = router.query.id
     if (!repo_id) {
       console.log('repo_id: ', repo_id, ' 不正确!')
@@ -185,19 +192,16 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       url: 'http://0.0.0.0:3003/api/github/tag/bind',
       params: { type: 'del', repo_id: repo_id, tag: key },
     }).then((res) => {
-      setCurrentTags((t) => {
-        const sel = [].concat(t.selected)
+      setCurrentTags((d) => {
+        const sel = d.selected
         const deselectedIdx = sel.findIndex((tmp) => tmp === key)
         const rest = sel.splice(deselectedIdx, 1)
-        onUpdate && onUpdate({ repo_id: repo_id })
-        return {
-          ...t,
-          selected: [...sel],
-        }
+        onUpdate && onUpdate({ repo_id }, -1)
+        d.selected = sel
       })
     })
   }
-  const onSelectChange = (key) => {
+  const onSelectChange = (key: string) => {
     const repo_id = router.query.id
     if (!repo_id) {
       console.log('repo_id: ', repo_id, ' 不正确!')
@@ -214,28 +218,13 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       url: 'http://0.0.0.0:3003/api/github/tag/bind',
       params: { repo_id: repo_id, tag: key },
     }).then((res) => {
-      onUpdate && onUpdate({ repo_id: repo_id })
+      onUpdate && onUpdate({ repo_id: repo_id }, -1)
       if (!currentTags.selected.includes(key)) {
-        setCurrentTags((t) => ({
-          ...t,
-          selected: [...t.selected, key],
-        }))
+        setCurrentTags(d => {
+          d.selected = [...d.selected, key]
+        })
       }
     })
-    // insertData({
-    //   type: 'repo_tag',
-    //   data: {
-    //     repo_id,
-    //     tag_list: JSON.stringify(tag_list),
-    //   },
-    // })
-    //   .then((res) => {
-    //     message.success('tag 设置成功!')
-    //     setCurrentTags((t) => ({ ...t, selected: items }))
-    //   })
-    //   .catch((e) => {
-    //     message.error('tag 设置失败!')
-    //   })
   }
   return (
     <>

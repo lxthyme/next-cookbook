@@ -8,14 +8,29 @@ import VLeftSession from '../../components/star/v-left-session'
 import VStarredList from '../../components/star/v-starred-list'
 import VRightSession from '../../components/star/v-right-session'
 import { useRouter } from 'next/router'
-
+import { useImmer } from 'use-immer'
 // import MockUserInfo from '@/model/mock/lx314'
 // import MockStarredList from '@/model/mock/starred'
 // import MockUserInfo from '../../model/mock/lx314'
 // import MockStarredList from '../../model/mock/starred'
 import GitHub, { insertData } from '../../plugins/github'
-import { LicenseModel, RepoModel, UserModel } from '../../api/star/model'
-import { LanguageItem } from '../../components/star/interface'
+import {
+  LanguageListModel,
+  LanguageModel,
+  LicenseModel,
+  RepoModel,
+  TagListModel,
+  TagModel,
+  UserModel,
+} from '../../api/star/model'
+import {
+  $LanguageList,
+  $RepoList,
+  $Starred,
+  $StarredList,
+  $TagList,
+  $UserInfo,
+} from '../../api/star/star'
 // import MockStarredList2 from '../../model/mock/starred.2020-10-28'
 
 // export const config = { amp: true };
@@ -34,7 +49,6 @@ declare global {
     t: {
       me: any
       GitHub: any
-      check: any
       test: any
       router: any
       get: any
@@ -53,16 +67,25 @@ declare global {
     }
   }
 }
+interface IStarredData {
+  page: number
+  current: number
+  pageSize: number
+  // totalpage: 200,
+  total: number
+  list?: RepoModel[]
+}
+interface ILanguageList {
+  count: number
+  list: TagModel[]
+}
+interface IInfo {
+  curSelectedTag: string
+  curSelectedRepo: number
+}
 const Page: FC = ({}) => {
   const router = useRouter()
-  const [starredData, setStarredData] = useState<{
-    page: number
-    current: number
-    pageSize: number
-    // totalpage: 200,
-    total: number
-    list?: RepoModel[]
-  }>({
+  const [starredData, updateStarredData] = useImmer<IStarredData>({
     page: 1,
     current: 0,
     pageSize: 30,
@@ -70,16 +93,16 @@ const Page: FC = ({}) => {
     total: 100,
     list: undefined,
   })
-  const [tagList, setTagList] = useState({
+  const [tagList, updateTagList] = useImmer<TagListModel>({
     count: 0,
     list: [],
   })
-  const [languageList, setLanguageList] = useState({
+  const [languageList, updateLanguageList] = useImmer<LanguageListModel>({
     count: 0,
     list: [],
   })
-  const [repoQueryKey, setRepoQueryKey] = useState(QueryKeys[0])
-  const [info, setInfo] = useState({
+  const [repoQueryKey, updateRepoQueryKey] = useImmer(QueryKeys[0])
+  const [info, updateInfo] = useImmer<IInfo>({
     curSelectedTag: '',
     curSelectedRepo: -1,
   })
@@ -89,7 +112,6 @@ const Page: FC = ({}) => {
     window.t = {
       me: this,
       GitHub,
-      check,
       test,
       router,
       get,
@@ -106,86 +128,39 @@ const Page: FC = ({}) => {
       loadUserData,
       loadRepoTags,
     }
-    loadData()
+    loadData({})
     loadUserData()
     loadRepoTags()
     loadRepoLanguageList()
   }, [])
-  // useEffect(() => {
-  //   const repo_id = router.query.id
-  //   console.log('currentSelected: ', currentSelected.id, '\tNEW: ', repo_id)
-  //   if (Object.keys(currentSelected).length <= 1) {
-  //     loadData({ repo_id }, repo_id)
-  //   }
-  // }, [router.query.id])
-  const [currentSelected, setCurrentSelected] = useState<RepoModel>()
+  const [currentSelected, updateCurrentSelected] = useImmer<RepoModel>()
   const currentSelectedFun = {
-    onSelected: (
-      event: React.ChangeEvent<HTMLTextAreaElement>,
-      item: RepoModel,
-    ) => {
-      setCurrentSelected(item)
+    onSelected: (item: RepoModel) => {
+      updateCurrentSelected(d => d = item)
       router.push(`/star?id=${item.id}`, undefined, { shallow: true })
     },
   }
   const test = () => {
-    const t = get(
-      'https://api.github.com/users/lxthyme/starred',
-      {
-        page: 1,
-      },
-      {
-        headers: {
-          // Accept: 'application/vnd.github.v3.star+json',
-        },
-      },
-    )
+    $Starred(1)
       .then((res) => {
-        return res.data || []
+        return res.model.data || []
       })
       .then((list) => {
         console.log('List: ', list)
       })
   }
-  const [userData, setUserData] = useState<UserModel>()
+  const [userData, updateUserData] = useImmer<UserModel>()
   const loadUserData = () => {
-    // get(
-    //   'https://api.github.com/users/lxthyme',
-    //   {},
-    //   {
-    //     headers: {
-    //       Accept: 'application/vnd.github.v3.star+json',
-    //       Authorization: 'token 5357fb77f46b31b93b14869cab3c648b3e1bb0cd',
-    //     },
-    //   },
-    // ).then((data) => {
-    //   setUserData(data)
-    // })
-    post({
-      url: 'http://0.0.0.0:3003/api/github/user/get',
-      params: {
-        id: 8361463,
-      },
-    }).then(({ data }) => {
-      setUserData(data)
+    $UserInfo(8361463).then((res) => {
+      updateUserData(d => d = res.model.data)
     })
   }
-  const loadStarredList = (page) => {
+  const loadStarredList = (page: number) => {
     console.log('------------------------->Next: ', page)
-    get(
-      'https://api.github.com/users/lxthyme/starred',
-      {
-        page,
-      },
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3.star+json',
-          Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
-        },
-      },
-    )
+    $StarredList(page)
       .then((res) => {
-        const { data = [], headers = {} } = res
+        const data = res.model.data
+        const headers = res.headers
         const link = headers.link
         if (!link) {
           return { list: data }
@@ -224,29 +199,21 @@ const Page: FC = ({}) => {
       })
   }
   const loadRepoTags = () => {
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/tag/list',
-      params: {},
-    }).then(({ data }) => {
-      const { count, list } = data
-      // const first = data[0] || {}
-      // let tag_list = JSON.parse(first.tag_id || '[]')
-      // tag_list = tag_list
-      //   .flatMap((t) => currentTags.list.find((tmp) => tmp.id === t))
-      //   .filter((t) => t)
-      //   .flatMap((t) => t.name)
-      setTagList({ count, list })
+    return $TagList().then((res) => {
+      const data = res.model.data
+      updateTagList(d => {
+        d = data
+      })
     })
   }
   const loadRepoLanguageList = () => {
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/repo/language',
-      params: {},
-    }).then(({ data }) => {
-      const fmt = data.map(
-        (t: LanguageItem) => !t.language && (t.language = 'undefined'),
-      )
-      setLanguageList({ count: data.length, list: data })
+    return $LanguageList().then((res) => {
+      const data = res.model.data
+      const fmt = data.map((t) => !t.language && (t.language = 'undefined'))
+      updateLanguageList(d => {
+        d.count = data.length
+        d.list = data
+      })
     })
   }
   const repoFun = {
@@ -255,11 +222,10 @@ const Page: FC = ({}) => {
         page,
         pageSize,
       })
-      setStarredData((t) => ({
-        ...t,
-        page,
-        pageSize,
-      }))
+      updateStarredData((d) => {
+        d.page = page
+        d.pageSize = pageSize
+      })
       const from = Math.max(0, pageSize * (page - 1))
       loadData({ from, pageSize })
     },
@@ -268,21 +234,20 @@ const Page: FC = ({}) => {
         current,
         pageSize,
       })
-      setStarredData((t) => ({
-        ...t,
-        pageSize,
-      }))
+      updateStarredData(d => {
+        d.pageSize = pageSize
+      })
     },
   }
 
-  const check = () => {
-    const link = `<https://api.github.com/user/8361463/starred?page=22>; rel="prev", <https://api.github.com/user/8361463/starred?page=24>; rel="next", <https://api.github.com/user/8361463/starred?page=41>; rel="last", <https://api.github.com/user/8361463/starred?page=1>; rel="first"`
-    for (let item of link.matchAll(
-      /(?=[\s\S]*?page=)([0-9]{1,})(?=>; rel="(first|last)"[\s\S]*)/g,
-    )) {
-      console.log('Item: ', item)
-    }
-  }
+  // const check = () => {
+  //   const link = `<https://api.github.com/user/8361463/starred?page=22>; rel="prev", <https://api.github.com/user/8361463/starred?page=24>; rel="next", <https://api.github.com/user/8361463/starred?page=41>; rel="last", <https://api.github.com/user/8361463/starred?page=1>; rel="first"`
+  //   for (let item of link.matchAll(
+  //     /(?=[\s\S]*?page=)([0-9]{1,})(?=>; rel="(first|last)"[\s\S]*)/g,
+  //   )) {
+  //     console.log('Item: ', item)
+  //   }
+  // }
 
   const insertUserList = (list = []) => {
     insertData({
@@ -323,76 +288,66 @@ const Page: FC = ({}) => {
     },
     initialID = 0,
   ) => {
-    // const {
-    //   repo_id = -1,
-    //   language = '',
-    //   search_value = '',
-    //   search_key = '',
-    //   tag_id = '',
-    //   from = 0,
-    //   pageSize = starredData.pageSize,
-    // } = p
-    setInfo({ curSelectedTag: tag_id.trim(), curSelectedRepo: repo_id })
-    return post({
-      url: 'http://0.0.0.0:3003/api/github/repo/list',
-      params: {
-        repo_id,
-        tag_id: tag_id.trim(),
-        language,
-        search_key,
-        search_value,
-        from,
-        pageSize,
-      },
+    updateInfo(d => {
+      d.curSelectedRepo = repo_id
+      d.curSelectedTag = tag_id.trim()
     })
-      .then(({ data }) => {
-        const { total, list } = data
+    return $RepoList({
+      repo_id,
+      tag_id,
+      language,
+      search_key,
+      search_value,
+      from,
+      pageSize,
+    })
+      .then((res) => {
+        const { total, list } = res.model.data
         if (repo_id > 0) {
           const first = list[0]
-          setStarredData((t) => {
-            const tlist = t.list || []
+          updateStarredData(d => {
+            const tlist = d.list || []
             const idx = tlist.findIndex((tmp) => tmp.id === repo_id)
             if (idx >= 0) {
               tlist.splice(idx, 1, first)
             }
-            return {
-              ...t,
-              list: tlist,
-            }
+            d.list = list
+
           })
         } else {
-          setStarredData((t) => ({
-            ...t,
-            total,
-            list: [...list],
-          }))
+          updateStarredData(d => {
+            d.total = total
+            d.list = list
+          })
         }
 
         if (initialID > 0) {
-          setCurrentSelected(list[0])
+          updateCurrentSelected(d => d = list[0])
         }
       })
       .catch((e) => {
-        setStarredData((t) => ({
-          ...t,
-          page: t.page - 1,
-        }))
+        updateStarredData(d => {
+          d.page -= 1
+        })
       })
   }
   const onRefresh = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    e.stopPropagation()
+    event.stopPropagation()
     loadRepoTags()
   }
-  const onRepoSearch = (value: string, event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const onRepoSearch = (
+    value: string,
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
+  ) => {
     loadData({ search_value: value, search_key: repoQueryKey })
   }
   const onQueryKeySelect = (value: string) => {
     console.log('search key: ', value)
     console.log('search key: ', value)
-    setRepoQueryKey(value)
+    updateRepoQueryKey(d => d = value)
   }
   const onLanguageRefresh = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    e.stopPropagation()
+    event.stopPropagation()
     loadRepoLanguageList()
   }
   return (
@@ -417,9 +372,18 @@ const Page: FC = ({}) => {
               <button onClick={loadStarredList.bind(this, 1)}>
                 Load Starred List
               </button>
-              <button onClick={insertRepoList.bind(this, [])}> Insert Repo </button>
-              <button onClick={insertLicenseList.bind(this, [])}> Insert License </button>
-              <button onClick={insertUserList.bind(this, [])}> Insert User </button>
+              <button onClick={insertRepoList.bind(this, [])}>
+                {' '}
+                Insert Repo{' '}
+              </button>
+              <button onClick={insertLicenseList.bind(this, [])}>
+                {' '}
+                Insert License{' '}
+              </button>
+              <button onClick={insertUserList.bind(this, [])}>
+                {' '}
+                Insert User{' '}
+              </button>
               <Input.Group compact>
                 <Select
                   defaultValue={QueryKeys[0]}

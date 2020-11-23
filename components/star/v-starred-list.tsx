@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, FC } from 'react'
+import React, { useEffect, useRef, FC } from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
@@ -12,7 +12,7 @@ import { RepoModel } from '../../api/star/model'
 interface IStarredListProps {
   list: RepoModel[]
   currentSelected?: RepoModel
-  onSelected: (event: React.ChangeEvent<HTMLTextAreaElement>, t: RepoModel) => void
+  onSelected: (t: RepoModel) => void
 }
 const VStarredList: FC<IStarredListProps> = ({ list = [], currentSelected, onSelected }) => {
   return (
@@ -22,7 +22,7 @@ const VStarredList: FC<IStarredListProps> = ({ list = [], currentSelected, onSel
         {list.map((t) => (
           <ListItem
             key={t.id}
-            selected={t.id === currentSelected.id}
+            selected={t.id === currentSelected?.id}
             alignItems="flex-start"
             button
             divider

@@ -1,3 +1,13 @@
+////////////// Local Model
+export interface LanguageModel {
+  count: string
+  language: string
+}
+export interface LanguageListModel {
+  list: LanguageModel[]
+  count: number
+}
+
 /// User Info
 
 export interface UserModel {
@@ -81,6 +91,10 @@ export interface TagModel {
   /// only for 3003
   count: number
 }
+export interface TagListModel {
+  list: TagModel[]
+  count: number
+}
 
 /// Note
 export interface NoteModel {
@@ -90,6 +104,7 @@ export interface NoteModel {
   f_updated_at: string
   repo_id: number
 }
+
 /// license
 export interface LicenseModel {
   node_id: string
@@ -100,7 +115,12 @@ export interface LicenseModel {
   f_created_at: string
   f_updated_at: string
 }
+
 /// Repo
+export interface RepoListModel {
+  total: number
+  list: RepoModel[]
+}
 export interface RepoModel {
   id: number
   node_id: string

@@ -5,6 +5,10 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { theme } from '../theme/theme'
 
+import { enableES5 } from "immer"
+enableES5()
+// enableMapSet()
+
 import '../public/css/common.css'
 import '../public/css/normalize.css'
 import '../public/css/next-wd.css'

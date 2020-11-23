@@ -1,13 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, FC } from 'react'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
 import Button from '@material-ui/core/Button'
+import { TextAreaRef } from './v-note'
 
-const NoteModal = React.forwardRef(({ visible, onDismiss, onSubmit }, ref) => {
-  const textareaRef = useRef(null)
+interface INoteModalProps {
+  visible: boolean
+  onDismiss: () => void
+  onSubmit: (value: string) => void
+}
+const NoteModal: FC<INoteModalProps> = React.forwardRef(({ visible, onDismiss, onSubmit }, ref) => {
+  // const textareaRef = useRef<HTMLTextAreaElement>()
+  const textareaRef = React.useRef<TextAreaRef>(null)
   const btnSubmitAction = () => {
-    const value = textareaRef.current.value || ''
+    const value = textareaRef.current?.value || ''
     onSubmit && onSubmit(value)
   }
   return (
@@ -32,7 +39,7 @@ const NoteModal = React.forwardRef(({ visible, onDismiss, onSubmit }, ref) => {
               ref={textareaRef}
               name="note_content"
               id="note_content"
-              rows="10"
+              rows={10}
             ></textarea>
             <div className="v-btn-group">
               <Button

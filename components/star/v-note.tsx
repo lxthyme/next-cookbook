@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef, FC, LegacyRef, RefObject } from 'react'
+import React, { useEffect, useRef, FC, LegacyRef, RefObject } from 'react'
 
 import { Input, Button, message } from 'antd'
 import { useRouter } from 'next/router'
 
 import { post } from '../../plugins/api'
 import { NoteModel } from '../../api/star/model'
-
+import { useImmer } from 'use-immer'
 
 const { TextArea } = Input
 // export const config = { amp: true };
 
 interface INoteProps {
-  note: NoteModel
+  note?: NoteModel
   onUpdate: (obj: object) => void
 }
 declare global {
@@ -33,12 +33,16 @@ const VNote: FC<INoteProps> = ({ note, onUpdate }) => {
     window.note = {
       textareaRef,
     }
-    setNoteContent((note && note.content) || '')
+    updateNoteContent(d => {
+      d = (note && note.content) || ''
+    })
   }, [note])
-  const [noteContent, setNoteContent] = useState('')
+  const [noteContent, updateNoteContent] = useImmer('')
   const onTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = event.target.value
-    setNoteContent(value)
+    updateNoteContent(d => {
+      d = value
+    })
   }
   const btnSubmitAction = () => {
     if (!noteContent || noteContent.length < 1) {

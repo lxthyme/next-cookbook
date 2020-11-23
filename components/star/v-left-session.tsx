@@ -1,10 +1,10 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useEffect, FC } from 'react'
 
 import { List } from 'antd'
 import { post } from '../../plugins/api'
 import { UserModel, TagModel } from '../../api/star/model'
 import { LanguageItem } from './interface'
-
+import { useImmer } from 'use-immer'
 // export const config = { amp: true };
 
 interface ILeftSessionProps {
@@ -29,17 +29,25 @@ const Page: FC<ILeftSessionProps> = ({
   onLanguageRefresh = (e) => e.stopPropagation(),
   onRefresh = (e) => e.stopPropagation(),
 }) => {
-  const [currentSelectedTag, setcurrentSelectedTag] = useState('')
-  const [currentSelectedLanguage, setcurrentSelectedLanguage] = useState('')
+  const [currentSelectedTag, updateCurrentSelectedTag] = useImmer('')
+  const [currentSelectedLanguage, updateCurrentSelectedLanguage] = useImmer('')
   const onTagTapped = (tag_id: string) => {
-    setcurrentSelectedLanguage('')
-    setcurrentSelectedTag(tag_id)
+    updateCurrentSelectedLanguage(d => {
+      d = tag_id
+    })
+    updateCurrentSelectedTag(d => {
+      d = ''
+    })
     loadData && loadData({ tag_id })
   }
   const onLanguageTapped = (language: string) => {
     console.log('language: ', language)
-    setcurrentSelectedLanguage(language)
-    setcurrentSelectedTag('')
+    updateCurrentSelectedLanguage(d => {
+      d = language
+    })
+    updateCurrentSelectedTag(d => {
+      d = ''
+    })
     loadData && loadData({ language })
   }
   return (

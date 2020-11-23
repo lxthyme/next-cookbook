@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, FC } from 'react'
+import React, { useEffect, useRef, FC } from 'react'
 // import ReactMarkdown from 'react-markdown'
 import dynamic from 'next/dynamic'
 
@@ -20,9 +20,9 @@ interface IRightSessionProps {
 const VRightSession: FC<IRightSessionProps> = ({ repo, tagList, onUpdate }) => {
   return (
     <>
-      <VRepoTag tagList={tagList} sTag={repo.tag} onUpdate={onUpdate} />
-      <VNote note={repo.note} onUpdate={onUpdate} />
-      <VMarkdown fullName={repo.full_name} />
+      <VRepoTag tagList={tagList} sTag={repo?.tag} onUpdate={onUpdate} />
+      <VNote note={repo?.note} onUpdate={onUpdate} />
+      <VMarkdown fullName={repo?.full_name} />
       {/* <style jsx>{``}</style> */}
     </>
   )

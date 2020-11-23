@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, FC } from 'react'
 import { get } from '../../plugins/api'
 
 import MarkdownIt from 'markdown-it'
@@ -8,6 +8,8 @@ import 'highlight.js/styles/github.css'
 
 import ReactMarkdown from 'react-markdown'
 import vLog from '../../plugins/logger'
+import { ReadmeModel } from '../../api/star/model'
+import { useImmer } from 'use-immer'
 
 const toc = require('remark-toc')
 // export const config = { amp: true };
@@ -23,7 +25,7 @@ const md = new MarkdownIt({
   html: true,
   // linkify: true,
   typographer: true,
-  highlight: (str, lang) => {
+  highlight: (str: string, lang: string) => {
     // console.log('highlight: ', {str, lang});
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -88,12 +90,29 @@ md.core.ruler.after('inline', 'replace-link', (state) => {
   return false
 })
 window.md2 = md
-const VMarkdown = ({ fullName }) => {
-  const [apiReadME, setApiReadME] = useState({})
+declare global {
+  interface Window {
+    md2: any
+    readME: any
+    md: {
+      fullName: string
+      loadReadMe: () => void
+      loadReadMeContent: (url: string) => void
+      setReadME: any
+      apiReadME?: ReadmeModel
+      readME: string
+    }
+  }
+}
+interface IVMarkdownProps {
+  fullName: string
+}
+const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
+  const [apiReadME, updateApiReadME] = useImmer<ReadmeModel>()
   const [
     readME,
-    setReadME,
-  ] = useState(`<img src="images/immer-logo.svg" height="200px" align="right">
+    updateReadME,
+  ] = useImmer(`<img src="images/immer-logo.svg" height="200px" align="right">
   <div>111</div>
   <img src="images/immer-logo.svg" height="200px" align="right">`)
   useEffect(() => {
@@ -101,22 +120,22 @@ const VMarkdown = ({ fullName }) => {
       fullName,
       loadReadMe,
       loadReadMeContent,
-      setReadME,
+      updateReadME,
       apiReadME,
       readME,
     }
     md.set({
-      replaceLink: function (link, env, token) {
+      replaceLink: function (link: string, env: object, token: string) {
         const url = link || ''
         let fmt = ''
-        if (apiReadME && apiReadME.html_url) {
+        if (apiReadME?.html_url) {
           const idx = apiReadME.html_url.lastIndexOf('/')
           if (idx >= 0) {
             fmt = apiReadME.html_url.slice(0, idx)
           }
         }
         if (url.startsWith('#')) {
-          fmt = `${apiReadME.html_url}${url}`
+          fmt = `${apiReadME?.html_url}${url}`
         } else if (
           url.startsWith('http') ||
           url.startsWith('ftp') ||
@@ -126,7 +145,7 @@ const VMarkdown = ({ fullName }) => {
         } else if (url.startsWith('./')) {
           console.log('replace ./: ', { link, env, token })
           /// https://github.com/ianstormtaylor/slate/blob/main/License.md
-          fmt = `${apiReadME.html_url}/${url.slice(2)}`
+          fmt = `${apiReadME?.html_url}/${url.slice(2)}`
         } else {
           console.log('replace: ', { link, env, token })
           fmt = `${fmt}/${url}`
@@ -162,7 +181,9 @@ const VMarkdown = ({ fullName }) => {
       },
     )
       .then(({ data }) => {
-        setApiReadME(data)
+        updateApiReadME(d => {
+          d = data
+        })
         return get(
           data.download_url,
           {},
@@ -191,7 +212,9 @@ const VMarkdown = ({ fullName }) => {
             /(\(\/assets\/)|(\(assets\/)/gi,
             `(https://raw.githubusercontent.com/${fullName}/master/assets/`,
           )
-        setReadME(data)
+          updateReadME(d => {
+            d = data
+          })
         window.readME = data
       })
       .catch((e) => {
