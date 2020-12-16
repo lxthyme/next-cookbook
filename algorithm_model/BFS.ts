@@ -2,14 +2,14 @@ import { VertexColor } from './common'
 
 export class BFSVertex {
     value: String;
-    edge: BFSEdge;
+    edge?: BFSEdge;
     /// 默认: 无穷大
-    d: number;
+    d?: number;
     /// 默认: 无前驱
-    pi: BFSVertex;
+    pi?: BFSVertex;
     /// 默认: 白色
     color: VertexColor;
-    constructor(value: String, d?: number = Infinity, edge?: BFSEdge, pi?: BFSVertex, color?: VertexColor = VertexColor.White) {
+    constructor(value: String, d?: number, edge?: BFSEdge, pi?: BFSVertex, color: VertexColor = VertexColor.White) {
         this.value = value
         this.color = color
         this.d = d
@@ -22,7 +22,7 @@ export class BFSEdge {
     /// 表示这条边连接的节点在顶点数组中的位置
     idx: number;
     /// 表示下一个连接兄弟节点的边。
-    sibling: BFSEdge;
+    sibling?: BFSEdge;
     constructor(idx: number, sibling?: BFSEdge) {
         this.idx = idx
         this.sibling = sibling

@@ -105,7 +105,7 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       return
     }
     return post({
-      url: 'http://0.0.0.0:3003/api/github/tag/list',
+      url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/tag/list`,
       params: {
         // repo_id,
         offset: 0,
@@ -130,7 +130,7 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
       return
     }
     return post({
-      url: 'http://0.0.0.0:3003/api/github/tag/bindList',
+      url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/tag/bindList`,
       params: {
         repo_id,
       },
@@ -189,7 +189,7 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
     // tagInfo.id = `${tagInfo.name}-${repo_id}`
     // tagInfo.repo_id = repo_id
     return post({
-      url: 'http://0.0.0.0:3003/api/github/tag/bind',
+      url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/tag/bind`,
       params: { type: 'del', repo_id: repo_id, tag: key },
     }).then((res) => {
       setCurrentTags((d) => {
@@ -215,7 +215,7 @@ const Page: FC<IRepoTagProps> = ({ sTag, tagList = [], onUpdate }) => {
     // tagInfo.id = `${tagInfo.name}-${repo_id}`
     // tagInfo.repo_id = repo_id
     return post({
-      url: 'http://0.0.0.0:3003/api/github/tag/bind',
+      url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/tag/bind`,
       params: { repo_id: repo_id, tag: key },
     }).then((res) => {
       onUpdate && onUpdate({ repo_id: repo_id }, -1)

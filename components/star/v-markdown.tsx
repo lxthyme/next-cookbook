@@ -8,8 +8,11 @@ import 'highlight.js/styles/github.css'
 
 import ReactMarkdown from 'react-markdown'
 import vLog from '../../plugins/logger'
-import { ReadmeModel } from '../../api/star/model'
+import { IMarkdownModel, ReadmeModel } from '../../api/star/model'
 import { useImmer } from 'use-immer'
+import { $ReadME, $ReadmeDownload } from '../../api/star/star'
+import axios from '../../plugins/axios'
+import Token from 'markdown-it/lib/token'
 
 const toc = require('remark-toc')
 // export const config = { amp: true };
@@ -45,19 +48,19 @@ const md = new MarkdownIt({
 // md.core.ruler.push('replace-link', (state) => {
 //   console.log('state: ', state)
 // })
-function replaceAttr(token, attrName, replace, env) {
+function replaceAttr(token: Token, attrName: string, replace: any, env: object) {
   // console.log('replaceAttr: ', {token, attrName, replace, env})
-  token.attrs.forEach(function (attr) {
+  token.attrs?.forEach(function (attr: any) {
     if (attr[0] === attrName) {
       attr[1] = replace(attr[1], env, token)
     }
   })
-  token.attrs.push(['target', '_blank'])
+  token.attrs?.push(['target', '_blank'])
 }
 md.core.ruler.after('inline', 'replace-link', (state) => {
-  var replace
+  var replace: any
 
-  if (md.options.replaceLink && typeof md.options.replaceLink === 'function') {
+  if (md.options && typeof md.options.replaceLink === 'function') {
     // Use markdown options (default so far)
     replace = md.options.replaceLink
   }
@@ -97,10 +100,10 @@ declare global {
     md: {
       fullName: string
       loadReadMe: () => void
-      loadReadMeContent: (url: string) => void
-      setReadME: any
+      // loadReadMeContent: (url: string) => void
+      // setReadME: any
       apiReadME?: ReadmeModel
-      readME: string
+      info: IMarkdownModel
     }
   }
 }
@@ -108,34 +111,26 @@ interface IVMarkdownProps {
   fullName: string
 }
 const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
-  const [apiReadME, updateApiReadME] = useImmer<ReadmeModel>()
-  const [
-    readME,
-    updateReadME,
-  ] = useImmer(`<img src="images/immer-logo.svg" height="200px" align="right">
-  <div>111</div>
-  <img src="images/immer-logo.svg" height="200px" align="right">`)
+  const [info, updateInfo] = useImmer<IMarkdownModel>({} as IMarkdownModel)
   useEffect(() => {
     window.md = {
       fullName,
       loadReadMe,
-      loadReadMeContent,
-      updateReadME,
-      apiReadME,
-      readME,
+      // loadReadMeContent,
+      info
     }
     md.set({
       replaceLink: function (link: string, env: object, token: string) {
         const url = link || ''
         let fmt = ''
-        if (apiReadME?.html_url) {
-          const idx = apiReadME.html_url.lastIndexOf('/')
+        if (info.model?.html_url) {
+          const idx = info.model?.html_url.lastIndexOf('/')
           if (idx >= 0) {
-            fmt = apiReadME.html_url.slice(0, idx)
+            fmt = info.model.html_url.slice(0, idx)
           }
         }
         if (url.startsWith('#')) {
-          fmt = `${apiReadME?.html_url}${url}`
+          fmt = `${info.model?.html_url}${url}`
         } else if (
           url.startsWith('http') ||
           url.startsWith('ftp') ||
@@ -143,9 +138,9 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
         ) {
           fmt = url
         } else if (url.startsWith('./')) {
-          console.log('replace ./: ', { link, env, token })
           /// https://github.com/ianstormtaylor/slate/blob/main/License.md
-          fmt = `${apiReadME?.html_url}/${url.slice(2)}`
+          fmt = `${info.model?.html_url}/${url.slice(2)}`
+          console.log('replace ./: ', { link, env, token, fmt })
         } else {
           console.log('replace: ', { link, env, token })
           fmt = `${fmt}/${url}`
@@ -157,48 +152,15 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
   useEffect(() => {
     fullName && loadReadMe()
   }, [fullName])
-  const loadReadMeContent = (url) => {
-    get(
-      url,
-      {},
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3.star+json',
-          // Authorization: 'token 5357fb77f46b31b93b14869cab3c648b3e1bb0cd',
-        },
-      },
-    )
-  }
   const loadReadMe = () => {
-    get(
-      `https://api.github.com/repos/${fullName}/readme`,
-      {},
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3.star+json',
-          Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
-        },
-      },
-    )
+    $ReadME(fullName)
       .then(({ data }) => {
-        updateApiReadME(d => {
-          d = data
+        updateInfo((d) => {
+          d.model = data
         })
-        return get(
-          data.download_url,
-          {},
-          {
-            headers: {
-              Accept: 'application/vnd.github.v3.star+json',
-              // Authorization: 'token 5357fb77f46b31b93b14869cab3c648b3e1bb0cd',
-            },
-          },
-        )
+        return $ReadmeDownload(data.download_url)
       })
-      // get(`https://raw.githubusercontent.com/${fullName}/master/README.md`)
-      // get(`https://api.github.com/repos/${fullName}/readme`)
-      /// https://github.com/k88hudson/git-flight-rules/blob/master/
-      .then((res = {}) => {
+      .then((res) => {
         let { data = '' } = res
         data = data
           .replace(/<\/br>/gi, '<br/>')
@@ -212,27 +174,13 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
             /(\(\/assets\/)|(\(assets\/)/gi,
             `(https://raw.githubusercontent.com/${fullName}/master/assets/`,
           )
-          updateReadME(d => {
-            d = data
-          })
-        window.readME = data
+        updateInfo((d) => {
+          d.f_content = md.render(data)
+          d.content = data
+        })
       })
       .catch((e) => {
         vLog.error(e)
-        // get(
-        //   `https://raw.githubusercontent.com/${fullName}/master/readme.md`,
-        // ).then((res = {}) => {
-        //   let { data = '' } = res
-        //   data = data
-        //     .replace(/<\/br>/gi, '<br/>')
-        //     .replace(/(<img[\s\S]*?)(?<!\/)>/gi, '$1/>')
-        //     .replace(/\/><\/img>/gi, '/>')
-        //     .replace(
-        //       /("\/assets\/)|("assets\/)/gi,
-        //       `"https://raw.githubusercontent.com/${fullName}/master/assets/`,
-        //     )
-        //   setReadME(data)
-        // })
       })
   }
   const fixedLink = (url, text, title) => {
@@ -245,7 +193,7 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
     // const fmtURL = `<a target="_blank" href="https://github.com/${fullName}/blob/master/${url}">${text[0] && text[0].value}</a>`
     /// 1. #
     if (url.startsWith('#')) {
-      return `https://github.com/${fullName}/blob/master/${apiReadME.path}${url}`
+      return `https://github.com/${fullName}/blob/master/${info.model?.path}${url}`
     }
     const protocols = ['http', 'https', 'mailto', 'tel']
     const colon = url.indexOf(':')
@@ -267,9 +215,6 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
     }
     return url
   }
-  const renderResult = () => {
-    return md.render(readME)
-  }
   return (
     <>
       {/* <ReactMarkdown
@@ -288,8 +233,9 @@ const VMarkdown: FC<IVMarkdownProps> = ({ fullName }) => {
       /> */}
       <div
         className="v-markdown-wrapper"
-        dangerouslySetInnerHTML={{ __html: renderResult() }}
+        dangerouslySetInnerHTML={{ __html: info.f_content }}
       />
+      {/* dangerouslySetInnerHTML={{ __html: renderResult() }} */}
       {/* <style jsx>{``}</style> */}
     </>
   )

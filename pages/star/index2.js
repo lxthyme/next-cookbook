@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Octokit } from '@octokit/rest'
 import { request } from '@octokit/request'
-import { createBasicAuth, createOAuthAppAuth } from '@octokit/auth'
+import { createOAuthAppAuth } from '@octokit/auth'
 import { createTokenAuth } from '@octokit/auth-token'
 // import { getStarredRepoList } from '../../plugins/octokit'
 import vLog, { vlog } from '../../plugins/logger'
@@ -33,34 +33,34 @@ const RepoListPage = (props) => {
       env: process.env
     })
   }, [])
-  const getToken = async () => {
-    const auth = createBasicAuth({
-      username: 'LX314',
-      password: 'lx25292933',
-      //   username: 'octocat',
-      //   password: 'secret',
-      on2Fa() {
-        return prompt('Two-factor authentication Code:')
-      },
-    })
-    // vLog.log('111')
-    // const { token } = await auth({ type: 'token' })
-    const token = '6956ebd4620f3e4bc3e8d06d67756d3612c78f70'
-    const requestWithAuth = request.defaults({
-      request: {
-        hook: auth.hook,
-      },
-    })
+  // const getToken = async () => {
+  //   const auth = createBasicAuth({
+  //     username: 'LX314',
+  //     password: 'lx25292933',
+  //     //   username: 'octocat',
+  //     //   password: 'secret',
+  //     on2Fa() {
+  //       return prompt('Two-factor authentication Code:')
+  //     },
+  //   })
+  //   // vLog.log('111')
+  //   // const { token } = await auth({ type: 'token' })
+  //   const token = '6956ebd4620f3e4bc3e8d06d67756d3612c78f70'
+  //   const requestWithAuth = request.defaults({
+  //     request: {
+  //       hook: auth.hook,
+  //     },
+  //   })
 
-    const result = await requestWithAuth('GET /authorizations')
-    const { data: authorizations } = result
-    vLog.log('auth: ', { auth, token, requestWithAuth, result })
-  }
+  //   const result = await requestWithAuth('GET /authorizations')
+  //   const { data: authorizations } = result
+  //   vLog.log('auth: ', { auth, token, requestWithAuth, result })
+  // }
   const getToken2 = async () => {
     const auth = createOAuthAppAuth({
       clientId: '1234567890abcdef1234',
       clientSecret: '1234567890abcdef1234567890abcdef12345678',
-      code: 'e91f4eb7c65bdf12c529', // code from OAuth web flow, see https://git.io/fhd1D
+      code: '3e32fa7f388e874ff115', // code from OAuth web flow, see https://git.io/fhd1D
     })
 
     const appAuthentication = await auth({

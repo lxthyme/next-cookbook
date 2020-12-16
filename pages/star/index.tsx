@@ -202,7 +202,8 @@ const Page: FC = ({}) => {
     return $TagList().then((res) => {
       const data = res.model.data
       updateTagList(d => {
-        d = data
+        d.count = data.count
+        d.list = data.list
       })
     })
   }
@@ -369,7 +370,7 @@ const Page: FC = ({}) => {
               Login
             </a>
             <div className="v-test-wrapper">
-              <button onClick={loadStarredList.bind(this, 1)}>
+              <button onClick={loadStarredList.bind(this, 42)}>
                 Load Starred List
               </button>
               <button onClick={insertRepoList.bind(this, [])}>

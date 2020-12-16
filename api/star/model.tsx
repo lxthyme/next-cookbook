@@ -73,6 +73,15 @@ export interface ReadmeModel {
   encoding: string
   _links: ReadmeLinkModel
 }
+export interface ReadMEContentModel {
+  data: string
+}
+export interface IMarkdownModel {
+  content: string
+  f_content: string
+  model: ReadmeModel
+}
+
 
 /// Tag
 export interface RepoTagModel {

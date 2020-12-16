@@ -56,7 +56,7 @@ const VNote: FC<INoteProps> = ({ note, onUpdate }) => {
     }
     console.log('Value: ', noteContent)
     post({
-      url: 'http://0.0.0.0:3003/api/github/note/set',
+      url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/note/set`,
       params: { repo_id, note: noteContent },
     })
       .then((res) => {

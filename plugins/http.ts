@@ -4,7 +4,7 @@ import Message from '../components/message/index';
 export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 export type ResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
 
-interface AxiosRequest {
+export interface AxiosRequest {
     baseURL?: string;
     url: string;
     data?: any;
@@ -46,8 +46,9 @@ class HttpApi {
     public static baseURL: string = '';
     public static header: IHeaderProps = {};
     public static beforeRequest: (axiosRequest: AxiosRequest) => void;
-    public static request<T = any>({ baseURL = HttpApi.baseURL, headers, method = "GET", url, data, params, responseType }: AxiosRequest): Promise<AxiosFullResponse<T>> {
-        this.beforeRequest({ baseURL, headers, method, url, data, params, responseType })
+    public static request<T = any>(req: AxiosRequest): Promise<AxiosFullResponse<T>> {
+        this.beforeRequest(req)
+        const { baseURL = HttpApi.baseURL, headers, method = "GET", url, data, params, responseType } = req
         return new Promise((resolve, reject) => {
             axios({
                 baseURL,
@@ -55,9 +56,18 @@ class HttpApi {
                 method,
                 url,
                 params,
-                data,
-                responseType
+                data: Object.keys(data).length > 0 ? data : undefined,
+                // responseType,
+                withCredentials: false,
             }).then((res) => {
+                if (baseURL.includes('api.github.com') || baseURL.includes('raw.githubusercontent.com')) {
+                    // res = {} as AxiosResponse
+                    const d: object = {
+                        code: 10000,
+                        data: res as any
+                    }
+                    res = d as AxiosResponse
+                }
                 const _newres: BaseHttpModel<T> = new BaseHttpModel<T>(res);
                 if (_newres.code === 10000) {
                     resolve({ ...(res as AxiosResponse), model: _newres });

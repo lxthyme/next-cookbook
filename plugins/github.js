@@ -494,7 +494,7 @@ export const insertTag = ({ tag }) => {
     return Promise.reject(`name: ${tag}`)
   }
   return post({
-    url: 'http://0.0.0.0:3003/api/github/tag/insert',
+    url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/tag/insert`,
     params: { tag },
   })
 }
@@ -504,7 +504,7 @@ export const insertData = ({ type = '', list, data }) => {
     return Promise.reject('list.length <= 0')
   }
   return post({
-    url: 'http://0.0.0.0:3003/api/github/repo/insert',
+    url: `${process.env.NEXT_PUBLIC_API_BaseURL}/api/github/repo/insert`,
     params: { type, list, data },
   })
 }

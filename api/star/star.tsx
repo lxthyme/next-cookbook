@@ -3,6 +3,7 @@ import HttpApi, { AxiosRequest } from '../../plugins/http'
 import {
   LanguageModel,
   NoteModel,
+  ReadMEContentModel,
   ReadmeModel,
   RepoListModel,
   RepoModel,
@@ -31,17 +32,28 @@ const uri = {
   /// Github api
   starredList: 'users/lxthyme/starred',
   readme: 'repos/${fullName}/readme',
+  readmeDownload: 'xxx',
 }
 
-HttpApi.beforeRequest = ({ url: uri }) => {
-  if (uri.includes('api.github.com')) {
-    HttpApi.baseURL = 'https://api.github.com'
-    HttpApi.header = {
+HttpApi.beforeRequest = (req) => {
+  const { url: uri } = req
+  console.log('--->beforeRequest: ', uri)
+  if (uri.includes('raw.githubusercontent.com')) {
+    req.baseURL = 'https://raw.githubusercontent.com'
+    req.url = 'ianstormtaylor/slate/master/Readme.md'
+    req.headers = {
+      Accept: 'application/vnd.github.v3.star+json',
+      // Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+    }
+  } else if (uri.startsWith('api/')) {
+    req.baseURL = 'http://0.0.0.0:3000'
+    req.headers = {}
+  } else {
+    req.baseURL = 'https://api.github.com'
+    req.headers = {
       Accept: 'application/vnd.github.v3.star+json',
       Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
     }
-  } else {
-    HttpApi.baseURL = 'http://0.0.0.0:3003'
   }
 }
 
@@ -130,6 +142,13 @@ export const $Starred = (page: number) => {
 export const $ReadME = (fullName: string) => {
   return HttpApi.request<ReadmeModel>({
     url: `https://api.github.com/repos/${fullName}/readme`,
+    method: 'GET',
+    data: {},
+  })
+}
+export const $ReadmeDownload = (url: string) => {
+  return HttpApi.request<ReadMEContentModel>({
+    url: url,
     method: 'GET',
     data: {},
   })

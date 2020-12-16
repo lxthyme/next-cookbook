@@ -1,8 +1,8 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+// import { ThemeProvider } from '@material-ui/core/styles'
+// import CssBaseline from '@material-ui/core/CssBaseline'
 import { theme } from '../theme/theme'
 
 import { enableES5 } from "immer"
@@ -47,9 +47,9 @@ export default class MyApp extends App {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
         </Head>
-        <ThemeProvider theme={theme}>
+        {/* <ThemeProvider theme={theme}> */}
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
+          {/* <CssBaseline /> */}
           <div id="app-root">
             <Component className="app-root" {...pageProps} />
           </div>
@@ -58,7 +58,7 @@ export default class MyApp extends App {
               {/* <div id="modal-root-wrapper"></div> */}
             </div>
           </div>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
         <style jsx>{`
           #app-root {
             position: relative;

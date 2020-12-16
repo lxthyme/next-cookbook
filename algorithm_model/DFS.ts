@@ -6,11 +6,11 @@ export class DFSVertex {
     /// 默认: 无前驱
     pi = null
     /// 发现该节点时的时间戳
-    d: number
+    d?: number
     /// 邻接链表扫描完成时的时间戳
-    f: number;
+    f?: number;
     /// 由顶点发出的所有边
-    edge: DFSEdge;
+    edge?: DFSEdge;
     /// 节点的值, 默认为空
     value: String
     constructor(value: String, d?: number, edge?: DFSEdge, color: VertexColor = VertexColor.White, f?: number) {
@@ -25,7 +25,7 @@ export class DFSVertex {
 export class DFSEdge {
     idx: number;
     sibling: DFSEdge;
-    constructor(idx: number, sibling?: DFSEdge) {
+    constructor(idx: number, sibling: DFSEdge) {
         this.idx = idx;
         this.sibling = sibling
     }
