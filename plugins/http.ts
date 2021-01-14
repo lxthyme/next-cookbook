@@ -62,7 +62,8 @@ class HttpApi {
                 if (_newres.code === 10000) {
                     resolve({ ...(res as AxiosResponse), model: _newres });
                 } else {
-                    Message.error(_newres.msg);
+                    // Message.error(_newres.msg);
+                    console.log('-->Error res: ', res)
                     reject(_newres)
                 }
             }).catch((err) => {

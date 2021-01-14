@@ -61,6 +61,7 @@ declare global {
       currentSelected: any
       loadData: any
       loadStarredList: any
+      loadStarredList2: any
       insertRepoList: any
       loadUserData: any
       loadRepoTags: any
@@ -124,6 +125,7 @@ const Page: FC = ({}) => {
       currentSelected,
       loadData,
       loadStarredList,
+      loadStarredList2,
       insertRepoList,
       loadUserData,
       loadRepoTags,
@@ -136,7 +138,7 @@ const Page: FC = ({}) => {
   const [currentSelected, updateCurrentSelected] = useImmer<RepoModel>()
   const currentSelectedFun = {
     onSelected: (item: RepoModel) => {
-      updateCurrentSelected(d => d = item)
+      updateCurrentSelected((d) => (d = item))
       router.push(`/star?id=${item.id}`, undefined, { shallow: true })
     },
   }
@@ -152,8 +154,60 @@ const Page: FC = ({}) => {
   const [userData, updateUserData] = useImmer<UserModel>()
   const loadUserData = () => {
     $UserInfo(8361463).then((res) => {
-      updateUserData(d => d = res.model.data)
+      updateUserData((d) => (d = res.model.data))
     })
+  }
+  const loadStarredList2 = (page: number) => {
+    get(
+      'https://api.github.com/users/lxthyme/starred',
+      {
+        page,
+      },
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3.star+json',
+          Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
+        },
+      },
+    )
+      .then(({ data, headers }) => {
+        const link = headers.link
+        if (!link) {
+          return { list: data }
+        }
+        const prev = link.replace(
+          /^[\s\S]*?page=([0-9]{1,})>; rel="prev"[\s\S]*$/,
+          '$1',
+        )
+        const next = link.replace(
+          /^[\s\S]*?page=([0-9]{1,})>; rel="next"[\s\S]*$/,
+          '$1',
+        )
+        const first = link.replace(
+          /^[\s\S]*?page=([0-9]{1,})>; rel="first"[\s\S]*$/,
+          '$1',
+        )
+        const last = link.replace(
+          /^[\s\S]*?page=([0-9]{1,})>; rel="last"[\s\S]*$/,
+          '$1',
+        )
+        const page_info = {
+          prev: parseInt(prev),
+          next: parseInt(next),
+          first: parseInt(first),
+          last: parseInt(last),
+        }
+        return { list: data, next: page_info.next }
+      })
+      .then(({ list, next }) => {
+        insertRepoList(list).then((res) => {
+          console.log(`insertRepoList Result[${next}]: `, res)
+          if (res && next) {
+            // loadStarredList2(next)
+            console.log('-->next: ', next)
+          }
+        })
+      })
   }
   const loadStarredList = (page: number) => {
     console.log('------------------------->Next: ', page)
@@ -201,8 +255,9 @@ const Page: FC = ({}) => {
   const loadRepoTags = () => {
     return $TagList().then((res) => {
       const data = res.model.data
-      updateTagList(d => {
-        d = data
+      updateTagList((d) => {
+        d.count = data.count
+        d.list = data.list
       })
     })
   }
@@ -210,7 +265,7 @@ const Page: FC = ({}) => {
     return $LanguageList().then((res) => {
       const data = res.model.data
       const fmt = data.map((t) => !t.language && (t.language = 'undefined'))
-      updateLanguageList(d => {
+      updateLanguageList((d) => {
         d.count = data.length
         d.list = data
       })
@@ -234,7 +289,7 @@ const Page: FC = ({}) => {
         current,
         pageSize,
       })
-      updateStarredData(d => {
+      updateStarredData((d) => {
         d.pageSize = pageSize
       })
     },
@@ -288,7 +343,7 @@ const Page: FC = ({}) => {
     },
     initialID = 0,
   ) => {
-    updateInfo(d => {
+    updateInfo((d) => {
       d.curSelectedRepo = repo_id
       d.curSelectedTag = tag_id.trim()
     })
@@ -305,28 +360,27 @@ const Page: FC = ({}) => {
         const { total, list } = res.model.data
         if (repo_id > 0) {
           const first = list[0]
-          updateStarredData(d => {
+          updateStarredData((d) => {
             const tlist = d.list || []
             const idx = tlist.findIndex((tmp) => tmp.id === repo_id)
             if (idx >= 0) {
               tlist.splice(idx, 1, first)
             }
             d.list = list
-
           })
         } else {
-          updateStarredData(d => {
+          updateStarredData((d) => {
             d.total = total
             d.list = list
           })
         }
 
         if (initialID > 0) {
-          updateCurrentSelected(d => d = list[0])
+          updateCurrentSelected((d) => (d = list[0]))
         }
       })
       .catch((e) => {
-        updateStarredData(d => {
+        updateStarredData((d) => {
           d.page -= 1
         })
       })
@@ -344,7 +398,7 @@ const Page: FC = ({}) => {
   const onQueryKeySelect = (value: string) => {
     console.log('search key: ', value)
     console.log('search key: ', value)
-    updateRepoQueryKey(d => d = value)
+    updateRepoQueryKey((d) => (d = value))
   }
   const onLanguageRefresh = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.stopPropagation()
@@ -369,7 +423,7 @@ const Page: FC = ({}) => {
               Login
             </a>
             <div className="v-test-wrapper">
-              <button onClick={loadStarredList.bind(this, 1)}>
+              <button onClick={loadStarredList.bind(this, 42)}>
                 Load Starred List
               </button>
               <button onClick={insertRepoList.bind(this, [])}>

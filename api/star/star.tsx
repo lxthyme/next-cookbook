@@ -34,14 +34,14 @@ const uri = {
 }
 
 HttpApi.beforeRequest = ({ url: uri }) => {
-  if (uri.includes('api.github.com')) {
+  if (uri.startsWith('api')) {
+    HttpApi.baseURL = 'http://0.0.0.0:3003'
+  } else {
     HttpApi.baseURL = 'https://api.github.com'
     HttpApi.header = {
       Accept: 'application/vnd.github.v3.star+json',
       Authorization: process.env.NEXT_PUBLIC_ACCESS_TOKEN,
     }
-  } else {
-    HttpApi.baseURL = 'http://0.0.0.0:3003'
   }
 }
 

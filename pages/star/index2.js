@@ -21,7 +21,7 @@ const RepoListPage = (props) => {
     window.octokit = octokit
     vLog.log(octokit)
     // getToken()
-    // getToken2()
+    getToken2()
     // getToken3()
     // getToken4()
     // checkAuth()
@@ -60,7 +60,7 @@ const RepoListPage = (props) => {
     const auth = createOAuthAppAuth({
       clientId: '1234567890abcdef1234',
       clientSecret: '1234567890abcdef1234567890abcdef12345678',
-      code: 'e91f4eb7c65bdf12c529', // code from OAuth web flow, see https://git.io/fhd1D
+      code: '26a986cd017b6dc865c7', // code from OAuth web flow, see https://git.io/fhd1D
     })
 
     const appAuthentication = await auth({
