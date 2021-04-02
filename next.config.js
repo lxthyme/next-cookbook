@@ -9,15 +9,15 @@ const fs = require('fs')
 const path = require('path')
 
 // development or other environment
-const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
 /****************************** Antd Less Config ******************************/
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
   fs.readFileSync(
     path.resolve(__dirname, './public/ant/ant.custom.less'),
-    'utf8'
-  )
+    'utf8',
+  ),
 )
 
 // // fix antd bug in dev development
@@ -79,7 +79,7 @@ const withLessConfig = {
 
 const withCss = require('@zeit/next-css')
 const withCssConfig = {
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, defaultLOaders }) => {
     if (isServer) {
       const antStyles = /antd\/.*?\/style\/css.*?/
       const origExternals = [...config.externals]
@@ -99,6 +99,16 @@ const withCssConfig = {
         test: antStyles,
         use: 'null-loader',
       })
+
+      console.log('>>>defaultLOaders: ', defaultLOaders);
+      // config.module.rules.push({
+      //   test: /\\.js$/,
+      //   include: /node_modules\/echarts\/components/,
+      //   use: [
+      //     defaultLOaders.babel,
+      //     { loader: 'es-loader', options: {}}
+      //   ]
+      // })
     }
     return config
   },
@@ -113,6 +123,17 @@ module.exports = withPlugins(
   ],
   {}
 )
+// const withTM = require('next-transpile-modules')([
+//   // Add the name of your package here...
+//   'echarts/components',
+// ])
+
+// module.exports = withPlugins(
+//   [withTM, [withLess, withLessConfig], [withCss, {}], []],
+//   {
+//     // ...
+//   },
+// )
 
 // const withLessExcludeAntd = require("./next-config/less2.config")
 // // choose your own modifyVars
