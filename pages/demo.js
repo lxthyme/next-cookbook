@@ -5,9 +5,7 @@ import React from 'react'
 
 const code = `
 [URL Rewrite]
-
 (?<=_region=)CN(?=&) TW 302
-
 (?<=\d\/\?version_code=)1[6-9]..(?=.?.?&) 17 302
 (?<=\?version_code=)1[8-9]..(?=.?.?&) 17 302
 (?<=&mcc_mnc=)4 2 302
