@@ -115,14 +115,14 @@ const withCssConfig = {
 }
 
 const withPlugins = require('next-compose-plugins')
-module.exports = withPlugins(
-  [
-    [withLess, withLessConfig],
-    // [withCss, withCssConfig],
-    [withCss, {}],
-  ],
-  {}
-)
+// module.exports = withPlugins(
+//   [
+//     [withLess, withLessConfig],
+//     // [withCss, withCssConfig],
+//     [withCss, {}],
+//   ],
+//   {}
+// )
 // const withTM = require('next-transpile-modules')([
 //   // Add the name of your package here...
 //   'echarts/components',
