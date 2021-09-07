@@ -14,12 +14,15 @@ export default (req, res) => {
         orderStatusDesc: "配送中...233"
     }
 
-    setTimeout(() => {
-        res.status(200).json({
-            obj: data,
-            "success": true
+    return new Promise(function (resolve) {
+        setTimeout(resolve.bind(null, resolve), 1000)
+    })
+        .then(() => {
+            res.status(200).json({
+                "success": true,
+                obj: data,
+            })
         })
-    }, 1000)
 }
 
 const mockData = {

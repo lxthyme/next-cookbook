@@ -7,9 +7,12 @@ export default (req, res) => {
 
     const data = mockData2;
 
-    setTimeout(() => {
-        res.status(200).json(data);
-    }, 1000);
+    return new Promise(function (resolve) {
+        setTimeout(resolve.bind(null, resolve), 1000)
+    })
+        .then(() => {
+            res.status(200).json(data)
+        })
 };
 
 // const mockData2 = { "msg": "很抱歉，此订单不支持查看骑手位置", "resCode": "E8015" }
@@ -22,8 +25,8 @@ const mockData2 = {
 
 /// { "orderNoList": ["LAZ20210816464754"], "resource": "LHDJ" }
 const mockData = {
-	"obj": "ZcaEeEhC/Bv31cfaRNB1NcOHrbAYA7Np+AIV2gg9ofzrYCOGem71QY9653Yo 7IwydYi8RJoWURFXDVBOv/Wa6BIjWtyB9Ko4WDkuxR4Lbi0hVCuOttioAeh2 KcqYgNnHACVxt+YvNJ+ye3eRD/yAc7SgbRLys6GVtikcD5pvsk3J24bo1sAB m+v1HPldMMju+/jxx5ALdkFfl0ighmV2JbQUddaDKVOczaMi5w4mHusFA5Nr gTAGy5x9hvwa9XzIXwXmepn5MEnmUntXzNu06zBkyViorjf4MAR/dPuK7XHe wptoouvCZ++pkh7OOtQLbLLAKFBUPrVrzubRYhsXQ4loANOXxgXEfGVYJgHF m96pQQAimeapXJGa3OB/OWzGzlFV0VJUXHHETMPSBVSBqCcKZgU0j/Mh4j2z IiKXqC4kGYaE7BMi8UnqLCMmLIkehNqFgif0D7payfEw4D2LUskLehdqh/MI qiTOmp5/luOP93RqTo31AsxngQfbEgm1uJCwJBKaLENIwI18a4ycNGeRa8yw BePXRVVeigmea8nWdBu1aN/D3kq9EdzpD8MUxcUDBZPqAQmjYDudyFzLMbRC ray0UxRa",
-	"resCode": "00100000"
+    "obj": "ZcaEeEhC/Bv31cfaRNB1NcOHrbAYA7Np+AIV2gg9ofzrYCOGem71QY9653Yo 7IwydYi8RJoWURFXDVBOv/Wa6BIjWtyB9Ko4WDkuxR4Lbi0hVCuOttioAeh2 KcqYgNnHACVxt+YvNJ+ye3eRD/yAc7SgbRLys6GVtikcD5pvsk3J24bo1sAB m+v1HPldMMju+/jxx5ALdkFfl0ighmV2JbQUddaDKVOczaMi5w4mHusFA5Nr gTAGy5x9hvwa9XzIXwXmepn5MEnmUntXzNu06zBkyViorjf4MAR/dPuK7XHe wptoouvCZ++pkh7OOtQLbLLAKFBUPrVrzubRYhsXQ4loANOXxgXEfGVYJgHF m96pQQAimeapXJGa3OB/OWzGzlFV0VJUXHHETMPSBVSBqCcKZgU0j/Mh4j2z IiKXqC4kGYaE7BMi8UnqLCMmLIkehNqFgif0D7payfEw4D2LUskLehdqh/MI qiTOmp5/luOP93RqTo31AsxngQfbEgm1uJCwJBKaLENIwI18a4ycNGeRa8yw BePXRVVeigmea8nWdBu1aN/D3kq9EdzpD8MUxcUDBZPqAQmjYDudyFzLMbRC ray0UxRa",
+    "resCode": "00100000"
 }
 // {
 //     obj: [

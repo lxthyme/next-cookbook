@@ -9,14 +9,17 @@ export default (req, res) => {
     ...mockData2,
   }
 
-  setTimeout(() => {
-    res.status(200).json({
-      success: true,
-      resCode: '00100000',
-      timestamp: 1630897693687,
-      obj: data,
+  return new Promise(function (resolve) {
+    setTimeout(resolve.bind(null, resolve), 1000)
+  })
+    .then(() => {
+      res.status(200).json({
+        success: true,
+        resCode: '00100000',
+        timestamp: 1630897693687,
+        obj: data,
+      })
     })
-  }, 1000)
 }
 
 const mockData = {
