@@ -5,7 +5,8 @@ export default (req, res) => {
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const list = []
 
-    const data = mockData
+    // const data = mockData
+    const data = YDJMockData
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
