@@ -5,14 +5,28 @@ export default (req, res) => {
   // const list = Array.from({ length: 10 }, (t, idx) => ({}))
   const list = []
 
-  const data = {
-    ...mockData,
-  }
+  // const data = mockData
+  const data = YDJMockData
+
   const moduleList = data.templet.moduleList
   const tabs = moduleList[1]
   const jishida = tabs.tabItemList[0]
-  jishida.moduleList = jishida.moduleList.filter(t => ['Product'].includes(t.moduleType))
-  // jishida.moduleList = jishida.moduleList.slice(0, 0);
+  jishida.moduleList = jishida.moduleList.filter(t => [
+    // 'VipProduct',
+    // 'VipCoupon',
+    // 'Product',
+    // 'Picture',
+    // 'Slide',
+    'Category',
+    // 'Notify',
+    // 'Timer',
+    // 'WaterFall',
+  ].includes(t.moduleType))
+    .map(t => {
+      // t.styleType = 2
+      return t
+    })
+  // jishida.moduleList = jishida.moduleList.slice(0, 1);
   // jishida.moduleList = jishida.moduleList.filter(t => !['VipProduct', 'Timer', 'WaterFall', 'Notify', 'Slide', 'Picture'].includes(t.moduleType))
 
   return new Promise(function (resolve) {
@@ -421,6 +435,792 @@ const mockData = {
       "myCpPic": null,
       "cpTitModeType": 1,
       "templetSid": 3801,
+      "ctCpPicHeight": null,
+      "myCpPicHeight": null,
+      "adModeType": 1,
+      "cpPic": null,
+      "prmPicWidth": 120,
+      "cpButName": null,
+      "myCpButName": null
+    },
+    "tempType": 1,
+    "status": 1
+  }
+}
+
+const YDJMockData = {
+  "onOff": "Y",
+  "templet": {
+    "temType": 1,
+    "mBy": "米萍",
+    "channel": "APP",
+    "tabBar": {
+      "tabBarInfoList": [],
+      "backColor": "#FFFAF0",
+      "templetSid": 3762,
+      "cartNumColor": "#FF0000",
+      "bkPic": null,
+      "barType": 1,
+      "bkPicWidth": 750,
+      "bkPicHeight": 98,
+      "sid": 13977
+    },
+    "cTime": "2021-08-25 11:23:33",
+    "version": 1630476497000,
+    "sid": 3762,
+    "moduleList": [
+      {
+        "pic1ButName": null,
+        "ssButName": null,
+        "mwButId": 55058,
+        "distance": null,
+        "smButId": 55053,
+        "syButId": 55055,
+        "pic1ResourceId": null,
+        "pic2ButName": null,
+        "searchResId": "2021082707",
+        "sid": 3822,
+        "styleType": 4,
+        "pic2ResourceId": null,
+        "bgType": 1,
+        "pic1": null,
+        "syButName": null,
+        "smButName": null,
+        "inStore": 0,
+        "pic2": null,
+        "zzButId": 55059,
+        "searchModeType": 1,
+        "pic1ButId": 55056,
+        "hyButName": null,
+        "bgWidth": 750,
+        "mdButId": 55051,
+        "moduleType": "Head",
+        "pic1JumpType": null,
+        "entButton": "1,2",
+        "bgImg": "https://Img.st.iblimg.com/fast2home-2/images/kdj/index/2018/09/633317119.jpg",
+        "pic1ModeType": 1,
+        "qdButName": null,
+        "entButtonList": [
+          1,
+          2
+        ],
+        "hyButId": 55050,
+        "pic2ModeType": 1,
+        "backColor": "#FF774F",
+        "pic2ButId": 55057,
+        "qdButId": 55052,
+        "mdButName": null,
+        "zzButName": null,
+        "mwButName": null,
+        "pic2JumpType": null,
+        "ssButId": 55054,
+        "bgHeight": 500
+      },
+      {
+        "styleType": 3,
+        "fcDef": "#282323",
+        "moduleType": "Tab",
+        "fcActive": "#F42121",
+        "showType": 1,
+        "busiType": 2,
+        "position": 1,
+        "tabItemList": [
+          {
+            "resourceId": null,
+            "tabName": "All",
+            "storeGoodsType": 1,
+            "butId": 55060,
+            "tabType": 1,
+            "addInfo": null,
+            "pic": null,
+            "labelTxt": null,
+            "showLabel": 0,
+            "sid": 3103,
+            "tabSid": 3122,
+            "modeType": 1,
+            "moduleList": [
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "2021041901",
+                "picHeight": 400,
+                "moduleType": "VipProduct",
+                "buttonInfo": "56826&_&,56827&_&",
+                "buttonList": [
+                  {
+                    "name": null,
+                    "id": 56826
+                  },
+                  {
+                    "name": null,
+                    "id": 56827
+                  }
+                ],
+                "resourceIdSec": null,
+                "sid": 12844
+              },
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "isLogin": 0,
+                "modeType": 1,
+                "resourceId": "2021041902",
+                "picHeight": 240,
+                "moduleType": "VipCoupon",
+                "buttonInfo": "55167&_&",
+                "buttonList": null,
+                "sid": 12994
+              },
+              {
+                "picWidth": 750,
+                "bgWidth": null,
+                "resourceId": "2020122501",
+                "picHeight": 350,
+                "moduleType": "Slide",
+                "butId": 55061,
+                "showBg": 0,
+                "showRadius": null,
+                "showAddr": 1,
+                "sid": 13673,
+                "bgPic": null,
+                "styleType": 1,
+                "modeType": 1,
+                "bgColor": null,
+                "butName": null,
+                "bgHeight": null
+              },
+              {
+                "moduleType": "Category",
+                "showText": 1,
+                "but1Id": null,
+                "buttonList": null,
+                "but3Id": null,
+                "textColor": null,
+                "but2Id": null,
+                "but1Name": null,
+                "but5Id": null,
+                "sid": 13593,
+                "but3Name": null,
+                "but4Id": null,
+                "but5Name": null,
+                "styleType": 3,
+                "modeType": 1,
+                "but4Pic": null,
+                "but5Pic": null,
+                "categoryInfoList": [
+                  {
+                    "jumpType": 1,
+                    "resourceId": null,
+                    "butPriorEnd": 20,
+                    "butStart": 1,
+                    "butEnd": 20,
+                    "categoryId": 13593,
+                    "sid": 14145,
+                    "butPriorStart": 1
+                  }
+                ],
+                "but1Pic": null,
+                "buttonInfo": null,
+                "but3Pic": null,
+                "but2Pic": null,
+                "but4Name": null,
+                "but2Name": null
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "201808201637",
+                "moduleType": "Notify",
+                "butId": 55062,
+                "showType": 1,
+                "pic": "https://Img.st.iblimg.com/fast2home-2/images/kdj/index/2018/10/1640740375.png",
+                "butName": null,
+                "sid": 12839
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "20210105",
+                "moduleType": "Timer",
+                "butId": 55168,
+                "butName": null,
+                "sid": 12715
+              },
+              {
+                "modeType": 1,
+                "resourceId": "20210105",
+                "moduleType": "Product",
+                "butId": 55169,
+                "showType": 4,
+                "productNum": 10,
+                "butName": null,
+                "sid": 15875
+              },
+              {
+                "picWidth": 375,
+                "resourceId": "2021082504",
+                "picHeight": 275,
+                "moduleType": "Picture",
+                "but1Id": 55170,
+                "but3Id": 55172,
+                "but2Id": 55171,
+                "but1Name": null,
+                "but5Id": 55174,
+                "sid": 16073,
+                "but3Name": null,
+                "but4Id": 55173,
+                "but5Name": null,
+                "but6Id": 55175,
+                "modeType": 1,
+                "showType": 5,
+                "but6Name": null,
+                "but4Name": null,
+                "but2Name": null
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "moduleType": "WaterFall",
+                "sid": 269,
+                "wfList": [
+                  {
+                    "picWidth": 343,
+                    "wfSid": 269,
+                    "resIdPic": "2021081802",
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56828,
+                    "contType": 3,
+                    "scopeMin": 1,
+                    "itemInd": 0,
+                    "sid": 654,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 50,
+                    "showPic": 1,
+                    "resIdGoods": "2021081801",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 269,
+                    "resIdPic": "2021081802",
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56829,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 1,
+                    "sid": 655,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 200,
+                    "showPic": 1,
+                    "resIdGoods": "2021082702",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 269,
+                    "resIdPic": null,
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56830,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 2,
+                    "sid": 656,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 30,
+                    "showPic": 0,
+                    "resIdGoods": "2021082703",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 269,
+                    "resIdPic": null,
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56831,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 3,
+                    "sid": 657,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 40,
+                    "showPic": 0,
+                    "resIdGoods": "2021082704",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 269,
+                    "resIdPic": null,
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56832,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 4,
+                    "sid": 658,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 50,
+                    "showPic": 0,
+                    "resIdGoods": "2021082705",
+                    "butName": null
+                  }
+                ]
+              }
+            ],
+            "picUn": null,
+            "tabInd": 0,
+            "butName": null
+          },
+          {
+            "resourceId": null,
+            "tabName": "B2C",
+            "storeGoodsType": 0,
+            "butId": 55065,
+            "tabType": 2,
+            "addInfo": null,
+            "pic": null,
+            "labelTxt": null,
+            "showLabel": 0,
+            "sid": 3104,
+            "tabSid": 3122,
+            "modeType": 1,
+            "moduleList": [
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "20210419011",
+                "picHeight": 400,
+                "moduleType": "VipProduct",
+                "buttonInfo": "56833&_&,56834&_&",
+                "buttonList": [
+                  {
+                    "name": null,
+                    "id": 56833
+                  },
+                  {
+                    "name": null,
+                    "id": 56834
+                  }
+                ],
+                "resourceIdSec": null,
+                "sid": 12845
+              },
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "isLogin": 0,
+                "modeType": 1,
+                "resourceId": "2021041902",
+                "picHeight": 240,
+                "moduleType": "VipCoupon",
+                "buttonInfo": "55504&_&",
+                "buttonList": null,
+                "sid": 12995
+              },
+              {
+                "picWidth": 750,
+                "bgWidth": null,
+                "resourceId": "2020122501",
+                "picHeight": 350,
+                "moduleType": "Slide",
+                "butId": 55505,
+                "showBg": 0,
+                "showRadius": null,
+                "showAddr": 0,
+                "sid": 13694,
+                "bgPic": null,
+                "styleType": 3,
+                "modeType": 1,
+                "bgColor": null,
+                "butName": null,
+                "bgHeight": null
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "20201225021",
+                "moduleType": "Notify",
+                "butId": 55506,
+                "showType": 2,
+                "pic": "https://Img.st.iblimg.com/fast2home-2/images/kdj/index/2018/10/1640740375.png",
+                "butName": null,
+                "sid": 12859
+              },
+              {
+                "moduleType": "Category",
+                "showText": 1,
+                "but1Id": null,
+                "buttonList": null,
+                "but3Id": null,
+                "textColor": null,
+                "but2Id": null,
+                "but1Name": null,
+                "but5Id": null,
+                "sid": 13610,
+                "but3Name": null,
+                "but4Id": null,
+                "but5Name": null,
+                "styleType": 1,
+                "modeType": 1,
+                "but4Pic": null,
+                "but5Pic": null,
+                "categoryInfoList": [
+                  {
+                    "jumpType": 1,
+                    "resourceId": null,
+                    "butPriorEnd": 5,
+                    "butStart": 1,
+                    "butEnd": 5,
+                    "categoryId": 13610,
+                    "sid": 14162,
+                    "butPriorStart": 1
+                  }
+                ],
+                "but1Pic": null,
+                "buttonInfo": null,
+                "but3Pic": null,
+                "but2Pic": null,
+                "but4Name": null,
+                "but2Name": null
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "2020122506",
+                "moduleType": "Timer",
+                "butId": 55507,
+                "butName": null,
+                "sid": 12725
+              },
+              {
+                "modeType": 1,
+                "resourceId": "2020122506",
+                "moduleType": "Product",
+                "butId": 55508,
+                "showType": 3,
+                "productNum": 3,
+                "butName": null,
+                "sid": 15892
+              },
+              {
+                "picWidth": 750,
+                "resourceId": "20201225031",
+                "picHeight": 350,
+                "moduleType": "Picture",
+                "but1Id": 55509,
+                "but3Id": 55511,
+                "but2Id": 55510,
+                "but1Name": null,
+                "but5Id": 55513,
+                "sid": 16086,
+                "but3Name": null,
+                "but4Id": 55512,
+                "but5Name": null,
+                "but6Id": 55514,
+                "modeType": 1,
+                "showType": 1,
+                "but6Name": null,
+                "but4Name": null,
+                "but2Name": null
+              },
+              {
+                "modeType": 1,
+                "resourceId": "20201225031",
+                "moduleType": "Product",
+                "butId": 55515,
+                "showType": 5,
+                "productNum": 10,
+                "butName": null,
+                "sid": 15893
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "moduleType": "WaterFall",
+                "sid": 270,
+                "wfList": [
+                  {
+                    "picWidth": 343,
+                    "wfSid": 270,
+                    "resIdPic": "2021081802",
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56835,
+                    "contType": 3,
+                    "scopeMin": 1,
+                    "itemInd": 0,
+                    "sid": 659,
+                    "firstGoodsNum": 1,
+                    "goodsTotal": 3,
+                    "showPic": 1,
+                    "resIdGoods": "2021081801",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 270,
+                    "resIdPic": null,
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56836,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 1,
+                    "sid": 660,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 10,
+                    "showPic": 0,
+                    "resIdGoods": "2021081803",
+                    "butName": null
+                  }
+                ]
+              }
+            ],
+            "picUn": null,
+            "tabInd": 1,
+            "butName": null
+          },
+          {
+            "resourceId": null,
+            "tabName": "托底门店",
+            "storeGoodsType": 2,
+            "butId": null,
+            "tabType": 1,
+            "addInfo": null,
+            "pic": null,
+            "labelTxt": null,
+            "showLabel": 0,
+            "sid": 3115,
+            "tabSid": 3122,
+            "modeType": 1,
+            "moduleList": [
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "2021041901",
+                "picHeight": 400,
+                "moduleType": "VipProduct",
+                "buttonInfo": "56837&_&,56838&_&",
+                "buttonList": [
+                  {
+                    "name": null,
+                    "id": 56837
+                  },
+                  {
+                    "name": null,
+                    "id": 56838
+                  }
+                ],
+                "resourceIdSec": null,
+                "sid": 12846
+              },
+              {
+                "picWidth": 750,
+                "styleType": 1,
+                "isLogin": 0,
+                "modeType": 1,
+                "resourceId": "2021041902",
+                "picHeight": 240,
+                "moduleType": "VipCoupon",
+                "buttonInfo": "55999&_&",
+                "buttonList": null,
+                "sid": 12996
+              },
+              {
+                "picWidth": 750,
+                "bgWidth": null,
+                "resourceId": "2020122501",
+                "picHeight": 350,
+                "moduleType": "Slide",
+                "butId": 55117,
+                "showBg": 0,
+                "showRadius": null,
+                "showAddr": 1,
+                "sid": 13683,
+                "bgPic": null,
+                "styleType": 5,
+                "modeType": 1,
+                "bgColor": null,
+                "butName": null,
+                "bgHeight": null
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "resourceId": "2020122502",
+                "moduleType": "Notify",
+                "butId": 55118,
+                "showType": 2,
+                "pic": "https://Img.st.iblimg.com/fast2home-2/images/kdj/index/2018/10/1640740375.png",
+                "butName": null,
+                "sid": 12848
+              },
+              {
+                "moduleType": "Category",
+                "showText": 1,
+                "but1Id": null,
+                "buttonList": null,
+                "but3Id": null,
+                "textColor": null,
+                "but2Id": null,
+                "but1Name": null,
+                "but5Id": null,
+                "sid": 13601,
+                "but3Name": null,
+                "but4Id": null,
+                "but5Name": null,
+                "styleType": 2,
+                "modeType": 1,
+                "but4Pic": null,
+                "but5Pic": null,
+                "categoryInfoList": [
+                  {
+                    "jumpType": 1,
+                    "resourceId": null,
+                    "butPriorEnd": 10,
+                    "butStart": 1,
+                    "butEnd": 10,
+                    "categoryId": 13601,
+                    "sid": 14163,
+                    "butPriorStart": 1
+                  }
+                ],
+                "but1Pic": null,
+                "buttonInfo": null,
+                "but3Pic": null,
+                "but2Pic": null,
+                "but4Name": null,
+                "but2Name": null
+              },
+              {
+                "blankHeight": 20,
+                "moduleType": "Split",
+                "lineHeight": 26,
+                "type": 2,
+                "lineWidth": 10,
+                "sid": 11983
+              },
+              {
+                "styleType": 1,
+                "modeType": 1,
+                "moduleType": "WaterFall",
+                "sid": 271,
+                "wfList": [
+                  {
+                    "picWidth": 343,
+                    "wfSid": 271,
+                    "resIdPic": null,
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56839,
+                    "contType": 3,
+                    "scopeMin": 1,
+                    "itemInd": 0,
+                    "sid": 661,
+                    "firstGoodsNum": 20,
+                    "goodsTotal": 90,
+                    "showPic": 0,
+                    "resIdGoods": "2021082501",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 343,
+                    "wfSid": 271,
+                    "resIdPic": "2021081802",
+                    "picHeight": 500,
+                    "scopeMax": 20,
+                    "butId": 56840,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 1,
+                    "sid": 662,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 200,
+                    "showPic": 1,
+                    "resIdGoods": "2021082502",
+                    "butName": null
+                  },
+                  {
+                    "picWidth": 300,
+                    "wfSid": 271,
+                    "resIdPic": "2021082706",
+                    "picHeight": 400,
+                    "scopeMax": 1,
+                    "butId": 56841,
+                    "contType": 1,
+                    "scopeMin": 1,
+                    "itemInd": 2,
+                    "sid": 663,
+                    "firstGoodsNum": null,
+                    "goodsTotal": 30,
+                    "showPic": 1,
+                    "resIdGoods": "2021082703",
+                    "butName": null
+                  }
+                ]
+              }
+            ],
+            "picUn": null,
+            "tabInd": 2,
+            "butName": null
+          }
+        ],
+        "labelColor": "#14DC40",
+        "sid": 3122
+      }
+    ],
+    "name": "APP-药到家定位门店-新首页",
+    "cBy": "米萍",
+    "mTime": "2021-09-01 14:08:17",
+    "isDel": null,
+    "config": {
+      "cpPicType": 1,
+      "cpTitResId": null,
+      "prmButName": null,
+      "myCpButId": 55047,
+      "bkTopPic": null,
+      "prmResId": null,
+      "ctCpPicWidth": null,
+      "sid": 3202,
+      "cpButId": 55046,
+      "myCpPicType": 1,
+      "showPrm": 0,
+      "ctCpPicType": 1,
+      "prmPicHeight": 120,
+      "ctCpButName": null,
+      "adButId": null,
+      "getMoreCoupon": 1,
+      "adButName": null,
+      "ctCpButId": 55048,
+      "showCpPop": 1,
+      "c_popPriority": "type:1,priority:1_type:2,priority:2",
+      "myCpPicWidth": null,
+      "adResId": null,
+      "popPriority": [
+        {
+          "type": 1,
+          "priority": 1
+        },
+        {
+          "type": 2,
+          "priority": 2
+        }
+      ],
+      "showYyzz": 1,
+      "showAdPop": 0,
+      "prmButId": 55049,
+      "ctCpPic": null,
+      "backColor": "#F7F7F7",
+      "myCpPic": null,
+      "cpTitModeType": 1,
+      "templetSid": 3762,
       "ctCpPicHeight": null,
       "myCpPicHeight": null,
       "adModeType": 1,
