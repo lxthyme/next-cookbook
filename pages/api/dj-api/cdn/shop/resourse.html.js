@@ -2278,3 +2278,5 @@ const YDJMockData = [
         "deviceId": null,
         "spec": null,
         "operator": null,
+        "picUrl": null,
+        "resourceCode": null,
