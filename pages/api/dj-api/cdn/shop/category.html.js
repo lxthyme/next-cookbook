@@ -5,9 +5,8 @@ export default (req, res) => {
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const list = []
 
-    const data = {
-        ...mockData
-    }
+    // const data = mockData
+    const data = YDJMockData
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
@@ -558,4 +557,131 @@ const mockData = {
         "categoryName": "生活日用",
         "categoryId": 20733
     }]
+}
+
+const YDJMockData = {
+    "categoryList": [
+        {
+            "rywCategorys": [
+                {
+                    "rywCategorys": [],
+                    "categoryName": "处方药",
+                    "categoryId": 14925
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "非处方药",
+                    "categoryId": 14926
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "疫情药品",
+                    "categoryId": 14927
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "都有的",
+                    "categoryId": 14928
+                }
+            ],
+            "categoryName": "金2陵东路有",
+            "categoryId": 14884
+        },
+        {
+            "rywCategorys": [
+                {
+                    "rywCategorys": [],
+                    "categoryName": "处方药",
+                    "categoryId": 14893
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "非处方药",
+                    "categoryId": 14894
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "疫情药品",
+                    "categoryId": 14895
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "都有的",
+                    "categoryId": 14896
+                }
+            ],
+            "categoryName": "托底门店",
+            "categoryId": 14885
+        },
+        {
+            "rywCategorys": [
+                {
+                    "rywCategorys": [],
+                    "categoryName": "处方药",
+                    "categoryId": 14897
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "非处方药",
+                    "categoryId": 14903
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "疫情药品",
+                    "categoryId": 14904
+                },
+                {
+                    "rywCategorys": [],
+                    "categoryName": "都有的",
+                    "categoryId": 14924
+                }
+            ],
+            "categoryName": "两家门店都有的商品",
+            "categoryId": 14886
+        },
+        {
+            "categoryPicture": "https://Img.st.iblimg.com/fast2home-2/images/fastgoGoods/category/2018/09/1246212569.png",
+            "rywCategorys": [],
+            "categoryName": "处方药2",
+            "categoryId": 14110
+        },
+        {
+            "categoryPicture": "https://Img.st.iblimg.com/fast2home-2/images/fastgoGoods/category/2018/09/106430588.png",
+            "rywCategorys": [],
+            "categoryName": "非处方药",
+            "categoryId": 14109
+        },
+        {
+            "categoryPicture": "https://Img.st.iblimg.com/fast2home-2/images/fastgoGoods/category/2020/03/1051044732.png",
+            "rywCategorys": [],
+            "categoryName": "感冒发烧",
+            "categoryId": 14108
+        },
+        {
+            "rywCategorys": [],
+            "categoryName": "功能保健",
+            "categoryId": 14112
+        },
+        {
+            "rywCategorys": [],
+            "categoryName": "预防病毒",
+            "categoryId": 14113
+        },
+        {
+            "rywCategorys": [],
+            "categoryName": "第十一个目录",
+            "categoryId": 15744
+        },
+        {
+            "rywCategorys": [],
+            "categoryName": "眼科用药",
+            "categoryId": 14111
+        },
+        {
+            "categoryPicture": "https://Img.st.iblimg.com/fast2home-2/images/fastgoGoods/category/2020/03/1051044732.png",
+            "rywCategorys": [],
+            "categoryName": "疫情药品",
+            "categoryId": 14273
+        }
+    ]
 }
