@@ -2275,3 +2275,6 @@ const YDJMockData = [
         "channel": null,
         "businessId": null,
         "type": null,
+        "deviceId": null,
+        "spec": null,
+        "operator": null,
