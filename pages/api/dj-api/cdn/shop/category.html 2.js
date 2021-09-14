@@ -4,3 +4,4 @@ export default (req, res) => {
 
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const list = []
+
