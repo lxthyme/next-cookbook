@@ -227,6 +227,25 @@ const DSPBlueStarInfo = (props) => {
     // .filter(t => t[filterKey] > 0)
     console.log("result: ", result)
   }
+  const formatUsefulInfo4 = (list) => {
+      // ALLOriginInfo
+// .map(item => {
+// return item.split(',')
+// [6]
+// .split(';')
+// .filter(t => t.includes('冰巨星'))
+// })
+// .flat()
+// .filter(t => t === '不是蓝巨星星系')
+
+
+result2
+// // .map(t => t['条件0_summary']['潮汐锁定_sum'])
+// .map(t => t['条件0_summary']['气态巨星_sum'])
+// .map(t => t['条件0_summary']['冰巨星_sum'])
+// .sort((a, b) => b - a)
+[11]
+  }
   return (
     <>
       <h2>All Blue Star Info</h2>
