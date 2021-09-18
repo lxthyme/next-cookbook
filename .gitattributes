@@ -1,2 +1,4 @@
 all-star-info.js filter=lfs diff=lfs merge=lfs -text
 data/dsp/all-star-info.js filter=lfs diff=lfs merge=lfs -text
+all-star-info-v2.js filter=lfs diff=lfs merge=lfs -text
+data/dsp/all-star-info-v2.js filter=lfs diff=lfs merge=lfs -text

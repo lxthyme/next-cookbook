@@ -1,15 +1,24 @@
 import { useEffect } from "react"
-import { ALLOriginInfo } from "../../../../data/dsp/all-star-info"
+import dynamic from 'next/dynamic'
+
+// import { ALLOriginInfo } from "../../../../data/dsp/all-star-info"
+// import { ALLOriginInfo } from "../../../../data/dsp/all-star-info-v2"
+// const ALLOriginInfo = dynamic(() => import('../../../../data/dsp/all-star-info-v2'))
 
 // export const config = { amp: true };
 
 const DSPBlueStarInfo = (props) => {
-  useEffect(() => {
-    window.ALLOriginInfo = ALLOriginInfo
+  useEffect(async () => {
+    // window.ALLOriginInfo = ALLOriginInfo
+    window.ALLOriginInfo = (await import('../../../../data/dsp/all-star-info-v2')).ALLOriginInfo
     const result = formatStarInfo(ALLOriginInfo)
     const result2 = filterUsefulInfo2(result)
-    window.result = result
-    window.result2 = result2
+    window.info = {
+      result,
+      result2,
+      formatStarInfo,
+      filterUsefulInfo2
+    }
   }, [])
   const formatStarInfo = (list) => {
     const EnumObj = {
@@ -37,70 +46,76 @@ const DSPBlueStarInfo = (props) => {
           蓝巨星: parseFloat(tmp[2].replace("蓝巨星：", "").trim()),
           O: parseFloat(tmp[3].replace("O型恒星：", "").trim()),
           条件0: tmp
-            .slice(5)
+            .slice(4)
             .filter((t) => t.length > 0)
             .reduce(
               (prev, cur) => {
-                if (cur.includes("号")) {
-                  //         console.log('prev.tmp: ', prev.tmp)
-                  prev.tmp.push(cur)
-                } else {
-                  const obj_cur = {}
-                  const f_cur = cur.split(";").map((t) => {
-                    if (t.includes("卫星")) {
-                      obj_cur["卫星"] = parseFloat(t.replace("卫星:", ""))
-                    } else if (t.includes("潮汐")) {
-                      obj_cur["潮汐锁定"] = parseFloat(t.replace("潮汐", ""))
-                    } else if (t.includes("第一行星")) {
-                      obj_cur["第一行星"] = EnumObj[t]
-                    } else if (t.includes("第二行星")) {
-                      obj_cur["第二行星"] = EnumObj[t]
-                    } else if (t.includes("蓝巨星")) {
-                      obj_cur["蓝巨星"] = EnumObj[t]
-                      obj_cur["蓝巨星_origin"] = t
-                    } else if (t.includes("行星")) {
-                      obj_cur["行星"] = parseFloat(t.replace("行星", ""))
-                    } else if (t.includes("气态巨星")) {
-                      obj_cur["气态巨星"] = parseFloat(t.replace("气态巨星", ""))
-                    } else if (t.includes("最大重氢速率")) {
-                      obj_cur["最大重氢速率"] = parseFloat(
-                        t.replace("最大重氢速率", "")
-                      )
-                    } else if (t.includes("冰巨星")) {
-                      obj_cur["冰巨星"] = parseFloat(t.replace("冰巨星", ""))
-                    } else if (t.includes("光度")) {
-                      obj_cur["光度"] = parseFloat(t.replace("光度", ""))
-                    } else if (t.includes("与初始距离")) {
-                      obj_cur["与初始距离"] = parseFloat(
-                        t.replace("与初始距离", "")
-                      )
-                    } else if (t.includes("水")) {
-                      obj_cur["水"] = EnumObj[t]
-                      obj_cur["水_origin"] = t
-                    } else if (t.includes("硫酸")) {
-                      obj_cur["硫酸"] = EnumObj[t]
-                      obj_cur["硫酸_origin"] = t
-                    } else {
-                      return t
-                    }
-                    return ""
-                  })
+                // if (cur.includes("号")) {
+                //   //         console.log('prev.tmp: ', prev.tmp)
+                //   prev.tmp.push(cur)
+                // } else {
+                const obj_cur = {}
+                const f_cur = cur.split(";")
+                const others = f_cur.map((t, idx) => {
+                  if (t.includes("卫星")) {
+                    obj_cur["卫星"] = parseFloat(t.replace("卫星:", ""))
+                  } else if (t.includes("潮汐")) {
+                    obj_cur["潮汐锁定"] = parseFloat(t.replace("潮汐", ""))
+                  } else if (t.includes("第一行星")) {
+                    obj_cur["第一行星"] = EnumObj[t]
+                  } else if (t.includes("第二行星")) {
+                    obj_cur["第二行星"] = EnumObj[t]
+                  } else if (t.includes("蓝巨星")) {
+                    obj_cur["蓝巨星"] = EnumObj[t]
+                    obj_cur["蓝巨星_origin"] = t
+                  } else if (t.includes("行星")) {
+                    obj_cur["行星"] = parseFloat(t.replace("行星", ""))
+                  } else if (t.includes("气态巨星")) {
+                    obj_cur["气态巨星"] = parseFloat(t.replace("气态巨星", ""))
+                  } else if (t.includes("最大重氢速率")) {
+                    obj_cur["最大重氢速率"] = parseFloat(
+                      t.replace("最大重氢速率", "")
+                    )
+                  } else if (t.includes("冰巨星")) {
+                    obj_cur["冰巨星"] = parseFloat(t.replace("冰巨星", ""))
+                  } else if (t.includes("光度")) {
+                    obj_cur["光度"] = parseFloat(t.replace("光度", ""))
+                  } else if (t.includes("与初始距离")) {
+                    obj_cur["与初始距离"] = parseFloat(
+                      t.replace("与初始距离", "")
+                    )
+                  } else if (t.includes("水")) {
+                    obj_cur["水"] = EnumObj[t]
+                    obj_cur["水_origin"] = t
+                  } else if (t.includes("硫酸")) {
+                    obj_cur["硫酸"] = t.split('硫酸')[0] === '有' ? 1 : 0
+                    obj_cur["硫酸_origin"] = t
+                  } else if (idx === 0) {
+                    return ''
+                  } else {
+                    return t
+                  }
+                  return ""
+                })
 
-                  const arr = prev[prev.tmp.slice(-1)[0]] ?? []
-                  if (arr.length > 0) {
-                    console.log("arr: ", arr)
-                  }
-                  const new_cur = {
-                    id: obj_cur.id,
-                    __other: f_cur.filter((t) => t.length > 0),
-                    ...obj_cur,
-                  }
-                  arr.push(new_cur)
-                  prev[prev.tmp.slice(-1)[0]] = new_cur
+                const arr = prev[f_cur[0]] ?? []
+                if (arr.length > 0) {
+                  // console.log("arr: ", arr)
                 }
+                const new_cur = {
+                  id: obj_cur.id,
+                  type: f_cur[0],
+                  __other: others.filter((t) => t.length > 0),
+                  ...obj_cur,
+                }
+                arr.push(new_cur)
+                // prev[f_cur[0]] = arr
+                prev.push(new_cur)
+                // }
                 return prev
               },
-              { tmp: [] }
+              // { tmp: [] }
+              []
             ),
         }
         // idInfo = obj['条件0']
@@ -228,23 +243,42 @@ const DSPBlueStarInfo = (props) => {
     console.log("result: ", result)
   }
   const formatUsefulInfo4 = (list) => {
-      // ALLOriginInfo
-// .map(item => {
-// return item.split(',')
-// [6]
-// .split(';')
-// .filter(t => t.includes('冰巨星'))
-// })
-// .flat()
-// .filter(t => t === '不是蓝巨星星系')
+    topNum = 100
+    tj0 = JSON.parse(JSON.stringify(info.result2))
+    // .map(t => t['条件0_summary'])
 
+    tj0
+      .sort((a, b) => b['条件0_summary']['最大重氢速率_sum'] - a['条件0_summary']['最大重氢速率_sum'])
+      .map(t => { t['__最大重氢速率_sum'] = t['条件0_summary']['最大重氢速率_sum']; delete t['条件0']; delete t['条件0_summary']; delete t['__条件0_otherList']; return t })
+      .slice(0, topNum)
 
-result2
-// // .map(t => t['条件0_summary']['潮汐锁定_sum'])
-// .map(t => t['条件0_summary']['气态巨星_sum'])
-// .map(t => t['条件0_summary']['冰巨星_sum'])
-// .sort((a, b) => b - a)
-[11]
+      // .sort((a, b) => b['磁石'] - a['磁石'])
+      // .map(t => { t['__最大重氢速率_sum'] = t['条件0_summary']['最大重氢速率_sum'];delete t['条件0']; delete t['条件0_summary']; delete t['__条件0_otherList']; return t })
+      // .slice(0, topNum)
+
+      .filter(t => t['__最大重氢速率_sum'] > 2.5)
+
+    // .map(t => t['与初始距离_sum']).sort((a, b) => b - a)
+    // .filter(t => t['光度_sum'])
+    // .filter(t => t['潮汐锁定_sum'])
+    // .filter(t => t['气态巨星_sum'])
+    // .filter(t => t['冰巨星_sum'])
+    // .filter(t => t['卫星_sum'])
+    // .filter(t => t['最大重氢速率_sum'])
+    // .filter(t => t['最大重氢速率<=0.1_sum'])
+    // .filter(t => t['最大重氢速率>0.1_sum'])
+    // .filter(t => t['气态巨星_sum'])
+    // .filter(t => t['潮汐锁定_sum'])
+    // .filter(t => t['行星_sum'])
+    // .filter(t => )
+    // .filter(t => )
+    // .filter(t => )
+    // .filter(t => )
+    // .filter(t => )
+    // .filter(t => )
+    // .filter(t => )
+    // .sort((a, b) => b - a)
+    // [0]
   }
   return (
     <>
