@@ -17,9 +17,87 @@ const DSPBlueStarInfo = (props) => {
       result,
       result2,
       formatStarInfo,
-      filterUsefulInfo2
+      filterUsefulInfo2,
+      formatUsefulInfo3,
+      formatUsefulInfo4,
+      fmt,
+      ALLTest,
+      All_Seed: [],
+      INFO: {
+        t1_最高亮度种子信息: 最高亮度种子信息,
+        t2_最高亮度种子信息v2: 最高亮度种子信息v2,
+        t3_seed0_19999999_v1: seed0_19999999_v1,
+        t4_seed0_19999999_v2: seed0_19999999_v2,
+        t5_seed0_19999999: seed0_19999999,
+        t6_seed20000000_49999999_1: seed20000000_49999999_1,
+        t7_seed20000000_49999999_2: seed20000000_49999999_2,
+        t8_seed20000000_49999999: seed20000000_49999999,
+        t9_seed40000000_69999999: seed40000000_69999999,
+        t10_seed60000000_89999999: seed60000000_89999999,
+      }
     }
   }, [])
+  /// 1.
+  const 最高亮度种子信息 = async () => (await import('../../../../data/dsp/最高亮度种子信息')).INFO
+  /// 2.
+  const 最高亮度种子信息v2 = async () => (await import('../../../../data/dsp/最高亮度种子信息v2')).INFO
+  /// 3.
+  const seed0_19999999_v1 = async () => (await import('../../../../data/dsp/seed0-19999999_v1')).INFO
+  /// 4.
+  const seed0_19999999_v2 = async () => (await import('../../../../data/dsp/seed0-19999999_v2')).INFO
+  /// 5. [161804, 11197251]
+  const seed0_19999999 = async () => (await import('../../../../data/dsp/seed0-19999999')).INFO
+  /// 6.
+  const seed20000000_49999999_1 = async () => (await import('../../../../data/dsp/seed20000000-49999999_1')).INFO
+  /// 7.
+  const seed20000000_49999999_2 = async () => (await import('../../../../data/dsp/seed20000000-49999999_2')).INFO
+  /// 8. [21874796, 27621799]
+  const seed20000000_49999999 = async () => (await import('../../../../data/dsp/seed20000000-49999999')).INFO
+  /// 9. [40001601, 46225481]
+  const seed40000000_69999999 = async () => (await import('../../../../data/dsp/seed40000000-69999999')).INFO
+  /// 10. [60001086, 68692010]
+  const seed60000000_89999999 = async () => (await import('../../../../data/dsp/seed60000000-89999999')).INFO
+  const fmt = (list) => {
+    const result1 = formatStarInfo(list)
+    const result2 = filterUsefulInfo2(result1)
+    const result3 = info.formatUsefulInfo4(result2)
+    // console.log('result2: ', result2)
+    window.info.All_Seed.push(result1.map(t => t.id))
+    return result3
+  }
+  const ALLTest = () => {
+    await info.ALLTest().test1()
+    await info.ALLTest().test2()
+    await info.ALLTest().test3()
+    await info.ALLTest().test4()
+    await info.ALLTest().test5()
+    await info.ALLTest().test6()
+    await info.ALLTest().test7()
+    await info.ALLTest().test8()
+    await info.ALLTest().test9()
+    await info.ALLTest().test10()
+
+    // a1 = tmp1.map(t => t.id)
+    // a2 = tmp2.map(t => t.id)
+    // a3 = tmp3.map(t => t.id)
+    // a4 = tmp4.map(t => t.id)
+    // a5 = tmp5.map(t => t.id)
+    // a6 = tmp6.map(t => t.id)
+    // a7 = tmp7.map(t => t.id)
+    // a8 = tmp8.map(t => t.id)
+    // a9 = tmp9.map(t => t.id)
+    // a10 = tmp10.map(t => t.id)
+
+    // all = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10].flat()
+    // all2 = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10]
+
+    // all_id = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10].flat()
+    // new Set(all_id)
+  }
+  // const ALLTest = async () => {
+
+  //   return { tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10 }
+  // }
   const formatStarInfo = (list) => {
     const EnumObj = {
       /// 1.
@@ -132,7 +210,7 @@ const DSPBlueStarInfo = (props) => {
         return t
       })
     // result.map(t => t["__条件0_otherList"]).filter(t => t.length > 0)
-    console.log("result: ", result)
+    // console.log("result: ", result)
     return result
   }
 
@@ -240,23 +318,33 @@ const DSPBlueStarInfo = (props) => {
     // .filter(t => t > 0)
     // .sort((a, b) => b[filterKey] - a[filterKey])
     // .filter(t => t[filterKey] > 0)
-    console.log("result: ", result)
+    return result
   }
   const formatUsefulInfo4 = (list) => {
-    topNum = 100
-    tj0 = JSON.parse(JSON.stringify(info.result2))
+    // const topNum = 100
+    const tj0 = JSON.parse(JSON.stringify(list))
     // .map(t => t['条件0_summary'])
 
-    tj0
+    return tj0
       .sort((a, b) => b['条件0_summary']['最大重氢速率_sum'] - a['条件0_summary']['最大重氢速率_sum'])
-      .map(t => { t['__最大重氢速率_sum'] = t['条件0_summary']['最大重氢速率_sum']; delete t['条件0']; delete t['条件0_summary']; delete t['__条件0_otherList']; return t })
-      .slice(0, topNum)
+    // .slice(0, topNum)
 
-      // .sort((a, b) => b['磁石'] - a['磁石'])
-      // .map(t => { t['__最大重氢速率_sum'] = t['条件0_summary']['最大重氢速率_sum'];delete t['条件0']; delete t['条件0_summary']; delete t['__条件0_otherList']; return t })
-      // .slice(0, topNum)
+    // .sort((a, b) => b['磁石'] - a['磁石'])
+    // .map(t => { t['__最大重氢速率_sum'] = t['条件0_summary']['最大重氢速率_sum'];delete t['条件0']; delete t['条件0_summary']; delete t['__条件0_otherList']; return t })
+    // .slice(0, topNum)
 
-      .filter(t => t['__最大重氢速率_sum'] > 2.5)
+    // .filter(t => t['__最大重氢速率_sum'] > 2.0)
+    // .filter(t => t['条件0_summary']['光度'].filter(t => t > 2.5).length > 0)
+    // .filter(t => t['条件0_summary']['与初始距离_sum'] < 1000)
+    // .map(t => {
+    //   return {
+    //     id: t['id'],
+    //     磁石: t['磁石'],
+    //     蓝巨星: t['蓝巨星'],
+    //     __最大重氢速率_sum: t['__最大重氢速率_sum'],
+    //     与初始距离_sum: t['条件0_summary']['与初始距离_sum']
+    //   }
+    // })
 
     // .map(t => t['与初始距离_sum']).sort((a, b) => b - a)
     // .filter(t => t['光度_sum'])
