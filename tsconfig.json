@@ -14,6 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prisma/prisma.prisma"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "prisma/prisma.prisma", "plugin/prisma.js"],
   "exclude": ["node_modules"]
 }
