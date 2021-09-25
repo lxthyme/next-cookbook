@@ -10,18 +10,19 @@ import dynamic from "next/dynamic"
 const DSPBlueStarInfo = (props) => {
   useEffect(async () => {
     // window.ALLOriginInfo = ALLOriginInfo
-    window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
-    const result = formatStarInfo(ALLOriginInfo)
-    const result2 = formatStarInfo2(result)
+    // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
+    // const result = formatStarInfo(ALLOriginInfo)
+    // const result2 = formatStarInfo2(result)
     window.info = {
-      result,
-      result2,
+      // result,
+      // result2,
       formatStarInfo,
       formatStarInfo2,
       formatUsefulInfo3,
       formatUsefulInfo4,
       fmt,
       ALLTest,
+      ALLTestV0924,
       All_Seed: [],
       INFO: {
         // t1_最高亮度种子信息: 最高亮度种子信息,
@@ -94,10 +95,73 @@ const DSPBlueStarInfo = (props) => {
         return prev
       }, {})
   }
-  // const ALLTest = async () => {
-
-  //   return { tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9, tmp10 }
-  // }
+  const ALLTestV0924 = async () => {
+    const SeedList = {
+      '57508570_single': (await import("../../../../data/dsp/09-24/57508570_single")).INFO,
+      '41803373_single': (await import("../../../../data/dsp/09-24/41803373_single")).INFO,
+      '42328284_single': (await import("../../../../data/dsp/09-24/42328284_single")).INFO,
+      '42572383_single': (await import("../../../../data/dsp/09-24/42572383_single")).INFO,
+      '45387689_single': (await import("../../../../data/dsp/09-24/45387689_single")).INFO,
+      '92827424_single': (await import("../../../../data/dsp/09-24/92827424_single")).INFO,
+    }
+    return Object.keys(SeedList)
+      .map(k => {
+        const tmp = SeedList[k]
+          .map(t => {
+            // return t.replace(/星系名字/g, `${k}`)
+            return `${t}`
+          })
+        return formatV0924(k, tmp)
+        // return info
+      })
+      .map(t => {
+        const {
+          铁, 铜, 煤, 石, 硅, 钛, 原油, 水, 硫酸,
+          冰巨星, 气态巨星,
+          分形硅石, 刺笋结晶, 单极磁石, 可燃冰, 有机晶体, 金伯利钻石,
+          亮度, 光栅石,
+          seed, 星系名字, 星系类型, 是否环内行星, 卫星总数, 星区数量, 行星,
+          距离, 最大重氢速率, 潮汐锁定, ...others } = t
+        const 星系类型_summary = 星系类型
+          // .filter(tmp => tmp.includes('型恒星'))
+          .map(t => t.replace('型恒星', ''))
+          .reduce((prev, cur) => {
+            prev[cur] = prev[cur] ?? 0
+            prev[cur] += 1
+            return prev
+          }, {})
+        return {
+          normal: {
+            铁, 铜, 煤, 石, 硅, 钛, 原油,
+            水: 水.reduce((prev, cur) => prev + cur, 0),
+            硫酸: 硫酸.reduce((prev, cur) => prev + cur, 0)
+          },
+          advance: { 冰巨星, 气态巨星, 分形硅石, 刺笋结晶, 单极磁石, 可燃冰, 有机晶体, 金伯利钻石 },
+          info: {
+            seed, 星系名字, 星系类型, 是否环内行星, 卫星总数, 星区数量, 行星,
+            是否环内行星_summary: 是否环内行星.reduce((prev, cur) => prev + cur, 0),
+            星系类型_summary
+          },
+          // key: {
+          //   ...others,
+          //   单极磁石,
+          //   O: 星系类型_summary['O'],
+          //   蓝巨星: 星系类型_summary['蓝巨星'],
+          //   距离: parseFloat(距离.toFixed(3)),
+          //   氘: parseFloat(最大重氢速率.toFixed(3))
+          // }
+          others,
+          key: [
+            `单极: ${(单极磁石 + '').padStart(2)}`,
+            `O: ${星系类型_summary['O']}`,
+            `蓝: ${星系类型_summary['蓝巨星'] ?? 0}`,
+            `潮锁: ${(潮汐锁定 + '').padStart(2)}`,
+            `距离: ${(parseFloat(距离.toFixed(3)) + '').padStart(8)}`,
+            `重氢: ${(parseFloat(最大重氢速率.toFixed(3)) + '').padStart(5)}`,
+          ]
+        }
+      })
+  }
   const formatStarInfo = (list) => {
     const EnumObj = {
       /// 1.
@@ -384,6 +448,80 @@ const DSPBlueStarInfo = (props) => {
     // .filter(t => )
     // .sort((a, b) => b - a)
     // [0]
+  }
+  const formatV0924 = (seed, list) => {
+    const formatKey = {
+      铁矿脉: '铁', 铜矿脉: '铜', 煤矿脉: '煤', 石矿脉: '石', 硅矿脉: '硅', 钛矿脉: '钛',
+      原油涌泉: '原油', 是否有水: '水', 是否有硫酸: '硫酸',
+      冰巨星数量: '冰巨星', 气态巨星数量: '气态巨星',
+      分形硅矿: '分形硅石', 刺笋矿脉: '刺笋结晶', 单极磁矿: '单极磁石', 可燃冰矿: '可燃冰', 有机晶体矿: '有机晶体', 金伯利矿: '金伯利钻石',
+      光栅石矿: '光栅石',
+      // 潮汐锁定: '潮锁'
+    }
+    const keyList = list[0]
+      .split(',')
+    return list
+      .slice(1)
+      .map(t => {
+        const vList = t.split(',')
+        const obj = {}
+        keyList.forEach((key, idx) => obj[key] = parseFloat(vList[idx]) >= 0 ? parseFloat(vList[idx]) : vList[idx])
+        return obj
+      })
+      .reduce((prev, cur) => {
+        Object.keys(cur)
+          .forEach(key => {
+            const v = cur[key]
+            const newKey = formatKey[key] ?? key
+            if (key.startsWith('是否')) {
+              prev[newKey] = prev[newKey] ?? []
+              prev[newKey] = [
+                ...prev[newKey],
+                v === '是' ? 1 : 0
+              ]
+            } else if (key.startsWith('星系')) {
+              prev[newKey] = prev[newKey] ?? []
+              prev[newKey] = [...prev[newKey], v]
+            } else {
+              prev[newKey] = prev[newKey] ?? 0
+              prev[newKey] += parseFloat(v)
+            }
+          })
+        prev['seed'] = seed
+        return prev
+      }, {})
+    // .reduce((prev, cur) => {
+    //   return {
+    //     // 星系名字: [...prev.星系名字 ?? [], cur.星系名字],
+    //     // 星系类型: [...prev.星系类型 ?? [], cur.星系类型],
+    //     // 是否有水: (prev.是否有水 ?? 0) + (cur.是否有水 === '是' ? 1 : 0),
+    //     // 是否有硫酸: (prev.是否有硫酸 ?? 0) + (cur.是否有硫酸 === '是' ? 1 : 0),
+    //     // 是否环内行星: (prev.是否环内行星 ?? 0) + (cur.是否环内行星 === '是' ? 1 : 0),
+    //     亮度: (prev.亮度 ?? 0) + cur.亮度,
+    //     光栅石矿: (prev.光栅石矿 ?? 0) + cur.光栅石矿,
+    //     冰巨星数量: (prev.冰巨星数量 ?? 0) + cur.冰巨星数量,
+    //     分形硅矿: (prev.分形硅矿 ?? 0) + cur.分形硅矿,
+    //     刺笋矿脉: (prev.刺笋矿脉 ?? 0) + cur.刺笋矿脉,
+    //     单极磁矿: (prev.单极磁矿 ?? 0) + cur.单极磁矿,
+    //     卫星总数: (prev.卫星总数 ?? 0) + cur.卫星总数,
+    //     原油涌泉: (prev.原油涌泉 ?? 0) + cur.原油涌泉,
+    //     可燃冰矿: (prev.可燃冰矿 ?? 0) + cur.可燃冰矿,
+    //     星区数量: (prev.星区数量 ?? 0) + cur.星区数量,
+    //     最大重氢速率: (prev.最大重氢速率 ?? 0) + cur.最大重氢速率,
+    //     有机晶体矿: (prev.有机晶体矿 ?? 0) + cur.有机晶体矿,
+    //     气态巨星数量: (prev.气态巨星数量 ?? 0) + cur.气态巨星数量,
+    //     潮汐锁定: (prev.潮汐锁定 ?? 0) + cur.潮汐锁定,
+    //     // 煤矿脉: (prev.煤矿脉 ?? 0) + cur.煤矿脉,
+    //     // 石矿脉: (prev.石矿脉 ?? 0) + cur.石矿脉,
+    //     // 硅矿脉: (prev.硅矿脉 ?? 0) + cur.硅矿脉,
+    //     行星: (prev.行星 ?? 0) + cur.行星,
+    //     距离: (prev.距离 ?? 0) + cur.距离,
+    //     金伯利矿: (prev.金伯利矿 ?? 0) + cur.金伯利矿,
+    //     // 钛矿脉: (prev.钛矿脉 ?? 0) + cur.钛矿脉,
+    //     // 铁矿脉: (prev.铁矿脉 ?? 0) + cur.铁矿脉,
+    //     // 铜矿脉: (prev.铜矿脉 ?? 0) + cur.铜矿脉,
+    //   }
+    // }, {})
   }
   return (
     <>

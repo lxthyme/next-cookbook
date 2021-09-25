@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/dsp/09-25/DSP Seed.db"
+}
+
+model seed10000x1000 {
+  seed  String @id
+  xingqu_count  String
+  danjicishi  String
+  blueStar  String
+  O String
+  star1  String
+  star2 String
+  star3 String
+  star4 String
+  star5 String
+  star6 String
+  star7 String
+  star8 String
+  star9 String
+  star10  String
+  star11  String
+}
