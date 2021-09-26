@@ -7,21 +7,231 @@ datasource db {
   url      = "file:../data/dsp/09-25/DSP Seed.db"
 }
 
+model seed0kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed1kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed3kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed4kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
 model seed10000x1000 {
-  seed  String @id
-  xingqu_count  String
-  danjicishi  String
-  blueStar  String
-  O String
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model format_seed {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model format_star1 {
+  seed   String @id
   star1  String
-  star2 String
-  star3 String
-  star4 String
-  star5 String
-  star6 String
-  star7 String
-  star8 String
-  star9 String
-  star10  String
-  star11  String
+  star2  String
+  star3  String
+  star4  String
+  star5  String
+  star6  String
+  star7  String
+  star8  String
+  star9  String
+  star10 String
+  star11 String
+}
+
+model format_star2 {
+  seed   String @id
+  star1  String
+  star2  String
+  star3  String
+  star4  String
+  star5  String
+  star6  String
+  star7  String
+  star8  String
+  star9  String
+  star10 String
+  star11 String
+}
+
+model format_star2_content {
+  seed              String @id
+  ChuShiXingXi      String
+  MKGF_PuTongXingXi String
+  others            String
+  WeiXing           Float
+  QiTaiJuQing       Float
+  ZuiDaZhongQing    Float
+  GuangDu           Float
+  ChuShiJuLi        Float
+  ChaoXiSuoDing     Float
+  DiYiXingXing      Float
+  DiErXingXing      Float
+  Shui              Float
+  LiuSuan           String
+  type              String
+}
+
+model star_type {
+  id             Int   @id @default(autoincrement())
+  BingYuanDongTu Float
+  BingJuXing     Float
+  GanHanHuangMo  Float
+  GeBi           Float
+  YingHuaHai     Float
+  ShuiShiJie     Float
+  HuoShanHui     Float
+  HuiJinDongTu   Float
+  RongYan        Float
+  XingHongBingHu Float
+  HongShi        Float
+  CaoYuan        Float
+  PinJiHuangMo   Float
+  JuFengShiLin   Float
+}
+
+model format_summary {
+  seed                 String    @id
+  id_MKGF_PuTongXingXi String
+  id_others            String
+  MKGF_PuTongXingXi    t_value[] @relation("id_MKGF_PuTongXingXi", fields: [id_MKGF_PuTongXingXi], references: [id_MKGF_PuTongXingXi])
+  others  t_value[] @relation("id_others")
+  type  star_type[]
+  GuangDu t_number[] @relation("id_GuangDu")
+  GuangDu_Sort  t_number[] @relation("id_GuangDu_Sort")
+  ChuShiXingXi  t_value[] @relation("id_ChuShiXingXi")
+  ChuShiJuLi  t_number[] @relation("id_ChuShiJuLi")
+  ChuShiJuLi_Sum  Float
+  WeiXing t_number[] @relation("id_WeiXing")
+  ZuiDaZhongQing  t_number[] @relation("id_ZuiDaZhongQing")
+  ZuiDaZhongQing_Sum  Float
+  ZuiDaZhongQing_Sort t_number[] @relation("id_ZuiDaZhongQing_Sort")
+  QiTaiJuXing t_number[] @relation("id_QiTaiJuXing")
+  Shui  t_number[] @relation("id_Shui")
+  ChaoXiSuoDing t_number[] @relation("id_ChaoXiSuoDing")
+  LiuSuan t_value[] @relation("id_LiuSuan")
+  DiYiXingXing  t_number[] @relation("id_DiYiXingXing")
+  DiErXingXing  t_number[] @relation("id_DiErXingXing")
+}
+
+model t_number {
+  id                     String @id
+  id_GuangDu             String @unique
+  id_GuangDu_Sort        String @unique
+  id_ChuShiJuLi          String @unique
+  id_WeiXing             String @unique
+  id_ZuiDaZhongQing      String @unique
+  id_ZuiDaZhongQing_Sort String @unique
+  id_QiTaiJuXing         String @unique
+  id_Shui                String @unique
+  id_ChaoXiSuoDing       String @unique
+  id_DiYiXingXing        String @unique
+  id_DiErXingXing        String @unique
+  num                    Float
+}
+
+model t_value {
+  id                   String          @id
+  id_MKGF_PuTongXingXi String          @unique
+  id_others            String          @unique
+  id_ChuShiXingXi      String          @unique
+  id_LiuSuan           String          @unique
+  value                String
 }

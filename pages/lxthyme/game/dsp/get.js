@@ -3,7 +3,8 @@ const Blog = props => {
   const submitData = async e => {
     e.preventDefault()
     try {
-      const result = await fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get`)
+      const pageSize = 20, page = 5
+      const result = await fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
       const SeedList = (await result.json()).list
       const fmt_SeedList = formatStarInfo(SeedList)
       console.log('SeedList: ', SeedList)
@@ -12,9 +13,17 @@ const Blog = props => {
         SeedList,
         fmt_SeedList
       }
+      insert(fmt_SeedList[0])
     } catch (error) {
       console.error(error)
     }
+  }
+  const insert = async obj => {
+    const result = await fetch('http://0.0.0.0:3003/api/lxthyme/dsp/insert', {
+      method: 'post',
+      body: JSON.stringify(obj)
+    })
+    console.log('result: ', result)
   }
   const allTest = () => {
     info.fmt_SeedList
