@@ -4,26 +4,77 @@ const Blog = props => {
     e.preventDefault()
     try {
       const pageSize = 20, page = 5
-      const result = await fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
-      const SeedList = (await result.json()).list
-      const fmt_SeedList = formatStarInfo(SeedList)
-      console.log('SeedList: ', SeedList)
-      console.log('fmt_SeedList: ', fmt_SeedList)
-      window.info = {
-        SeedList,
-        fmt_SeedList
-      }
-      insert(fmt_SeedList[5])
+      // const result = await fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
+      // const SeedList = (await result.json()).list
+      // const fmt_SeedList = formatStarInfo(SeedList)
+      // console.log('SeedList: ', SeedList)
+      // console.log('fmt_SeedList: ', fmt_SeedList)
+      // window.info = {
+      //   SeedList,
+      //   fmt_SeedList
+      // }
+      // let idx = localStorage.getItem('idx')
+      // insert(fmt_SeedList[parseFloat(idx) ?? 0])
+      window.allInsertResult = []
+      window.allGetList = []
+      const result = await getAllList(1, 20)
+      console.log('======RESULT: ', result)
     } catch (error) {
       console.error(error)
     }
+  }
+  const getAllList = (page, pageSize) => {
+    getList(page, pageSize)
+      .then(({ page, pageSize, total, list }) => {
+        // console.log('Params: ', { page, pageSize, total })
+        // return new Promise(async (resolve, reject) => {
+        //   const result = await list.map(async t => {
+        //     await insert(t)
+        //   })
+        //   console.log('Result: ', result)
+        //   resolve({ page, pageSize, total })
+        // })
+        // window.allGetList.push(list)
+        return Promise.all(list.map(async t => {
+          return await insert(t)
+        }))
+          .then(res => {
+            // window.allInsertResult.push(res)
+            return { page, pageSize, total }
+          })
+      })
+      .then(({ page, pageSize, total }) => {
+        console.log('Go Next!!!', { page, pageSize, total })
+        return (pageSize * page) < total ? getAllList(page + 1, pageSize) : 0
+      })
+  }
+  const getList = (page, pageSize = 20) => {
+    return fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
+      .then(res => res.json())
+      .then(({ page, pageSize, total, list }) => {
+        return {
+          page, pageSize, total,
+          list: formatStarInfo(list)
+        }
+      })
+      .catch(error => {
+        console.log('error: ', error)
+      })
   }
   const insert = async obj => {
     const result = await fetch('http://0.0.0.0:3003/api/lxthyme/dsp/insert', {
       method: 'post',
       body: JSON.stringify(obj)
     })
-    console.log('result: ', result)
+    const json = await result.json()
+    if (json.code === 10000) {
+      let idx = localStorage.getItem('idx')
+      idx = parseFloat(idx) ?? 0
+      idx += 1
+      localStorage.setItem('idx', idx)
+    }
+    // console.log('result: ', json)
+    return json
   }
   const allTest = () => {
     info.fmt_SeedList
@@ -126,8 +177,8 @@ const Blog = props => {
       const fmt_result = Object.keys(result)
         .reduce((prev, key) => {
           if (['卫星', '气态巨星', '最大重氢', '光度', '初始距离', '潮汐', '第一行星', '第二行星', '水',
-        'WeiXing', 'QiTaiJuQing', 'ZuiDaZhongQing', 'GuangDu', 'ChuShiJuLi', 'ChaoXiSuoDing',
-      'DiYiXingXing', 'DiErXingXing', 'Shui'].includes(key)) {
+            'WeiXing', 'QiTaiJuQing', 'ZuiDaZhongQing', 'GuangDu', 'ChuShiJuLi', 'ChaoXiSuoDing',
+            'DiYiXingXing', 'DiErXingXing', 'Shui'].includes(key)) {
             prev[key] = parseFloat(result[key]) >= 0 ? parseFloat(result[key]) : result[key]
           } else {
             prev[key] = result[key]

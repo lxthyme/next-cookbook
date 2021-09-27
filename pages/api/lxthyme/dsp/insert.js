@@ -173,13 +173,13 @@ export default async (req, res) => {
       DiErXingXing: JSON.stringify(summary.DiErXingXing),
     }
     // delete fmt_seedInfo['fmt_star1']
-    delete fmt_seedInfo['fmt_star2']
-    delete fmt_seedInfo['summary']
-    const fmtstar1 = fmt_seedInfo['fmt_star1'].star1
-    fmt_seedInfo.fmt_star1 = {
-      seed,
-      // star1: fmtstar1
-    }
+    // delete fmt_seedInfo['fmt_star2']
+    // delete fmt_seedInfo['summary']
+    // const fmtstar1 = fmt_seedInfo['fmt_star1'].star1
+    // fmt_seedInfo.fmt_star1 = {
+    //   seed,
+    //   // star1: fmtstar1
+    // }
     const result = await prisma.seedInfo.create({
       data: JSON.parse(JSON.stringify(fmt_seedInfo)),
       // data: JSON.stringify(fmt_seedInfo)

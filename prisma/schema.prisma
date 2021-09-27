@@ -3,8 +3,10 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:../data/dsp/09-25/DSP Seed.db"
+  // provider = "sqlite"
+  // url      = "file:../data/dsp/09-25/DSP Seed.db"
+  provider = "mysql"
+  url = "mysql://root:root1234@localhost:3306/DSP"
 }
 
 model seed0kw {
@@ -83,24 +85,24 @@ model seed4kw {
   star11       String
 }
 
-model seed10000x1000 {
-  seed         String @id
-  xingqu_count String
-  danjicishi   String
-  blueStar     String
-  O            String
-  star1        String
-  star2        String
-  star3        String
-  star4        String
-  star5        String
-  star6        String
-  star7        String
-  star8        String
-  star9        String
-  star10       String
-  star11       String
-}
+// model seed10000x1000 {
+//   seed         String @id
+//   xingqu_count String
+//   danjicishi   String
+//   blueStar     String
+//   O            String
+//   star1        String
+//   star2        String
+//   star3        String
+//   star4        String
+//   star5        String
+//   star6        String
+//   star7        String
+//   star8        String
+//   star9        String
+//   star10       String
+//   star11       String
+// }
 
 // format_seed
 //    fmt_star1: 1 -> N
@@ -126,9 +128,12 @@ model SeedInfo {
   star9        String
   star10       String
   star11       String
-  fmt_star1    FmtStar1?
-  fmt_star2    FmtStar2?
-  summary      Summary?
+  fmt_star1    Json
+  fmt_star2    Json
+  summary      Json
+  // fmt_star1    FmtStar1?
+  // fmt_star2    FmtStar2?
+  // summary      Summary?
 }
 
 model FmtStar1 {
@@ -144,7 +149,7 @@ model FmtStar1 {
   star9    String?
   star10   String?
   star11   String?
-  fmt_seed SeedInfo @relation(fields: [seed], references: [seed])
+  // fmt_seed SeedInfo @relation(fields: [seed], references: [seed])
 }
 
 model FmtStar2 {
@@ -160,7 +165,7 @@ model FmtStar2 {
   star9    String
   star10   String
   star11   String
-  fmt_seed SeedInfo @relation(fields: [seed], references: [seed])
+  // fmt_seed SeedInfo @relation(fields: [seed], references: [seed])
 }
 
 model Summary {
@@ -183,7 +188,7 @@ model Summary {
   LiuSuan             String
   DiYiXingXing        String
   DiErXingXing        String
-  fmt_seed            SeedInfo @relation(fields: [seed], references: [seed])
+  // fmt_seed            SeedInfo @relation(fields: [seed], references: [seed])
 }
 
 // model format_seed {
