@@ -22,8 +22,8 @@ const fmtStar2 = (id, item) => {
 }
 
 export default async (req, res) => {
-  let fmt_seed = req.body
-  fmt_seed = JSON.parse(fmt_seed)
+  const seedInfo = req.body
+  const fmt_seedInfo = JSON.parse(seedInfo)
   try {
     /// 1. format_seed
     // const result_format_seed = prisma.format_seed.create({
@@ -117,28 +117,97 @@ export default async (req, res) => {
 
     /// 3. Summary
 
+    /// 4. writing to a JSON field
+    // fmt_seed.fmt_star1 = {}
+    const seed = fmt_seedInfo.seed
+    const star1 = fmt_seedInfo.fmt_star1
+    const star2 = fmt_seedInfo.fmt_star2
+    const summary = fmt_seedInfo.summary
+    fmt_seedInfo.fmt_star1 = {
+      seed,
+      star1: JSON.stringify(star1.star1),
+      star2: JSON.stringify(star1.star2),
+      star3: JSON.stringify(star1.star3),
+      star4: JSON.stringify(star1.star4),
+      star5: JSON.stringify(star1.star5),
+      star6: JSON.stringify(star1.star6),
+      star7: JSON.stringify(star1.star7),
+      star8: JSON.stringify(star1.star8),
+      star9: JSON.stringify(star1.star9),
+      star10: JSON.stringify(star1.star10),
+      star11: JSON.stringify(star1.star11),
+    }
+    fmt_seedInfo.fmt_star2 = {
+      seed,
+      star1: JSON.stringify(star2.star1),
+      star2: JSON.stringify(star2.star2),
+      star3: JSON.stringify(star2.star3),
+      star4: JSON.stringify(star2.star4),
+      star5: JSON.stringify(star2.star5),
+      star6: JSON.stringify(star2.star6),
+      star7: JSON.stringify(star2.star7),
+      star8: JSON.stringify(star2.star8),
+      star9: JSON.stringify(star2.star9),
+      star10: JSON.stringify(star2.star10),
+      star11: JSON.stringify(star2.star11),
+    }
+    fmt_seedInfo.summary = {
+      seed,
+      MKGF_PuTongXingXi: JSON.stringify(summary.MKGF_PuTongXingXi),
+      others: JSON.stringify(summary.others),
+      type: JSON.stringify(summary.type),
+      GuangDu: JSON.stringify(summary.GuangDu),
+      GuangDu_Sort: JSON.stringify(summary.GuangDu_Sort),
+      ChuShiXingXi: JSON.stringify(summary.ChuShiXingXi),
+      ChuShiJuLi: JSON.stringify(summary.ChuShiJuLi),
+      ChuShiJuLi_Sum: JSON.stringify(summary.ChuShiJuLi_Sum),
+      WeiXing: JSON.stringify(summary.WeiXing),
+      ZuiDaZhongQing: JSON.stringify(summary.ZuiDaZhongQing),
+      ZuiDaZhongQing_Sum: JSON.stringify(summary.ZuiDaZhongQing_Sum),
+      ZuiDaZhongQing_Sort: JSON.stringify(summary.ZuiDaZhongQing_Sort),
+      QiTaiJuXing: JSON.stringify(summary.QiTaiJuXing),
+      Shui: JSON.stringify(summary.Shui),
+      ChaoXiSuoDing: JSON.stringify(summary.ChaoXiSuoDing),
+      LiuSuan: JSON.stringify(summary.LiuSuan),
+      DiYiXingXing: JSON.stringify(summary.DiYiXingXing),
+      DiErXingXing: JSON.stringify(summary.DiErXingXing),
+    }
+    // delete fmt_seedInfo['fmt_star1']
+    delete fmt_seedInfo['fmt_star2']
+    delete fmt_seedInfo['summary']
+    const fmtstar1 = fmt_seedInfo['fmt_star1'].star1
+    fmt_seedInfo.fmt_star1 = {
+      seed,
+      // star1: fmtstar1
+    }
+    const result = await prisma.seedInfo.create({
+      data: JSON.parse(JSON.stringify(fmt_seedInfo)),
+      // data: JSON.stringify(fmt_seedInfo)
+    })
+
     res.status(200).json({
       code: 10000,
+      result,
       // result_format_seed,
       // result_format_star1,
-      result_fmtStar2_content1,
-      result_fmtStar2_content2,
-      result_fmtStar2_content3,
-      result_fmtStar2_content4,
-      result_fmtStar2_content5,
-      result_fmtStar2_content6,
-      result_fmtStar2_content7,
-      result_fmtStar2_content8,
-      result_fmtStar2_content9,
-      result_fmtStar2_content10,
-      result_fmtStar2_content11,
-      result_format_star2,
+      // result_fmtStar2_content1,
+      // result_fmtStar2_content2,
+      // result_fmtStar2_content3,
+      // result_fmtStar2_content4,
+      // result_fmtStar2_content5,
+      // result_fmtStar2_content6,
+      // result_fmtStar2_content7,
+      // result_fmtStar2_content8,
+      // result_fmtStar2_content9,
+      // result_fmtStar2_content10,
+      // result_fmtStar2_content11,
+      // result_format_star2,
     })
   } catch (error) {
     console.log('--->error: ', error)
     res.status(200).json({
       code: 10003,
-      seed: fmt_seed.seed,
+      seed: fmt_seedInfo.seed,
       reason: error,
     })
   }
