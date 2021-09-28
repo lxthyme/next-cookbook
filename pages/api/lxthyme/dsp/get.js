@@ -4,11 +4,11 @@ import prisma from '../../../../plugin/prisma'
 
 export default async function handle(req, res) {
   try {
-    let { pageSize = 20, page = 1 } = req.query
+    let { pageSize = 20, page = 1, table = 'seed4kw' } = req.query
     pageSize = parseFloat(pageSize)
     page = parseFloat(page)
-    const total = await prisma.seed4kw.count()
-    const list = await prisma.seed4kw.findMany({
+    const total = await prisma[table].count()
+    const list = await prisma[table].findMany({
       skip: Math.max(0, (page - 1) * pageSize),
       take: pageSize,
     })

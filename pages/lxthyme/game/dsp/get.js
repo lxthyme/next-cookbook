@@ -3,28 +3,41 @@ const Blog = props => {
   const submitData = async e => {
     e.preventDefault()
     try {
-      const pageSize = 20, page = 5
-      // const result = await fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
-      // const SeedList = (await result.json()).list
-      // const fmt_SeedList = formatStarInfo(SeedList)
-      // console.log('SeedList: ', SeedList)
-      // console.log('fmt_SeedList: ', fmt_SeedList)
-      // window.info = {
-      //   SeedList,
-      //   fmt_SeedList
-      // }
-      // let idx = localStorage.getItem('idx')
-      // insert(fmt_SeedList[parseFloat(idx) ?? 0])
+
+      await getListTest(1, 20)
+
       window.allInsertResult = []
       window.allGetList = []
-      const result = await getAllList(1, 20)
-      console.log('======RESULT: ', result)
+      /// insert
+      window.NeedInsertTables = ['seed0kw', 'seed1kw', 'seed3kw', 'seed4kw']
+      // const result = await getAllList(1, 20, window.NeedInsertTables[0], 0)
+      // console.log('======RESULT: ', result)
     } catch (error) {
       console.error(error)
     }
   }
-  const getAllList = (page, pageSize) => {
-    getList(page, pageSize)
+  const getListTest = async (page, pageSize) => {
+    const result = await getList(page, pageSize, 'seed0kw')
+    const SeedList = (await result.json()).list
+    const fmt_SeedList = formatStarInfo(SeedList)
+    console.log('SeedList: ', SeedList)
+    console.log('fmt_SeedList: ', fmt_SeedList)
+    window.info = {
+      ...window.info,
+      SeedList,
+      fmt_SeedList
+    }
+  }
+  const getFormatListTest = async (page, pageSize) => {
+    const reauto_SeedListsult = await getList(page, pageSize, 'seedInfo')
+    console.log('auto_SeedList: ', auto_SeedList)
+    window.info = {
+      ...window.info,
+      reauto_SeedListsult
+    }
+  }
+  const getAllList = (page, pageSize, table, idx) => {
+    getList(page, pageSize, table)
       .then(({ page, pageSize, total, list }) => {
         // console.log('Params: ', { page, pageSize, total })
         // return new Promise(async (resolve, reject) => {
@@ -45,11 +58,17 @@ const Blog = props => {
       })
       .then(({ page, pageSize, total }) => {
         console.log('Go Next!!!', { page, pageSize, total })
-        return (pageSize * page) < total ? getAllList(page + 1, pageSize) : 0
+        if ((pageSize * page) < total) {
+          return getAllList(page + 1, pageSize, table, idx)
+        } else if ((pageSize * page) >= total && (idx + 1) < window.NeedInsertTables.length) {
+          const nextTable = window.NeedInsertTables[idx + 1]
+          return getAllList(1, pageSize, nextTable, idx + 1)
+        }
+        return 0
       })
   }
-  const getList = (page, pageSize = 20) => {
-    return fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}`)
+  const getList = (page, pageSize = 20, table) => {
+    return fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}&table=${table}`)
       .then(res => res.json())
       .then(({ page, pageSize, total, list }) => {
         return {
