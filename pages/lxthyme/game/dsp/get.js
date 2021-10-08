@@ -4,7 +4,8 @@ const Blog = props => {
     e.preventDefault()
     try {
 
-      await getListTest(1, 20)
+      // await getListTest(1, 20)
+      window.testList = await await getList(1, 20, 'seedDetail')
 
       window.allInsertResult = []
       window.allGetList = []
@@ -17,7 +18,9 @@ const Blog = props => {
     }
   }
   const getListTest = async (page, pageSize) => {
-    const result = await getList(page, pageSize, 'seed0kw')
+    let table = 'seedokw'
+    table = 'seedDetail'
+    const result = await getList(page, pageSize, table)
     const SeedList = (await result.json()).list
     const fmt_SeedList = formatStarInfo(SeedList)
     console.log('SeedList: ', SeedList)

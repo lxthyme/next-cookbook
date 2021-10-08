@@ -111,6 +111,21 @@ model seed4kw {
 //          star1-11: 1 - N
 //    summary: 1 -> N
 
+model SeedDetail {
+  seed     String   @id
+  star1    String?
+  star2    String?
+  star3    String?
+  star4    String?
+  star5    String?
+  star6    String?
+  star7    String?
+  star8    String?
+  star9    String?
+  star10   String?
+  star11   String?
+}
+
 model SeedInfo {
   seed         String    @id
   xingqu_count String
