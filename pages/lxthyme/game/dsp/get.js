@@ -6,6 +6,7 @@ const Blog = props => {
 
       // await getListTest(1, 20)
       window.testList = await await getList(1, 20, 'seedDetail')
+      console.log('testList: ', testList)
 
       window.allInsertResult = []
       window.allGetList = []
