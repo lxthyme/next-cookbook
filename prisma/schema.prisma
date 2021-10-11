@@ -150,6 +150,54 @@ model SeedInfo {
   // fmt_star2    FmtStar2?
   // summary      Summary?
 }
+model SeedInfoDetail {
+  seed         String    @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+  // fmt_star1    Json
+  // fmt_star2    Json
+  // summary      Json
+  // fmt_star1    FmtStar1?
+  // fmt_star2    FmtStar2?
+  // summary      Summary?
+}
+model seed2333333 {
+  seed         String    @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+  // fmt_star1    Json
+  // fmt_star2    Json
+  // summary      Json
+  // fmt_star1    FmtStar1?
+  // fmt_star2    FmtStar2?
+  // summary      Summary?
+}
 
 model FmtStar1 {
   seed     String   @id

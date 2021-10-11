@@ -1,11 +1,21 @@
-const Blog = props => {
+import { useEffect } from 'react'
 
-  const submitData = async e => {
-    e.preventDefault()
+const Blog = props => {
+  useEffect(async () => {
+    // window.ALLOriginInfo = ALLOriginInfo
+    // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
+    // const result = formatStarInfo(ALLOriginInfo)
+    // const result2 = formatStarInfo2(result)
+    window.info = {
+      submitData: submitData
+    }
+  }, [])
+  const submitData = async (e, table = 'seedInfo', page = 1, pageSize = 20) => {
+    e && e.preventDefault()
     try {
 
       // await getListTest(1, 20)
-      window.testList = await await getList(1, 20, 'seedDetail')
+      window.testList = await await getList(page, pageSize, table)
       console.log('testList: ', testList)
 
       window.allInsertResult = []
@@ -74,7 +84,15 @@ const Blog = props => {
   const getList = (page, pageSize = 20, table) => {
     return fetch(`http://0.0.0.0:3003/api/lxthyme/dsp/get?pageSize=${pageSize}&page=${page}&table=${table}`)
       .then(res => res.json())
-      .then(({ page, pageSize, total, list }) => {
+      .then(res => {
+        if(res.code === 10000) {
+          return res
+        } else {
+          return Promise.reject(res)
+        }
+      })
+      .then((res) => {
+        const { page, pageSize, total, list } = res
         return {
           page, pageSize, total,
           list: formatStarInfo(list)

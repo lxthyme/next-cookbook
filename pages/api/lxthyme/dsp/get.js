@@ -3,17 +3,28 @@ import prisma from '../../../../plugin/prisma'
 
 
 export default async function handle(req, res) {
+  let { pageSize = 20, page = 1, table = 'seed4kw' } = req.query
+  pageSize = parseFloat(pageSize)
+  page = parseFloat(page)
   try {
-    let { pageSize = 20, page = 1, table = 'seed4kw' } = req.query
-    pageSize = parseFloat(pageSize)
-    page = parseFloat(page)
 
     const total = await prisma[table].count()
     const list = await prisma[table].findMany({
       skip: Math.max(0, (page - 1) * pageSize),
       take: pageSize,
+      orderBy: [
+        { danjicishi: 'desc' },
+        { blueStar: 'desc' },
+        { O: 'desc' },
+      ]
     })
-    // const first = await prisma.seed10000x1000.findFirst()
+    // const first = await prisma.seed0kw.findMany({
+    //   orderBy: {
+    //     danjicishi: 'desc',
+    //     blueStar: 'desc',
+    //     O: 'desc',
+    //   }
+    // })
     res.json({
       code: 10000,
       total,
@@ -23,6 +34,7 @@ export default async function handle(req, res) {
       // list: [first]
     })
   } catch (error) {
+    console.log('Error: ', error)
     res.json({
       code: 10002,
       page,
