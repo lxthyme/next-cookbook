@@ -9,14 +9,20 @@ export default async function handle(req, res) {
   try {
 
     const total = await prisma[table].count()
+    console.log(`-->(${Math.max(0, (page - 1) * pageSize)}, ${pageSize})total: `, total)
     const list = await prisma[table].findMany({
       skip: Math.max(0, (page - 1) * pageSize),
       take: pageSize,
-      orderBy: [
-        { danjicishi: 'desc' },
-        { blueStar: 'desc' },
-        { O: 'desc' },
-      ]
+      // where: {
+      //   danjicishi: {
+      //     gt: '15'
+      //   }
+      // },
+      // orderBy: [
+      //   { danjicishi: 'desc' },
+      //   { blueStar: 'desc' },
+      //   { O: 'desc' },
+      // ],
     })
     // const first = await prisma.seed0kw.findMany({
     //   orderBy: {
@@ -25,6 +31,7 @@ export default async function handle(req, res) {
     //     O: 'desc',
     //   }
     // })
+    console.log('-->list: ', list)
     res.json({
       code: 10000,
       total,
