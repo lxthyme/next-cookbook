@@ -8,9 +8,14 @@ export default async function handle(req, res) {
   page = parseFloat(page)
   try {
 
-    const total = await prisma[table].count()
+    // const tab = prisma.detail20
+    // console.log('Table: ', tab, table)
+    // if(!tab) {
+    //   throw Error('table dont exist!')
+    // }
+    const total = await prisma.detail20.count()
     console.log(`-->(${Math.max(0, (page - 1) * pageSize)}, ${pageSize})total: `, total)
-    const list = await prisma[table].findMany({
+    const list = await prisma.detail20.findMany({
       skip: Math.max(0, (page - 1) * pageSize),
       take: pageSize,
       // where: {
@@ -31,7 +36,7 @@ export default async function handle(req, res) {
     //     O: 'desc',
     //   }
     // })
-    console.log('-->list: ', list)
+    // console.log('-->list: ', list)
     res.json({
       code: 10000,
       total,
@@ -41,7 +46,7 @@ export default async function handle(req, res) {
       // list: [first]
     })
   } catch (error) {
-    console.log('Error: ', error)
+    console.log('-->Error: ', error)
     res.json({
       code: 10002,
       page,
