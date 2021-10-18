@@ -56,17 +56,16 @@ export const formatList = list => list
         star111, star112, star113, star114, star115, star116, star117, star118, star119, star120,
         star121, star122, star123, star124, star125, star126, star127, star128
       ]
+        .filter(t => t && t.length > 0)
         .map(t => t.split(';'))
     }
   })
-  /// validate
   .map(t => {
+    /// validate
     if (t.list.length !== 128) {
       console.log('--->invalidate item: ', t)
+      return t
     }
-    return t
-  })
-  .map(t => {
     const f_t = t.list
       .sort((a, b) => b.length - a.length)
       // .slice(0, 5)
@@ -120,6 +119,7 @@ export const formatList = list => list
           others: cur
             .slice(1)
             .filter(tmp => tmp.length > 0)
+            /// 1. 星球类型
             .filter(tmp => !tmp.includes('戈壁') &&
               !tmp.includes('灰烬冻土') &&
               !tmp.includes('水世界') &&
@@ -137,13 +137,14 @@ export const formatList = list => list
               !tmp.includes('海洋丛林') &&
               !tmp.includes('冰巨星') &&
               !tmp.includes('气态巨星') &&
+              /// 1. 其它信息
               !tmp.includes('卫星') &&
               !tmp.includes('潮汐') &&
               !tmp.includes('最大重氢') &&
               !tmp.includes('光度') &&
               !tmp.includes('初始距离') &&
-              !tmp.includes('第二行星') &&
               !tmp.includes('1号行星') &&
+              !tmp.includes('第二行星') &&
               !tmp.includes('有水') &&
               !tmp.includes('号仅记录条件的第') &&
               !tmp.includes('号必须条件的第'))
@@ -160,7 +161,7 @@ export const formatList = list => list
         if (check_硫酸_必须.length > 1) {
           console.log('-->check_硫酸_必须: ', check_硫酸_必须)
         }
-        if (star.others.length > 1) {
+        if (star.others.length >= 1) {
           console.log('-->star.others: ', star.others)
         }
         if (star.第一行星.length > 1) {
@@ -236,27 +237,30 @@ export const formatList = list => list
         return prev
       }, {})
     const __summary = {
-      ...summary,
-      sort_最大重氢: summary.最大重氢.sort((a, b) => b - a),
-      sort_光度: summary.光度.sort((a, b) => b - a),
-      sort_卫星: summary.卫星.sort((a, b) => b - a),
-      sort_潮汐: summary.潮汐.sort((a, b) => b - a),
-      sort_初始距离: summary.初始距离.sort((a, b) => b - a),
-      sort_水: summary.水.sort((a, b) => b - a),
-      sort_硫酸_记录: summary.硫酸_记录.sort((a, b) => parseFloat(b) - parseFloat(a)),
-      sort_硫酸_必须: summary.硫酸_必须.sort((a, b) => parseFloat(b) - parseFloat(a)),
-      sort_第一行星: summary.第一行星.sort((a, b) => b - a),
-      sort_第二行星: summary.第二行星.sort((a, b) => b - a),
-      sum_最大重氢: summary.最大重氢.reduce((prev, cur) => prev + cur, 0),
-      sum_光度: summary.光度.reduce((prev, cur) => prev + cur, 0),
-      sum_卫星: summary.卫星.reduce((prev, cur) => prev + cur, 0),
-      sum_潮汐: summary.潮汐.reduce((prev, cur) => prev + cur, 0),
-      sum_初始距离: summary.初始距离.reduce((prev, cur) => prev + cur, 0),
-      sum_水: summary.水.reduce((prev, cur) => prev + cur, 0),
-      sum_硫酸_记录: summary.硫酸_记录.map(t => t.split('-')[1]).map(t => parseFloat(t) >= 0 ? parseFloat(t) : t).reduce((prev, cur) => prev + cur, 0),
-      sum_硫酸_必须: summary.硫酸_必须.map(t => t.split('-')[1]).map(t => parseFloat(t) >= 0 ? parseFloat(t) : t).reduce((prev, cur) => prev + cur, 0),
-      sum_第一行星: summary.第一行星.reduce((prev, cur) => prev + cur, 0),
-      sum_第二行星: summary.第二行星.reduce((prev, cur) => prev + cur, 0),
+      sort: {
+        最大重氢: summary.最大重氢.sort((a, b) => b - a),
+        光度: summary.光度.sort((a, b) => b - a),
+        卫星: summary.卫星.sort((a, b) => b - a),
+        潮汐: summary.潮汐.sort((a, b) => b - a),
+        初始距离: summary.初始距离.sort((a, b) => b - a),
+        水: summary.水.sort((a, b) => b - a),
+        硫酸_记录: summary.硫酸_记录.sort((a, b) => parseFloat(b) - parseFloat(a)),
+        硫酸_必须: summary.硫酸_必须.sort((a, b) => parseFloat(b) - parseFloat(a)),
+        第一行星: summary.第一行星.sort((a, b) => b - a),
+        第二行星: summary.第二行星.sort((a, b) => b - a),
+      },
+      sum: {
+        最大重氢: summary.最大重氢.reduce((prev, cur) => prev + cur, 0),
+        光度: summary.光度.reduce((prev, cur) => prev + cur, 0),
+        卫星: summary.卫星.reduce((prev, cur) => prev + cur, 0),
+        潮汐: summary.潮汐.reduce((prev, cur) => prev + cur, 0),
+        初始距离: summary.初始距离.reduce((prev, cur) => prev + cur, 0),
+        水: summary.水.reduce((prev, cur) => prev + cur, 0),
+        硫酸_记录: summary.硫酸_记录.map(t => t.split('-')[1]).map(t => parseFloat(t) >= 0 ? parseFloat(t) : t).reduce((prev, cur) => prev + cur, 0),
+        硫酸_必须: summary.硫酸_必须.map(t => t.split('-')[1]).map(t => parseFloat(t) >= 0 ? parseFloat(t) : t).reduce((prev, cur) => prev + cur, 0),
+        第一行星: summary.第一行星.reduce((prev, cur) => prev + cur, 0),
+        第二行星: summary.第二行星.reduce((prev, cur) => prev + cur, 0),
+      }
     }
     // Object.values(f_t)
     // .map(t => t.others)
@@ -264,5 +268,5 @@ export const formatList = list => list
     // .map(t => ({ 水: t.水, name: t.name }))
     // .map(t => t.硫酸).sort((a, b) => parseFloat(a) - parseFloat(b))
     // .map(t => t.光度)
-    return { ...t, f_t, __summary }
+    return { ...t, f_t, summary, ...__summary }
   })

@@ -18,6 +18,7 @@ const Get3 = props => {
         console.log('res: ', res)
         window.info.res = {
           ...rest,
+          originList: list,
           list: formatList(list)
         }
       })
