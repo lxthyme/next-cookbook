@@ -13,8 +13,9 @@ export default async function handle(req, res) {
     // if(!tab) {
     //   throw Error('table dont exist!')
     // }
+    console.log(`-->「${table}」(${Math.max(0, (page - 1) * pageSize)}, ${pageSize})`)
     const total = await prisma[table].count()
-    console.log(`-->「${table}」(${Math.max(0, (page - 1) * pageSize)}, ${pageSize})total: `, total)
+    console.log(`-->total: ${total}`)
     const list = await prisma[table].findMany({
       skip: Math.max(0, (page - 1) * pageSize),
       take: pageSize,

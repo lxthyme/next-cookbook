@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { getList } from '../../../../plugin/sql'
 import { formatList } from '../../../../plugin/dsp.format3'
+import { insertList } from "../../../../plugin/sql.insert";
 
 // export const config = { amp: true };
 
@@ -8,19 +9,39 @@ const Get3 = props => {
   useEffect(() => {
     window.info = {
       getList,
-      getAllList
+      getAllList,
+      insertList
     }
   })
-  const getAllList = (page = 1, pageSize = 20, table = 'detail20', idx = 1) => {
-    return getList(page, pageSize, table, idx)
+  const getAllList = async (page = 1, pageSize = 20, idx = 14) => {
+    return getList(page, pageSize, `detail${idx}`, idx)
       .then(res => {
-        const { list, ...rest } = res
-        console.log('res: ', res)
-        window.info.res = {
-          ...rest,
-          originList: list,
-          list: formatList(list)
-        }
+        const { page, pageSize, total, list, ...rest } = res
+        const restSize = total - page * pageSize
+        console.log(`-->[${restSize}]res: `, res)
+        // window.info.res = {
+        //   ...rest,
+        //   originList: list,
+        //   list: formatList(list)
+        // }
+        return insertList(`key${idx}`, formatList(list).map(t => ({ seed: t.seed, ...t.sum })))
+          .then(({ code }) => {
+            if (code === 10000) {
+              if (restSize > 0) {
+                return getAllList(page + 1, pageSize, idx)
+              // } else if (idx >= 20) {
+                // return getAllList(1, pageSize, idx - 1)
+              } else {
+                return '-->Done!!!'
+              }
+            } else {
+              return Promise.reject('->Insert Error!!!')
+            }
+          })
+          .catch(error => {
+            return Promise.reject('->Insert Error!!!')
+          })
+
       })
       .catch(error => {
         console.log('-->Error: ', error)
