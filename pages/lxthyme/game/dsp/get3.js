@@ -13,12 +13,12 @@ const Get3 = props => {
       insertList
     }
   })
-  const getAllList = async (page = 1, pageSize = 20, idx = 14) => {
+  const getAllList = async (page = 1, pageSize = 20, idx, to = -1) => {
     return getList(page, pageSize, `detail${idx}`, idx)
       .then(res => {
         const { page, pageSize, total, list, ...rest } = res
         const restSize = total - page * pageSize
-        console.log(`-->[${restSize}]res: `, res)
+        console.log(`-->[${total} - ${page} * ${pageSize} = ${restSize}]res: `, res)
         // window.info.res = {
         //   ...rest,
         //   originList: list,
@@ -27,10 +27,12 @@ const Get3 = props => {
         return insertList(`key${idx}`, formatList(list).map(t => ({ seed: t.seed, ...t.sum })))
           .then(({ code }) => {
             if (code === 10000) {
-              if (restSize > 0) {
-                return getAllList(page + 1, pageSize, idx)
-              // } else if (idx >= 20) {
-                // return getAllList(1, pageSize, idx - 1)
+              if (to > -1 && page >= to) {
+                return '-->Done!!!'
+              } else if (restSize > 0) {
+                return getAllList(page + 1, pageSize, idx, to)
+                // } else if (idx >= 20) {
+                // return getAllList(1, pageSize, idx - 1, to)
               } else {
                 return '-->Done!!!'
               }

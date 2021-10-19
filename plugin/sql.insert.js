@@ -26,7 +26,7 @@ const format_item = item => {
   }
 }
 export const insertList = async (table, list) => {
-  const result = await fetch('http://0.0.0.0:3003/api/lxthyme/dsp/insert3', {
+  return fetch('http://0.0.0.0:3003/api/lxthyme/dsp/insert3', {
     method: 'post',
     // body: { table, item },
     body: JSON.stringify({
@@ -34,13 +34,21 @@ export const insertList = async (table, list) => {
       list: list.map(t => format_item(t))
     })
   })
-  const json = await result.json()
-  if (json.code === 10000) {
-    let idx = localStorage.getItem('idx')
-    idx = parseFloat(idx) ?? 0
-    idx += 1
-    localStorage.setItem('previous_idx', idx)
-  }
-  console.log('result: ', json)
-  return json
+    .then(res => {
+      return res.json()
+    })
+    .then(res => {
+      if (res.code === 10000) {
+        let idx = localStorage.getItem('idx')
+        idx = parseFloat(idx) ?? 0
+        idx += 1
+        localStorage.setItem('previous_idx', idx)
+      }
+      // console.log('result: ', res)
+      return res
+    })
+    .catch(error => {
+      console.log('-->Insert Error: ', error)
+      return Promise.reject(error)
+    })
 }
