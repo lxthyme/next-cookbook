@@ -10,7 +10,8 @@ const Get3 = props => {
     window.info = {
       getList,
       getAllList,
-      insertList
+      insertList,
+      formatList
     }
   })
   const getAllList = async (page = 1, pageSize = 20, idx, to = -1) => {
@@ -24,9 +25,19 @@ const Get3 = props => {
         //   originList: list,
         //   list: formatList(list)
         // }
-        return insertList(`key${idx}`, formatList(list).map(t => ({ seed: t.seed, ...t.sum })))
-          .then(({ code }) => {
-            if (code === 10000) {
+        return insertList(`key${idx}`, formatList(list)
+          .map(t => {
+            return {
+              ...t.sum,
+              seed: t.seed,
+              单机磁石: t.danjicishi,
+              蓝巨星: t.blueStar,
+              光度_sort: t.summary.光度,
+              最大重氢_sort: t.summary.最大重氢,
+            }
+          }))
+          .then(res => {
+            if (res.code === 10000) {
               if (to > -1 && page >= to) {
                 return '-->Done!!!'
               } else if (restSize > 0) {
@@ -37,11 +48,11 @@ const Get3 = props => {
                 return '-->Done!!!'
               }
             } else {
-              return Promise.reject('->Insert Error!!!')
+              return Promise.reject(`->Insert Error!!!${JSON.stringify(res)}`)
             }
           })
           .catch(error => {
-            return Promise.reject('->Insert Error!!!')
+            return Promise.reject(`->Insert Error!!!: ${error}`)
           })
 
       })

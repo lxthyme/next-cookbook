@@ -112,6 +112,224 @@ model Seed24 {
   O            String
 }
 
+model Detail_3333 {
+  seed         String  @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String?
+  star2        String?
+  star3        String?
+  star4        String?
+  star5        String?
+  star6        String?
+  star7        String?
+  star8        String?
+  star9        String?
+  star10       String?
+  star11       String?
+  star12       String?
+  star13       String?
+  star14       String?
+  star15       String?
+  star16       String?
+  star17       String?
+  star18       String?
+  star19       String?
+  star20       String?
+  star21       String?
+  star22       String?
+  star23       String?
+  star24       String?
+  star25       String?
+  star26       String?
+  star27       String?
+  star28       String?
+  star29       String?
+  star30       String?
+  star31       String?
+  star32       String?
+  star33       String?
+  star34       String?
+  star35       String?
+  star36       String?
+  star37       String?
+  star38       String?
+  star39       String?
+  star40       String?
+  star41       String?
+  star42       String?
+  star43       String?
+  star44       String?
+  star45       String?
+  star46       String?
+  star47       String?
+  star48       String?
+  star49       String?
+  star50       String?
+  star51       String?
+  star52       String?
+  star53       String?
+  star54       String?
+  star55       String?
+  star56       String?
+  star57       String?
+  star58       String?
+  star59       String?
+  star60       String?
+  star61       String?
+  star62       String?
+  star63       String?
+  star64       String?
+  star65       String?
+  star66       String?
+  star67       String?
+  star68       String?
+  star69       String?
+  star70       String?
+  star71       String?
+  star72       String?
+  star73       String?
+  star74       String?
+  star75       String?
+  star76       String?
+  star77       String?
+  star78       String?
+  star79       String?
+  star80       String?
+  star81       String?
+  star82       String?
+  star83       String?
+  star84       String?
+  star85       String?
+  star86       String?
+  star87       String?
+  star88       String?
+  star89       String?
+  star90       String?
+  star91       String?
+  star92       String?
+  star93       String?
+  star94       String?
+  star95       String?
+  star96       String?
+  star97       String?
+  star98       String?
+  star99       String?
+  star100      String?
+  star101      String?
+  star102      String?
+  star103      String?
+  star104      String?
+  star105      String?
+  star106      String?
+  star107      String?
+  star108      String?
+  star109      String?
+  star110      String?
+  star111      String?
+  star112      String?
+  star113      String?
+  star114      String?
+  star115      String?
+  star116      String?
+  star117      String?
+  star118      String?
+  star119      String?
+  star120      String?
+  star121      String?
+  star122      String?
+  star123      String?
+  star124      String?
+  star125      String?
+  star126      String?
+  star127      String?
+  star128      String?
+  star129      String?
+  star130      String?
+  star131      String?
+  star132      String?
+  star133      String?
+  star134      String?
+  star135      String?
+  star136      String?
+  star137      String?
+  star138      String?
+  star139      String?
+  star140      String?
+  star141      String?
+  star142      String?
+  star143      String?
+  star144      String?
+  star145      String?
+  star146      String?
+  star147      String?
+  star148      String?
+  star149      String?
+  star150      String?
+  star151      String?
+  star152      String?
+  star153      String?
+  star154      String?
+  star155      String?
+  star156      String?
+  star157      String?
+  star158      String?
+  star159      String?
+  star160      String?
+  star161      String?
+  star162      String?
+  star163      String?
+  star164      String?
+  star165      String?
+  star166      String?
+  star167      String?
+  star168      String?
+  star169      String?
+  star170      String?
+  star171      String?
+  star172      String?
+  star173      String?
+  star174      String?
+  star175      String?
+  star176      String?
+  star177      String?
+  star178      String?
+  star179      String?
+  star180      String?
+  star181      String?
+  star182      String?
+  star183      String?
+  star184      String?
+  star185      String?
+  star186      String?
+  star187      String?
+  star188      String?
+  star189      String?
+  star190      String?
+  star191      String?
+  star192      String?
+  star193      String?
+  star194      String?
+  star195      String?
+  star196      String?
+  star197      String?
+  star198      String?
+  star199      String?
+  star200      String?
+  star201      String?
+  star202      String?
+  star203      String?
+  star204      String?
+  star205      String?
+  star206      String?
+  star207      String?
+  star208      String?
+  star209      String?
+  star210      String?
+}
+
 model Detail15 {
   seed         String  @id
   xingqu_count String
@@ -2103,131 +2321,342 @@ model Detail24 {
 }
 
 model Key15 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key16 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key17 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // ���一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key18 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key19 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key20 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key21 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key22 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key23 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
 
 model Key24 {
-  seed             Int   @id
+  seed             Int    @id
+  // 初始距离
   chushijuli       Float
-  weixing          Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
   max_h2           Float
-  shui             Float
+  max_h2_gt2       String
+  // 潮汐
   chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
   liusuan_required Float
+  // 硫酸(记录)
   liusuan_record   Float
+  // 第一行星
   firstXingXing    Float
+  // 第二行星
+  secondXingXing   Float
+}
+
+model Key_3333 {
+  seed             Int    @id
+  // 初始距离
+  chushijuli       Float
+  // 光度
+  guangdu          Float
+  guangdu_gt2      String
+  // 单机磁石
+  danjicishi       Float
+  // 蓝巨星
+  O                Float
+  blueStar         Float
+  // 最大重氢
+  max_h2           Float
+  max_h2_gt2       String
+  // 潮汐
+  chaoxi           Float
+  // 卫星
+  weixing          Float
+  // 水
+  shui             Float
+  // 硫酸(必须)
+  liusuan_required Float
+  // 硫酸(记录)
+  liusuan_record   Float
+  // 第一行星
+  firstXingXing    Float
+  // 第二行星
   secondXingXing   Float
 }
