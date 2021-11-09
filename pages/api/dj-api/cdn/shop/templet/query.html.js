@@ -4,7 +4,9 @@ const API = async (req, res) => {
   // const mockData = await mockGet('query.html.js', 'mockData_OnlyO2O')
   // const obj = mockData.mockData_Prd_dj_tab4
   // const obj = mockData.mockData_Prd_ydj_tab4
-  const obj = mockData_Prd_dj_tab4
+  const obj =
+    // mockData_Prd_dj_tab4
+    mockData_Prd_ydj_tab4
   // obj.obj.templet.moduleList[1].busiType = 3
   obj.obj.templet.moduleList[1].tabItemList = obj.obj.templet.moduleList[1].tabItemList.slice(1, 2)
   return new Promise(function (resolve) {
