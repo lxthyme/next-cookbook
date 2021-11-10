@@ -17,7 +17,7 @@ export default API
 
 const mockData_Failure = {
   "success": false,
-  "msg": "该优惠券已领用完",
+  "msg": "对不起，该券已被领完，下次早点吧",
   "resCode": "00100051"
 }
 

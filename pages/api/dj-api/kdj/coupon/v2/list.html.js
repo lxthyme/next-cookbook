@@ -21,9 +21,9 @@ const API = (req, res) => {
 
   const data = mockData.obj.list
     .map((t, idx) => {
-      t.receiveFlag = '4'
       // t.receiveFlag = '3'
-      t.receiveFlag = `${idx % 3}`
+      t.receiveFlag = '4'
+      // t.receiveFlag = `${idx % 3}`
 
       return t
     });
