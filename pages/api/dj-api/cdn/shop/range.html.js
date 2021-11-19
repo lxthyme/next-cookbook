@@ -1,8 +1,8 @@
 import { mockData_Prd_ydj_tab4 } from "../../../../../mockData/dj/range.html";
 const API = (req, res) => {
   const obj =
-    // mockData_Prd_ydj_tab4
-    mockData_Test_dj_tab4
+    mockData_Prd_ydj_tab4
+    // mockData_Test_dj_tab4
   obj.obj.list
     .forEach(t => {
       // t.shopName = t.shopName.slice(0, 1)
