@@ -1,3 +1,7 @@
+import {
+    mockData_test_dj
+} from "../../../../../../mockData/dj/cateSkuDetails";
+
 const API = (req, res) => {
     const { page } = req.body
     const total_page = Math.max(0, 5 - page)
@@ -5,21 +9,32 @@ const API = (req, res) => {
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const list = []
 
-    const data = mockData
+    // const data = mockData
     // const goodsList = data.goodsList;
     // goodsList[0].tdType = "2";
     // goodsList[0].tdLable = "24h发货";
 
     // goodsList.forEach((t, idx) => t.categoryId = idList[idx])
-
+    let obj = JSON.parse(JSON.stringify(mockData_test_dj))
+    obj.obj.goodsList = obj.obj.goodsList.map((item, idx1) => {
+        if (11 === idx1) {
+            item.popinfosList = [
+                ...item.popinfosList,
+                ...item.popinfosList,
+            ].map((item2, idx2) => {
+                    // item2.sLabel = `${idx2}${item2.sLabel}${item2.sLabel}`
+                    item2.sLabel = `到家全场`
+                    return item2
+                })
+        } else {
+            // item.popinfosList = []
+        }
+        return item
+    })
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
     }).then(() => {
-        res.status(200).json({
-            success: true,
-            resCode: "00100000",
-            obj: data,
-        })
+        res.status(200).json(obj)
     })
 }
 export default API

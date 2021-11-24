@@ -1,26 +1,26 @@
+import {
+  mockData_test_dj
+} from "../../../../../../mockData/dj/search.details";
+
 const API = (req, res) => {
   const { ids = [] } = req.body
 
-  let data = {}
-  if (ids.includes('2020_007780_2020007780ENT23234@@1@@168251')) {
-    data = mockData_VipCoupon.obj.goodsList
-      // .slice(0, 1)
-    // .filter(t => t.receiveFlag === 4)
-  } else {
-    data = mockData.obj.goodsList
-  }
+  // let data = {}
+  // if (ids.includes('2020_007780_2020007780ENT23234@@1@@168251')) {
+  //   data = mockData_VipCoupon.obj.goodsList
+  //     // .slice(0, 1)
+  //   // .filter(t => t.receiveFlag === 4)
+  // } else {
+  //   data = mockData.obj.goodsList
+  // }
+  let obj = mockData_test_dj
+  obj.obj.goodsList[0].popinfosList = [...obj.obj.goodsList[0].popinfosList, ...obj.obj.goodsList[0].popinfosList]
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json({
-        success: true,
-        resCode: '00100000',
-        obj: {
-          goodsList: data
-        }
-      })
+      res.status(200).json(obj)
     })
 }
 
