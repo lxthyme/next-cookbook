@@ -1,0 +1,304 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/dsp/09-25/DSP Seed.db"
+}
+
+model seed0kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed1kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed3kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed4kw {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+model seed10000x1000 {
+  seed         String @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+}
+
+// format_seed
+//    fmt_star1: 1 -> N
+//          star1-11: 1 - N
+//    fmt_star2: 1 -> N
+//          star1-11: 1 - N
+//    summary: 1 -> N
+
+model format_seed {
+  seed         String        @id
+  xingqu_count String
+  danjicishi   String
+  blueStar     String
+  O            String
+  star1        String
+  star2        String
+  star3        String
+  star4        String
+  star5        String
+  star6        String
+  star7        String
+  star8        String
+  star9        String
+  star10       String
+  star11       String
+  fmt_star1    format_star1?
+  fmt_star2    format_star2?
+  summary      summary?
+}
+
+model format_star1 {
+  seed     String      @id
+  star  String[]
+  star1    t_value[]   @relation("fs1_star1")
+  star2    t_value[]   @relation("fs1_star2")
+  star3    t_value[]   @relation("fs1_star3")
+  star4    t_value[]   @relation("fs1_star4")
+  star5    t_value[]   @relation("fs1_star5")
+  star6    t_value[]   @relation("fs1_star6")
+  star7    t_value[]   @relation("fs1_star7")
+  star8    t_value[]   @relation("fs1_star8")
+  star9    t_value[]   @relation("fs1_star9")
+  star10   t_value[]   @relation("fs1_star10")
+  star11   t_value[]   @relation("fs1_star11")
+  fmt_seed format_seed @relation(fields: [seed], references: [seed])
+}
+
+model format_star2 {
+  seed     String      @id
+  star1    format_star2_content? @relation("fs2c_star1")
+  star2    format_star2_content?  @relation("fs2c_star2")
+  star3    format_star2_content?  @relation("fs2c_star3")
+  star4    format_star2_content?  @relation("fs2c_star4")
+  star5    format_star2_content?  @relation("fs2c_star5")
+  star6    format_star2_content?  @relation("fs2c_star6")
+  star7    format_star2_content?  @relation("fs2c_star7")
+  star8    format_star2_content?  @relation("fs2c_star8")
+  star9    format_star2_content?  @relation("fs2c_star9")
+  star10   format_star2_content?  @relation("fs2c_star10")
+  star11   format_star2_content?  @relation("fs2c_star11")
+  fmt_seed format_seed @relation(fields: [seed], references: [seed])
+}
+
+model format_star2_content {
+  seed              String @id
+  ChuShiXingXi      String?
+  MKGF_PuTongXingXi String?
+  others            t_value[] @relation("fs2c_others")
+  WeiXing           Float
+  QiTaiJuQing       Float?
+  ZuiDaZhongQing    Float
+  GuangDu           Float
+  ChuShiJuLi        Float
+  ChaoXiSuoDing     Float
+  DiYiXingXing      Float
+  DiErXingXing      Float
+  Shui              Float
+  LiuSuan           String
+  type              star_type?
+  fs2c_star1 format_star2 @relation("fs2c_star1", fields: [seed], references: [seed])
+  fs2c_star2 format_star2 @relation("fs2c_star2", fields: [seed], references: [seed])
+  fs2c_star3 format_star2 @relation("fs2c_star3", fields: [seed], references: [seed])
+  fs2c_star4 format_star2 @relation("fs2c_star4", fields: [seed], references: [seed])
+  fs2c_star5 format_star2 @relation("fs2c_star5", fields: [seed], references: [seed])
+  fs2c_star6 format_star2 @relation("fs2c_star6", fields: [seed], references: [seed])
+  fs2c_star7 format_star2 @relation("fs2c_star7", fields: [seed], references: [seed])
+  fs2c_star8 format_star2 @relation("fs2c_star8", fields: [seed], references: [seed])
+  fs2c_star9 format_star2 @relation("fs2c_star9", fields: [seed], references: [seed])
+  fs2c_star10 format_star2 @relation("fs2c_star10", fields: [seed], references: [seed])
+  fs2c_star11 format_star2 @relation("fs2c_star11", fields: [seed], references: [seed])
+}
+
+model star_type {
+  id             Int @id @default(autoincrement())
+  seed             String
+  BingYuanDongTu Float
+  BingJuXing     Float
+  GanHanHuangMo  Float
+  GeBi           Float
+  YingHuaHai     Float
+  ShuiShiJie     Float
+  HuoShanHui     Float
+  HuiJinDongTu   Float
+  RongYan        Float
+  XingHongBingHu Float
+  HongShi        Float
+  CaoYuan        Float
+  PinJiHuangMo   Float
+  JuFengShiLin   Float
+  summary_type   String
+  type           summary @relation("summary_type", fields: [summary_type], references: [seed])
+  fmt_seed format_star2_content @relation(fields: [seed], references: [seed])
+}
+
+model summary {
+  seed                String      @id
+  MKGF_PuTongXingXi   t_value[]   @relation("summary_MKGF_PuTongXingXi")
+  others              t_value[]   @relation("summary_others")
+  type                star_type[] @relation("summary_type")
+  GuangDu             t_number[]  @relation("summary_GuangDu")
+  GuangDu_Sort        t_number[]  @relation("summary_GuangDu_Sort")
+  ChuShiXingXi        t_value[]   @relation("summary_ChuShiXingXi")
+  ChuShiJuLi          t_number[]  @relation("summary_ChuShiJuLi")
+  ChuShiJuLi_Sum      Float
+  WeiXing             t_number[]  @relation("summary_WeiXing")
+  ZuiDaZhongQing      t_number[]  @relation("summary_ZuiDaZhongQing")
+  ZuiDaZhongQing_Sum  Float
+  ZuiDaZhongQing_Sort t_number[]  @relation("summary_ZuiDaZhongQing_Sort")
+  QiTaiJuXing         t_number[]  @relation("summary_QiTaiJuXing")
+  Shui                t_number[]  @relation("summary_Shui")
+  ChaoXiSuoDing       t_number[]  @relation("summary_ChaoXiSuoDing")
+  LiuSuan             t_value[]   @relation("summary_LiuSuan")
+  DiYiXingXing        t_number[]  @relation("summary_DiYiXingXing")
+  DiErXingXing        t_number[]  @relation("summary_DiErXingXing")
+  fmt_seed            format_seed @relation(fields: [seed], references: [seed])
+  // @@index([MKGF_PuTongXingXi, others])
+}
+
+model t_number {
+  id                          String  @id
+  num                         Float?
+  summary_GuangDu             String
+  GuangDu                     summary @relation("summary_GuangDu", fields: [summary_GuangDu], references: [seed])
+  summary_GuangDu_Sort        String
+  GuangDu_Sort                summary @relation("summary_GuangDu_Sort", fields: [summary_GuangDu_Sort], references: [seed])
+  summary_ChuShiJuLi          String
+  ChuShiJuLi                  summary @relation("summary_ChuShiJuLi", fields: [summary_ChuShiJuLi], references: [seed])
+  summary_WeiXing             String
+  WeiXing                     summary @relation("summary_WeiXing", fields: [summary_WeiXing], references: [seed])
+  summary_ZuiDaZhongQing      String
+  ZuiDaZhongQing              summary @relation("summary_ZuiDaZhongQing", fields: [summary_ZuiDaZhongQing], references: [seed])
+  summary_ZuiDaZhongQing_Sort String
+  ZuiDaZhongQing_Sort         summary @relation("summary_ZuiDaZhongQing_Sort", fields: [summary_ZuiDaZhongQing_Sort], references: [seed])
+  summary_QiTaiJuXing         String
+  QiTaiJuXing                 summary @relation("summary_QiTaiJuXing", fields: [summary_QiTaiJuXing], references: [seed])
+  summary_Shui                String
+  Shui                        summary @relation("summary_Shui", fields: [summary_Shui], references: [seed])
+  summary_ChaoXiSuoDing       String
+  ChaoXiSuoDing               summary @relation("summary_ChaoXiSuoDing", fields: [summary_ChaoXiSuoDing], references: [seed])
+  summary_DiYiXingXing        String
+  DiYiXingXing                summary @relation("summary_DiYiXingXing", fields: [summary_DiYiXingXing], references: [seed])
+  summary_DiErXingXing        String
+  DiErXingXing                summary @relation("summary_DiErXingXing", fields: [summary_DiErXingXing], references: [seed])
+}
+
+model t_value {
+  id                        String       @id
+  value                     String?
+  summary_MKGF_PuTongXingXi String
+  MKGF_PuTongXingXi         summary      @relation("summary_MKGF_PuTongXingXi", fields: [summary_MKGF_PuTongXingXi], references: [seed])
+  summary_others            String       @unique
+  others                    summary      @relation("summary_others", fields: [summary_others], references: [seed])
+  summary_ChuShiXingXi      String
+  ChuShiXingXi              summary      @relation("summary_ChuShiXingXi", fields: [summary_ChuShiXingXi], references: [seed])
+  summary_LiuSuan           String
+  LiuSuan                   summary      @relation("summary_LiuSuan", fields: [summary_LiuSuan], references: [seed])
+  fs1_star1                 String
+  fmt_star1                 format_star1 @relation("fs1_star1", fields: [fs1_star1], references: [seed])
+  fs1_star2                 String
+  fmt_star2                 format_star1 @relation("fs1_star2", fields: [fs1_star2], references: [seed])
+  fs1_star3                 String
+  fmt_star3                 format_star1 @relation("fs1_star3", fields: [fs1_star3], references: [seed])
+  fs1_star4                 String
+  fmt_star4                 format_star1 @relation("fs1_star4", fields: [fs1_star4], references: [seed])
+  fs1_star5                 String
+  fmt_star5                 format_star1 @relation("fs1_star5", fields: [fs1_star5], references: [seed])
+  fs1_star6                 String
+  fmt_star6                 format_star1 @relation("fs1_star6", fields: [fs1_star6], references: [seed])
+  fs1_star7                 String
+  fmt_star7                 format_star1 @relation("fs1_star7", fields: [fs1_star7], references: [seed])
+  fs1_star8                 String
+  fmt_star8                 format_star1 @relation("fs1_star8", fields: [fs1_star8], references: [seed])
+  fs1_star9                 String
+  fmt_star9                 format_star1 @relation("fs1_star9", fields: [fs1_star9], references: [seed])
+  fs1_star10                String
+  fmt_star10                format_star1 @relation("fs1_star10", fields: [fs1_star10], references: [seed])
+  fs1_star11                String
+  fmt_star11                format_star1 @relation("fs1_star11", fields: [fs1_star11], references: [seed])
+  fs2c_others                String
+  fmts2c_others                format_star2_content @relation("fs2c_others", fields: [fs2c_others], references: [seed])
+}
