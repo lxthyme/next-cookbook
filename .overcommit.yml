@@ -1,0 +1,308 @@
+# Use this file to configure the Overcommit hooks you wish to use. This will
+# extend the default configuration defined in:
+# https://github.com/sds/overcommit/blob/master/config/default.yml
+#
+# At the topmost level of this YAML file is a key representing type of hook
+# being run (e.g. pre-commit, commit-msg, etc.). Within each type you can
+# customize each hook, such as whether to only run it on certain files (via
+# `include`), whether to only display output if it fails (via `quiet`), etc.
+#
+# For a complete list of hooks, see:
+# https://github.com/sds/overcommit/tree/master/lib/overcommit/hook
+#
+# For a complete list of options that you can use to customize hooks, see:
+# https://github.com/sds/overcommit#configuration
+#
+# Uncomment the following lines to make the configuration take effect.
+
+#encoding: utf-8
+
+#  RuboCop:
+#    enabled: true
+#    on_warn: fail # Treat all warnings as failures
+#
+#  TrailingWhitespace:
+#    enabled: true
+#    exclude:
+#      - '**/db/structure.sql' # Ignore trailing whitespace in generated files
+#
+#PostCheckout:
+#  ALL: # Special hook name that customizes all hooks of this type
+#    quiet: true # Change all post-checkout hooks to only display output on failure
+#
+#  IndexTags:
+#    enabled: true # Generate a tags file with `ctags` each time HEAD changes
+
+# PostCheckout:  
+#   BowerInstall: disabled
+#   BundleInstall: disabled
+#   ComposerInstall: disabled
+#   GitLfs: disabled
+#   IndexTags: disabled
+#   NpmInstall: disabled
+#   SubmoduleStatus: disabled
+#   YarnInstall: disabled
+# PreCommit:
+PreCommit:
+  ALL:
+    enabled: true
+    required: false
+    quiet: false
+    requires_files: true
+    exclude: &default_excludes
+      - 'node_modules/**/*'
+      - 'vendor/**/*'
+      - 'Pods/**/*'
+    problem_on_unmodified_line: warn
+#   AuthorEmail: enabled
+#   AuthorName: enabled
+  BerksfileCheck: 
+    enabled: false
+#   BrokenSymlinks: enabled
+  BundleAudit: 
+    enabled: false
+  BundleCheck: 
+    enabled: false
+  BundleOutdated: 
+    enabled: false
+  CaseConflicts: 
+    enabled: false
+  ChamberCompare: 
+    enabled: false
+  ChamberSecurity: 
+    enabled: false
+  ChamberVerification: 
+    enabled: false
+  CodeSpellCheck: 
+    enabled: false
+  CoffeeLint: 
+    enabled: false
+  CookStyle: 
+    enabled: false
+  Credo: 
+    enabled: false
+  CssLint:
+    enabled: false
+  DartAnalyzer: 
+    enabled: false
+  Dogma: 
+    enabled: false
+  ErbLint: 
+    enabled: false
+  EsLint:
+    enabled: false
+#   ExecutePermissions: disabled
+  Fasterer: 
+    enabled: false
+#   FixMe: disabled
+#   FileSize: disabled
+  Flay: 
+    enabled: false
+  Foodcritic: 
+    enabled: false
+#   ForbiddenBranches: disabled
+  GinkgoFocus: 
+    enabled: false
+  GoFmt: 
+    enabled: false
+  GolangciLint: 
+    enabled: false
+  GoLint: 
+    enabled: false
+  GoVet: 
+    enabled: false
+  Hadolint: 
+    enabled: false
+  HamlLint: 
+    enabled: false
+  HardTabs: 
+    enabled: false
+  Hlint: 
+    enabled: false
+  HtmlHint: 
+    enabled: false
+  HtmlTidy: 
+    enabled: false
+  ImageOptim: 
+    enabled: false
+  JavaCheckstyle: 
+    enabled: false
+  Jscs: 
+    enabled: false
+  JsHint: 
+    enabled: false
+  JsLint:
+    enabled: false
+  Jsl: 
+    enabled: false
+  JsonSyntax: 
+    enabled: false
+  KtLint: 
+    enabled: false
+  LicenseFinder: 
+    enabled: false
+  LicenseHeader: 
+    enabled: false
+#   LocalPathsInGemfile: disabled
+  Mdl: 
+    enabled: false
+  # MergeConflicts: enabled
+  PuppetMetadataJsonLint: 
+    enabled: false
+  # NginxTest: 
+  #   enabled: false
+  Pep257: 
+    enabled: false
+  Pep8: 
+    enabled: false
+  PhpLint: 
+    enabled: false
+  PhpCs: 
+    enabled: false
+  PhpCsFixer: 
+    enabled: false
+  PhpStan: 
+    enabled: false
+  Pronto: 
+    enabled: false
+  PuppetLint: 
+    enabled: false
+  Pycodestyle: 
+    enabled: false
+  Pydocstyle: 
+    enabled: false
+  Pyflakes: 
+    enabled: false
+  Pylint: 
+    enabled: false
+  PythonFlake8: 
+    enabled: false
+  RakeTarget: 
+    enabled: false
+  RailsBestPractices: 
+    enabled: false
+  RailsSchemaUpToDate: 
+    enabled: false
+  Reek: 
+    enabled: false
+  RstLint: 
+    enabled: false
+  RuboCop: 
+    enabled: false
+  RubyLint: 
+    enabled: false
+  RubySyntax: 
+    enabled: false
+  Scalariform: 
+    enabled: false
+  Scalastyle: 
+    enabled: false
+  ScssLint: 
+    enabled: false
+  SemiStandard: 
+    enabled: false
+  ShellCheck: 
+    enabled: false
+  SlimLint: 
+    enabled: false
+  Sqlint: 
+    enabled: false
+  Standard: 
+    enabled: false
+  Stylelint:
+    enabled: false
+#   SwiftLint: disabled
+  TerraformFormat: 
+    enabled: false
+  TsLint: 
+    enabled: false
+  TrailingWhitespace: 
+    enabled: false
+  TravisLint: 
+    enabled: false
+  Vint: 
+    enabled: false
+  W3cCss: 
+    enabled: false
+  W3cHtml: 
+    enabled: false
+  LineEndings: 
+    enabled: false
+  XmlLint: 
+    enabled: false
+  XmlSyntax: 
+    enabled: false
+  YamlLint: 
+    enabled: false
+  YamlSyntax: 
+    enabled: false
+  YardCoverage: 
+    enabled: false
+  YarnCheck: 
+    enabled: false
+# PrepareCommitMsg:
+#   ReplaceBranch: disabled
+# PostMerge:
+#   BowerInstall: disabled
+  BundleInstall: 
+    enabled: false
+  ComposerInstall: 
+    enabled: false
+#   GitLfs: disabled
+#   IndexTags: disabled
+#   NpmInstall: disabled
+#   SubmoduleStatus: disabled
+  YarnInstall: 
+    enabled: false
+# PreRebase:
+#   MergedCommits: disabled
+# PrePush:
+#   Brakeman: disabled
+#   CargoTest: disabled
+#   FlutterTest: disabled
+#   GitLfs: disabled
+#   GolangciLint: disabled
+#   GoTest: disabled
+#   Minitest: disabled
+#   PhpUnit: disabled
+#   Pronto: disabled
+#   ProtectedBranches: disabled
+#   PubTest: disabled
+#   Pytest: disabled
+#   PythonNose: disabled
+#   RSpec: disabled
+#   RakeTarget: disabled
+#   TestUnit: disabled
+# PostRewrite:
+#   BowerInstall: disabled
+#   BundleInstall: disabled
+#   ComposerInstall: disabled
+#   IndexTags: disabled
+#   NpmInstall: disabled
+#   SubmoduleStatus: disabled
+#   YarnInstall: disabled
+CommitMsg:
+  CapitalizedSubject: 
+    enabled: false
+#   EmptyMessage: enabled
+#   GerritChangeId: disabled
+#   HardTabs: disabled
+#   MessageFormat: disabled
+#   RussianNovel: disabled
+#   SingleLineSubject: enabled
+#   SpellCheck: disabled
+  TextWidth: 
+    enabled: false
+#   TrailingPeriod: enabled
+# PostCommit:
+#   BowerInstall: disabled
+#   BundleInstall: disabled
+#   Commitplease: disabled
+#   ComposerInstall: disabled
+#   GitGuilt: disabled
+#   GitLfs: disabled
+#   IndexTags: disabled
+#   NpmInstall: disabled
+#   SubmoduleStatus: disabled
+#   YarnInstall: disabled
+
