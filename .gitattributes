@@ -3,3 +3,12 @@ data/dsp/all-star-info.js filter=lfs diff=lfs merge=lfs -text
 all-star-info-v2.js filter=lfs diff=lfs merge=lfs -text
 data/dsp/all-star-info-v2.js filter=lfs diff=lfs merge=lfs -text
 data/**/* filter=lfs diff=lfs merge=lfs -text
+*.json|jsonc filter=lfs diff=lfs merge=lfs -text
+**/*.json|jsonc filter=lfs diff=lfs merge=lfs -text
+*/**/*.json|jsonc filter=lfs diff=lfs merge=lfs -text
+*/**/*.jsonc filter=lfs diff=lfs merge=lfs -text
+*.jsonc filter=lfs diff=lfs merge=lfs -text
+data/**/*.jsonc filter=lfs diff=lfs merge=lfs -text
+mockData/**/*.jsonc filter=lfs diff=lfs merge=lfs -text
+mockData/pvz2/*.jsonc filter=lfs diff=lfs merge=lfs -text
+mockData/pvz2/PvZ2Web.backup.jsonc filter=lfs diff=lfs merge=lfs -text
