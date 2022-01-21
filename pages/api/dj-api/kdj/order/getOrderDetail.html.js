@@ -1,4 +1,4 @@
-export default (req, res) => {
+export default function (req, res) {
     const { page } = req.body
     const total_page = Math.max(0, 5 - page)
 
