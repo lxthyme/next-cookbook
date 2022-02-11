@@ -1,23 +1,35 @@
 const API = (req, res) => {
-  const { page } = req.body
 
-  const obj = mockData
-  // obj.obj.goodsType = '1'
-  // obj.obj.medicineType = '3'
-  // obj.obj.medicineType = '4'
-  // obj.obj.goodsType = '29'
-  obj.obj.goodsType = '30'
-  ///
-  obj.obj.backChange = '1'
-  /// 自提
-  // obj.obj.djSendType = '1'
-  obj.obj.djSendType = '2'
+  const { obj, ...data_others } = mockData
+  const { supplier, pictures, product, ...obj_others } = obj
+  // const { brand, mdmCategory, ...product_others } = product
+  const data = {
+    ...data_others,
+    obj: {
+      supplier,
+      pictures,
+      product,
+      ...obj_others,
+      goodsType: '1',
+      goodsType: '3',
+      goodsType: '4',
+      goodsType: '29',
+      goodsType: '30',
+      backChange: '1',
+      /// 自提
+      djSendType: '1',
+      djSendType: '2',
+      /// ecpflag
+      ecpFlag: '1'
+
+    },
+  }
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
     })
 }
 

@@ -1,3 +1,1571 @@
+export const mockData_2022_01_26 = {
+  "success": true,
+  "resCode": "00100000",
+  "timestamp": 1643188208843,
+  "obj": {
+      "onOff": "Y",
+      "templet": {
+          "temType": 1,
+          "mBy": "苏靖宇",
+          "channel": "APP",
+          "tabBar": {
+              "tabBarInfoList": [],
+              "backColor": "#FFFAF0",
+              "templetSid": 4103,
+              "cartNumColor": "#FF0000",
+              "barType": 1,
+              "bkPicWidth": 750,
+              "bkPicHeight": 98,
+              "sid": 14640
+          },
+          "cTime": "2022-01-20 09:32:28",
+          "version": 1642642369000,
+          "sid": 4103,
+          "moduleList": [
+              {
+                  "ssButName": "药到家先品后店测试1",
+                  "mwButId": 357874,
+                  "smButId": 357869,
+                  "syButId": 357871,
+                  "sid": 4600,
+                  "styleType": 4,
+                  "bgType": 1,
+                  "smButName": "药到家先品后店测试4",
+                  "inStore": 0,
+                  "zzButId": 357875,
+                  "searchModeType": 1,
+                  "pic1ButId": 357872,
+                  "hyButName": "药到家先品后店测试5",
+                  "bgWidth": 750,
+                  "mdButId": 357867,
+                  "moduleType": "Head",
+                  "entButton": "1,2",
+                  "bgImg": "https://Img.iblimg.com/fast2home-2/images/kdj/index/2021/10/1821857818.png",
+                  "pic1ModeType": 1,
+                  "entButtonList": [
+                      1,
+                      2
+                  ],
+                  "hyButId": 357866,
+                  "pic2ModeType": 1,
+                  "backColor": "#FF774F",
+                  "pic2ButId": 357873,
+                  "qdButId": 357868,
+                  "ssButId": 357870,
+                  "bgHeight": 970
+              },
+              {
+                  "styleType": 3,
+                  "fcDef": "#FFD8D8",
+                  "moduleType": "Tab",
+                  "fcActive": "#FFFFFF",
+                  "showType": 1,
+                  "position": 1,
+                  "tabItemList": [
+                      {
+                          "tabName": "全部",
+                          "storeGoodsType": 1,
+                          "butId": 357876,
+                          "tabType": 1,
+                          "showLabel": 0,
+                          "sid": 4171,
+                          "tabSid": 3435,
+                          "modeType": 1,
+                          "moduleList": [
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263001",
+                                  "picHeight": 300,
+                                  "moduleType": "Slide",
+                                  "butId": 357877,
+                                  "showBg": 0,
+                                  "showRadius": 1,
+                                  "showAddr": 1,
+                                  "sid": 17531,
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "butName": "药到家首页轮播"
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263003",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357878,
+                                  "but3Id": 357880,
+                                  "but2Id": 357879,
+                                  "but1Name": "药到家海景2-1",
+                                  "but5Id": 357882,
+                                  "sid": 55051,
+                                  "but4Id": 357881,
+                                  "but6Id": 357883,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "resourceId": "92263032",
+                                  "moduleType": "Notify",
+                                  "butId": 357884,
+                                  "showType": 1,
+                                  "pic": "https://Img.iblimg.com/fast2home-2/images/kdj/index/2021/02/1066578117.png",
+                                  "butName": "通知",
+                                  "sid": 14319
+                              },
+                              {
+                                  "blankHeight": 15,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17778
+                              },
+                              {
+                                  "moduleType": "Category",
+                                  "showText": 1,
+                                  "but1Id": 357886,
+                                  "buttonList": [
+                                      {
+                                          "id": 357885
+                                      },
+                                      {
+                                          "id": 357886
+                                      },
+                                      {
+                                          "id": 357887
+                                      },
+                                      {
+                                          "id": 357888
+                                      },
+                                      {
+                                          "id": 357889
+                                      },
+                                      {
+                                          "id": 357890
+                                      },
+                                      {
+                                          "id": 357891
+                                      },
+                                      {
+                                          "id": 357892
+                                      },
+                                      {
+                                          "id": 357893
+                                      },
+                                      {
+                                          "id": 357894
+                                      },
+                                      {
+                                          "id": 357895
+                                      },
+                                      {
+                                          "id": 357896
+                                      },
+                                      {
+                                          "id": 357897
+                                      },
+                                      {
+                                          "id": 357898
+                                      },
+                                      {
+                                          "id": 357899
+                                      },
+                                      {
+                                          "id": 357900
+                                      },
+                                      {
+                                          "id": 357901
+                                      },
+                                      {
+                                          "id": 357902
+                                      },
+                                      {
+                                          "id": 357903
+                                      },
+                                      {
+                                          "id": 357904
+                                      }
+                                  ],
+                                  "but3Id": 357888,
+                                  "but2Id": 357887,
+                                  "but1Name": "感冒咳嗽",
+                                  "but5Id": 357890,
+                                  "sid": 14538,
+                                  "but3Name": "皮肤过敏",
+                                  "but4Id": 357889,
+                                  "styleType": 3,
+                                  "modeType": 1,
+                                  "categoryInfoList": [
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 5,
+                                          "butStart": 2,
+                                          "butEnd": 2,
+                                          "categoryId": 14538,
+                                          "sid": 29539,
+                                          "butPriorStart": 5
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 3,
+                                          "butStart": 1,
+                                          "butEnd": 1,
+                                          "categoryId": 14538,
+                                          "sid": 29540,
+                                          "butPriorStart": 3
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 6,
+                                          "butStart": 3,
+                                          "butEnd": 3,
+                                          "categoryId": 14538,
+                                          "sid": 29541,
+                                          "butPriorStart": 6
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 7,
+                                          "butStart": 4,
+                                          "butEnd": 4,
+                                          "categoryId": 14538,
+                                          "sid": 29542,
+                                          "butPriorStart": 7
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 8,
+                                          "butStart": 5,
+                                          "butEnd": 5,
+                                          "categoryId": 14538,
+                                          "sid": 29543,
+                                          "butPriorStart": 8
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 4,
+                                          "butStart": 6,
+                                          "butEnd": 6,
+                                          "categoryId": 14538,
+                                          "sid": 29544,
+                                          "butPriorStart": 4
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 2,
+                                          "butStart": 7,
+                                          "butEnd": 7,
+                                          "categoryId": 14538,
+                                          "sid": 29545,
+                                          "butPriorStart": 2
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 11,
+                                          "butStart": 8,
+                                          "butEnd": 8,
+                                          "categoryId": 14538,
+                                          "sid": 29546,
+                                          "butPriorStart": 11
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 13,
+                                          "butStart": 9,
+                                          "butEnd": 9,
+                                          "categoryId": 14538,
+                                          "sid": 29547,
+                                          "butPriorStart": 13
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 15,
+                                          "butStart": 10,
+                                          "butEnd": 10,
+                                          "categoryId": 14538,
+                                          "sid": 29548,
+                                          "butPriorStart": 15
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 14,
+                                          "butStart": 11,
+                                          "butEnd": 11,
+                                          "categoryId": 14538,
+                                          "sid": 29549,
+                                          "butPriorStart": 14
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 12,
+                                          "butStart": 12,
+                                          "butEnd": 12,
+                                          "categoryId": 14538,
+                                          "sid": 29550,
+                                          "butPriorStart": 12
+                                      }
+                                  ],
+                                  "buttonInfo": "357885&_&,357886&_&,357887&_&,357888&_&,357889&_&,357890&_&,357891&_&,357892&_&,357893&_&,357894&_&,357895&_&,357896&_&,357897&_&,357898&_&,357899&_&,357900&_&,357901&_&,357902&_&,357903&_&,357904&_&",
+                                  "but4Name": "五官科药",
+                                  "but2Name": "肠胃用药"
+                              },
+                              {
+                                  "blankHeight": 8,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17779
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263002",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357905,
+                                  "but3Id": 357907,
+                                  "but2Id": 357906,
+                                  "but1Name": "药到家海景1",
+                                  "but5Id": 357909,
+                                  "sid": 55052,
+                                  "but4Id": 357908,
+                                  "but6Id": 357910,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "blankHeight": 8,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17780
+                              },
+                              {
+                                  "picWidth": 250,
+                                  "resourceId": "92263004",
+                                  "picHeight": 150,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357911,
+                                  "but3Id": 357913,
+                                  "but2Id": 357912,
+                                  "but1Name": "药到家-活动分类1",
+                                  "but5Id": 357915,
+                                  "sid": 55053,
+                                  "but3Name": "药到家-活动分类3",
+                                  "but4Id": 357914,
+                                  "but6Id": 357916,
+                                  "modeType": 1,
+                                  "showType": 3,
+                                  "but2Name": "药到家-活动分类2"
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263005",
+                                  "moduleType": "Product",
+                                  "butId": 357917,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家-分类主推单品",
+                                  "sid": 38742
+                              },
+                              {
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "resourceId": "92263028",
+                                  "moduleType": "Timer",
+                                  "butId": 357918,
+                                  "butName": "限时时间",
+                                  "sid": 13491
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263029",
+                                  "moduleType": "Product",
+                                  "butId": 357919,
+                                  "showType": 3,
+                                  "productNum": 3,
+                                  "butName": "限时特惠单品",
+                                  "sid": 38743
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263006",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357920,
+                                  "but3Id": 357922,
+                                  "but2Id": 357921,
+                                  "but1Name": "药到家主推爆款",
+                                  "but5Id": 357924,
+                                  "sid": 55054,
+                                  "but4Id": 357923,
+                                  "but6Id": 357925,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263007",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357926,
+                                  "but3Id": 357928,
+                                  "but2Id": 357927,
+                                  "but1Name": "药到家主推爆款-宽",
+                                  "but5Id": 357930,
+                                  "sid": 55055,
+                                  "but4Id": 357929,
+                                  "but6Id": 357931,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263008",
+                                  "moduleType": "Product",
+                                  "butId": 357932,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家主推爆款单品",
+                                  "sid": 38744
+                              },
+                              {
+                                  "picWidth": 375,
+                                  "resourceId": "92263009",
+                                  "picHeight": 205,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357933,
+                                  "but3Id": 357935,
+                                  "but2Id": 357934,
+                                  "but1Name": "药到家主推四框1",
+                                  "but5Id": 357937,
+                                  "sid": 55056,
+                                  "but3Name": "药到家主推四框3",
+                                  "but4Id": 357936,
+                                  "but6Id": 357938,
+                                  "modeType": 1,
+                                  "showType": 5,
+                                  "but4Name": "药到家主推四框4",
+                                  "but2Name": "药到家主推四框2"
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263040",
+                                  "picHeight": 120,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357939,
+                                  "but3Id": 357941,
+                                  "but2Id": 357940,
+                                  "but1Name": "药到家社群二维码",
+                                  "but5Id": 357943,
+                                  "sid": 55057,
+                                  "but4Id": 357942,
+                                  "but6Id": 357944,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263010",
+                                  "moduleType": "Product",
+                                  "butId": 357945,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家主推分类单品",
+                                  "sid": 38745
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263011",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357946,
+                                  "but3Id": 357948,
+                                  "but2Id": 357947,
+                                  "but1Name": "药到家主推层1",
+                                  "but5Id": 357950,
+                                  "sid": 55058,
+                                  "but4Id": 357949,
+                                  "but6Id": 357951,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263012",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357952,
+                                  "but3Id": 357954,
+                                  "but2Id": 357953,
+                                  "but1Name": "药到家主推层1-宽",
+                                  "but5Id": 357956,
+                                  "sid": 55059,
+                                  "but4Id": 357955,
+                                  "but6Id": 357957,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263013",
+                                  "moduleType": "Product",
+                                  "butId": 357958,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层1-单品",
+                                  "sid": 38746
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263014",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357959,
+                                  "but3Id": 357961,
+                                  "but2Id": 357960,
+                                  "but1Name": "药到家主推层2",
+                                  "but5Id": 357963,
+                                  "sid": 55060,
+                                  "but4Id": 357962,
+                                  "but6Id": 357964,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263015",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357965,
+                                  "but3Id": 357967,
+                                  "but2Id": 357966,
+                                  "but1Name": "药到家主推层2-宽",
+                                  "but5Id": 357969,
+                                  "sid": 55061,
+                                  "but4Id": 357968,
+                                  "but6Id": 357970,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263016",
+                                  "moduleType": "Product",
+                                  "butId": 357971,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层2-单品",
+                                  "sid": 38747
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263017",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357972,
+                                  "but3Id": 357974,
+                                  "but2Id": 357973,
+                                  "but1Name": "药到家主推层3",
+                                  "but5Id": 357976,
+                                  "sid": 55062,
+                                  "but4Id": 357975,
+                                  "but6Id": 357977,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263018",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357978,
+                                  "but3Id": 357980,
+                                  "but2Id": 357979,
+                                  "but1Name": "药到家主推层3-宽",
+                                  "but5Id": 357982,
+                                  "sid": 55063,
+                                  "but4Id": 357981,
+                                  "but6Id": 357983,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263019",
+                                  "moduleType": "Product",
+                                  "butId": 357984,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层3-单品",
+                                  "sid": 38748
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263020",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357985,
+                                  "but3Id": 357987,
+                                  "but2Id": 357986,
+                                  "but1Name": "药到家主推层4",
+                                  "but5Id": 357989,
+                                  "sid": 55064,
+                                  "but4Id": 357988,
+                                  "but6Id": 357990,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263021",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357991,
+                                  "but3Id": 357993,
+                                  "but2Id": 357992,
+                                  "but1Name": "药到家主推层4-宽",
+                                  "but5Id": 357995,
+                                  "sid": 55065,
+                                  "but4Id": 357994,
+                                  "but6Id": 357996,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263022",
+                                  "moduleType": "Product",
+                                  "butId": 357997,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层4-单品",
+                                  "sid": 38749
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263033",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 357998,
+                                  "but3Id": 358000,
+                                  "but2Id": 357999,
+                                  "but1Name": "药到家主推层5",
+                                  "but5Id": 358002,
+                                  "sid": 55066,
+                                  "but4Id": 358001,
+                                  "but6Id": 358003,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263034",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358004,
+                                  "but3Id": 358006,
+                                  "but2Id": 358005,
+                                  "but1Name": "药到家主推层5-宽",
+                                  "but5Id": 358008,
+                                  "sid": 55067,
+                                  "but4Id": 358007,
+                                  "but6Id": 358009,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263035",
+                                  "moduleType": "Product",
+                                  "butId": 358010,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层5-单品",
+                                  "sid": 38750
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263023",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358011,
+                                  "but3Id": 358013,
+                                  "but2Id": 358012,
+                                  "but1Name": "药到家品牌墙标题",
+                                  "but5Id": 358015,
+                                  "sid": 55068,
+                                  "but4Id": 358014,
+                                  "but6Id": 358016,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 375,
+                                  "resourceId": "92263024",
+                                  "picHeight": 170,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358017,
+                                  "but3Id": 358019,
+                                  "but2Id": 358018,
+                                  "but1Name": "药到家品牌墙1",
+                                  "but5Id": 358021,
+                                  "sid": 55069,
+                                  "but4Id": 358020,
+                                  "but6Id": 358022,
+                                  "modeType": 1,
+                                  "showType": 2,
+                                  "but2Name": "药到家品牌墙2"
+                              },
+                              {
+                                  "picWidth": 188,
+                                  "resourceId": "92263025",
+                                  "picHeight": 170,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358023,
+                                  "but3Id": 358025,
+                                  "but2Id": 358024,
+                                  "but1Name": "药到家品牌墙3",
+                                  "but5Id": 358027,
+                                  "sid": 55070,
+                                  "but3Name": "药到家品牌墙5",
+                                  "but4Id": 358026,
+                                  "but6Id": 358028,
+                                  "modeType": 1,
+                                  "showType": 7,
+                                  "but4Name": "药到家品牌墙6",
+                                  "but2Name": "药到家品牌墙4"
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263026",
+                                  "moduleType": "Product",
+                                  "butId": 358029,
+                                  "showType": 5,
+                                  "productNum": 16,
+                                  "butName": "药到家品牌墙-单品",
+                                  "sid": 38751
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263030",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358030,
+                                  "but3Id": 358032,
+                                  "but2Id": 358031,
+                                  "but1Name": "猜你喜欢",
+                                  "but5Id": 358034,
+                                  "sid": 55071,
+                                  "but4Id": 358033,
+                                  "but6Id": 358035,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "localRow": 16,
+                                  "moduleType": "Guess",
+                                  "rowNum": 30,
+                                  "sid": 307
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263031",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358036,
+                                  "but3Id": 358038,
+                                  "but2Id": 358037,
+                                  "but1Name": "第一医药介绍",
+                                  "but5Id": 358040,
+                                  "sid": 55072,
+                                  "but4Id": 358039,
+                                  "but6Id": 358041,
+                                  "modeType": 1,
+                                  "showType": 1
+                              }
+                          ],
+                          "tabInd": 0,
+                          "butName": "药到家先品后店测试全部门店"
+                      },
+                      {
+                          "storeGoodsType": 0,
+                          "butId": 358042,
+                          "tabType": 1,
+                          "showLabel": 0,
+                          "sid": 4172,
+                          "tabSid": 3435,
+                          "modeType": 1,
+                          "moduleList": [
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263001",
+                                  "picHeight": 300,
+                                  "moduleType": "Slide",
+                                  "butId": 358043,
+                                  "showBg": 0,
+                                  "showRadius": 1,
+                                  "showAddr": 1,
+                                  "sid": 17532,
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "butName": "药到家首页轮播"
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263003",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358044,
+                                  "but3Id": 358046,
+                                  "but2Id": 358045,
+                                  "but1Name": "药到家海景2-1",
+                                  "but5Id": 358048,
+                                  "sid": 55073,
+                                  "but4Id": 358047,
+                                  "but6Id": 358049,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "styleType": 2,
+                                  "modeType": 1,
+                                  "resourceId": "92263032",
+                                  "moduleType": "Notify",
+                                  "butId": 358050,
+                                  "showType": 1,
+                                  "pic": "https://Img.iblimg.com/fast2home-2/images/kdj/index/2021/02/1066578117.png",
+                                  "butName": "通知",
+                                  "sid": 14320
+                              },
+                              {
+                                  "blankHeight": 15,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17781
+                              },
+                              {
+                                  "moduleType": "Category",
+                                  "showText": 1,
+                                  "but1Id": 358052,
+                                  "buttonList": [
+                                      {
+                                          "id": 358051
+                                      },
+                                      {
+                                          "id": 358052
+                                      },
+                                      {
+                                          "id": 358053
+                                      },
+                                      {
+                                          "id": 358054
+                                      },
+                                      {
+                                          "id": 358055
+                                      },
+                                      {
+                                          "id": 358056
+                                      },
+                                      {
+                                          "id": 358057
+                                      },
+                                      {
+                                          "id": 358058
+                                      },
+                                      {
+                                          "id": 358059
+                                      },
+                                      {
+                                          "id": 358060
+                                      },
+                                      {
+                                          "id": 358061
+                                      },
+                                      {
+                                          "id": 358062
+                                      },
+                                      {
+                                          "id": 358063
+                                      },
+                                      {
+                                          "id": 358064
+                                      },
+                                      {
+                                          "id": 358065
+                                      },
+                                      {
+                                          "id": 358066
+                                      },
+                                      {
+                                          "id": 358067
+                                      },
+                                      {
+                                          "id": 358068
+                                      },
+                                      {
+                                          "id": 358069
+                                      },
+                                      {
+                                          "id": 358070
+                                      }
+                                  ],
+                                  "but3Id": 358054,
+                                  "but2Id": 358053,
+                                  "but5Id": 358056,
+                                  "sid": 14539,
+                                  "but4Id": 358055,
+                                  "styleType": 3,
+                                  "modeType": 1,
+                                  "categoryInfoList": [
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 3,
+                                          "butStart": 1,
+                                          "butEnd": 1,
+                                          "categoryId": 14539,
+                                          "sid": 29551,
+                                          "butPriorStart": 3
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 5,
+                                          "butStart": 2,
+                                          "butEnd": 2,
+                                          "categoryId": 14539,
+                                          "sid": 29552,
+                                          "butPriorStart": 5
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 6,
+                                          "butStart": 3,
+                                          "butEnd": 3,
+                                          "categoryId": 14539,
+                                          "sid": 29553,
+                                          "butPriorStart": 6
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 7,
+                                          "butStart": 4,
+                                          "butEnd": 4,
+                                          "categoryId": 14539,
+                                          "sid": 29554,
+                                          "butPriorStart": 7
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 8,
+                                          "butStart": 5,
+                                          "butEnd": 5,
+                                          "categoryId": 14539,
+                                          "sid": 29555,
+                                          "butPriorStart": 8
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 4,
+                                          "butStart": 6,
+                                          "butEnd": 6,
+                                          "categoryId": 14539,
+                                          "sid": 29556,
+                                          "butPriorStart": 4
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 2,
+                                          "butStart": 7,
+                                          "butEnd": 7,
+                                          "categoryId": 14539,
+                                          "sid": 29557,
+                                          "butPriorStart": 2
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 11,
+                                          "butStart": 8,
+                                          "butEnd": 8,
+                                          "categoryId": 14539,
+                                          "sid": 29558,
+                                          "butPriorStart": 11
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 13,
+                                          "butStart": 9,
+                                          "butEnd": 9,
+                                          "categoryId": 14539,
+                                          "sid": 29559,
+                                          "butPriorStart": 13
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 15,
+                                          "butStart": 10,
+                                          "butEnd": 10,
+                                          "categoryId": 14539,
+                                          "sid": 29560,
+                                          "butPriorStart": 15
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 14,
+                                          "butStart": 11,
+                                          "butEnd": 11,
+                                          "categoryId": 14539,
+                                          "sid": 29561,
+                                          "butPriorStart": 14
+                                      },
+                                      {
+                                          "jumpType": 1,
+                                          "butPriorEnd": 12,
+                                          "butStart": 12,
+                                          "butEnd": 12,
+                                          "categoryId": 14539,
+                                          "sid": 29562,
+                                          "butPriorStart": 12
+                                      }
+                                  ],
+                                  "buttonInfo": "358051&_&,358052&_&,358053&_&,358054&_&,358055&_&,358056&_&,358057&_&,358058&_&,358059&_&,358060&_&,358061&_&,358062&_&,358063&_&,358064&_&,358065&_&,358066&_&,358067&_&,358068&_&,358069&_&,358070&_&"
+                              },
+                              {
+                                  "blankHeight": 8,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17782
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263002",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358071,
+                                  "but3Id": 358073,
+                                  "but2Id": 358072,
+                                  "but1Name": "药到家海景1",
+                                  "but5Id": 358075,
+                                  "sid": 55074,
+                                  "but4Id": 358074,
+                                  "but6Id": 358076,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "blankHeight": 10,
+                                  "moduleType": "Split",
+                                  "lineHeight": 10,
+                                  "type": 1,
+                                  "lineWidth": 10,
+                                  "sid": 17783
+                              },
+                              {
+                                  "picWidth": 250,
+                                  "resourceId": "92263004",
+                                  "picHeight": 150,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358077,
+                                  "but3Id": 358079,
+                                  "but2Id": 358078,
+                                  "but1Name": "药到家-活动分类1",
+                                  "but5Id": 358081,
+                                  "sid": 55075,
+                                  "but3Name": "药到家-活动分类3",
+                                  "but4Id": 358080,
+                                  "but6Id": 358082,
+                                  "modeType": 1,
+                                  "showType": 3,
+                                  "but2Name": "药到家-活动分类2"
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263005",
+                                  "moduleType": "Product",
+                                  "butId": 358083,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家-分类主推单品",
+                                  "sid": 38752
+                              },
+                              {
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "resourceId": "92263028",
+                                  "moduleType": "Timer",
+                                  "butId": 358084,
+                                  "butName": "限时时间",
+                                  "sid": 13492
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263029",
+                                  "moduleType": "Product",
+                                  "butId": 358085,
+                                  "showType": 3,
+                                  "productNum": 3,
+                                  "butName": "限时特惠单品",
+                                  "sid": 38753
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263006",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358086,
+                                  "but3Id": 358088,
+                                  "but2Id": 358087,
+                                  "but1Name": "药到家主推爆款",
+                                  "but5Id": 358090,
+                                  "sid": 55076,
+                                  "but4Id": 358089,
+                                  "but6Id": 358091,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263007",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358092,
+                                  "but3Id": 358094,
+                                  "but2Id": 358093,
+                                  "but1Name": "药到家主推爆款-宽",
+                                  "but5Id": 358096,
+                                  "sid": 55077,
+                                  "but4Id": 358095,
+                                  "but6Id": 358097,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263008",
+                                  "moduleType": "Product",
+                                  "butId": 358098,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家主推爆款单品",
+                                  "sid": 38754
+                              },
+                              {
+                                  "picWidth": 375,
+                                  "resourceId": "92263009",
+                                  "picHeight": 205,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358099,
+                                  "but3Id": 358101,
+                                  "but2Id": 358100,
+                                  "but1Name": "药到家主推四框1",
+                                  "but5Id": 358103,
+                                  "sid": 55078,
+                                  "but3Name": "药到家主推四框3",
+                                  "but4Id": 358102,
+                                  "but6Id": 358104,
+                                  "modeType": 1,
+                                  "showType": 5,
+                                  "but4Name": "药到家主推四框4",
+                                  "but2Name": "药到家主推四框2"
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263040",
+                                  "picHeight": 120,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358105,
+                                  "but3Id": 358107,
+                                  "but2Id": 358106,
+                                  "but1Name": "药到家社群二维码",
+                                  "but5Id": 358109,
+                                  "sid": 55079,
+                                  "but4Id": 358108,
+                                  "but6Id": 358110,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263010",
+                                  "moduleType": "Product",
+                                  "butId": 358111,
+                                  "showType": 4,
+                                  "productNum": 8,
+                                  "butName": "药到家主推分类单品",
+                                  "sid": 38755
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263011",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358112,
+                                  "but3Id": 358114,
+                                  "but2Id": 358113,
+                                  "but1Name": "药到家主推层1",
+                                  "but5Id": 358116,
+                                  "sid": 55080,
+                                  "but4Id": 358115,
+                                  "but6Id": 358117,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263012",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358118,
+                                  "but3Id": 358120,
+                                  "but2Id": 358119,
+                                  "but1Name": "药到家主推层1-宽",
+                                  "but5Id": 358122,
+                                  "sid": 55081,
+                                  "but4Id": 358121,
+                                  "but6Id": 358123,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263013",
+                                  "moduleType": "Product",
+                                  "butId": 358124,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层1-单品",
+                                  "sid": 38756
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263014",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358125,
+                                  "but3Id": 358127,
+                                  "but2Id": 358126,
+                                  "but1Name": "药到家主推层2",
+                                  "but5Id": 358129,
+                                  "sid": 55082,
+                                  "but4Id": 358128,
+                                  "but6Id": 358130,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263015",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358131,
+                                  "but3Id": 358133,
+                                  "but2Id": 358132,
+                                  "but1Name": "药到家主推层2-宽",
+                                  "but5Id": 358135,
+                                  "sid": 55083,
+                                  "but4Id": 358134,
+                                  "but6Id": 358136,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263016",
+                                  "moduleType": "Product",
+                                  "butId": 358137,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层2-单品",
+                                  "sid": 38757
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263017",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358138,
+                                  "but3Id": 358140,
+                                  "but2Id": 358139,
+                                  "but1Name": "药到家主推层3",
+                                  "but5Id": 358142,
+                                  "sid": 55084,
+                                  "but4Id": 358141,
+                                  "but6Id": 358143,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263018",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358144,
+                                  "but3Id": 358146,
+                                  "but2Id": 358145,
+                                  "but1Name": "药到家主推层3-宽",
+                                  "but5Id": 358148,
+                                  "sid": 55085,
+                                  "but4Id": 358147,
+                                  "but6Id": 358149,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263019",
+                                  "moduleType": "Product",
+                                  "butId": 358150,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层3-单品",
+                                  "sid": 38758
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263020",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358151,
+                                  "but3Id": 358153,
+                                  "but2Id": 358152,
+                                  "but1Name": "药到家主推层4",
+                                  "but5Id": 358155,
+                                  "sid": 55086,
+                                  "but4Id": 358154,
+                                  "but6Id": 358156,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263021",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358157,
+                                  "but3Id": 358159,
+                                  "but2Id": 358158,
+                                  "but1Name": "药到家主推层4-宽",
+                                  "but5Id": 358161,
+                                  "sid": 55087,
+                                  "but4Id": 358160,
+                                  "but6Id": 358162,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263022",
+                                  "moduleType": "Product",
+                                  "butId": 358163,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层4-单品",
+                                  "sid": 38759
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263033",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358164,
+                                  "but3Id": 358166,
+                                  "but2Id": 358165,
+                                  "but1Name": "药到家主推层5",
+                                  "but5Id": 358168,
+                                  "sid": 55088,
+                                  "but4Id": 358167,
+                                  "but6Id": 358169,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263034",
+                                  "picHeight": 220,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358170,
+                                  "but3Id": 358172,
+                                  "but2Id": 358171,
+                                  "but1Name": "药到家主推层5-宽",
+                                  "but5Id": 358174,
+                                  "sid": 55089,
+                                  "but4Id": 358173,
+                                  "but6Id": 358175,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263035",
+                                  "moduleType": "Product",
+                                  "butId": 358176,
+                                  "showType": 5,
+                                  "productNum": 8,
+                                  "butName": "药到家主推层5-单品",
+                                  "sid": 38760
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263023",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358177,
+                                  "but3Id": 358179,
+                                  "but2Id": 358178,
+                                  "but1Name": "药到家品牌墙标题",
+                                  "but5Id": 358181,
+                                  "sid": 55090,
+                                  "but4Id": 358180,
+                                  "but6Id": 358182,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "picWidth": 375,
+                                  "resourceId": "92263024",
+                                  "picHeight": 170,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358183,
+                                  "but3Id": 358185,
+                                  "but2Id": 358184,
+                                  "but1Name": "药到家品牌墙1",
+                                  "but5Id": 358187,
+                                  "sid": 55091,
+                                  "but4Id": 358186,
+                                  "but6Id": 358188,
+                                  "modeType": 1,
+                                  "showType": 2,
+                                  "but2Name": "药到家品牌墙2"
+                              },
+                              {
+                                  "picWidth": 188,
+                                  "resourceId": "92263025",
+                                  "picHeight": 170,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358189,
+                                  "but3Id": 358191,
+                                  "but2Id": 358190,
+                                  "but1Name": "药到家品牌墙3",
+                                  "but5Id": 358193,
+                                  "sid": 55092,
+                                  "but3Name": "药到家品牌墙5",
+                                  "but4Id": 358192,
+                                  "but6Id": 358194,
+                                  "modeType": 1,
+                                  "showType": 7,
+                                  "but4Name": "药到家品牌墙6",
+                                  "but2Name": "药到家品牌墙4"
+                              },
+                              {
+                                  "modeType": 1,
+                                  "resourceId": "92263026",
+                                  "moduleType": "Product",
+                                  "butId": 358195,
+                                  "showType": 5,
+                                  "productNum": 16,
+                                  "butName": "药到家品牌墙-单品",
+                                  "sid": 38761
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263030",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358196,
+                                  "but3Id": 358198,
+                                  "but2Id": 358197,
+                                  "but1Name": "猜你喜欢",
+                                  "but5Id": 358200,
+                                  "sid": 55093,
+                                  "but4Id": 358199,
+                                  "but6Id": 358201,
+                                  "modeType": 1,
+                                  "showType": 1
+                              },
+                              {
+                                  "styleType": 1,
+                                  "modeType": 1,
+                                  "localRow": 16,
+                                  "moduleType": "Guess",
+                                  "rowNum": 30,
+                                  "sid": 308
+                              },
+                              {
+                                  "picWidth": 750,
+                                  "resourceId": "92263031",
+                                  "picHeight": 110,
+                                  "moduleType": "Picture",
+                                  "but1Id": 358202,
+                                  "but3Id": 358204,
+                                  "but2Id": 358203,
+                                  "but1Name": "第一医药介绍",
+                                  "but5Id": 358206,
+                                  "sid": 55094,
+                                  "but4Id": 358205,
+                                  "but6Id": 358207,
+                                  "modeType": 1,
+                                  "showType": 1
+                              }
+                          ],
+                          "tabInd": 1,
+                          "butName": "药到家先品后店测试定位门店"
+                      }
+                  ],
+                  "labelColor": "#FFFFFFF",
+                  "sid": 3435
+              }
+          ],
+          "name": "药到家先品后店测试-v1-APP-器械城+猜你喜欢+去器械城",
+          "cBy": "苏靖宇",
+          "mTime": "2022-01-20 09:32:49",
+          "config": {
+              "cpPicType": 1,
+              "myCpButId": 357863,
+              "sid": 3678,
+              "cpButId": 357862,
+              "myCpPicType": 1,
+              "showPrm": 0,
+              "ctCpPicType": 1,
+              "prmPicHeight": 120,
+              "ctCpButName": "药到家先品后店测试券",
+              "getMoreCoupon": 1,
+              "ctCpButId": 357864,
+              "showCpPop": 1,
+              "c_popPriority": "type:1,priority:1_type:2,priority:2",
+              "popPriority": [
+                  {
+                      "type": 1,
+                      "priority": 1
+                  },
+                  {
+                      "type": 2,
+                      "priority": 2
+                  }
+              ],
+              "showYyzz": 0,
+              "showAdPop": 0,
+              "prmButId": 357865,
+              "backColor": "#F7F7F7",
+              "cpTitModeType": 1,
+              "templetSid": 4103,
+              "adModeType": 1,
+              "prmPicWidth": 120,
+              "cpButName": "药到家先品后店测试券",
+              "myCpButName": "药到家先品后店测试券"
+          },
+          "tempType": 1,
+          "status": 1
+      }
+  }
+}
+
 export const mockData = {
   "onOff": "Y",
   "templet": {
