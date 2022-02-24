@@ -27,13 +27,13 @@ const API = async (req, res) => {
 
 	// obj = mockData
 	// obj.obj.templet.moduleList[1].tabItemList[0].moduleList = obj.obj.templet.moduleList[1].tabItemList[0].moduleList.slice(0, 12)
-	const { obj: tmp, ...f_objOthers } = mockData
+	const { obj, ...data_others } = mockData
 	const { tabBar, moduleList, config, ...f_templetOthers } = tmp.templet
 	const { tabBarInfoList, ...f_tabBarOthers } = tabBar
-	const obj = {
-		...f_objOthers,
+	const data = {
+		...data_others,
 		obj: {
-			onOff: tmp.onOff,
+			onOff: obj.onOff,
 			templet: {
 				tabBar: {
 					tabBarInfoList,
@@ -77,7 +77,7 @@ const API = async (req, res) => {
 		setTimeout(resolve.bind(null, resolve), 100)
 	})
 		.then(() => {
-			res.status(200).json(obj)
+			res.status(200).json(data)
 		})
 }
 

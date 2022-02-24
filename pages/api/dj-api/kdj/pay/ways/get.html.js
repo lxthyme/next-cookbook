@@ -1,10 +1,10 @@
 const API = (req, res) => {
 
-  const { obj: tmp_obj, ...others_obj } = mockData
-  const obj = {
-    ...others_obj,
+  const { obj, ...data_others } = mockData
+  const data = {
+    ...data_others,
     obj: {
-      ...tmp_obj,
+      ...obj,
       // ecpShow: false
     }
   }
@@ -13,7 +13,7 @@ const API = (req, res) => {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
     })
 }
 

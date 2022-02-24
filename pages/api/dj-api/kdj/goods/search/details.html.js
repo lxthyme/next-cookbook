@@ -3,24 +3,27 @@ import {
 } from "../../../../../../mockData/dj/search.details";
 
 const API = (req, res) => {
-  const { ids = [] } = req.body
 
-  // let data = {}
-  // if (ids.includes('2020_007780_2020007780ENT23234@@1@@168251')) {
-  //   data = mockData_VipCoupon.obj.goodsList
-  //     // .slice(0, 1)
-  //   // .filter(t => t.receiveFlag === 4)
-  // } else {
-  //   data = mockData.obj.goodsList
-  // }
-  let obj = mockData_test_dj
-  obj.obj.goodsList[0].popinfosList = [...obj.obj.goodsList[0].popinfosList, ...obj.obj.goodsList[0].popinfosList]
+  const { obj, ...data_others } = mockData_test_dj
+  const { goodsList } = obj
+  const data = {
+    ...data_others,
+    obj: {
+      goodsList: goodsList.map((t, idx) => {
+        let { popinfosList, previewList, xgList, pageCat, ...t_others } = t
+        if (idx === 0) {
+          popinfosList = [...popinfosList, ...popinfosList]
+        }
+        return { popinfosList, previewList, xgList, pageCat, ...t_others }
+      })
+    }
+  }
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
     })
 }
 

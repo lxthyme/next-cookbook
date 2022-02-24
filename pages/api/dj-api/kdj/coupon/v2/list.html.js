@@ -19,32 +19,26 @@ const API = (req, res) => {
    *      4: 达到个人领券上限
   */
 
-  const data = mockData.obj.list
-    .map((t, idx) => {
-      // t.receiveFlag = '3'
-      t.receiveFlag = '4'
-      // t.receiveFlag = `${idx % 3}`
+  const { obj, ...data_others } = mockData
+  const { list, ...obj_others } = obj
+  const data = {
+    ...data_others,
+    obj: {
+      ...obj_others,
+      list: list.map((t, idx) => {
+        // t.receiveFlag = '3'
+        t.receiveFlag = '4'
+        // t.receiveFlag = `${idx % 3}`
 
-      return t
-    });
-
+        return t
+      })
+    }
+  }
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json({
-        success: true,
-        resCode: '00100000',
-        obj: {
-          "pages": 1,
-          "count": 4,
-          "start": 1,
-          "pageSize": 12,
-          "end": 12,
-          "currentPage": 1,
-          list: data
-        }
-      })
+      res.status(200).json(data)
     })
 }
 

@@ -3,339 +3,50 @@ export default function (req, res) {
     const total_page = Math.max(0, 5 - page)
 
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
-    const list = []
-
+    const { obj, ...data_others } = mockData
+    const {
+        orderDetailList,
+        orderInvoiceDto,
+        orderPromotionList,
+        orderHistroryList,
+        orderPayList,
+        orderPackageList,
+        dcSpTypes,
+        stallDTOList,
+        logisticsHistory,
+        showBottonList,
+        showDetailBottonList,
+        ...obj_others
+    } = obj
     const data = {
-        ...mockData,
-        orderStatus: "1005",
-        showRiderMap: 1,
-        riderChannel: "LHDJ",
-        // riderChannel: "",
-        orderStatusDesc: "配送中...233"
+        ...data_others,
+        obj: {
+            ...obj_others,
+            orderDetailList,
+            orderInvoiceDto,
+            orderPromotionList,
+            orderHistroryList,
+            orderPayList,
+            orderPackageList,
+            dcSpTypes,
+            stallDTOList,
+            logisticsHistory,
+            showBottonList,
+            showDetailBottonList,
+            orderStatus: "1005",
+            showRiderMap: 1,
+            riderChannel: "LHDJ",
+            // riderChannel: "",
+            orderStatusDesc: "配送中...233"
+        },
     }
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
     })
         .then(() => {
-            res.status(200).json({
-                "success": true,
-                obj: data,
-            })
+            res.status(200).json(data)
         })
 }
 
-const mockData = {
-    "orderSourceCode": 1,
-    "orderTypeCode": "25",
-    "pageNumber": 1,
-    "pageSize": 10,
-    "orderType": "快到家",
-    "orderNo": "LAZ20210816480596",
-    "memberId": "100000000010391",
-    "mchId": "010090150505201",
-    "orderUsername": "wrywwwrrryyy",
-    "orderPhone": "13701869898",
-    "orderStatus": "1007",
-    "statusPay": "4002",
-    "signTime": "2021-08-16 17:18:00",
-    "saleMoneySum": 1.7,
-    "reWeightMoney": 0,
-    "sendCost": 0,
-    "deliveryServiceCharge": 0,
-    "originSendCost": 6,
-    "discountTransport": 6,
-    "discountMoneySum": 0,
-    "needMoney": 1.7,
-    "orderTime": "2021-08-16 16:49:27",
-    "receptName": "林航",
-    "receptPhone": "13701869898",
-    "merchantType": "联华股份",
-    "delayCompleteTimes": 0,
-    "sendTimeFlag": 3,
-    "sendTimeDesc": "立即配送",
-    "orderStatusDesc": "已完成",
-    "sendTypeSid": 1,
-    "sendType": "送货上门",
-    "payMetSid": 1,
-    "payMet": "在线支付",
-    "receptAddressDetail": "上海市 市辖区 浦东新区 6号线_源深体育中心_地铁站__1号口",
-    "parentOrderNo": "951601959909",
-    "allNeedMoney": 1.7,
-    "aliasOrderNo": "0",
-    "orderDetailList": [{
-        "itemAmount": 1.7,
-        "showSkuPrice": 1.70,
-        "shopSid": "000281",
-        "goodsDetSid": "0509585001",
-        "goodsCode": "79431",
-        "picUrl": "https://Img.iblimg.com/goods-53/2000/2016/11/SP_2000_20000509585001_01_10006.jpg",
-        "goodsName": "怡宝 饮用 纯净水555ml/瓶",
-        "integral": 0.0,
-        "salePrice": 1.7,
-        "saleSum": 1,
-        "allowReNum": 1,
-        "orderDetailNo": "LAZ202108164805960101",
-        "merchantId": "20200002811",
-        "tax": "0.13",
-        "goodsType": "1",
-        "reWeightMoney": 0,
-        "tariffRate": 0,
-        "tariff": 0,
-        "if7Refund": 0,
-        "measureUnit": "瓶",
-        "goodsWeight": 0.555,
-        "discountAmount": 0,
-        "purchaseType": "25",
-        "bgCateSid": "102868",
-        "isCanReturn": false,
-        "isGift": 0,
-        "bl_ad": "A668899K_-_20754_-_3",
-        "isMergeTemplete": "1",
-        "isFq": 0,
-        "promShopCartMZ": "611a2678273da41d1c931485",
-        "showDiscountAmount": 0,
-        "showSalePrice": 1.7,
-        "barCode": "6901285991219",
-        "price": 1.70,
-        "priceType": "0",
-        "canReturn": false
-    }],
-    "orderInvoiceDto": {
-        "sid": 44140716,
-        "orderNo": "LAZ20210816480596",
-        "invType": 0,
-        "invName": "个人",
-        "deliveryMode": ""
-    },
-    "orderPromotionList": [],
-    "orderHistroryList": [{
-        "sid": 296214323,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1007",
-        "orderStatusDesc": "已完成",
-        "displyStatus": "您的订单已签收.感谢您在百联购物,欢迎您再次光临.",
-        "operateTime": 1629105480647,
-        "orderTime": "2021-08-16 17:18:00"
-    }, {
-        "sid": 296213403,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1005",
-        "orderStatusDesc": "配送中",
-        "displyStatus": "您的订单已经出库,物流配送中",
-        "operateTime": 1629105201799,
-        "operator": "tms",
-        "orderTime": "2021-08-16 17:13:21"
-    }, {
-        "sid": 296207879,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1004",
-        "orderStatusDesc": "待出库",
-        "displyStatus": "您的订单配货完成",
-        "operateTime": 1629104016057,
-        "operator": "vpos",
-        "orderTime": "2021-08-16 16:53:36"
-    }, {
-        "sid": 296206380,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1003",
-        "orderStatusDesc": "待拣货",
-        "displyStatus": "您的订单审核通过，等待配货",
-        "operateTime": 1629103773320,
-        "operator": "系统",
-        "orderTime": "2021-08-16 16:49:33"
-    }, {
-        "sid": 296206358,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1092",
-        "orderStatusDesc": "订单传输成功",
-        "displyStatus": "订单传输成功",
-        "operateTime": 1629103768280,
-        "orderTime": "2021-08-16 16:49:28"
-    }, {
-        "sid": 296206356,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1002",
-        "orderStatusDesc": "待审核",
-        "displyStatus": "您的订单支付成功,等待系统审核",
-        "operateTime": 1629103768144,
-        "orderTime": "2021-08-16 16:49:28"
-    }, {
-        "sid": 296206355,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1035",
-        "orderStatusDesc": "处理中",
-        "displyStatus": "您的订单已经支付完成，正在处理中",
-        "operateTime": 1629103768097,
-        "orderTime": "2021-08-16 16:49:28"
-    }, {
-        "sid": 296206352,
-        "orderNo": "LAZ20210816480596",
-        "orderStatus": "1001",
-        "orderStatusDesc": "待支付",
-        "displyStatus": "您的订单已经生成，等待付款",
-        "operateTime": 1629103767884,
-        "orderTime": "2021-08-16 16:49:27"
-    }],
-    "orderPayList": [{
-        "isReturnNull": 0,
-        "orderNo": "LAZ20210816480596",
-        "payAmount": 1.7,
-        "payCode": "58",
-        "payName": "积分支付",
-        "payTime": 1629103767000,
-        "serialNo": "20210816358777863",
-        "userId": "100000000010391",
-        "discountAmt": 0,
-        "chlDiscountAmt": 0,
-        "txNo": "951601959909",
-        "mchId": "010090150505201",
-        "paySource": "91111111",
-        "blchannelid": "1"
-    }],
-    "extrFlag": 0,
-    "courierNo": "LAZ20210816480596",
-    "delComName": "Fengniao",
-    "provinceCode": "866",
-    "cityCode": "867",
-    "districtCode": "880",
-    "orderPackageList": [{
-        "sid": 20451607,
-        "packageId": "LAZ20210816480596",
-        "delComName": "Fengniao",
-        "orderNo": "LAZ20210816480596",
-        "operateTime": 1629104016000,
-        "packageStatus": "1007",
-        "packageStatusDesc": "已完成",
-        "updateTime": 1629105480641,
-        "packageType": 2,
-        "isExtended": 0,
-        "expressNo": "LAZ20210816480596",
-        "outStatus": "0",
-        "logisticOrderNo": "LAZ2021081648059601"
-    }],
-    "saleAllSum": 1,
-    "isHide": 0,
-    "courierName": "孟飞鹏",
-    "courierPhone": "15035131165",
-    "storeCode": "000281",
-    "storeName": "联华超市羽山店",
-    "storeAddress": "羽山路298号",
-    "storePic": "https://img21.iblimg.com/site-2/images/store/logo/2019/07/1692763483.jpg",
-    "activeTime": 60,
-    "totalTariff": 0,
-    "serviceFee": 0.221,
-    "omsNotifyUrl": "http://oms.bl.com:8090/oms-core/order/payedCallBack.htm",
-    "industrySid": "2000",
-    "stockType": "1",
-    "packageId": "1012000001",
-    "shopDetailAddress": "上海市 市辖区 浦东新区 6号线_源深体育中心_地铁站__1号口",
-    "shopIndustrySid": "2020",
-    "storeIndustrySid": "2020",
-    "customerStockoutProgram": "1",
-    "finalPaymentMoney": 0,
-    "depositMoney": 0,
-    "depositStartTime": "2016-08-08 23:07:58",
-    "depositEndTime": "2099-12-31 10:10:10",
-    "comSid": "2300",
-    "isFq": 0,
-    "manageType": 1,
-    "fid": "9063",
-    "receptDistrict": "880",
-    "receptCity": "867",
-    "receptProv": "866",
-    "showSaleMoneySum": 1.7,
-    "showDiscountMoneySum": 0,
-    "delivTime": 1629105201000,
-    "payTime": 1629103767000,
-    "dcSpTypes": [],
-    "stallDTOList": [],
-    "bu": "3",
-    "logisticsHistory": [{
-        "packageStatus": "1007",
-        "packageStatusDesc": "已完成",
-        "packageDesc": "您的订单已签收.感谢您在百联购物,欢迎您再次光临.",
-        "timeStatusUpdate": 1629105480000,
-        "statusDate": "2021.08.16",
-        "statusTime": "17:18:00"
-    }, {
-        "packageDesc": "快件已签收完成。",
-        "timeStatusUpdate": 1629105480000,
-        "statusDate": "2021.08.16",
-        "statusTime": "17:18:00"
-    }, {
-        "packageStatus": "1005",
-        "packageStatusDesc": "配送中",
-        "packageDesc": "您的订单已经出库,物流配送中",
-        "timeStatusUpdate": 1629105201000,
-        "statusDate": "2021.08.16",
-        "statusTime": "17:13:21"
-    }, {
-        "packageDesc": "快件正在派送中,快递员:孟飞鹏,手机:15035131165",
-        "timeStatusUpdate": 1629105201000,
-        "statusDate": "2021.08.16",
-        "statusTime": "17:13:21"
-    }, {
-        "packageDesc": "快递员取货处理中,快递员:孟飞鹏,手机:15035131165",
-        "timeStatusUpdate": 1629104183000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:56:23"
-    }, {
-        "packageStatus": "1004",
-        "packageStatusDesc": "待出库",
-        "packageDesc": "您的订单配货完成",
-        "timeStatusUpdate": 1629104016000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:53:36"
-    }, {
-        "packageDesc": "已通知快递公司。",
-        "timeStatusUpdate": 1629104016000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:53:36"
-    }, {
-        "packageStatus": "1003",
-        "packageStatusDesc": "待拣货",
-        "packageDesc": "您的订单审核通过，等待配货",
-        "timeStatusUpdate": 1629103773000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:49:33"
-    }, {
-        "packageStatus": "1092",
-        "packageStatusDesc": "订单传输成功",
-        "packageDesc": "订单传输成功",
-        "timeStatusUpdate": 1629103768000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:49:28"
-    }, {
-        "packageStatus": "1002",
-        "packageStatusDesc": "待审核",
-        "packageDesc": "您的订单支付成功,等待系统审核",
-        "timeStatusUpdate": 1629103768000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:49:28"
-    }, {
-        "packageStatus": "1035",
-        "packageStatusDesc": "处理中",
-        "packageDesc": "您的订单已经支付完成，正在处理中",
-        "timeStatusUpdate": 1629103768000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:49:28"
-    }, {
-        "packageStatus": "1001",
-        "packageStatusDesc": "待支付",
-        "packageDesc": "您的订单已经生成，等待付款",
-        "timeStatusUpdate": 1629103767000,
-        "statusDate": "2021.08.16",
-        "statusTime": "16:49:27"
-    }],
-    "showBottonList": [4, 5],
-    "showDetailBottonList": [4, 5, 8, 9],
-    "orderStatusFlag": 0,
-    "consigneeLat": "31.233004",
-    "consigneeLng": "121.534642",
-    "sellerLat": "31.231501",
-    "sellerLng": "121.541485",
-    "payJump": 0,
-    "excludeTemplate": ""
-
-}
+const mockData = { "resCode": null, "msg": null, "obj": { "orderSourceCode": 1, "orderTypeCode": "46", "orderSubTypeCode": null, "orderNoList": null, "pageNumber": 1, "pageSize": 10, "orderType": "扫码购订单", "orderNo": "LAS20220120326341", "memberId": "100000002750974", "mchId": "000090150504251", "memberEmail": null, "orderUsername": " ", "orderPhone": "19953769004", "orderStatusList": null, "orderStatus": "1029", "statusPay": null, "startTime": null, "endTime": null, "signTime": null, "groupBuyingNo": null, "saleMoneySum": 436, "reWeightMoney": 0, "sendCost": 0, "deliveryServiceCharge": 0, "originSendCost": null, "discountTransport": 0, "discountMoneySum": 0, "needMoney": 436, "orderTime": "2022-01-20 17:17:35", "receptName": " ", "receptPhone": "19953769004", "merchantType": null, "merchantNo": "20200002431", "merchantName": "20200002431", "completionTime": null, "delayCompleteTimes": 0, "sendTimeFlag": 3, "sendTimeDesc": "立即配送", "orderStatusDesc": "已取消", "sendTypeSid": 2, "sendType": "自行提货", "extrPlaceSid": "000243", "extrPlace": "阿炼的新标超数字化门店", "clientRemark": null, "payMetSid": 1, "payMet": "在线支付", "receptAddressDetail": "四川南路22号", "parentOrderNo": "SIT1002001702007", "allNeedMoney": 436, "aliasOrderNo": "7cefd485621442f89599a1ff49ff630e", "extrCode": null, "deliveryNo": null, "refundMonNo": null, "operatorIdList": null, "orderDetailList": [{ "itemAmount": 436, "showSkuPrice": 218.00, "shopSid": "000243", "goodsSid": null, "goodsDetSid": "0314022001", "goodsCode": "1171749", "picUrl": "https://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000005006001_01_1010.jpg", "goodsUrl": null, "goodsName": "52度洋河海之蓝蓝色经典绵柔型酒", "goodsStan": null, "goodsColor": null, "integral": 0.0, "oriPrice": 218, "salePrice": 218, "saleSum": 2, "sendSum": null, "totalPrice": null, "refundNum": null, "allowReNum": 2, "orderDetailNo": "LAS202201203263410101", "stockDetailCodes": null, "cateName": null, "merchantName": null, "discountInfo": null, "merchantId": "20200002431", "tax": "0.13", "goodsType": null, "isReWeight": null, "reWeightMoney": 0, "tariffRate": 0, "tariff": 0, "overExpress": null, "if7Refund": null, "tariffNo": null, "shipOrigin": null, "measureUnit": null, "goodsWeight": 0.1, "discountAmount": 0, "purchaseType": null, "purchaseRule": null, "isDefault": null, "bgCateSid": "212037", "isCanReturn": false, "importPort": null, "importWarehouse": null, "limitedType": null, "isGift": 0, "groupGoodCode": null, "groupGoodsName": null, "goodsGiftRelation": null, "rule": null, "groupName": null, "bl_ad": null, "isMergeTemplete": null, "isFq": null, "reserveInfo1": "N", "reserveInfo2": "6932599212202", "reserveInfo3": null, "promShopCartMZ": null, "showDiscountAmount": 0, "showSalePrice": 218, "payType": null, "barCode": "6932599212202", "price": 218.00, "priceType": null, "activeCode": "KDJSDG001", "dkSid": null, "dkName": null, "dcSpType": null, "jgSpLineNbr": null, "fwSpLineNbr": null, "qcNbr": null, "serviceGoodsDTO": null, "canReturn": false }], "orderList": null, "orderInvoiceDto": { "operator": null, "sid": 303059, "orderNo": "LAS20220120326341", "billingId": null, "invType": 0, "invName": "个人", "invDesc": null, "invoiceAddress": null, "invoiceToName": null, "invioceToPhone": null, "receptInvEm": null, "invoiceAdditionInfo": null, "invoiceBankAccount": null, "invoiceBankName": null, "invoiceCompany": null, "registryAddress": null, "registryPhone": null, "invoiceProv": null, "invoiceCity": null, "invoiceDistrict": null, "invoiceUrl": null, "invoiceSubject": null, "invoiceUrlGoods": null, "invoiceUrlExpenses": null, "imageUrlByOrder": null, "imageUrlByFreight": null, "delWay": null, "courierNo": null, "delComName": null, "openingCycle": null, "status": null, "invoiceH5Url": null, "freightInvoiceCode": null, "freightInvoiceNumber": null, "orderInvoiceCode": null, "orderInvoiceNumber": null, "deliveryMode": "" }, "orderPromotionList": [], "orderHistroryList": [{ "sid": 1174885, "orderNo": "LAS20220120326341", "orderStatus": "1029", "orderStatusDesc": "已取消", "displyStatus": "您的订单已经取消", "operateTime": 1642674000537, "operator": "JOB", "isDisplay": null, "previousStatus": null, "remark": null, "orderTime": "2022-01-20 18:20:00" }, { "sid": 1174873, "orderNo": "LAS20220120326341", "orderStatus": "1001", "orderStatusDesc": "待支付", "displyStatus": "您的订单已经生成，等待付款", "operateTime": 1642670255602, "operator": null, "isDisplay": null, "previousStatus": null, "remark": null, "orderTime": "2022-01-20 17:17:35" }], "orderPayList": [], "promotionPayId": null, "content": null, "jigouName": null, "accountNo": null, "accountDate": null, "householdNo": null, "orderTypeList": null, "extrFlag": 0, "courierNo": null, "delComName": null, "delComNo": null, "parkingDuration": null, "plateNbr": null, "provinceCode": null, "cityCode": null, "districtCode": null, "provinceName": null, "cityName": null, "districtName": null, "userName": null, "identityCardNumber": null, "gbuyId": null, "checkLevel": null, "orderPackageList": [], "orderLogisticsList": null, "saleAllSum": 2, "externalLink": null, "vatId": null, "vatPackageId": null, "isHide": 0, "courierName": null, "courierPhone": null, "storeCode": "000243", "storeName": "阿炼的新标超数字化门店", "storeAddress": null, "storePic": "https://img20.st.iblimg.com/site-3/images/store/logo/2019/01/1566574402.png", "activeTime": 60, "totalTariff": 0, "shopSid": null, "changeMoney": null, "serviceFee": null, "payType": null, "tokenId": "7cefd485621442f89599a1ff49ff630e", "omsNotifyUrl": "http://oms.st.bl.com:7210/oms-core/order/payedCallBack.htm", "industrySid": "2000", "subIndustrySid": null, "stockType": "-1", "cpsToken": null, "vatType": null, "packageId": "000000", "shopDetailAddress": "(百联自提包裹)上海市市辖区黄浦区null", "shopShortAddress": "(百联自提包裹)null", "aliasSaleTime": null, "shopIndustrySid": null, "storeIndustrySid": "2020", "applyNo": null, "distance": null, "customerStockoutProgram": null, "entryTime": null, "availableTime": null, "pointAmount": null, "parkingAmount": null, "couponAmount": null, "certificateType": null, "identificationNo": null, "frontalFace": null, "flipFace": null, "certificationStatus": null, "refundIfApply": null, "cardExtractPhone": null, "groupGoodsList": null, "finalPaymentMoney": null, "depositMoney": 0, "depositStartTime": null, "depositEndTime": null, "finalPayStartTime": null, "finalPayEndTime": null, "giftOrderType": null, "comSid": "2300", "giftActivityId": null, "outPlantCode": "5", "source": null, "isFq": null, "needGiftOrder": null, "manageType": 1, "fid": null, "dateSelect": null, "receptDistrict": null, "receptCity": null, "receptProv": null, "versionName": null, "showSaleMoneySum": 436, "showDiscountMoneySum": 0, "orderNos": null, "delivTime": null, "isAYearAgo": null, "sendStartTime": null, "sendEndTime": null, "payTime": null, "sendDate": null, "dcSpTypes": [], "stallDTOList": [], "dkSids": null, "cateringOrderStatusList": null, "pickUpType": null, "serviceGoodsAmount": null, "shopLogo": null, "bu": "3", "isSpecial": null, "isRefund": null, "fulfillStatus": null, "fulfillStatusDesc": null, "prescriptionId": null, "cateringOrderRelationship": null, "logisticsHistory": [{ "sid": null, "deliveryNo": null, "orderNo": null, "packageStatus": "1029", "packageStatusDesc": "已取消", "packageDesc": "您的订单已经取消", "timeStatusUpdate": 1642674000000, "riderCode": null, "serviceType": null, "riderName": null, "riderLat": null, "riderLng": null, "riderMobile": null, "timePositionUpdate": null, "cancleType": null, "cancelReason": null, "orderInfoContent": null, "updateTime": null, "context": null, "areaCode": null, "areaName": null, "statusDate": "2022.01.20", "statusTime": "18:20:00" }, { "sid": null, "deliveryNo": null, "orderNo": null, "packageStatus": "1001", "packageStatusDesc": "待支付", "packageDesc": "您的订单已经生成，等待付款", "timeStatusUpdate": 1642670255000, "riderCode": null, "serviceType": null, "riderName": null, "riderLat": null, "riderLng": null, "riderMobile": null, "timePositionUpdate": null, "cancleType": null, "cancelReason": null, "orderInfoContent": null, "updateTime": null, "context": null, "areaCode": null, "areaName": null, "statusDate": "2022.01.20", "statusTime": "17:17:35" }], "showBottonList": [5], "showDetailBottonList": [5, 8, 9], "viewRefundUrl": null, "orderStatusFlag": 0, "riderChannel": null, "showRiderMap": null, "consigneeLat": "31.227801", "consigneeLng": "121.487473", "sellerLat": "31.227801", "sellerLng": "121.487473", "ecpPay": null, "plusDiscountPrice": null, "payJump": 0, "excludeTemplate": "" }, "success": true }

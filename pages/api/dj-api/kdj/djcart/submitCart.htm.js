@@ -1,22 +1,49 @@
 const API = (req, res) => {
-  const { page } = req.body
 
-  const obj = mockData
-  obj.obj.invCategoryList.forEach(t => {
-    /// invType:
-    ///   1. 增值税普通发票
-    ///   2. 增值税专用发票
-    ///   3. 电子普通发票
-    if(t.invType === '3') {
-      t.invType = '1'
+  const { obj, ...data_others } = mockData
+  const {
+    couponUsedInfo,
+    invCategoryList,
+    payInfoList,
+    giftInfoList,
+    popDetails,
+    sendInfoList,
+    couponDetails,
+    invTypeList,
+    goodsGroupList,
+    couponGains,
+    ...obj_others
+  } = obj
+
+  const data = {
+    ...data_others,
+    obj: {
+      couponUsedInfo,
+      invCategoryList: invCategoryList.map((t, idx) => {
+        /// invType:
+        ///   1. 增值税普通发票
+        ///   2. 增值税专用发票
+        ///   3. 电子普通发票
+        if (t.invType === '3') {
+          t.invType = '1'
+        }
+      }),
+      payInfoList,
+      giftInfoList,
+      popDetails,
+      sendInfoList,
+      couponDetails,
+      invTypeList,
+      goodsGroupList,
+      couponGains,
+      ...obj_others
     }
-  })
-
+  }
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
     })
 }
 
