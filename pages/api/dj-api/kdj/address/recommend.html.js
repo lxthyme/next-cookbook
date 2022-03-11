@@ -1,22 +1,14 @@
-export default (req, res) => {
-    const { page } = req.body
-    const total_page = Math.max(0, 5 - page)
+export default function(req, res) {
+  const { page } = req.body
 
-    // const list = Array.from({ length: 10 }, (t, idx) => ({}))
-    const list = []
+  const obj = mockData
 
-    const data = mockData
-
-    return new Promise(function (resolve) {
-        setTimeout(resolve.bind(null, resolve), 1000)
+  return new Promise(function (resolve) {
+    setTimeout(resolve.bind(null, resolve), 1000)
+  })
+    .then(() => {
+      res.status(200).json(obj)
     })
-        .then(() => {
-            res.status(200).json({
-                "success": true,
-                "resCode": "00100000",
-                "obj": data
-            })
-        })
 }
 
 const mockData = {
