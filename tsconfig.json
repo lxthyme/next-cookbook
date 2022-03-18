@@ -9,6 +9,7 @@
       "dom.iterable",
       "esnext"
     ],
+    /// 允许编译javascript文件。
     "allowJs": true,
     "skipLibCheck": true,
     /// 所有严格检查的总开关
@@ -29,7 +30,13 @@
     "baseUrl": ".",
     /// 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样
     "paths": {
-      "@mockData/*": [
+      "@pvz2/*": [
+        "mockData/pvz2/*"
+      ],
+      "@dj/*": [
+        "mockData/dj/*"
+      ],
+      "@mock/*": [
         "mockData/*"
       ],
       "@data/*": [
@@ -76,8 +83,6 @@
     // "declaration": true,
     /// 类型声明文件的输出目录
     // "declarationDir": "./lib",
-    /// 允许编译javascript文件。
-    // "allowJs": true,
     /// 是否检测js是否符合ts语法，默认false
     // "checkJs": true,
     /// 语法报错时，不生成编译后的代码
@@ -98,7 +103,7 @@
     "**/*.ts",
     "**/*.tsx",
     "prisma/prisma.prisma",
-    "plugin/prisma.js"
+    // "plugin/prisma.js"
   ],
   /// 指定一个排除列表（include的反向操作）
   "exclude": [
