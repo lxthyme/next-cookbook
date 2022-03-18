@@ -1,6 +1,7 @@
-import { mockData_2022_01_20 } from '../../../../../../mockData/dj/v2.getOrderDetail.html'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail.html'
 
-const API = (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
   const { obj: obj_tmp, ...obj_others } = mockData
@@ -54,5 +55,3 @@ const API = (req, res) => {
       res.status(200).json(obj)
     })
 }
-
-export default API

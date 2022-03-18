@@ -1,6 +1,6 @@
-export default function (req, res) {
-    const { page } = req.body
-    const total_page = Math.max(0, 5 - page)
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
 
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const { obj, ...data_others } = mockData

@@ -1,4 +1,6 @@
-export default function(req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
   // data = mockData2

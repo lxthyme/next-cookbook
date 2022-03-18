@@ -1,8 +1,7 @@
-import {
-    mockData_test_dj
-} from "../../../../../../mockData/dj/cateSkuDetails";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_test_dj } from "@dj/cateSkuDetails";
 
-const API = (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
     const { page } = req.body
     const total_page = Math.max(0, 5 - page)
 
@@ -37,7 +36,6 @@ const API = (req, res) => {
         res.status(200).json(obj)
     })
 }
-export default API
 
 const mockData = {
     goodsList: [

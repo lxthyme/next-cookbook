@@ -1,5 +1,6 @@
-const API = (req, res) => {
-  const { page } = req.body
+coimport type { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const buttonFlagEnum = {
     1: '立即领取',
     2: '已领取',
@@ -41,8 +42,6 @@ const API = (req, res) => {
       res.status(200).json(data)
     })
 }
-
-export default API
 
 const mockData = {
   "success": true,

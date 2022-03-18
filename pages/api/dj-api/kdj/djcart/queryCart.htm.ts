@@ -1,6 +1,7 @@
-import { mockData_12_18 as mockData } from '../../../../../mockData/dj/queryCart.htm'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_12_18 as mockData } from '@dj/queryCart.htm'
 
-const API = (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
 	const { page } = req.body
 
 	const { obj: tmp_obj, ...others_mockData } = mockData
@@ -25,7 +26,7 @@ const API = (req, res) => {
 											"limitBuySum": -1,
 											"priceType": "0",
 											"limitBuyPersonSum": -1
-										},{
+										}, {
 											"salePrice": 10.00,
 											"limitBuySum": -1,
 											"priceType": "0",
@@ -117,5 +118,3 @@ const API = (req, res) => {
 			res.status(200).json(obj)
 		})
 }
-
-export default API

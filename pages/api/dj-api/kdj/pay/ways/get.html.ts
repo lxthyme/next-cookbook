@@ -1,4 +1,6 @@
-const API = (req, res) => {
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData
   const data = {
@@ -16,8 +18,6 @@ const API = (req, res) => {
       res.status(200).json(data)
     })
 }
-
-export default API
 
 const mockData = {
   "success": true,

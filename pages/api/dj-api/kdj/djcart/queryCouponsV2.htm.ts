@@ -1,9 +1,10 @@
-import { mockData_光明奶卡 } from '@mockData/dj/queryCouponsV2.htm'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_光明奶卡2 } from '@dj/queryCouponsV2.htm'
 
-export default function (req, res) {
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
-  const { obj, ...data_others } = mockData_光明奶卡
+  const { obj, ...data_others } = mockData_光明奶卡2
   const { couponAutoInfoList, cantUseList, couponsList, ...obj_others } = obj
   const data = {
     ...data_others,
@@ -13,11 +14,10 @@ export default function (req, res) {
       couponsList,
       couponAutoInfoList: couponAutoInfoList.map((t, idx) => {
         let tmp = t
-        if (0 == idx) {
+        if (t.couponsName === 'couponsName') {
           tmp = {
             ...t,
-            couponRuleId: '53023',
-            couponCodes: ['1672058309584'],
+            pickupCouponFlag: 1
           }
         }
         return tmp

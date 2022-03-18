@@ -1,11 +1,13 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 import {
 	mockData_Prd_dj_tab4,
 	mockData_Prd_ydj_tab4,
 	mockData_Test_dj_tab4,
 	mockData_2022_01_26 as mockData
-} from "../../../../../../mockData/dj/query.html";
+} from "@dj/query.html";
 
-const API = async (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
 	// const mockData = await mockGet('query.html.js', 'mockData_OnlyO2O')
 	// const obj = mockData.mockData_Prd_dj_tab4
 	// const obj = mockData.mockData_Prd_ydj_tab4
@@ -80,5 +82,3 @@ const API = async (req, res) => {
 			res.status(200).json(data)
 		})
 }
-
-export default API

@@ -1,9 +1,7 @@
-import {
-  mockData_test_dj
-} from "../../../../../../mockData/dj/search.details";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_test_dj } from "@dj/search.details";
 
-const API = (req, res) => {
-
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { obj, ...data_others } = mockData_test_dj
   const { goodsList } = obj
   const data = {
@@ -26,8 +24,6 @@ const API = (req, res) => {
       res.status(200).json(data)
     })
 }
-
-export default API
 
 const mockData_VipCoupon = {
   "success": true,

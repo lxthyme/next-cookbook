@@ -1,14 +1,24 @@
-export default function (req, res) {
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData_扫码购 } from '@dj/findStore.html'
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
-  let obj = mockData
-  obj = {}
+  const {obj, ...data_others } = mockData_扫码购
+  const { list, ...obj_others } = obj
+  const data = {
+    ...data_others,
+    obj: {
+      ...obj_others,
+      list: list.slice(0, 1)
+    }
+  }
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
     })
 }
 
