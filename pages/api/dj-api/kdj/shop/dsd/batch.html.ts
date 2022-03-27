@@ -9,11 +9,14 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     ...data_others,
     obj: {
       ...obj_others,
-      list: list.map(t => {
-        const { peiSongList, limitTimeList, ...t_others } = t
+      list: list.map((t, idx) => {
+        let { peiSongList, limitTimeList, hide, ...t_others } = t
+        hide = idx === 0 ? 'Y' : 'N'
+        // hide = 'Y'
         return {
           ...t_others ,
           limitTimeList,
+          hide,
           peiSongList: peiSongList.map((t2, idx2) => {
             if(idx2 === 0) {
               t2.hide = 'Y'
