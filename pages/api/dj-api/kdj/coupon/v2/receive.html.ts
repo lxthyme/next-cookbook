@@ -4,7 +4,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const obj =
     // mockData_Success
-    mockData_Failure
+    // mockData_Failure
+    mockData_riskControl
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
@@ -19,6 +20,7 @@ const mockData_Failure = {
   "msg": "对不起，该券已被领完，下次早点吧",
   "resCode": "00100051"
 }
+const mockData_riskControl = {"success":false,"msg":"好运与你擦肩而过","riskType":"233","resCode":"00990001"}
 
 const mockData_Success = {
   "success": true,

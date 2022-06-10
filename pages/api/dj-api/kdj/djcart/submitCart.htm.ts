@@ -1,10 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { mockData_光明奶卡 } from '@dj/submitCart.htm'
+import {
+	// mockData_光明奶卡,
+	mockData_无货
+ } from '@dj/submitCart.htm'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-  const { obj, ...data_others } = mockData_光明奶卡
+  const { obj, ...data_others } = mockData_无货
   const {
     couponUsedInfo,
     invCategoryList,
@@ -32,9 +35,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         // if (t.invType === '3') {
         //   t.invType = '1'
         // }
-				// return t
+				return t
       }),
-      ecpGoodsList: [],
+      ecpGoodsList,
       payInfoList,
       giftInfoList,
       popDetails,
@@ -42,6 +45,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       couponDetails,
       invTypeList,
       goodsGroupList,
+			// noStockGoodsList: ecpGoodsList,
+			// offShelfGoodsList: ecpGoodsList,
+			// exceedNumGoodsList: ecpGoodsList,
+			// effectiveGoodsList: ecpGoodsList,
       couponGains,
       ...obj_others
     }

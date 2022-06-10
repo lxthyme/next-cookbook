@@ -3,137 +3,84 @@ export const mockData_peiSongList = {
 	"success": true,
 	"resCode": "00100000",
 	"obj": {
-		"hidePartMsg": "部分订单配送已约满，请重新选择商品",
-		"hideMsg": "抱歉，配送服务已约满",
+		"hidePartMsg": "233部分订单配送已约满，请重新选择商品",
+		"hideMsg": "233抱歉，配送服务已约满",
 		"list": [{
+			"storeCode": "200021",
+			"storeType": "2040",
+			"initialTime": null,
+			"interval": null,
+			"startTime": null,
+			"endTime": null,
+			"success": true,
+			"dsd": false,
+			"business": false,
+			"msg": null,
+			"peiSongTip": "233请尽快付款，以确保我们在指定时间配送（另：不可抗力因素可能导致延误敬请谅解）",
+			"peiSongDesc": null,
+			"nowTime": null,
+			"week": null,
+			"server": "48小时内发货",
+			"shopBeginTime": "2022-04-18 08:00:00",
+			"shopEndTime": "2022-04-18 10:00:00",
+			"dsdStartTime": null,
+			"dsdEndTime": null,
+			"defaultSendDate": null,
+			"peiSongList": [],
+			"yuShouInfo": null,
+			"orderLimit": null,
+			"hide": "N",
+			"ysSendDate": null,
+			"ysFlag": 0,
+			"limitFlag": 0,
+			"tdFlag": 1,
+			"toDay": "2022-04-18",
+			"limitTimeList": null
+		}, {
 			"storeCode": "007780",
 			"storeType": "2020",
 			"initialTime": null,
 			"interval": null,
 			"startTime": null,
 			"endTime": null,
-			"success": false,
+			"success": true,
 			"dsd": true,
 			"business": true,
 			"msg": null,
-			"peiSongTip": "请尽快付款，以确保我们在指定时间配送（另：不可抗力因素可能导致延误敬请谅解）",
+			"peiSongTip": "233请尽快付款，以确保我们在指定时间配送（另：不可抗力因素可能导致延误敬请谅解）",
 			"peiSongDesc": null,
 			"nowTime": null,
 			"week": null,
 			"server": "请选择时间",
-			"shopBeginTime": "2022-03-25 08:30:00",
-			"shopEndTime": "2022-03-25 23:00:00",
+			"shopBeginTime": "2022-04-18 08:30:00",
+			"shopEndTime": "2022-04-18 23:00:00",
 			"dsdStartTime": null,
 			"dsdEndTime": null,
-			"defaultSendDate": 1648137600000,
+			"defaultSendDate": 1650211200000,
 			"peiSongList": [{
-				"desc": "明天",
-				"date": "2022-03-26",
-				"week": "周六",
+				"desc": "今日",
+				"date": "2022-04-18",
+				"week": "周一",
 				"hide": "N",
 				"timeList": [{
 					"server": null,
 					"startTime": "09:00",
-					"endTime": "10:00",
+					"endTime": "21:00",
 					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "11:00",
-					"endTime": "12:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "12:00",
-					"endTime": "13:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "13:00",
-					"endTime": "14:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "14:00",
-					"endTime": "15:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "15:00",
-					"endTime": "16:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "16:00",
-					"endTime": "17:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
+					"limit": 119988,
+					"order": 2
 				}]
 			}, {
 				"desc": "明天",
-				"date": "2022-03-26",
-				"week": "周六",
+				"date": "2022-04-19",
+				"week": "周二",
 				"hide": "N",
 				"timeList": [{
 					"server": null,
 					"startTime": "09:00",
-					"endTime": "10:00",
+					"endTime": "21:00",
 					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "11:00",
-					"endTime": "12:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "12:00",
-					"endTime": "13:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "13:00",
-					"endTime": "14:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "14:00",
-					"endTime": "15:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "15:00",
-					"endTime": "16:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "16:00",
-					"endTime": "17:00",
-					"hide": "N",
-					"limit": 1,
+					"limit": 119988,
 					"order": 0
 				}]
 			}],
@@ -144,148 +91,7 @@ export const mockData_peiSongList = {
 			"ysFlag": 0,
 			"limitFlag": 1,
 			"tdFlag": 0,
-			"toDay": "2022-03-25",
-			"limitTimeList": null
-		}, {
-			"storeCode": "200021",
-			"storeType": "2040",
-			"initialTime": null,
-			"interval": null,
-			"startTime": null,
-			"endTime": null,
-			"success": false,
-			"dsd": false,
-			"business": true,
-			"msg": null,
-			"peiSongTip": "请尽快付款，以确保我们在指定时间配送（另：不可抗力因素可能导致延误敬请谅解）",
-			"peiSongDesc": null,
-			"nowTime": null,
-			"week": null,
-			"server": "已约满",
-			"shopBeginTime": "2022-03-25 08:00:00",
-			"shopEndTime": "2022-03-25 10:00:00",
-			"dsdStartTime": null,
-			"dsdEndTime": null,
-			"defaultSendDate": null,
-			"peiSongList": [{
-				"desc": "已约满",
-				"date": "2022-03-25",
-				"week": null,
-				"hide": "N",
-				"timeList": [{
-					"server": null,
-					"startTime": "09:00",
-					"endTime": "10:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "11:00",
-					"endTime": "12:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "12:00",
-					"endTime": "13:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "13:00",
-					"endTime": "14:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "14:00",
-					"endTime": "15:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "15:00",
-					"endTime": "16:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "16:00",
-					"endTime": "17:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}]
-			}, {
-				"desc": "已约满",
-				"date": "2022-03-25",
-				"week": null,
-				"hide": "N",
-				"timeList": [{
-					"server": null,
-					"startTime": "09:00",
-					"endTime": "10:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "11:00",
-					"endTime": "12:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "12:00",
-					"endTime": "13:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "13:00",
-					"endTime": "14:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "14:00",
-					"endTime": "15:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "15:00",
-					"endTime": "16:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}, {
-					"server": null,
-					"startTime": "16:00",
-					"endTime": "17:00",
-					"hide": "N",
-					"limit": 1,
-					"order": 0
-				}]
-			}],
-			"yuShouInfo": null,
-			"orderLimit": null,
-			"hide": "N",
-			"ysSendDate": null,
-			"ysFlag": 0,
-			"limitFlag": 0,
-			"tdFlag": 1,
-			"toDay": "2022-03-25",
+			"toDay": "2022-04-18",
 			"limitTimeList": null
 		}]
 	}
