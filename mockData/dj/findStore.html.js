@@ -1,1 +1,3 @@
-export const mockData_扫码购 = {"success":true,"msg":"配置的2000米范围内扫码购门店列表","resCode":"00100000","obj":{"count":2,"list":[{"storeName":"华联超市锦秋店","storeCode":"302815","storeType":"2020","addr":"上海市 市辖区 宝山区 锦秋路829号","longitude":"121.3862491081","lantitude":"31.3204941277","distance":"589","nlist":[{"telantName":"华联超市锦秋店","telantCode":"20203028151"}]},{"storeName":"联华超市锦秋（LH）店","storeCode":"003347","storeType":"2020","addr":"上海市 市辖区 宝山区 锦秋路695弄69号","longitude":"121.3909253768","lantitude":"31.3214823008","distance":"1008","nlist":[{"telantName":"联华超市锦秋（LH）店","telantCode":"20200033471"}]}]}}
+version https://git-lfs.github.com/spec/v1
+oid sha256:70aeec8e2157adb79efd5af39481013af0c8fb48838a195fc2ef0b1821b28271
+size 742
