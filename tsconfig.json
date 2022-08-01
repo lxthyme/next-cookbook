@@ -45,8 +45,8 @@
       "@pages/*": [
         "pages/*"
       ],
-      "@plugins/*": [
-        "plugins/*"
+      "@plugin/*": [
+        "plugin/*"
       ],
       "@public/*": [
         "public/*"
@@ -54,6 +54,9 @@
       "@styles/*": [
         "styles/*"
       ],
+      "@js/*": [
+        "public/js/*"
+      ]
     },
     /// 不报告执行不到的代码错误。
     // "allowUnreachableCode": true,
