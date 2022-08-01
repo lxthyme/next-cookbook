@@ -1,4 +1,3 @@
-import { mockData_光明奶卡 } from '@dj/v2.list'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_限购 as mockData

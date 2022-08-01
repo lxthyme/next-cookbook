@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
-    mock_图片魔方,
-    mock_分类页标题 as mockData
+    // mock_图片魔方,
+    mock_分类页改版 as mockData
  } from '@dj/resources.html'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
