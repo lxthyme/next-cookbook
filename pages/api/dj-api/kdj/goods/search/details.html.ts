@@ -1,9 +1,97 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_test_dj } from "@dj/search.details";
+import {
+  // mockData_test_dj,
+  mockData_分类页改版 as mockData
+} from "@dj/search.details";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const { obj, ...data_others } = mockData_test_dj
+  const { obj, ...data_others } = mockData
   const { goodsList } = obj
+
+  const f_popinfosList = [{
+    "rules": [{
+      "desc": "每满5减1",
+      "id": "11979"
+    }],
+    "activityType": "1",
+    "memo": "到家全场满5元减1元",
+    "labelDesc": "到家全场满5元",
+    "goodsDetSid": "168251",
+    "popDes": "满5减1",
+    "ruleid": "51194",
+    "discountType": "1",
+    "conditionType": "1",
+    "ruletype": "1",
+    "ruleName": "满减",
+    "activityDesc": "到家全场满5元减1元",
+    "activityId": "51195",
+    "shopid": "007780",
+    "sLabel": "到家全场满5元",
+    "mLabel": "到家全场满5元减1元"
+  }, {
+    "rules": [{
+      "desc": "到家新人价1019",
+      "id": "3702"
+    }],
+    "activityType": "1",
+    "activityTag": "到家新人价1",
+    "memo": "到家新人价1",
+    "labelDesc": "到家新人价1",
+    "goodsDetSid": "162675",
+    "popDes": "买立减",
+    "ruleid": "51044",
+    "ruletype": "12",
+    "ruleName": "专享",
+    "activityId": "0",
+    "shopid": "007780",
+    "discountAmount": "0.6",
+    "memberLimit": "10",
+    "orderLimit": "2",
+    "sLabel": "到家新人价1",
+    "mLabel": "到家新人价1019",
+    "lLabel": "到家新人价1019"
+  }, {
+    "rules": [{
+      "desc": "联华新人价回归",
+      "id": "3507"
+    }],
+    "activityType": "1",
+    "activityTag": "新人活动标签",
+    "memo": "新人活动标签",
+    "labelDesc": "新人活动标签",
+    "goodsDetSid": "162560",
+    "popDes": "买立减",
+    "ruleid": "50481",
+    "ruletype": "12",
+    "ruleName": "专享",
+    "activityId": "0",
+    "shopid": "007780",
+    "discountAmount": "11.53",
+    "memberLimit": "10",
+    "orderLimit": "5",
+    "sLabel": "新人",
+    "mLabel": "新人价标签说明",
+    "lLabel": "20000856441001"
+  }, {
+    "rules": [{
+      "desc": "每第1件5.0折",
+      "id": "8241"
+    }],
+    "activityType": "1",
+    "memo": "到家PLUS折扣回归",
+    "labelDesc": "到家PLUS折扣回",
+    "goodsDetSid": "162667",
+    "popDes": "折扣",
+    "ruleid": "49712",
+    "ruletype": "2",
+    "ruleName": "PLUS折扣",
+    "activityDesc": "到家PLUS折扣回归",
+    "activityId": "49715",
+    "shopid": "007780",
+    "buyMember": "1",
+    "sLabel": "到家PLUS",
+    "mLabel": "到家PLUS折扣回归"
+  }]
   const data = {
     ...data_others,
     obj: {
@@ -12,7 +100,14 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         if (idx === 0) {
           popinfosList = [...popinfosList, ...popinfosList]
         }
-        return { popinfosList, previewList, xgList, pageCat, ...t_others }
+        return {
+          ...t_others,
+          popinfosList: f_popinfosList,
+          previewList,
+          xgList,
+          pageCat,
+          tdType: idx % 2 === 0 ? '2' : '1'
+        }
       })
     }
   }
@@ -617,7 +712,7 @@ const mockData_VipCoupon = {
   }
 }
 
-const mockData = {
+const mockData2 = {
   "success": true,
   "resCode": "00100000",
   "obj": {
