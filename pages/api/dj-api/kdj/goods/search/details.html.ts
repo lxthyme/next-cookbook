@@ -8,7 +8,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   const { obj, ...data_others } = mockData
   const { goodsList } = obj
 
-  const f_popinfosList = [{
+  const f_popinfosList = [
+    {
     "rules": [{
       "desc": "每满5减1",
       "id": "11979"

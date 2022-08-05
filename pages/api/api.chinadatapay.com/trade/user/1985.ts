@@ -2,8 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
-  const data = mockData_success
-  // data = mockData_failure
+  let data = mockData_success
+  data = mockData_failure
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
