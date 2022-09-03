@@ -8,7 +8,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   const { obj, ...data_others } = mockData
   const { goodsList } = obj
 
-  const f_popinfosList = [{
+  const f_popinfosList = [
+    {
     "rules": [{
       "desc": "每满5减1",
       "id": "11979"
@@ -112,12 +113,421 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     }
   }
 
+  let data2 = test;
+  data2.obj.goodsList = data2.obj.goodsList.map((t, idx) => {
+    t.plusPrice = '999.99'
+    t.minBuyQuan = 999
+    if(idx === data2.obj.goodsList.length - 1) {
+      // t.plus
+    }
+    return t
+  })
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(data)
+      res.status(200).json(data2)
     })
+}
+
+const test = {
+	"success": true,
+	"resCode": "00100000",
+	"obj": {
+		"goodsList": [{
+			"id": "007780_2020007780ENT23234@@1@@1003456",
+			"basePrice": "30.00",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "1003456",
+			"goodsImage": "https://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000599495001_01_1006.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0599495001",
+			"salePrice": "24.00",
+			"searchSalePrice": "30.0",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "1002",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花露水 195ml隆力奇花",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "隆力奇",
+			"popinfosList": [{
+				"rules": [{
+					"desc": "每满5减1",
+					"id": "13459"
+				}],
+				"activityType": "1",
+				"memo": "到家后台类目满减-5-1",
+				"labelDesc": "到家后台类目满",
+				"goodsDetSid": "1003456",
+				"popDes": "满5减1",
+				"ruleid": "54921",
+				"discountType": "1",
+				"conditionType": "1",
+				"ruletype": "1",
+				"ruleName": "满减",
+				"activityDesc": "到家后台类目满减_101110325",
+				"activityId": "54923",
+				"shopid": "007780",
+				"sLabel": "到家后台类目满",
+				"mLabel": "到家后台类目满减-5-1"
+			}],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"16344": 1000,
+				"16432": 1000,
+				"15809": 6636,
+				"15665": 7
+			}
+		}, {
+			"id": "007780_2020007780ENT23234@@1@@162667",
+			"basePrice": "10.00",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "162667",
+			"goodsImage": "https://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000837405001_01_1006.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0837405001",
+			"salePrice": "10.00",
+			"searchSalePrice": "10.0",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "0",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "品客加州田园牧场风味薯片 110g",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "缓缓",
+			"popinfosList": [],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"15662": 1000,
+				"15809": 5134,
+				"15665": 1000
+			}
+		}, {
+			"id": "007780_2020007780ENT23234@@1@@67164",
+			"basePrice": "3.10",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "67164",
+			"goodsImage": "http://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000074207001_01_1006.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0074207001",
+			"salePrice": "3.10",
+			"searchSalePrice": "3.1",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "0",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "三得利3.4度清爽听啤 330ml",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "到家",
+			"popinfosList": [],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"12405": 1000,
+				"16268": 1000,
+				"15662": 1000,
+				"15809": 1494,
+				"16430": 1000,
+				"15665": 1000,
+				"12412": 1000
+			}
+		}, {
+			"id": "007780_2020007780ENT23234@@1@@79385",
+			"basePrice": "10.00",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "79385",
+			"goodsImage": "http://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000508251001_01_1006.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0508251001",
+			"salePrice": "10.00",
+			"searchSalePrice": "10.0",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "0",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "徐福记 鸡蛋沙琪玛 526g/袋",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "茶花",
+			"popinfosList": [],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"15662": 1000,
+				"15809": 5934,
+				"15665": 1000
+			}
+		}, {
+			"id": "200021_20402000211@@1@@3364200",
+			"basePrice": "0.20",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "3364200",
+			"goodsImage": "https://Img.st.iblimg.com/fast2homemethod-4/offlinegoods/goods/SP_466044064_200x200.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "90770766001",
+			"salePrice": "0.18",
+			"searchSalePrice": "0.2",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "1002",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "三牛奶盐苏打 散装三牛奶盐苏打 散装三牛奶盐苏打 散装三牛奶盐苏打 散装三牛奶盐苏打 散装三牛奶盐苏打 散装",
+			"pointTitle": "联华融合推荐",
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "茶花",
+			"popinfosList": [{
+				"rules": [{
+					"desc": "每满1件享9.0折",
+					"id": "12637"
+				}, {
+					"desc": "每满2件享8.0折",
+					"id": "12638"
+				}],
+				"activityType": "1",
+				"memo": "托底一件9折2件8折托满减主主",
+				"labelDesc": "托底一件9折2件",
+				"goodsDetSid": "3364200",
+				"popDes": "满1件享9.0折",
+				"ruleid": "52953",
+				"discountType": "2",
+				"conditionType": "2",
+				"ruletype": "1",
+				"ruleName": "满折",
+				"activityDesc": "托底一件9折2件8折",
+				"activityId": "52954",
+				"shopid": "200021",
+				"sLabel": "托底一件9折2件",
+				"mLabel": "托底一件9折2件8折托满减主主"
+			}],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "2",
+			"tdLable": "48H内发货",
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"16432": 1000,
+				"15665": 1
+			}
+		}, {
+			"id": "200021_20402000211@@1@@3364208",
+			"basePrice": "21.50",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "3364208",
+			"goodsImage": "https://Img.st.iblimg.com/fast2homemethod-4/offlinegoods/goods/SP_2146715726_200x200.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "90782735001",
+			"salePrice": "9.00",
+			"searchSalePrice": "21.5",
+			"plusPrice": "10.00",
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "1002",
+			"limitBuyPersonSum": null,
+			"personLimit": "10",
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g万顺昌无花果 120g",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "万顺昌",
+			"popinfosList": [{
+				"rules": [{
+					"desc": "每满1件享9.0折",
+					"id": "12637"
+				}, {
+					"desc": "每满2件享8.0折",
+					"id": "12638"
+				}],
+				"activityType": "1",
+				"memo": "托底一件9折2件8折托满减主主",
+				"labelDesc": "托底一件9折2件",
+				"goodsDetSid": "3364208",
+				"popDes": "满1件享9.0折",
+				"ruleid": "52953",
+				"discountType": "2",
+				"conditionType": "2",
+				"ruletype": "1",
+				"ruleName": "满折",
+				"activityDesc": "托底一件9折2件8折",
+				"activityId": "52954",
+				"shopid": "200021",
+				"sLabel": "托底一件9折2件",
+				"mLabel": "托底一件9折2件8折托满减主主"
+			}],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "2",
+			"tdLable": "48H内发货",
+			"mainTitle": null,
+			"minBuyQuan": 0,
+			"minBuySpec": "件",
+			"pageCat": {
+				"15784": 1000,
+				"16432": 1000,
+				"15984": 1000,
+				"15665": 6
+			}
+		}, {
+			"id": "007780_2020007780ENT23234@@1@@1003335",
+			"basePrice": "32.00",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "1003335",
+			"goodsImage": "https://Img.st.iblimg.com/fast2homemethod-2/offlinegoods/goods/SP_404692217_200x200.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0298077001",
+			"salePrice": "32.00",
+			"searchSalePrice": "32.0",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "0",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "瑞士莲可可黑巧克力茅台 100g",
+			"pointTitle": null,
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "Lazza",
+			"popinfosList": [],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 3,
+			"minBuySpec": "件",
+			"pageCat": {
+				"16432": 1000,
+				"15665": 4
+			}
+		}, {
+			"id": "007780_2020007780ENT23234@@1@@131820",
+			"basePrice": "4.00",
+			"categoryId": null,
+			"comSid": "2000",
+			"goodsId": "131820",
+			"goodsImage": "https://img.st.iblimg.com/goods-14/2000/2016/11/SP_2000_20000254708001_01_1006.jpg",
+			"goodsType": null,
+			"inStock": null,
+			"comGoodCode": "0254708001",
+			"salePrice": "4.00",
+			"searchSalePrice": "4.0",
+			"plusPrice": null,
+			"discountPrice": null,
+			"endTime": null,
+			"priceType": "0",
+			"limitBuyPersonSum": null,
+			"personLimit": null,
+			"saleStockStatus": "1",
+			"limitPopSum": null,
+			"productName": "老母鸡&土鸡蛋团购套包【该团购套餐仅上海发货，其中青浦，嘉定，奉贤，崇明地区不发，请勿下单】老母鸡&土鸡蛋团购套包【该团购套餐仅上海发货，其中青浦，嘉定，",
+			"pointTitle": "增强机体抵抗力，",
+			"saleStockSum": 11,
+			"marketOn": "1",
+			"type": null,
+			"brandCnName": "无品牌",
+			"popinfosList": [],
+			"previewList": [],
+			"xgList": [],
+			"from": null,
+			"tdType": "0",
+			"tdLable": null,
+			"mainTitle": null,
+			"minBuyQuan": 5,
+			"minBuySpec": "件",
+			"pageCat": {
+				"15662": 1000,
+				"16432": 1000,
+				"15809": 3,
+				"15665": 3,
+				"13612": 1000
+			}
+		}]
+	}
 }
 
 const mockData_VipCoupon = {
