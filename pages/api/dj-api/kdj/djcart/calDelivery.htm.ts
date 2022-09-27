@@ -10,19 +10,23 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     ...data_others,
     obj: {
       ...obj_others,
+      deliveryServiceCharge: 8.8,
       deliveryInfoList: deliveryInfoList.map((t1, idx) => {
         const { fmap, goodsList, ...t1_others } = t1
         return {
           ...t1_others,
           fmap,
           goodsList,
-          baseFreightMark: '0',
-          freeFreightMoney: '20',
-          weightCost: '234',
-          continueFreightMark: '0',
-          distanceCost: '233',
-          timeCost: '233',
-          extraCost: '233'
+          deliveryCharge: 8.8,
+          deliveryServiceCharge: 8.8,
+          deliveryServiceMemo: 8.8,
+          baseFreightMark: 8.8,
+          freeFreightMoney: 8.8,
+          weightCost: 8.8,
+          continueFreightMark: 8.8,
+          distanceCost: 8.8,
+          timeCost: 8.8,
+          extraCost: 8.8
         }
       }),
       fmap,
