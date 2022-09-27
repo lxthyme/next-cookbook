@@ -12,7 +12,12 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       ...resultInfo_others,
       resultInfo: {
         ...categorys_others,
-        categorys
+        categorys: categorys.map((t, idx) => {
+          if (idx === 1) {
+            t.categorys = []
+          }
+          return t
+        })
       }
     })
   }

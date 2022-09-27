@@ -22,11 +22,15 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           deliveryServiceMemo: 8.8,
           baseFreightMark: 8.8,
           freeFreightMoney: 8.8,
-          weightCost: 8.8,
           continueFreightMark: 8.8,
-          distanceCost: 8.8,
-          timeCost: 8.8,
-          extraCost: 8.8
+          /// [超重运费]weightCost：重量加价 ，
+          weightCost: 990.0,
+          /// [距离运费]distanceCost：距离加价 ，
+          distanceCost: 990.0,
+          /// [时段运费]timeCost：时间加价 ，
+          timeCost: 990.0,
+          /// [特殊运费]extraCost：额外加价(特殊运费)
+          extraCost: 990.0,
         }
       }),
       fmap,
