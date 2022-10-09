@@ -23,16 +23,17 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 					return {
 						freightImbodyMap,
 						...other_goodsGroupList,
-						goodsGroupList: goodsGroupList.map(t2 => {
+						goodsGroupList: goodsGroupList.map((t2, idx2) => {
 							const { goodsList, promBillNoList, ...others_t } = t2
 							return {
 								...others_t,
 								promBillNoList,
-								goodsList: goodsList.map(t3 => {
-									const { attrList, giftInfoList, personPriceList, popDetails, couponDetails, ...others_t } = t3
-									return {
+								goodsList: goodsList.map((t3, idx3) => {
+									const { goodsName, attrList, subGoodsList, giftInfoList, personPriceList, popDetails, couponDetails, ...others_t } = t3
+									const f_t3 = {
 										...others_t,
 										personPriceList,
+										// personPriceList: [],
 										// personPriceList: [
 										// 	{
 										// 		"salePrice": 10.00,
@@ -58,6 +59,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 										/// 赠品列表:可更换
 										// giftInfoList,
 										giftInfoList: mock_giftInfoList,
+										subGoodsList: subGoodsList,
 										// giftInfoList: [
 										// 	{
 										// 		gifName: 'gifName233',
@@ -78,11 +80,12 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 											if(idx4 === 2) {
 												t4.popType = '6'
 											}
-											t4.popName += '>233'
+											t4.popName += t4.popName + '>233'
 											// t4.popType = '2'
 											// t4.isMatch = true
 											return t4
 										}),
+										goodsName: Array(5).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
 										typePop: '16',
@@ -98,13 +101,15 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 										// basketMark: '0',
 										// comSid: '6000',
 										// goodsType: '30',
-										// reduceTag: '1',
+										reduceTag: '1',
+										limitBuyPersonSum: '0',
 										// limitBuyPersonSum: '123',
 										// reduceAmout: '233',
 										minOrder: '233',
 										minBuySpec: '包',
 										/// plus
-										// priceType: '35',
+										priceType: '35',
+										// priceType: '58',
 										/// 套餐
 										// goodsType: '11',
 										/// 库存
@@ -112,12 +117,18 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 										/// 处方药
 										comSid: '6000',
 										goodsType: '30',
+										// goodsType: '11',
 										/// globalType:0-非全球购 8-全球购物(一般贸易) 85-直邮 86-保税
-										globalType: '86',
+										// globalType: '86',
 										/// 托底
 										isFromButtomShop: '1',
+										showSalePrice: '233.233'
 									}
-								}),
+									if(idx2 == 1) {
+										return [f_t3, f_t3]
+									}
+									return f_t3
+								}).flat(),
 							};
 						}),
 					}
