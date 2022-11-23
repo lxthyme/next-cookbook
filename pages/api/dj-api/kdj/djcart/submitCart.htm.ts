@@ -25,6 +25,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = {
     ...data_others,
+		success: false,
+		msg: '购买处方药一次最多不得超过5种药品,处方管理办法',
     obj: {
       couponUsedInfo,
       invCategoryList: invCategoryList.map((t, idx) => {

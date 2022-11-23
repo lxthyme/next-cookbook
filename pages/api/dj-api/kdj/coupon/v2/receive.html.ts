@@ -1,26 +1,25 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-
+import {
+  mockData_failure
+} from '@dj/coupon.v2.receive'
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
-  const obj =
+  const data =
     // mockData_Success
     // mockData_Failure
-    mockData_riskControl
+    mockData_failure.t00100051
+
+    data.resCode = '00100000'
+    data.success = true
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(obj)
+      res.status(200).json(data)
+      // res.status(200).json(data)
     })
 }
-
-const mockData_Failure = {
-  "success": false,
-  "msg": "对不起，该券已被领完，下次早点吧",
-  "resCode": "00100051"
-}
-const mockData_riskControl = {"success":false,"msg":"好运与你擦肩而过","riskType":"233","resCode":"00990001"}
 
 const mockData_Success = {
   "success": true,

@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
 	// mockData_12_18 as mockData
-	mock_giftInfoList,
+	mockData_failure,
 	mockData_12_20 as mockData,
+	mock_giftInfoList,
+	mockData_Only,
 	mockData_group,
  } from '@dj/queryCart.htm'
 
@@ -19,10 +21,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 				} else if(t1.groupType === '22') {
 					return mockData_group.g22
 				} else if(t1.groupType === '21') {
-					const { freightImbodyMap, goodsGroupList, ...other_goodsGroupList } = goodsGroupDtoList[0]
+					const { freightImbodyMap, goodsGroupList, freeFreightMoney, ...other_goodsGroupList } = goodsGroupDtoList[0]
 					return {
 						freightImbodyMap,
 						...other_goodsGroupList,
+						freeFreightMoney: 68,
 						goodsGroupList: goodsGroupList.map((t2, idx2) => {
 							const { goodsList, promBillNoList, ...others_t } = t2
 							return {
@@ -85,10 +88,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 											// t4.isMatch = true
 											return t4
 										}),
-										goodsName: Array(5).fill(goodsName).join(''),
+										goodsName: Array(1).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
-										typePop: '16',
+										// typePop: '16',
 										goodsNumber: '233',
 										/// 库存数
 										// stor: '200',
@@ -101,27 +104,27 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 										// basketMark: '0',
 										// comSid: '6000',
 										// goodsType: '30',
-										reduceTag: '1',
+										// reduceTag: '1',
 										limitBuyPersonSum: '0',
 										// limitBuyPersonSum: '123',
 										// reduceAmout: '233',
-										minOrder: '233',
+										// minOrder: '233',
 										minBuySpec: '包',
 										/// plus
-										priceType: '35',
+										// priceType: '35',
 										// priceType: '58',
 										/// 套餐
 										// goodsType: '11',
 										/// 库存
 										// proSellBit: '3',
 										/// 处方药
-										comSid: '6000',
-										goodsType: '30',
-										// goodsType: '11',
+										// comSid: '6000',
+										// goodsType: '30',
+										goodsType: '11',
 										/// globalType:0-非全球购 8-全球购物(一般贸易) 85-直邮 86-保税
 										// globalType: '86',
 										/// 托底
-										isFromButtomShop: '1',
+										// isFromButtomShop: '1',
 										showSalePrice: '233.233'
 									}
 									if(idx2 == 1) {
@@ -163,7 +166,12 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 		setTimeout(resolve.bind(null, resolve), 1000)
 	})
 		.then(() => {
-			res.status(200).json(data)
+			// res.status(200).json(data)
+			res.status(200).json(mockData_Only)
+			// res.status(200).json(mockData_failure.
+			// 	t00100051)
+				// t00100051_2)
+			// t400112002)
 		})
 }
 

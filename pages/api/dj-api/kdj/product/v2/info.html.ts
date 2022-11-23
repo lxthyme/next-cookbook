@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
-  mockData_限购 as mockData
+  // mockData_限购,
+  mockData
+   as mockData
 } from '@dj/product.v2.info'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -10,16 +12,16 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   // const { brand, mdmCategory, ...product_others } = product
   const data = {
     ...data_others,
-    success: false,
-    msg: '233',
+    // success: false,
+    // msg: '233',
     obj: {
       supplier,
       pictures,
       product,
       ...obj_others,
-      goodsSalesName: Array(8).fill(obj.goodsSalesName).join(''),
+      // goodsSalesName: Array(8).fill(obj.goodsSalesName).join(''),
       /// 副标题
-      goodsSubtitle: Array(6).fill(obj.goodsSalesName).join(''),
+      // goodsSubtitle: Array(6).fill(obj.goodsSalesName).join(''),
       // goodsType: '1',
       /// 29: 非处方药
       // goodsType: '29',
@@ -45,12 +47,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       // saleStockStatus: '0',
       /// 参考价
       // basePrice: "22.22",
-      basePrice: "55.55",
-      saleSum: '233',
+      // basePrice: "55.55",
+      // saleSum: '233',
       /// 销售价
-      salePrice: "33.33",
+      // salePrice: "33.33",
       /// Plus会员价
       // plusPrice: "44.44",
+      // priceType: '12',
 
     },
   }
