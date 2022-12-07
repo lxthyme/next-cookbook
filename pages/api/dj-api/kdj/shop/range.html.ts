@@ -26,19 +26,19 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       list: [
 		...list,
 		{
-			...list[1],
+			...list[0],
 			showSinceSupport: '1',
 			showDistributeSupport: '1',
 		}, {
-			...list[1],
+			...list[0],
 			showSinceSupport: '0',
 			showDistributeSupport: '0',
 		}, {
-			...list[1],
+			...list[0],
 			showSinceSupport: '1',
 			showDistributeSupport: '0',
 		}, {
-			...list[1],
+			...list[0],
 			showSinceSupport: '0',
 			showDistributeSupport: '1',
 		}
