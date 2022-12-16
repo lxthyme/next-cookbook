@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
-  // mockDat_未领取2个
-  mockDat_已领取2个
+  mockDat_未领取2个
+  // mockDat_已领取2个
    as mockData,
   // mockData_光明奶卡
  } from '@dj/coupon.v2.list'
