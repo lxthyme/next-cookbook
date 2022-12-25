@@ -38,8 +38,14 @@ const Page = (props: Props) => {
     };
     let cc = CryptoJS.DES.encrypt(plainText, key, cfg);
     let ciphertext = cc.ciphertext.toString(CryptoJS.enc.Base64);
-    console.log(`ciphertext: ${ciphertext}`);
+    console.log('ciphertext: ', ciphertext);
+    return ciphertext
   };
+  // timestamp = ''
+  // ciphertext = ''
+  // // ciphertext = decodeURIComponent(ciphertext)
+  // trim = true
+  // x.decrypt(timestamp, ciphertext, trim)
   const decrypt = (timestamp: string, ciphertext: string, trim: boolean) => {
     let desKey = getDesKey(timestamp);
     const key = CryptoJS.enc.Utf8.parse(desKey);
@@ -60,7 +66,9 @@ const Page = (props: Props) => {
       cfg,
     );
     let plainText = cc.toString(CryptoJS.enc.Utf8);
-    console.log(`plainText: ${plainText}`);
+    const plainJSON = JSON.parse(plainText)
+    console.log('plainText: ', JSON.stringify(plainJSON, null, 4));
+    return plainJSON
   };
   const test = () => {
     key = "473t01o0";
