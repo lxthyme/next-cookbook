@@ -38,44 +38,61 @@ const Page = (props) => {
     <>
       <style jsx>{`
         .v-wrapper {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           display: flex;
+          margin: 20px;
           justify-content: stretch;
           align-items: stretch;
           align-content: stretch;
         }
-        .v-origin, .v-new {
-          margin: 20px;
+        .v-origin,
+        .v-new {
           flex: 1 1;
+          display: flex;
+          justify-content: stretch;
+          /* flex-wrap: wrap; */
+          flex-direction: column;
+          align-items: stretch;
           // height: 100vh;
+        }
+        label {
+          font-weight: bold;
         }
         #originItem,
         #newItem {
           display: block;
-          width: 80%;
-          margin: 0 auto;
           border: 1px solid red;
+        }
+        textarea {
+          flex: 1 1;
         }
       `}</style>
       <div className="v-wrapper">
         <div className="v-origin">
-          <label>Origin Item: </label>
+          {/* <label>Origin Item: </label> */}
           <textarea
             name="originItem"
             id="originItem"
             cols="30"
             rows="30"
+            placeholder="Origin Item here..."
             value={originItem}
             onChange={handleOriginChange}
           ></textarea>
-          <button onClick={test}>Convert</button>
         </div>
+        <button onClick={test}>Convert</button>
         <div className="v-new">
-          <label>New Item: </label>
+          {/* <label>New Item: </label> */}
           <textarea
             name="newItem"
             id="newItem"
             cols="30"
-            rows="50"
+            placeholder="New Item here..."
+            // rows="50"
             value={newItem}
             disabled
           ></textarea>
