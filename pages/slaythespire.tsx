@@ -15,7 +15,7 @@ const Page = (props) => {
   const [check_relics, setCheck_relics] = useState(true)
 
   useEffect(() => {
-    setOriginItem("{}")
+    setOriginItem("{\n}")
   }, [])
 
   const test = () => {
@@ -182,8 +182,26 @@ const Page = (props) => {
             type="text"
             id="gold"
             value={gold}
-            onChange={(e) => setGold(e.target.value ?? 0)}
+            onChange={(e) => setGold(parseInt(e.target.value) || 0)}
           />
+          <div className="v-checkItem">
+            <label htmlFor="allChecked">allChecked:</label>
+            <input
+              type="checkbox"
+              name="allChecked"
+              id="allChecked"
+              // checked={check_uncommon}
+              onChange={(e) => {
+                const checked = e.target.checked
+                setCheck_uncommon(checked)
+                setCheck_common(checked)
+                setCheck_boss(checked)
+                setCheck_shop(checked)
+                setCheck_rare(checked)
+                setCheck_relics(checked)
+              }}
+            />
+          </div>
           <div className="v-checkItem">
             <label htmlFor="uncommon">uncommon:</label>
             <input
