@@ -14,6 +14,10 @@ const Page = (props) => {
   const [check_rare, setCheck_rare] = useState(true)
   const [check_relics, setCheck_relics] = useState(true)
 
+  useEffect(() => {
+    setOriginItem("{}")
+  }, [])
+
   const test = () => {
     let {
       uncommon_relics,
@@ -178,7 +182,7 @@ const Page = (props) => {
             type="text"
             id="gold"
             value={gold}
-            onChange={(e) => setGold(e.target.value)}
+            onChange={(e) => setGold(e.target.value ?? 0)}
           />
           <div className="v-checkItem">
             <label htmlFor="uncommon">uncommon:</label>
