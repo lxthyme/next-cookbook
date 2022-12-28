@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import PropTypes from 'prop-types'
 
 // export const config = { amp: true };
@@ -6,6 +6,14 @@ import React, { useState } from "react"
 const Page = (props) => {
   const [originItem, setOriginItem] = useState("")
   const [newItem, setNewItem] = useState("")
+  const [gold, setGold] = useState(0)
+  const [check_uncommon, setCheck_uncommon] = useState(true)
+  const [check_common, setCheck_common] = useState(true)
+  const [check_boss, setCheck_boss] = useState(true)
+  const [check_shop, setCheck_shop] = useState(true)
+  const [check_rare, setCheck_rare] = useState(true)
+  const [check_relics, setCheck_relics] = useState(true)
+
   const test = () => {
     let {
       uncommon_relics,
@@ -18,21 +26,91 @@ const Page = (props) => {
     } = mockData
 
     const newObj = JSON.parse(originItem)
-    newObj.uncommon_relics = [
-      ...uncommon_relics,
-      ...(newObj.uncommon_relics ?? []),
-    ]
-    newObj.relics = [...relics, ...(newObj.relics ?? [])]
-    newObj.rare_relics = [...rare_relics, ...(newObj.rare_relics ?? [])]
-    newObj.common_relics = [...common_relics, ...(newObj.common_relics ?? [])]
-    newObj.boss_relics = [...boss_relics, ...(newObj.boss_relics ?? [])]
-    newObj.shop_relics = [...shop_relics, ...(newObj.shop_relics ?? [])]
+    newObj.gold = gold
+    if (check_uncommon) {
+      newObj.uncommon_relics = [
+        ...uncommon_relics,
+        ...(newObj.uncommon_relics ?? []),
+        "Teardrop Locket",
+        "Paper Krane",
+        "Paper Phrog",
+      ]
+    }
+    if (check_relics) {
+      newObj.relics = [
+        ...relics,
+        ...(newObj.relics ?? []),
+        "Golden Idol",
+        // 'Golden Idol (Relic)',
+        "Necronomicon",
+        "Odd Mushroom",
+        "Red Mask",
+        "Ssserpent Head",
+        "Warped Tongs",
+      ]
+    }
+    if (check_rare) {
+      newObj.rare_relics = [
+        ...rare_relics,
+        ...(newObj.rare_relics ?? []),
+        "Calipers",
+        "Dead Branch",
+        "Ginger",
+        "Ice Cream",
+        "Lizard Tail",
+        "Peace Pipe",
+        "Prayer Wheel",
+        "Shovel",
+        "Wing Boots",
+        "Unceasing Top",
+        "Turnip",
+      ]
+    }
+    if (check_common) {
+      newObj.common_relics = [
+        ...common_relics,
+        ...(newObj.common_relics ?? []),
+        //
+      ]
+    }
+    if (check_boss) {
+      newObj.boss_relics = [
+        ...boss_relics,
+        ...(newObj.boss_relics ?? []),
+        "Black Star",
+        "Sozu",
+        "Sacred Bark",
+        "Runic Pyramid",
+        "Runic Cube",
+        "Ring of the Serpent",
+        "Violet Lotus",
+        "Holy Water",
+      ]
+    }
+    if (check_shop) {
+      newObj.shop_relics = [
+        ...shop_relics,
+        ...(newObj.shop_relics ?? []),
+        "Chemical X",
+        "Clockwork Souvenir",
+        "Membership Card",
+        "Strange Spoon",
+        "Prismatic Shard",
+        "Melange",
+      ]
+    }
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
   const handleOriginChange = (e) => {
     // console.log('e: ', e)
     setOriginItem(e.target.value)
+    try {
+      const newObj = JSON.parse(e.target.value)
+      setGold(newObj.gold ?? 0)
+    } catch (error) {
+      // console.log('Error: ', error)
+    }
   }
   return (
     <>
@@ -49,9 +127,9 @@ const Page = (props) => {
           align-items: stretch;
           align-content: stretch;
         }
-        .v-origin,
-        .v-new {
-          flex: 1 1;
+        .v-left,
+        .v-middle,
+        .v-right {
           display: flex;
           justify-content: stretch;
           /* flex-wrap: wrap; */
@@ -59,8 +137,18 @@ const Page = (props) => {
           align-items: stretch;
           // height: 100vh;
         }
-        label {
-          font-weight: bold;
+        .v-left,
+        .v-right {
+          flex: 1 1;
+        }
+        .v-middle button {
+          flex: 1 1;
+        }
+        .v-middle input[type="text"] {
+          width: 70px;
+        }
+        .v-checkItem {
+          text-align: right;
         }
         #originItem,
         #newItem {
@@ -72,7 +160,7 @@ const Page = (props) => {
         }
       `}</style>
       <div className="v-wrapper">
-        <div className="v-origin">
+        <div className="v-left">
           {/* <label>Origin Item: </label> */}
           <textarea
             name="originItem"
@@ -84,8 +172,77 @@ const Page = (props) => {
             onChange={handleOriginChange}
           ></textarea>
         </div>
-        <button onClick={test}>Convert</button>
-        <div className="v-new">
+        <div className="v-middle">
+          <label htmlFor="gold">Gold:</label>
+          <input
+            type="text"
+            id="gold"
+            value={gold}
+            onChange={(e) => setGold(e.target.value)}
+          />
+          <div className="v-checkItem">
+            <label htmlFor="uncommon">uncommon:</label>
+            <input
+              type="checkbox"
+              name="uncommon"
+              id="uncommon"
+              checked={check_uncommon}
+              onChange={(e) => setCheck_uncommon(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="common">common:</label>
+            <input
+              type="checkbox"
+              name="common"
+              id="common"
+              checked={check_common}
+              onChange={(e) => setCheck_common(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="boss">boss:</label>
+            <input
+              type="checkbox"
+              name="boss"
+              id="boss"
+              checked={check_boss}
+              onChange={(e) => setCheck_boss(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="shop">shop:</label>
+            <input
+              type="checkbox"
+              name="shop"
+              id="shop"
+              checked={check_shop}
+              onChange={(e) => setCheck_shop(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="rare">rare:</label>
+            <input
+              type="checkbox"
+              name="rare"
+              id="rare"
+              checked={check_rare}
+              onChange={(e) => setCheck_rare(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="relics">relics:</label>
+            <input
+              type="checkbox"
+              name="relics"
+              id="relics"
+              checked={check_relics}
+              onChange={(e) => setCheck_relics(e.target.checked)}
+            />
+          </div>
+          <button onClick={test}>Convert</button>
+        </div>
+        <div className="v-right">
           {/* <label>New Item: </label> */}
           <textarea
             name="newItem"
@@ -178,63 +335,68 @@ const mockData = {
   relics: [
     "PureWater",
     "Ring of the Snake",
-    "Tiny Chest",
-    "Singing Bowl",
-    "Prayer Wheel",
-    "Lantern",
-    "Juzu Bracelet",
-    "Dream Catcher",
-    "Bag of Preparation",
-    "Bag of Marbles",
     "Smiling Mask",
     "Paper Frog",
     "Paper Crane",
-    "Mummified Hand",
     "Discerning Monocle",
-    "The Courier",
-    "Unceasing Top",
-    "Shovel",
-    "Peace Pipe",
-    "Ice Cream",
-    "Dead Branch",
     "Champion Belt",
-    "Calipers",
-    "Membership Card",
-    "Strange Spoon",
-    "Golden Idol",
     "Nloth's Gift",
-    "Nloth's Gift",
-    "Odd Mushroom",
-    "Runic Pyramid",
-    "Ring of the Serpent",
-    "Black Star",
     "Black Blood",
+    // /// common
+    // "Tiny Chest",
+    // "Lantern",
+    // "Juzu Bracelet",
+    // "Dream Catcher",
+    // "Bag of Preparation",
+    // "Bag of Marbles",
+    // /// uncommon
+    // "Singing Bowl",
+    // "Mummified Hand",
+    // "The Courier",
+    // /// rare
+    // "Prayer Wheel",
+    // "Unceasing Top",
+    // "Shovel",
+    // "Peace Pipe",
+    // "Ice Cream",
+    // "Dead Branch",
+    // "Calipers",
+    // /// shop
+    // "Membership Card",
+    // "Strange Spoon",
+    // /// boss
+    // "Ring of the Serpent",
+    // "Runic Pyramid",
+    // "Black Star",
+
+    // "Golden Idol",
+    // "Odd Mushroom",
   ],
   rare_relics: [
     "CaptainsWheel",
     "Mango",
-    "Dead Branch",
-    "Ginger",
-    "Shovel",
+    // "Dead Branch",
+    // "Ginger",
+    // "Shovel",
     "Old Coin",
     "StoneCalendar",
     "FossilizedHelix",
-    "Ice Cream",
+    // "Ice Cream",
     "Thread and Needle",
-    "Peace Pipe",
+    // "Peace Pipe",
     "CloakClasp",
     "TungstenRod",
     "Pocketwatch",
     "Gambling Chip",
-    "Turnip",
-    "Prayer Wheel",
-    "Unceasing Top",
-    "Lizard Tail",
+    // "Turnip",
+    // "Prayer Wheel",
+    // "Unceasing Top",
+    // "Lizard Tail",
     "WingedGreaves",
     "Torii",
     "Du-Vu Doll",
     "Incense Burner",
-    "Calipers",
+    // "Calipers",
     "Girya",
     "GoldenEye",
     "Bird Faced Urn",
@@ -297,7 +459,7 @@ const mockData = {
   boss_relics: [
     "Snecko Eye",
     "Tiny House",
-    "Black Star",
+    // "Black Star",
     "Cursed Key",
     "Calling Bell",
     "Runic Dome",
@@ -305,9 +467,9 @@ const mockData = {
     "HolyWater",
     "Empty Cage",
     "Astrolabe",
-    "Sozu",
-    "SacredBark",
-    "Runic Pyramid",
+    // "Sozu",
+    // "SacredBark",
+    // "Runic Pyramid",
     "SlaversCollar",
     "Philosopher's Stone",
     "Fusion Hammer",
@@ -390,18 +552,18 @@ const mockData = {
     "Sling",
     "Lee's Waffle",
     "Frozen Eye",
-    "Membership Card",
+    // "Membership Card",
     "Medical Kit",
     "Orrery",
     "ClockworkSouvenir",
     "TheAbacus",
     "OrangePellets",
     "Toolbox",
-    "Melange",
-    "Strange Spoon",
+    // "Melange",
+    // "Strange Spoon",
     "DollysMirror",
     "PrismaticShard",
-    "Chemical X",
+    // "Chemical X",
     "HandDrill",
     "Cauldron",
   ],
