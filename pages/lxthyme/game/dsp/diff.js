@@ -35,21 +35,21 @@ const Page = props => {
     return { rest15, rest16, rest17, rest18, rest19, rest20, rest21, rest22, rest23, rest24 }
   }
   const checkRest = async (idx) => {
-    const idListFileName = `id.${idx}.csv`
-    const detailListFileName = `detail.${idx}.csv`
-    console.log(`Start detail ${idListFileName} & ${detailListFileName}...`)
-    const idList = (await import(`../../../../data/dsp/diff/${idListFileName}`)).Data
-    console.log(`${idListFileName}: `, idList)
-    const detailList = (await import(`../../../../data/dsp/diff/${detailListFileName}`)).Data
-    console.log(`${detailListFileName}: `, detailList)
-    const restList = idList.filter(t => !detailList.includes(t))
-    console.log('restList: ', restList)
-    // console.log('restList: ', JSON.stringify(restList))
-    return {
-      idListFileName: idList.count,
-      detailListFileName: detailList.count,
-      [idList.count - detailList.count]: restList
-    }
+    // const idListFileName = `id.${idx}.csv`
+    // const detailListFileName = `detail.${idx}.csv`
+    // console.log(`Start detail ${idListFileName} & ${detailListFileName}...`)
+    // const idList = (await import(`../../../../data/dsp/diff/${idListFileName}`)).Data
+    // console.log(`${idListFileName}: `, idList)
+    // const detailList = (await import(`../../../../data/dsp/diff/${detailListFileName}`)).Data
+    // console.log(`${detailListFileName}: `, detailList)
+    // const restList = idList.filter(t => !detailList.includes(t))
+    // console.log('restList: ', restList)
+    // // console.log('restList: ', JSON.stringify(restList))
+    // return {
+    //   idListFileName: idList.count,
+    //   detailListFileName: detailList.count,
+    //   [idList.count - detailList.count]: restList
+    // }
   }
   return (<>
     <button onClick={() => checkNow('all', 'now')}>Check Now</button>

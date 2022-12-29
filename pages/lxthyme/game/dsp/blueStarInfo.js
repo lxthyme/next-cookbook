@@ -38,36 +38,36 @@ const DSPBlueStarInfo = (props) => {
       },
     }
   }, [])
-  /// 1.
-  const 最高亮度种子信息 = async () =>
-    (await import("../../../../data/dsp/最高亮度种子信息")).INFO
-  /// 2.
-  const 最高亮度种子信息v2 = async () =>
-    (await import("../../../../data/dsp/最高亮度种子信息v2")).INFO
-  /// 3.
-  const seed0_19999999_v1 = async () =>
-    (await import("../../../../data/dsp/seed0-19999999_v1")).INFO
-  /// 4.
-  const seed0_19999999_v2 = async () =>
-    (await import("../../../../data/dsp/seed0-19999999_v2")).INFO
-  /// 5. [161804, 11197251]
-  const seed0_19999999 = async () =>
-    (await import("../../../../data/dsp/seed0-19999999")).INFO
-  /// 6.
-  const seed20000000_49999999_1 = async () =>
-    (await import("../../../../data/dsp/seed20000000-49999999_1")).INFO
-  /// 7.
-  // const seed20000000_49999999_2 = async () =>
-  //   (await import("../../../../data/dsp/seed20000000-49999999_2")).INFO
-  /// 8. [21874796, 27621799]
-  const seed20000000_49999999 = async () =>
-    (await import("../../../../data/dsp/seed20000000-49999999")).INFO
-  /// 9. [40001601, 46225481]
-  const seed40000000_69999999 = async () =>
-    (await import("../../../../data/dsp/seed40000000-69999999")).INFO
-  /// 10. [60001086, 68692010]
-  const seed60000000_89999999 = async () =>
-    (await import("../../../../data/dsp/seed60000000-89999999")).INFO
+  // /// 1.
+  // const 最高亮度种子信息 = async () =>
+  //   (await import("../../../../data/dsp/最高亮度种子信息")).INFO
+  // /// 2.
+  // const 最高亮度种子信息v2 = async () =>
+  //   (await import("../../../../data/dsp/最高亮度种子信息v2")).INFO
+  // /// 3.
+  // const seed0_19999999_v1 = async () =>
+  //   (await import("../../../../data/dsp/seed0-19999999_v1")).INFO
+  // /// 4.
+  // const seed0_19999999_v2 = async () =>
+  //   (await import("../../../../data/dsp/seed0-19999999_v2")).INFO
+  // /// 5. [161804, 11197251]
+  // const seed0_19999999 = async () =>
+  //   (await import("../../../../data/dsp/seed0-19999999")).INFO
+  // /// 6.
+  // const seed20000000_49999999_1 = async () =>
+  //   (await import("../../../../data/dsp/seed20000000-49999999_1")).INFO
+  // /// 7.
+  // // const seed20000000_49999999_2 = async () =>
+  // //   (await import("../../../../data/dsp/seed20000000-49999999_2")).INFO
+  // /// 8. [21874796, 27621799]
+  // const seed20000000_49999999 = async () =>
+  //   (await import("../../../../data/dsp/seed20000000-49999999")).INFO
+  // /// 9. [40001601, 46225481]
+  // const seed40000000_69999999 = async () =>
+  //   (await import("../../../../data/dsp/seed40000000-69999999")).INFO
+  // /// 10. [60001086, 68692010]
+  // const seed60000000_89999999 = async () =>
+  //   (await import("../../../../data/dsp/seed60000000-89999999")).INFO
   const fmt = (list) => {
     const result1 = formatStarInfo(list)
     const result2 = formatStarInfo2(result1)
@@ -78,15 +78,15 @@ const DSPBlueStarInfo = (props) => {
   }
   const ALLTest = async () => {
     const SeedInfo = {
-      t1_最高亮度种子信息: (await import("../../../../data/dsp/最高亮度种子信息")).INFO,
-      t2_最高亮度种子信息v2: (await import("../../../../data/dsp/最高亮度种子信息v2")).INFO,
-      t3_seed0_19999999_v1: (await import("../../../../data/dsp/seed0-19999999_v1")).INFO,
-      t4_seed0_19999999_v2: (await import("../../../../data/dsp/seed0-19999999_v2")).INFO,
-      t5_seed0_19999999: (await import("../../../../data/dsp/seed0-19999999")).INFO,
-      t6_seed20000000_49999999_1: (await import("../../../../data/dsp/seed20000000-49999999_1")).INFO,
-      t8_seed20000000_49999999: (await import("../../../../data/dsp/seed20000000-49999999")).INFO,
-      t9_seed40000000_69999999: (await import("../../../../data/dsp/seed40000000-69999999")).INFO,
-      t10_seed60000000_89999999: (await import("../../../../data/dsp/seed60000000-89999999")).INFO,
+      // t1_最高亮度种子信息: (await import("../../../../data/dsp/最高亮度种子信息")).INFO,
+      // t2_最高亮度种子信息v2: (await import("../../../../data/dsp/最高亮度种子信息v2")).INFO,
+      // t3_seed0_19999999_v1: (await import("../../../../data/dsp/seed0-19999999_v1")).INFO,
+      // t4_seed0_19999999_v2: (await import("../../../../data/dsp/seed0-19999999_v2")).INFO,
+      // t5_seed0_19999999: (await import("../../../../data/dsp/seed0-19999999")).INFO,
+      // t6_seed20000000_49999999_1: (await import("../../../../data/dsp/seed20000000-49999999_1")).INFO,
+      // t8_seed20000000_49999999: (await import("../../../../data/dsp/seed20000000-49999999")).INFO,
+      // t9_seed40000000_69999999: (await import("../../../../data/dsp/seed40000000-69999999")).INFO,
+      // t10_seed60000000_89999999: (await import("../../../../data/dsp/seed60000000-89999999")).INFO,
     }
     return Object.keys(SeedInfo)
       .reduce((prev, key) => {
@@ -97,12 +97,12 @@ const DSPBlueStarInfo = (props) => {
   }
   const ALLTestV0924 = async () => {
     const SeedList = {
-      '57508570_single': (await import("../../../../data/dsp/09-24/57508570_single")).INFO,
-      '41803373_single': (await import("../../../../data/dsp/09-24/41803373_single")).INFO,
-      '42328284_single': (await import("../../../../data/dsp/09-24/42328284_single")).INFO,
-      '42572383_single': (await import("../../../../data/dsp/09-24/42572383_single")).INFO,
-      '45387689_single': (await import("../../../../data/dsp/09-24/45387689_single")).INFO,
-      '92827424_single': (await import("../../../../data/dsp/09-24/92827424_single")).INFO,
+      // '57508570_single': (await import("../../../../data/dsp/09-24/57508570_single")).INFO,
+      // '41803373_single': (await import("../../../../data/dsp/09-24/41803373_single")).INFO,
+      // '42328284_single': (await import("../../../../data/dsp/09-24/42328284_single")).INFO,
+      // '42572383_single': (await import("../../../../data/dsp/09-24/42572383_single")).INFO,
+      // '45387689_single': (await import("../../../../data/dsp/09-24/45387689_single")).INFO,
+      // '92827424_single': (await import("../../../../data/dsp/09-24/92827424_single")).INFO,
     }
     return Object.keys(SeedList)
       .map(k => {
