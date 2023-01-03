@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import {
-    mockData
+    mockData_已完成 as mockData
 } from '@dj/getOrderDetail.html'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
@@ -59,8 +59,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             // riderChannel: "LHDJ",
             // riderChannel: "",
             // orderStatusDesc: "配送中...233",
-            orderStatus: '1007',
+            // orderStatus: '1005',
             // orderTypeCode: '58',
+            outFlag: 0,
         },
     }
 
