@@ -1,7 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import {
-    mockData_已完成 as mockData
+    // mockData_已完成
+    mockData_test as mockData
 } from '@dj/getOrderDetail.html'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
