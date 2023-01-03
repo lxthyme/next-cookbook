@@ -20,6 +20,23 @@ const Page = (props) => {
     setOriginItem("{\n}")
   }, [])
 
+  const removeD = (newObj, list) => {
+    // const all = [
+    //   ...(newObj.uncommon_relics ?? []),
+    //   ...(newObj.rare_relics ?? []),
+    //   ...(newObj.common_relics ?? []),
+    //   ...(newObj.boss_relics ?? []),
+    //   ...(newObj.shop_relics ?? []),
+    // ]
+    newObj.uncommon_relics = newObj.uncommon_relics?.filter(
+      (t) => !list.includes(t)
+    )
+    newObj.rare_relics = newObj.rare_relics?.filter((t) => !list.includes(t))
+    newObj.common_relics = newObj.common_relics?.filter((t) => !list.includes(t))
+    newObj.boss_relics = newObj.boss_relics?.filter((t) => !list.includes(t))
+    newObj.shop_relics = newObj.shop_relics?.filter((t) => !list.includes(t))
+  }
+
   const test = () => {
     let {
       uncommon_relics,
@@ -30,7 +47,6 @@ const Page = (props) => {
       shop_relics,
       ...mockData_others
     } = mockData
-
 
     let fmt_relics = []
     if (check_unknown) {
@@ -59,8 +75,14 @@ const Page = (props) => {
     }
     const newObj = JSON.parse(originItem)
     newObj.gold = gold
-    fmt_relics = [...(newObj.relices ?? []), ...fmt_relics]
-    newObj.relices = fmt_relics
+    fmt_relics = [...(newObj.relics ?? []), ...fmt_relics]
+    fmt_relics = Array.from(new Set(fmt_relics))
+    newObj.relics = fmt_relics
+    newObj.metric_items_purchased = [
+      ...(newObj.metric_items_purchased ?? []),
+      ...fmt_relics,
+    ]
+    removeD(newObj, fmt_relics)
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
@@ -107,7 +129,7 @@ const Page = (props) => {
           flex: 1 1;
         }
         .v-middle input[type="text"] {
-          width: 70px;
+          // width: 90px;
         }
         .v-checkItem {
           text-align: right;
@@ -148,7 +170,6 @@ const Page = (props) => {
               type="checkbox"
               name="allChecked"
               id="allChecked"
-              // checked={check_初始}
               onChange={(e) => {
                 const checked = e.target.checked
                 setCheck_unknown(checked)
@@ -273,8 +294,8 @@ export default Page
 const pre_unknown = [
   "Necronomicon",
   "Red Mask",
-  "Ssserpent Head",
-  "Warped Tongs",
+  // "Ssserpent Head",
+  // "Warped Tongs",
 ]
 const pre_初始 = [
   /// 初始
