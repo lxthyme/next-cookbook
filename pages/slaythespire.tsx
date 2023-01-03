@@ -7,12 +7,14 @@ const Page = (props) => {
   const [originItem, setOriginItem] = useState("")
   const [newItem, setNewItem] = useState("")
   const [gold, setGold] = useState(0)
-  const [check_uncommon, setCheck_uncommon] = useState(true)
-  const [check_common, setCheck_common] = useState(true)
-  const [check_boss, setCheck_boss] = useState(true)
-  const [check_shop, setCheck_shop] = useState(true)
-  const [check_rare, setCheck_rare] = useState(true)
-  const [check_relics, setCheck_relics] = useState(true)
+  const [check_unknown, setCheck_unknown] = useState(true)
+  const [check_初始, setCheck_初始] = useState(true)
+  const [check_BOSS, setCheck_BOSS] = useState(true)
+  const [check_商店, setCheck_商店] = useState(true)
+  const [check_稀有, setCheck_稀有] = useState(true)
+  const [check_罕见, setCheck_罕见] = useState(true)
+  const [check_事件, setCheck_事件] = useState(true)
+  const [check_普通, setCheck_普通] = useState(true)
 
   useEffect(() => {
     setOriginItem("{\n}")
@@ -29,80 +31,36 @@ const Page = (props) => {
       ...mockData_others
     } = mockData
 
+
+    let fmt_relics = []
+    if (check_unknown) {
+      fmt_relics = [...fmt_relics, ...pre_unknown]
+    }
+    if (check_初始) {
+      fmt_relics = [...fmt_relics, ...pre_初始]
+    }
+    if (check_BOSS) {
+      fmt_relics = [...fmt_relics, ...pre_BOSS]
+    }
+    if (check_商店) {
+      fmt_relics = [...fmt_relics, ...pre_商店]
+    }
+    if (check_稀有) {
+      fmt_relics = [...fmt_relics, ...pre_稀有]
+    }
+    if (check_罕见) {
+      fmt_relics = [...fmt_relics, ...pre_罕见]
+    }
+    if (check_事件) {
+      fmt_relics = [...fmt_relics, ...pre_事件]
+    }
+    if (check_普通) {
+      fmt_relics = [...fmt_relics, ...pre_普通]
+    }
     const newObj = JSON.parse(originItem)
     newObj.gold = gold
-    if (check_uncommon) {
-      newObj.uncommon_relics = [
-        ...uncommon_relics,
-        ...(newObj.uncommon_relics ?? []),
-        "Teardrop Locket",
-        "Paper Krane",
-        "Paper Phrog",
-      ]
-    }
-    if (check_relics) {
-      newObj.relics = [
-        ...relics,
-        ...(newObj.relics ?? []),
-        "Golden Idol",
-        // 'Golden Idol (Relic)',
-        "Necronomicon",
-        "Odd Mushroom",
-        "Red Mask",
-        "Ssserpent Head",
-        "Warped Tongs",
-      ]
-    }
-    if (check_rare) {
-      newObj.rare_relics = [
-        ...rare_relics,
-        ...(newObj.rare_relics ?? []),
-        "Calipers",
-        "Dead Branch",
-        "Ginger",
-        "Ice Cream",
-        "Lizard Tail",
-        "Peace Pipe",
-        "Prayer Wheel",
-        "Shovel",
-        "Wing Boots",
-        "Unceasing Top",
-        "Turnip",
-      ]
-    }
-    if (check_common) {
-      newObj.common_relics = [
-        ...common_relics,
-        ...(newObj.common_relics ?? []),
-        //
-      ]
-    }
-    if (check_boss) {
-      newObj.boss_relics = [
-        ...boss_relics,
-        ...(newObj.boss_relics ?? []),
-        "Black Star",
-        "Sozu",
-        "Sacred Bark",
-        "Runic Pyramid",
-        "Runic Cube",
-        "Ring of the Serpent",
-        "Violet Lotus",
-        "Holy Water",
-      ]
-    }
-    if (check_shop) {
-      newObj.shop_relics = [
-        ...shop_relics,
-        ...(newObj.shop_relics ?? []),
-        "Chemical X",
-        "Clockwork Souvenir",
-        "Membership Card",
-        "Strange Spoon",
-        "Prismatic Shard",
-        "Melange",
-      ]
-    }
+    fmt_relics = [...(newObj.relices ?? []), ...fmt_relics]
+    newObj.relices = fmt_relics
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
@@ -190,76 +148,98 @@ const Page = (props) => {
               type="checkbox"
               name="allChecked"
               id="allChecked"
-              // checked={check_uncommon}
+              // checked={check_初始}
               onChange={(e) => {
                 const checked = e.target.checked
-                setCheck_uncommon(checked)
-                setCheck_common(checked)
-                setCheck_boss(checked)
-                setCheck_shop(checked)
-                setCheck_rare(checked)
-                setCheck_relics(checked)
+                setCheck_unknown(checked)
+                setCheck_初始(checked)
+                setCheck_BOSS(checked)
+                setCheck_商店(checked)
+                setCheck_稀有(checked)
+                setCheck_罕见(checked)
+                setCheck_事件(checked)
+                setCheck_普通(checked)
               }}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="uncommon">uncommon:</label>
+            <label htmlFor="check_unknown">unknown:</label>
             <input
               type="checkbox"
-              name="uncommon"
-              id="uncommon"
-              checked={check_uncommon}
-              onChange={(e) => setCheck_uncommon(e.target.checked)}
+              name="check_unknown"
+              id="check_unknown"
+              checked={check_unknown}
+              onChange={(e) => setCheck_unknown(e.target.checked)}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="common">common:</label>
+            <label htmlFor="check_初始">初始:</label>
             <input
               type="checkbox"
-              name="common"
-              id="common"
-              checked={check_common}
-              onChange={(e) => setCheck_common(e.target.checked)}
+              name="check_初始"
+              id="check_初始"
+              checked={check_初始}
+              onChange={(e) => setCheck_初始(e.target.checked)}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="boss">boss:</label>
+            <label htmlFor="check_BOSS">BOSS:</label>
             <input
               type="checkbox"
-              name="boss"
-              id="boss"
-              checked={check_boss}
-              onChange={(e) => setCheck_boss(e.target.checked)}
+              name="check_BOSS"
+              id="check_BOSS"
+              checked={check_BOSS}
+              onChange={(e) => setCheck_BOSS(e.target.checked)}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="shop">shop:</label>
+            <label htmlFor="check_商店">商店:</label>
             <input
               type="checkbox"
-              name="shop"
-              id="shop"
-              checked={check_shop}
-              onChange={(e) => setCheck_shop(e.target.checked)}
+              name="check_商店"
+              id="check_商店"
+              checked={check_商店}
+              onChange={(e) => setCheck_商店(e.target.checked)}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="rare">rare:</label>
+            <label htmlFor="check_稀有">稀有:</label>
             <input
               type="checkbox"
-              name="rare"
-              id="rare"
-              checked={check_rare}
-              onChange={(e) => setCheck_rare(e.target.checked)}
+              name="check_稀有"
+              id="check_稀有"
+              checked={check_稀有}
+              onChange={(e) => setCheck_稀有(e.target.checked)}
             />
           </div>
           <div className="v-checkItem">
-            <label htmlFor="relics">relics:</label>
+            <label htmlFor="check_罕见">罕见:</label>
             <input
               type="checkbox"
-              name="relics"
-              id="relics"
-              checked={check_relics}
-              onChange={(e) => setCheck_relics(e.target.checked)}
+              name="check_罕见"
+              id="check_罕见"
+              checked={check_罕见}
+              onChange={(e) => setCheck_罕见(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="check_事件">事件:</label>
+            <input
+              type="checkbox"
+              name="check_事件"
+              id="check_事件"
+              checked={check_事件}
+              onChange={(e) => setCheck_事件(e.target.checked)}
+            />
+          </div>
+          <div className="v-checkItem">
+            <label htmlFor="check_普通">普通:</label>
+            <input
+              type="checkbox"
+              name="check_普通"
+              id="check_普通"
+              checked={check_普通}
+              onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
           <button onClick={test}>Convert</button>
@@ -289,6 +269,76 @@ const Page = (props) => {
 Page.displayName = "📌 Page - PAGE"
 
 export default Page
+
+const pre_unknown = [
+  "Necronomicon",
+  "Red Mask",
+  "Ssserpent Head",
+  "Warped Tongs",
+]
+const pre_初始 = [
+  /// 初始
+  "Ring of the Snake",
+]
+const pre_BOSS = [
+  /// BOSS
+  "Runic Pyramid",
+  "Ring of the Serpent",
+  "Question Card",
+  "Lizard Tail",
+  "Black Star",
+  "Black Blood",
+]
+const pre_商店 = [
+  /// 商店
+  "Medical Kit",
+  "Membership Card",
+  "Strange Spoon",
+]
+const pre_稀有 = [
+  /// 稀有
+  "Unceasing Top",
+  "Shovel",
+  "Peace Pipe",
+  "Ice Cream",
+  "Ginger",
+  "Dead Branch",
+  "Champion Belt",
+  "Calipers",
+]
+const pre_罕见 = [
+  /// 罕见
+  "Toolbox",
+  "Smiling Mask",
+  "Paper Frog",
+  "Paper Crane",
+  "Pantograph",
+  "Mummified Hand",
+  "Discerning Monocle",
+  "The Courier",
+  "Chemical X",
+  "Blue Candle",
+]
+const pre_事件 = [
+  /// 事件
+  "Odd Mushroom",
+  "Nloth's Gift",
+  "Golden Idol",
+  // 'Golden Idol (Relic)',
+  "Enchiridion",
+]
+const pre_普通 = [
+  /// 普通
+  "Ring of the Snake",
+  "Singing Bowl",
+  "Snake Skull",
+  "Prayer Wheel",
+  "Pen Nib",
+  "Lantern",
+  "Juzu Bracelet",
+  "Bag of Preparation",
+  "Bag of Marbles",
+]
 
 const mockData = {
   shuffle_seed_count: 0,
