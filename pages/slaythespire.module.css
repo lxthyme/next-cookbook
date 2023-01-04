@@ -1,0 +1,45 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  margin: 20px;
+  justify-content: stretch;
+  align-items: stretch;
+  align-content: stretch;
+  .v-left,
+  .v-middle,
+  .v-right {
+    display: flex;
+    justify-content: stretch;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    align-items: stretch;
+    /* // height: 100vh; */
+  }
+  .left,
+  .right {
+    flex: 1 1;
+  }
+  .middle {
+    button {
+      flex: 1 1;
+    }
+    input[type="text"] {
+      /* // width: 90px; */
+    }
+    .v-checkItem {
+      text-align: right;
+    }
+  }
+  #originItem,
+  #newItem {
+    display: block;
+    border: 1px solid red;
+  }
+  textarea {
+    flex: 1 1;
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 // import PropTypes from 'prop-types'
+// import "./slaythespire.module.css"
 
 // export const config = { amp: true };
 
@@ -32,7 +33,9 @@ const Page = (props) => {
       (t) => !list.includes(t)
     )
     newObj.rare_relics = newObj.rare_relics?.filter((t) => !list.includes(t))
-    newObj.common_relics = newObj.common_relics?.filter((t) => !list.includes(t))
+    newObj.common_relics = newObj.common_relics?.filter(
+      (t) => !list.includes(t)
+    )
     newObj.boss_relics = newObj.boss_relics?.filter((t) => !list.includes(t))
     newObj.shop_relics = newObj.shop_relics?.filter((t) => !list.includes(t))
   }
@@ -110,37 +113,39 @@ const Page = (props) => {
           justify-content: stretch;
           align-items: stretch;
           align-content: stretch;
-        }
-        .v-left,
-        .v-middle,
-        .v-right {
-          display: flex;
-          justify-content: stretch;
-          /* flex-wrap: wrap; */
-          flex-direction: column;
-          align-items: stretch;
-          // height: 100vh;
-        }
-        .v-left,
-        .v-right {
-          flex: 1 1;
-        }
-        .v-middle button {
-          flex: 1 1;
-        }
-        .v-middle input[type="text"] {
-          // width: 90px;
-        }
-        .v-checkItem {
-          text-align: right;
-        }
-        #originItem,
-        #newItem {
-          display: block;
-          border: 1px solid red;
-        }
-        textarea {
-          flex: 1 1;
+          .v-left,
+          .v-middle,
+          .v-right {
+            display: flex;
+            justify-content: stretch;
+            /* flex-wrap: wrap; */
+            flex-direction: column;
+            align-items: stretch;
+            /* // height: 100vh; */
+          }
+          .v-left,
+          .v-right {
+            flex: 1 1;
+          }
+          .v-middle {
+            button {
+              flex: 1 1;
+            }
+            input[type="text"] {
+              /* // width: 90px; */
+            }
+            .v-checkItem {
+              text-align: right;
+            }
+          }
+          #originItem,
+          #newItem {
+            display: block;
+            border: 1px solid red;
+          }
+          textarea {
+            flex: 1 1;
+          }
         }
       `}</style>
       <div className="v-wrapper">
