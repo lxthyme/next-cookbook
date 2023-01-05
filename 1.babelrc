@@ -1,0 +1,21 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "preset-env": {},
+        "transform-runtime": {},
+        "styled-jsx": {
+          "vendorPrefixes": false,
+          "plugins": [
+            "styled-jsx-plugin-postcss"
+          ]
+        },
+        "class-properties": {}
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-do-expressions"
+  ]
+}
