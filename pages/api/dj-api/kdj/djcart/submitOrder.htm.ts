@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData } from '@dj/submitOrder.htm'
+import { mockData } from '@dj/submitOrder'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 

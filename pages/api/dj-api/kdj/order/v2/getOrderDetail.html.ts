@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail.html'
+import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body

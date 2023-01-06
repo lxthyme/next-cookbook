@@ -3,7 +3,7 @@ import {
   mockData_Test_dj_tab4,
   mockData_Prd_ydj_tab4,
   mockData_full,
-} from "@dj/range.html";
+} from "@dj/range";
 
 /// https://www.baidu.com
 

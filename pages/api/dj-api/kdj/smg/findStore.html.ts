@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_扫码购 } from '@dj/findStore.html'
+import { mockData_扫码购 } from '@dj/findStore'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body

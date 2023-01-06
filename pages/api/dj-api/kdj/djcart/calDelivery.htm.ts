@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_08_30 as mockData
-} from '@dj/calDelivery.htm'
+} from '@dj/calDelivery'
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData
