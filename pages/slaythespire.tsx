@@ -101,9 +101,7 @@ const Page = (props) => {
   }
   return (
     <>
-      <style jsx>{`
-
-      `}</style>
+      {/* <style jsx>{``}</style> */}
       <div className={css.wrapper}>
         <div className={css.left}>
           {/* <label>Origin Item: </label> */}

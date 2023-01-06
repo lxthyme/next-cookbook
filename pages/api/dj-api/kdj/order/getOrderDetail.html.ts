@@ -1,9 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 import {
-    // mockData_已完成
-    mockData_test as mockData
-} from '@dj/getOrderDetail.html'
+    mockData_已完成
+    // mockData_test
+    as mockData
+} from '@dj/getOrderDetail'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -31,13 +32,13 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
                 if (idx === 0) {
                     t = {
                         ...t,
-                        goodsType: '30',
+                        // goodsType: '30',
                         // goodsType: '29',
                         goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
                         reWeightMoney: '233',
-                        purchaseType: '16',
-                        priceType: '34',
-                        medicineDirectionShow: 1,
+                        // purchaseType: '16',
+                        // priceType: '34',
+                        // medicineDirectionShow: 1,
                         goodsStan: 'goodsStan 22222',
                         goodsColor: 'goodsColor 2333',
                         canReturnFlag: 3,
@@ -60,9 +61,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             // riderChannel: "LHDJ",
             // riderChannel: "",
             // orderStatusDesc: "配送中...233",
-            // orderStatus: '1005',
-            // orderTypeCode: '58',
-            outFlag: 0,
+            orderStatus: '1007',
+            orderTypeCode: '58',
+            fulfillStatusDesc: '233',
+            // outFlag: 2,
         },
     }
 
