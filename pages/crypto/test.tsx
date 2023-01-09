@@ -260,7 +260,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
                 "$1"
               )
               const response = v.replace(
-                /[\s\S]*"obj": "([\s\S]*?)"[\s\S]*$/,
+                /[\s\S]*"obj": {0,}"([\s\S]*?)"[\s\S]*$/,
                 "$1"
               )
               setCurrentTimestamp(timestamp.trim())
