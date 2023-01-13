@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_peiSongList } from '@dj/batch.html'
+import { mockData_peiSongList } from '@dj/batch'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 

@@ -8,7 +8,7 @@ import {
 	// mockData_ALL_B2C as mockData
 	mockData_分类球合并优化 as mockData
 	// mockData_API_瀑布流OneTab as mockData
-} from "@dj/query.html";
+} from "@dj/query";
 
 import {
 	Category_all,

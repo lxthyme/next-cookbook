@@ -2,23 +2,23 @@
 
 const Page = props => {
   const checkNow = async (all, current) => {
-    const idListFileName = `${all}.js`
-    const detailListFileName = `${current}.js`
-    console.log(`Start detail ${idListFileName} & ${detailListFileName}...`)
-    const idList = (await import(`../../../../data/dsp/10-22/${idListFileName}`)).Data
-    console.log(`${idListFileName}: `, idList)
-    const detailList = (await import(`../../../../data/dsp/10-22/${detailListFileName}`)).Data
-    console.log(`${detailListFileName}: `, detailList)
-    const restList = idList.filter(t => !detailList.includes(t))
-    console.log('restList: ', restList)
-    window.restList = restList
-    // console.log('restList: ', JSON.stringify(restList))
-    window.result = {
-      idListFileName: idList.count,
-      detailListFileName: detailList.count,
-      [idList.count - detailList.count]: restList
-    }
-    return result
+    // const idListFileName = `${all}.js`
+    // const detailListFileName = `${current}.js`
+    // console.log(`Start detail ${idListFileName} & ${detailListFileName}...`)
+    // const idList = (await import(`../../../../data/dsp/10-22/${idListFileName}`)).Data
+    // console.log(`${idListFileName}: `, idList)
+    // const detailList = (await import(`../../../../data/dsp/10-22/${detailListFileName}`)).Data
+    // console.log(`${detailListFileName}: `, detailList)
+    // const restList = idList.filter(t => !detailList.includes(t))
+    // console.log('restList: ', restList)
+    // window.restList = restList
+    // // console.log('restList: ', JSON.stringify(restList))
+    // window.result = {
+    //   idListFileName: idList.count,
+    //   detailListFileName: detailList.count,
+    //   [idList.count - detailList.count]: restList
+    // }
+    // return result
   }
   const checkRestAll = async () => {
     console.log('GO!')

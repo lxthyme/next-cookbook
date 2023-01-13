@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 // import PropTypes from 'prop-types'
+import css from "./slaythespire.module.css"
 
 // export const config = { amp: true };
 
@@ -32,7 +33,9 @@ const Page = (props) => {
       (t) => !list.includes(t)
     )
     newObj.rare_relics = newObj.rare_relics?.filter((t) => !list.includes(t))
-    newObj.common_relics = newObj.common_relics?.filter((t) => !list.includes(t))
+    newObj.common_relics = newObj.common_relics?.filter(
+      (t) => !list.includes(t)
+    )
     newObj.boss_relics = newObj.boss_relics?.filter((t) => !list.includes(t))
     newObj.shop_relics = newObj.shop_relics?.filter((t) => !list.includes(t))
   }
@@ -98,57 +101,14 @@ const Page = (props) => {
   }
   return (
     <>
-      <style jsx>{`
-        .v-wrapper {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          display: flex;
-          margin: 20px;
-          justify-content: stretch;
-          align-items: stretch;
-          align-content: stretch;
-        }
-        .v-left,
-        .v-middle,
-        .v-right {
-          display: flex;
-          justify-content: stretch;
-          /* flex-wrap: wrap; */
-          flex-direction: column;
-          align-items: stretch;
-          // height: 100vh;
-        }
-        .v-left,
-        .v-right {
-          flex: 1 1;
-        }
-        .v-middle button {
-          flex: 1 1;
-        }
-        .v-middle input[type="text"] {
-          // width: 90px;
-        }
-        .v-checkItem {
-          text-align: right;
-        }
-        #originItem,
-        #newItem {
-          display: block;
-          border: 1px solid red;
-        }
-        textarea {
-          flex: 1 1;
-        }
-      `}</style>
-      <div className="v-wrapper">
-        <div className="v-left">
+      {/* <style jsx>{``}</style> */}
+      <div className={css.wrapper}>
+        <div className={css.left}>
           {/* <label>Origin Item: </label> */}
           <textarea
             name="originItem"
             id="originItem"
+            className={css.originItem}
             cols="30"
             rows="30"
             placeholder="Origin Item here..."
@@ -156,7 +116,7 @@ const Page = (props) => {
             onChange={handleOriginChange}
           ></textarea>
         </div>
-        <div className="v-middle">
+        <div className={css.middle}>
           <label htmlFor="gold">Gold:</label>
           <input
             type="text"
@@ -164,7 +124,7 @@ const Page = (props) => {
             value={gold}
             onChange={(e) => setGold(parseInt(e.target.value) || 0)}
           />
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="allChecked">allChecked:</label>
             <input
               type="checkbox"
@@ -183,7 +143,7 @@ const Page = (props) => {
               }}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_unknown">unknown:</label>
             <input
               type="checkbox"
@@ -193,7 +153,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_unknown(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_初始">初始:</label>
             <input
               type="checkbox"
@@ -203,7 +163,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_初始(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_BOSS">BOSS:</label>
             <input
               type="checkbox"
@@ -213,7 +173,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_BOSS(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_商店">商店:</label>
             <input
               type="checkbox"
@@ -223,7 +183,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_商店(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_稀有">稀有:</label>
             <input
               type="checkbox"
@@ -233,7 +193,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_稀有(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_罕见">罕见:</label>
             <input
               type="checkbox"
@@ -243,7 +203,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_罕见(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_事件">事件:</label>
             <input
               type="checkbox"
@@ -253,7 +213,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_事件(e.target.checked)}
             />
           </div>
-          <div className="v-checkItem">
+          <div className={css.checkItem}>
             <label htmlFor="check_普通">普通:</label>
             <input
               type="checkbox"
@@ -265,12 +225,13 @@ const Page = (props) => {
           </div>
           <button onClick={test}>Convert</button>
         </div>
-        <div className="v-right">
+        <div className={css.right}>
           {/* <label>New Item: </label> */}
           <textarea
             name="newItem"
             id="newItem"
             cols="30"
+            className={css.newItem}
             placeholder="New Item here..."
             // rows="50"
             value={newItem}

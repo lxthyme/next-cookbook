@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
 	// mockData_光明奶卡,
 	mockData_无货
- } from '@dj/submitCart.htm'
+ } from '@dj/submitCart'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 

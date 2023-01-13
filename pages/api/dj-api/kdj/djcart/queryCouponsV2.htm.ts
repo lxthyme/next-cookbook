@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData } from '@dj/queryCouponsV2.htm'
+import { mockData } from '@dj/queryCouponsV2'
 // import { text } from '@plugin/faker'
 import { text } from '../../../../../plugin/faker'
 

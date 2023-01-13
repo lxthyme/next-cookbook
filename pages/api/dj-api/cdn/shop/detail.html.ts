@@ -1,6 +1,6 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_test } from '@dj/shop.detail.html'
+import { mockData_test } from '@dj/shop.detail'
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockData_test

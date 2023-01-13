@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData } from '@dj/detailsByActCodes.html'
+import { mockData } from '@dj/detailsByActCodes'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   let data = mockData

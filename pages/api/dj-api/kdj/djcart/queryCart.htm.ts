@@ -6,7 +6,7 @@ import {
 	mock_giftInfoList,
 	mockData_Only,
 	mockData_group,
- } from '@dj/queryCart.htm'
+ } from '@dj/queryCart'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 	const { page } = req.body
