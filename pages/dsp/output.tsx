@@ -6,7 +6,9 @@ import { readFile } from "fs/promises"
 
 export async function getStaticProps(context) {
   const file = await readFile(
-    "/Users/lxthyme/Desktop/Lucky/.config/Anything-Backup/Dropbox/Game/DSP/DSP无带.md",
+    // "/Users/lxthyme/Desktop/Lucky/.config/Anything-Backup/Dropbox/Game/DSP/DSP无带.md",
+    // "/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/data/dsp/DSP无带.md",
+    "./data/dsp/DSP无带.md",
     {
       encoding: "utf-8",
     }
