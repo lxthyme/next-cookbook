@@ -30,7 +30,7 @@ const Page = ({ md }) => {
       md,
       blueprintConvert,
     }
-  }, [])
+  }, [md])
 
   /// 1. 把无带流生成的代码(DSP无带.md)批量转换成蓝图文件(DSP无带.sh)
   /// 2. 手动执行 DSP无带.sh, 生成最终的蓝图文件

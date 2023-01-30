@@ -9,38 +9,38 @@ import LXLayout from "@layout/lxlayout"
 // export const config = { amp: true };
 
 const DSPBlueStarInfo = (props) => {
-  const fetchData = async () => {
-    // window.ALLOriginInfo = ALLOriginInfo
-    // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
-    // const result = formatStarInfo(ALLOriginInfo)
-    // const result2 = formatStarInfo2(result)
-    window.info = {
-      // result,
-      // result2,
-      formatStarInfo,
-      formatStarInfo2,
-      formatUsefulInfo3,
-      formatUsefulInfo4,
-      fmt,
-      ALLTest,
-      ALLTestV0924,
-      All_Seed: [],
-      INFO: {
-        // t1_最高亮度种子信息: 最高亮度种子信息,
-        t2_最高亮度种子信息v2: 最高亮度种子信息v2,
-        t3_seed0_19999999_v1: seed0_19999999_v1,
-        t4_seed0_19999999_v2: seed0_19999999_v2,
-        t5_seed0_19999999: seed0_19999999,
-        t6_seed20000000_49999999_1: seed20000000_49999999_1,
-        // t7_seed20000000_49999999_2: seed20000000_49999999_2,
-        t8_seed20000000_49999999: seed20000000_49999999,
-        t9_seed40000000_69999999: seed40000000_69999999,
-        t10_seed60000000_89999999: seed60000000_89999999,
-      },
-    }
-  }
+
   useEffect(() => {
-    fetchData()
+    const fetchData = async () => {
+      // window.ALLOriginInfo = ALLOriginInfo
+      // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
+      // const result = formatStarInfo(ALLOriginInfo)
+      // const result2 = formatStarInfo2(result)
+      window.info = {
+        // result,
+        // result2,
+        formatStarInfo,
+        formatStarInfo2,
+        formatUsefulInfo3,
+        formatUsefulInfo4,
+        fmt,
+        ALLTest,
+        ALLTestV0924,
+        All_Seed: [],
+        INFO: {
+          // t1_最高亮度种子信息: 最高亮度种子信息,
+          t2_最高亮度种子信息v2: 最高亮度种子信息v2,
+          t3_seed0_19999999_v1: seed0_19999999_v1,
+          t4_seed0_19999999_v2: seed0_19999999_v2,
+          t5_seed0_19999999: seed0_19999999,
+          t6_seed20000000_49999999_1: seed20000000_49999999_1,
+          // t7_seed20000000_49999999_2: seed20000000_49999999_2,
+          t8_seed20000000_49999999: seed20000000_49999999,
+          t9_seed40000000_69999999: seed40000000_69999999,
+          t10_seed60000000_89999999: seed60000000_89999999,
+        },
+      }
+    }
   }, [])
   // /// 1.
   // const 最高亮度种子信息 = async () =>

@@ -14,7 +14,7 @@ const Get3 = props => {
       insertList,
       formatList
     }
-  })
+  }, [])
   const getAllList = async (page = 1, pageSize = 20, idx, to = -1) => {
     return getList(page, pageSize, `detail${idx}`, idx)
       .then(res => {

@@ -3,17 +3,16 @@ import { getAllList } from '../../../../plugin/sql'
 import LXLayout from "@layout/lxlayout"
 
 const Blog = async props => {
-  const fetchData = async () => {
-    // window.ALLOriginInfo = ALLOriginInfo
-    // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
-    // const result = formatStarInfo(ALLOriginInfo)
-    // const result2 = formatStarInfo2(result)
-    window.info = {
-      submitData: submitData
-    }
-  }
   useEffect(() => {
-    fetchData()
+    const fetchData = async () => {
+      // window.ALLOriginInfo = ALLOriginInfo
+      // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
+      // const result = formatStarInfo(ALLOriginInfo)
+      // const result2 = formatStarInfo2(result)
+      window.info = {
+        submitData: submitData
+      }
+    }
   }, [])
   const submitData = async (e, table = 'seedInfo', page = 1, pageSize = 20) => {
     e && e.preventDefault()

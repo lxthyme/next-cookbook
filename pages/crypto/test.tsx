@@ -8,7 +8,12 @@ import LXLayout from "@layout/lxlayout"
 interface Props {
   base: string
 }
-const Page = ({ base }) => {
+interface Window {
+  x: object,
+  a: string,
+  b: string,
+}
+const Page = ({ base }: Props) => {
   const [isTrim, setIsTrim] = useState(true)
   const [currentTimestamp, setCurrentTimestamp] = useState("")
   const [cipherResponse, setCipherResponse] = useState("")
@@ -79,7 +84,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
 	"obj": "QaWL4eFJpI3pVsvYfMZDqF92z1HYgZDz5U65DWgfZpRuz18nl/5UwdRr66gS i1/BXpAZOkBghINf4dsm/p88DyxzRRVPfTNUyCfhyRxlV0YtgjNIZzBzM9fy r9tjw6QjJiCUitFzU9ha+dj6VIrjekxgn1GFEyketiCj6eFTJ0jVJLP55c/U Iq1HSkqYVf7xAyZEO8bdSTl9juaNh2DQdFsVTRGJodMeOHx4m4J3DF+hjSVD xtuP5pCT6N+gBocUP8sRy6PijoOmB8gDppbG53NmVJYbtsoKPwnbb0XEMrhg 3wHdndoViTMomhoNPaRypJ8ugZwjXq6vq8DEv0nVt7DZyhY6snUDO6yBdv9X 9ARdrn/7CI7/NsYtLKrOFzjXQ/el26k+nuYTQ6VQQ0nWQuMNkJZzgB7ZJabd nL3dTKm4o6g03PzbeCRg4cc6B8sdopR/BG+TH+Nf/rKEhogcI/PdG3n3nVjN wPE19zvSt9fJPBWD1CDr7h3QBIkPkiBs1lAtCPgYQCgWgy787/N/i+J3YiRd 3IjVDOPTcB9YaBr7ZsWiglI6tR2ISD7vl5WszXvhOWKOeHmGoUfwP4cYRoN+ d7C9rnb5PK5KdC9dqYGH3yv29VKBWRZSPoyqAoRouRlKp3stP6BVZGwzkqvU AzL5aSzE0A/W9pkRDJIN2UVoq2YK6HRIZetfw3jUPQD/kzFQLIOX79xlkSbL rgcPN+IEFWAo4D5/g1Dz04rL6TR1/4w7uF7RvLja0Dcmr2/KgFx/5GFVkDt0 U5DPcNx2xg4zdR4K57PgLYZd0dbDPTvuipmzR/mntUZIid3Rdzbgb6ZQlVJC bmPkiQ2BotJNEu5L/1gS0RNL",
 	"resCode": "00100000"
 }`
-  }, [])
+  }, [base])
 
   const getDesKey = (timestamp: string) => {
     let md5 = CryptoJS.MD5(timestamp).toString().toString()
