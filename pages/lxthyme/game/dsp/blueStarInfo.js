@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import dynamic from "next/dynamic"
+import LXLayout from "@layout/lxlayout"
 
 // import { ALLOriginInfo } from "../../../../data/dsp/all-star-info"
 // import { ALLOriginInfo } from "../../../../data/dsp/all-star-info-v2"
@@ -524,10 +525,10 @@ const DSPBlueStarInfo = (props) => {
     // }, {})
   }
   return (
-    <>
+    <LXLayout>
       <h2>All Blue Star Info</h2>
       {/* <style jsx>{``}</style> */}
-    </>
+    </LXLayout>
   )
 }
 

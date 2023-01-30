@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 // import PropTypes from 'prop-types'
 import { readFile } from "fs/promises"
+import LXLayout from "@layout/lxlayout"
 
 // export const config = { amp: true };
 
@@ -60,10 +61,10 @@ const Page = ({ md }) => {
       return result.join("\n")
   }
   return (
-    <>
+    <LXLayout>
       {/* <style jsx>{``}</style> */}
       <h2>dsp</h2>
-    </>
+    </LXLayout>
   )
 }
 

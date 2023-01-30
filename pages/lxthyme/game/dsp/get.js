@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { getAllList } from '../../../../plugin/sql'
+import LXLayout from "@layout/lxlayout"
 
 const Blog = props => {
   useEffect(async () => {
@@ -249,7 +250,7 @@ const Blog = props => {
         return { seed, ...result, fmt_star1, fmt_star2, summary }
       })
   }
-  return (<>
+  return (<LXLayout>
     <div className="page">
       <h1>My Blog</h1>
       <button onClick={submitData}>submitData</button>
@@ -276,7 +277,7 @@ const Blog = props => {
           margin-top: 2rem;
         }
       `}</style>
-  </>
+  </LXLayout>
   )
 }
 

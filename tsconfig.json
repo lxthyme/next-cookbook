@@ -45,6 +45,12 @@
       "@pages/*": [
         "pages/*"
       ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@layout/*": [
+        "layout/*"
+      ],
       "@plugin/*": [
         "plugin/*"
       ],

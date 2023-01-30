@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 // import PropTypes from 'prop-types'
 import CryptoJS from "crypto-js"
+import LXLayout from "@layout/lxlayout"
 
 // export const config = { amp: true };
 
@@ -187,7 +188,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
     }
   }
   return (
-    <>
+    <LXLayout>
       <style jsx>{`
         .v-wrapper {
           display: flex;
@@ -344,7 +345,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           ></textarea>
         </div>
       </div>
-    </>
+    </LXLayout>
   )
 }
 

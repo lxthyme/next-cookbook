@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 // import PropTypes from 'prop-types'
 import css from "./slaythespire.module.css"
+import LXLayout from "@layout/lxlayout"
 
 // export const config = { amp: true };
 
@@ -100,7 +101,7 @@ const Page = (props) => {
     }
   }
   return (
-    <>
+    <LXLayout>
       {/* <style jsx>{``}</style> */}
       <div className={css.wrapper}>
         <div className={css.left}>
@@ -239,7 +240,7 @@ const Page = (props) => {
           ></textarea>
         </div>
       </div>
-    </>
+    </LXLayout>
   )
 }
 

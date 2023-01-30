@@ -1,20 +1,15 @@
-import React, { useEffect } from "react"
-import { v9_5_1_master, v9_5_1_new } from "@pvz2/save"
-import LXLayout from "@layout/lxlayout"
+import Link from "next/link"
+import React from "react"
+// import PropTypes from 'prop-types'
 
 // export const config = { amp: true };
 
-interface Props {}
-const Page = (props: Props) => {
-  useEffect(() => {
-    window.lxthyme = v9_5_1_master.json.objects[0].objdata
-    window.dave = v9_5_1_new.objects[0].objdata
-  }, [])
+const Page = (props) => {
   return (
-    <LXLayout>
-      <h2>pvz2</h2>
+    <>
+      <Link href="/lxthyme">Home</Link>
       {/* <style jsx>{``}</style> */}
-    </LXLayout>
+    </>
   )
 }
 
@@ -23,6 +18,6 @@ const Page = (props: Props) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // Page.getInitialProps = async ({ req }) => {}
-Page.displayName = "🔗 PVZ2_fmt - COMPONENT"
+Page.displayName = "📌 LXNav - PAGE"
 
 export default Page
