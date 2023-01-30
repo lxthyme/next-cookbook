@@ -15,6 +15,7 @@ const Page = ({ base }) => {
   const [plainResponse, setPlainResponse] = useState("")
   const [cipherRequest, setCipherRequest] = useState("")
   const [plainRequest, setPlainRequest] = useState("")
+  const [currentBase, setCurrentBase] = useState(base)
   useEffect(() => {
     mockData.base = base
     window.x = {
@@ -208,12 +209,16 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           justify-items: stretch;
           align-content: stretch;
         }
+        .v-left textarea {
+          flex: 2 2;
+        }
         .v-left-cipher {
           display: flex;
           flex-direction: row;
           justify-content: stretch;
           align-items: stretch;
           height: 100%;
+          flex: 1 1;
         }
         .v-left-cipher textarea {
           flex: 1 1;
@@ -321,6 +326,20 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             id="v-timestamp"
             value={currentTimestamp}
             onChange={(e) => setCurrentTimestamp(e.target.value)}
+          />
+          <label htmlFor="v-base">base:</label>
+          <input
+            type="text"
+            name="v-base"
+            id="v-base"
+            value={currentBase}
+            onChange={(e) => {
+              if (e.target.value.trim().length <= 0) {
+                setCurrentBase(mockData.base)
+              } else {
+                setCurrentBase(e.target.value.trim())
+              }
+            }}
           />
           <button onClick={convert}>Convert</button>
         </div>
