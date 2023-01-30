@@ -18,7 +18,7 @@ const Page = (props) => {
           padding: 0 20px;
         }
       `}</style>
-      <h2>索引</h2>
+      <h2>Index</h2>
       <div>
         <h4>Crypto</h4>
         <Link href="/crypto/test" target="_blank">crypto</Link>

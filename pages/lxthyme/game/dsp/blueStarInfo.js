@@ -41,6 +41,7 @@ const DSPBlueStarInfo = (props) => {
         },
       }
     }
+    fetchData()
   }, [])
   // /// 1.
   // const 最高亮度种子信息 = async () =>

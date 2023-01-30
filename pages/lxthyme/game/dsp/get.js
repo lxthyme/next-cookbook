@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { getAllList } from '../../../../plugin/sql'
 import LXLayout from "@layout/lxlayout"
 
-const Blog = async props => {
+const Blog = props => {
   useEffect(() => {
     const fetchData = async () => {
       // window.ALLOriginInfo = ALLOriginInfo
@@ -13,6 +13,7 @@ const Blog = async props => {
         submitData: submitData
       }
     }
+    fetchData()
   }, [])
   const submitData = async (e, table = 'seedInfo', page = 1, pageSize = 20) => {
     e && e.preventDefault()
@@ -277,6 +278,9 @@ const Blog = async props => {
 
         .post + .post {
           margin-top: 2rem;
+        }
+        main {
+          overflow: auto;
         }
       `}</style>
   </LXLayout>
