@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_08_30 as mockData
 } from '@dj/calDelivery'
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData
   const { deliveryInfoList, fmap, ...obj_others } = obj
@@ -44,3 +44,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API

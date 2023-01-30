@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockData_riskControl
 
@@ -11,5 +11,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData_riskControl = {"success":false,"msg":"好运与你擦肩而过","riskType":"233","resCode":"00990001"}

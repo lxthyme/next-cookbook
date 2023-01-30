@@ -1,4 +1,4 @@
-export default (req, res) => {
+const API = (req, res) => {
     const { page } = req.body
     const total_page = Math.max(0, 5 - page)
 
@@ -17,6 +17,8 @@ export default (req, res) => {
             res.status(200).json(data)
         })
 }
+
+export default API
 
 const mockData = {
     "dataZoom": {

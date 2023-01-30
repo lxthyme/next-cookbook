@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = success
 
@@ -11,6 +11,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
 	"msg": "找不到这个appkey!",

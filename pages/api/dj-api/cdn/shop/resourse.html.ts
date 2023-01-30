@@ -4,7 +4,7 @@ import {
     mock_分类页改版 as mockData
  } from '@dj/resources'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
     const { obj, ...data_others } = mockData
     const data = {
@@ -21,3 +21,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             res.status(200).json(data)
         })
 }
+
+export default API

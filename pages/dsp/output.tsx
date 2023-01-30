@@ -14,7 +14,6 @@ export async function getStaticProps(context) {
       encoding: "utf-8",
     }
   )
-  console.log("-->f: ", file)
   return {
     props: {
       // file: files

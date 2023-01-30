@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData } from '@dj/detailsByActCodes'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
   let data = mockData
 
 Object.keys(data.obj).forEach(key => {
@@ -17,3 +17,5 @@ Object.keys(data.obj).forEach(key => {
       res.status(200).json(data)
     })
 }
+
+export default API

@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { getAllList } from '../../../../plugin/sql'
 import LXLayout from "@layout/lxlayout"
 
-const Blog = props => {
-  useEffect(async () => {
+const Blog = async props => {
+  const fetchData = async () => {
     // window.ALLOriginInfo = ALLOriginInfo
     // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
     // const result = formatStarInfo(ALLOriginInfo)
@@ -11,6 +11,9 @@ const Blog = props => {
     window.info = {
       submitData: submitData
     }
+  }
+  useEffect(() => {
+    fetchData()
   }, [])
   const submitData = async (e, table = 'seedInfo', page = 1, pageSize = 20) => {
     e && e.preventDefault()

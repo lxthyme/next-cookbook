@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData
 } from '@dj/queryCartCouponsList'
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...obj_others } = mockData
   const data = {
@@ -24,3 +24,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API

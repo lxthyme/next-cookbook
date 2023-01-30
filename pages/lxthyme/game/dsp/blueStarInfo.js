@@ -9,7 +9,7 @@ import LXLayout from "@layout/lxlayout"
 // export const config = { amp: true };
 
 const DSPBlueStarInfo = (props) => {
-  useEffect(async () => {
+  const fetchData = async () => {
     // window.ALLOriginInfo = ALLOriginInfo
     // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
     // const result = formatStarInfo(ALLOriginInfo)
@@ -38,6 +38,9 @@ const DSPBlueStarInfo = (props) => {
         t10_seed60000000_89999999: seed60000000_89999999,
       },
     }
+  }
+  useEffect(() => {
+    fetchData()
   }, [])
   // /// 1.
   // const 最高亮度种子信息 = async () =>

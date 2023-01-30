@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockData
 
@@ -11,6 +11,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
   "request_id": "18baf7f5ac326063d64b40373f9061d9",

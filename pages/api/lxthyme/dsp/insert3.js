@@ -1,7 +1,7 @@
 import prisma from '../../../../plugin/prisma'
 // import { PrismaClient } from "@prisma/client";
 
-export default async (req, res) => {
+const API = async (req, res) => {
   const { table, list } = JSON.parse(req.body)
   const seedList = list.map(t => t.seed)
   let errorSeed = ''
@@ -36,3 +36,5 @@ export default async (req, res) => {
     })
   }
 }
+
+export default API
