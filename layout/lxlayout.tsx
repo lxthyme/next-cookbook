@@ -7,9 +7,26 @@ import LXNav from "../components/lxnav"
 const Page = ({ children }) => {
   return (
     <>
+      <style jsx global>{`
+        #__next {
+          display: flex;
+          justify-content: stretch;
+          align-content: stretch;
+          align-items: stretch;
+          flex-direction: column;
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+        main {
+          flex: 1 1;
+          margin: 20px;
+        }
+      `}</style>
       <LXNav />
       <main>{children}</main>
-      {/* <style jsx>{``}</style> */}
     </>
   )
 }

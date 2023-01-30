@@ -196,7 +196,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           align-items: stretch;
           align-content: stretch;
           flex-direction: row;
-          height: 100vh;
+          height: 100%;
         }
         .v-left,
         .v-right {
@@ -246,8 +246,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           <textarea
             // name="v-cipherRequest"
             // id="v-cipherRequest"
-            cols="30"
-            rows="20"
+            cols="10"
+            rows="10"
             placeholder="请输入密文"
             // value={cipherRequest}
             onChange={(e) => {
@@ -277,8 +277,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           {/* <textarea
             name="v-cipherResponse"
             id="v-cipherResponse"
-            cols="30"
-            rows="20"
+            cols="10"
+            rows="10"
             placeholder="请输入密文"
             value={cipherResponse}
             onChange={(e) => setCipherResponse(e.target.value)}
@@ -287,7 +287,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             <textarea
               name="v-cipherRequest"
               id="v-cipherRequest"
-              cols="30"
+              cols="10"
               rows="10"
               value={cipherRequest}
               readOnly
@@ -295,7 +295,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             <textarea
               name="v-cipherResponse"
               id="v-cipherResponse"
-              cols="30"
+              cols="10"
               rows="10"
               value={cipherResponse}
               readOnly
@@ -328,8 +328,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           <textarea
             name="v-plainRequest"
             id="v-plainRequest"
-            cols="30"
-            rows="30"
+            cols="10"
+            rows="10"
             placeholder="明文在此~"
             value={plainRequest}
             readOnly
@@ -337,8 +337,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           <textarea
             name="v-plainResponse"
             id="v-plainResponse"
-            cols="30"
-            rows="30"
+            cols="10"
+            rows="10"
             placeholder="明文在此~"
             value={plainResponse}
             readOnly
