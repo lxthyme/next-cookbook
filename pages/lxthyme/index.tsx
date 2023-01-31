@@ -23,7 +23,7 @@ const Page = (props) => {
         <h4>Crypto</h4>
         <Link href="/crypto/test" target="_blank">crypto</Link>
         <h4>DSP</h4>
-        <Link href="dsp/output" target="_blank">dsp/output</Link>
+        <Link href="dsp/dealDup" target="_blank">dsp/dealDup</Link>
         <Link href="lxthyme/game/dsp/blueStarInfo" target="_blank">dsp/blueStarInfo</Link>
         <Link href="lxthyme/game/dsp/diff" target="_blank">dsp/diff</Link>
         <Link href="lxthyme/game/dsp/get" target="_blank">dsp/get</Link>
@@ -45,6 +45,8 @@ const Page = (props) => {
         >
           factoriolab.github.io/list
         </Link>
+        <Link href="https://github.com/DSPBluePrints/DysonSphereBluePrints" target="_blank">戴森球蓝图(DysonSphereBluePrints)</Link>
+        <Link href="https://github.com/DSPBluePrints/FactoryBluePrints" target="_blank">DSP 蓝图(FactoryBluePrints)</Link>
         {/* <Link href="" target="_blank"></Link> */}
         <h4>GTA 5</h4>
         <Link href="https://gtaweb.eu" target="_blank">gtaWeb.eu</Link>
