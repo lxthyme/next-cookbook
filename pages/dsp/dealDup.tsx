@@ -69,8 +69,9 @@ const Page = ({ md, t131 }) => {
           idx += 1
           newName = `${name}(${idx})`
         }
+        const fmt_t = t.replace("1. ", "")
         list.push(newName)
-        return `echo "${t}"  > "./DSP无带/${newName}.txt"`
+        return `echo "${fmt_t}"  > "./DSP无带/${newName}.txt"`
       })
     console.log("-->全部文件名list: ", list)
     return result.join("\n")
