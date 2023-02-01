@@ -42,6 +42,7 @@ const Page = ({ md }) => {
     const result = md
       .split("\n")
       .filter((t) => t.startsWith("1. "))
+      // .slice(0, 1)
       .map((t) => {
         let name = t.split(",")[10]
         name = decodeURIComponent(name)
@@ -53,8 +54,9 @@ const Page = ({ md }) => {
           idx += 1
           newName = `${name}(${idx})`
         }
+        const fmt_t = t.replace("1. ", "")
         list.push(newName)
-        return `echo "${t}"  > "./DSP无带/${newName}.txt"`
+        return `echo '${fmt_t}'  > "./DSP无带/${newName}.txt"`
       })
       console.log('-->全部文件名list: ', list)
       return result.join("\n")
