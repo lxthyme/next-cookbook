@@ -6,7 +6,7 @@ import {
   // mockData_光明奶卡
  } from '@dj/coupon.v2.list'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
   const buttonFlagEnum = {
     1: '立即领取',
     2: '已领取',
@@ -62,3 +62,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API

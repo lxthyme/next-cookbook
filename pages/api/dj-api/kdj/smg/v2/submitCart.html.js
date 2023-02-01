@@ -1,4 +1,4 @@
-export default function (req, res) {
+const API = (req, res) => {
   const { obj, ...data_others } = mockData
   const { cartItems, ...obj_others } = obj
   const data = {
@@ -19,6 +19,8 @@ export default function (req, res) {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
   "success": true,

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData_peiSongList } from '@dj/batch'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData_peiSongList
   const { list, ...obj_others } = obj;
@@ -44,6 +44,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockTimeList = [{
   "server": null,

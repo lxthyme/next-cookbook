@@ -21,7 +21,7 @@ const fmtStar2 = (id, item) => {
   }
 }
 
-export default async (req, res) => {
+const API = async (req, res) => {
   const seedInfo = req.body
   const fmt_seedInfo = JSON.parse(seedInfo)
   try {
@@ -212,3 +212,5 @@ export default async (req, res) => {
     })
   }
 }
+
+export default API

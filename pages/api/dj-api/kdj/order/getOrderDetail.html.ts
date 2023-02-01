@@ -6,7 +6,7 @@ import {
     as mockData
 } from '@dj/getOrderDetail'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
     const { obj, ...data_others } = mockData
@@ -75,3 +75,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             res.status(200).json(data)
         })
 }
+
+export default API

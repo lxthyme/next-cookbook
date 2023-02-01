@@ -1,5 +1,5 @@
 // export const config = { amp: true };
-
+import LXLayout from "@layout/lxlayout"
 
 // 种子ID,星区数量,磁石总数,蓝巨星总数,0型恒星总数,星系数据1,星系数据2,星系数据3,星系数据4,星系数据5,星系数据6,星系数据7,星系数据8,星系数据9,星系数据10,星系数据11
 // 种子ID,星区数量,磁石总数,蓝巨星总数,0型恒星总数,star1,star2,star3,star4,star5,star6,star7,star8,star9,star10,star11,star12,star13,star14,star15,star16,star17,star18,star19,star20,star21,star22,star23,star24,star25,star26,star27,star28,star29,star30,star31,star32,star33,star34,star35,star36,star37,star38,star39,star40,star41,star42,star43,star44,star45,star46,star47,star48,star49,star50,star51,star52,star53,star54,star55,star56,star57,star58,star59,star60,star61,star62,star63,star64,star65,star66,star67,star68,star69,star70,star71,star72,star73,star74,star75,star76,star77,star78,star79,star80,star81,star82,star83,star84,star85,star86,star87,star88,star89,star90,star91,star92,star93,star94,star95,star96,star97,star98,star99,star100,star101,star102,star103,star104,star105,star106,star107,star108,star109,star110,star111,star112,star113,star114,star115,star116,star117,star118,star119,star120,star121,star122,star123,star124,star125,star126,star127,star128,star129,star130,star131,star132,star133,star134,star135,star136,star137,star138,star139,star140,star141,star142,star143,star144,star145,star146,star147,star148,star149,star150,star151,star152,star153,star154,star155,star156,star157,star158,star159,star160,star161,star162,star163,star164,star165,star166,star167,star168,star169,star170,star171,star172,star173,star174,star175,star176,star177,star178,star179,star180,star181,star182,star183,star184,star185,star186,star187,star188,star189,star190,star191,star192,star193,star194,star195,star196,star197,star198,star199,star200,star201,star202,star203,star204,star205,star206,star207,star208,star209,star210
@@ -227,9 +227,9 @@ const Page = props => {
       // .map(t => t.光度)
       return f_t
     })
-  return (<>
+  return (<LXLayout>
     {/* <style jsx>{``}</style> */}
-  </>)
+  </LXLayout>)
 }
 
 // Page.propTypes = {}

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockData_success
   // data = mockData_failure
@@ -23,3 +23,5 @@ const mockData_success = {
 }
 
 const mockData_failure = {}
+
+export default API

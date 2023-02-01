@@ -2,7 +2,7 @@ import prisma from '../../../../plugin/prisma'
 // import { PrismaClient } from "@prisma/client";
 
 
-export default async function handle(req, res) {
+const API = async function handle(req, res) {
   let { pageSize = 20, page = 1, table = 'seed4kw' } = req.query
   pageSize = parseFloat(pageSize)
   page = parseFloat(page)
@@ -58,3 +58,5 @@ export default async function handle(req, res) {
   }
 
 }
+
+export default API

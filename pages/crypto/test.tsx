@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react"
 // import PropTypes from 'prop-types'
 import CryptoJS from "crypto-js"
+import LXLayout from "@layout/lxlayout"
 
 // export const config = { amp: true };
 
 interface Props {
   base: string
 }
-const Page = ({ base }) => {
+interface Window {
+  x: object,
+  a: string,
+  b: string,
+}
+const Page = ({ base }: Props) => {
   const [isTrim, setIsTrim] = useState(true)
   const [currentTimestamp, setCurrentTimestamp] = useState("")
   const [cipherResponse, setCipherResponse] = useState("")
   const [plainResponse, setPlainResponse] = useState("")
   const [cipherRequest, setCipherRequest] = useState("")
   const [plainRequest, setPlainRequest] = useState("")
+  const [currentBase, setCurrentBase] = useState(base)
   useEffect(() => {
     mockData.base = base
     window.x = {
@@ -77,7 +84,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
 	"obj": "QaWL4eFJpI3pVsvYfMZDqF92z1HYgZDz5U65DWgfZpRuz18nl/5UwdRr66gS i1/BXpAZOkBghINf4dsm/p88DyxzRRVPfTNUyCfhyRxlV0YtgjNIZzBzM9fy r9tjw6QjJiCUitFzU9ha+dj6VIrjekxgn1GFEyketiCj6eFTJ0jVJLP55c/U Iq1HSkqYVf7xAyZEO8bdSTl9juaNh2DQdFsVTRGJodMeOHx4m4J3DF+hjSVD xtuP5pCT6N+gBocUP8sRy6PijoOmB8gDppbG53NmVJYbtsoKPwnbb0XEMrhg 3wHdndoViTMomhoNPaRypJ8ugZwjXq6vq8DEv0nVt7DZyhY6snUDO6yBdv9X 9ARdrn/7CI7/NsYtLKrOFzjXQ/el26k+nuYTQ6VQQ0nWQuMNkJZzgB7ZJabd nL3dTKm4o6g03PzbeCRg4cc6B8sdopR/BG+TH+Nf/rKEhogcI/PdG3n3nVjN wPE19zvSt9fJPBWD1CDr7h3QBIkPkiBs1lAtCPgYQCgWgy787/N/i+J3YiRd 3IjVDOPTcB9YaBr7ZsWiglI6tR2ISD7vl5WszXvhOWKOeHmGoUfwP4cYRoN+ d7C9rnb5PK5KdC9dqYGH3yv29VKBWRZSPoyqAoRouRlKp3stP6BVZGwzkqvU AzL5aSzE0A/W9pkRDJIN2UVoq2YK6HRIZetfw3jUPQD/kzFQLIOX79xlkSbL rgcPN+IEFWAo4D5/g1Dz04rL6TR1/4w7uF7RvLja0Dcmr2/KgFx/5GFVkDt0 U5DPcNx2xg4zdR4K57PgLYZd0dbDPTvuipmzR/mntUZIid3Rdzbgb6ZQlVJC bmPkiQ2BotJNEu5L/1gS0RNL",
 	"resCode": "00100000"
 }`
-  }, [])
+  }, [base])
 
   const getDesKey = (timestamp: string) => {
     let md5 = CryptoJS.MD5(timestamp).toString().toString()
@@ -187,7 +194,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
     }
   }
   return (
-    <>
+    <LXLayout>
       <style jsx>{`
         .v-wrapper {
           display: flex;
@@ -195,7 +202,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           align-items: stretch;
           align-content: stretch;
           flex-direction: row;
-          height: 100vh;
+          height: 100%;
         }
         .v-left,
         .v-right {
@@ -207,12 +214,16 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           justify-items: stretch;
           align-content: stretch;
         }
+        .v-left textarea {
+          flex: 2 2;
+        }
         .v-left-cipher {
           display: flex;
           flex-direction: row;
           justify-content: stretch;
           align-items: stretch;
           height: 100%;
+          flex: 1 1;
         }
         .v-left-cipher textarea {
           flex: 1 1;
@@ -245,8 +256,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           <textarea
             // name="v-cipherRequest"
             // id="v-cipherRequest"
-            cols="30"
-            rows="20"
+            cols="10"
+            rows="10"
             placeholder="请输入密文"
             // value={cipherRequest}
             onChange={(e) => {
@@ -276,8 +287,8 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           {/* <textarea
             name="v-cipherResponse"
             id="v-cipherResponse"
-            cols="30"
-            rows="20"
+            cols="10"
+            rows="10"
             placeholder="请输入密文"
             value={cipherResponse}
             onChange={(e) => setCipherResponse(e.target.value)}
@@ -286,7 +297,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             <textarea
               name="v-cipherRequest"
               id="v-cipherRequest"
-              cols="30"
+              cols="10"
               rows="10"
               value={cipherRequest}
               readOnly
@@ -294,7 +305,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             <textarea
               name="v-cipherResponse"
               id="v-cipherResponse"
-              cols="30"
+              cols="10"
               rows="10"
               value={cipherResponse}
               readOnly
@@ -321,14 +332,28 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
             value={currentTimestamp}
             onChange={(e) => setCurrentTimestamp(e.target.value)}
           />
+          <label htmlFor="v-base">base:</label>
+          <input
+            type="text"
+            name="v-base"
+            id="v-base"
+            value={currentBase}
+            onChange={(e) => {
+              if (e.target.value.trim().length <= 0) {
+                setCurrentBase(mockData.base)
+              } else {
+                setCurrentBase(e.target.value.trim())
+              }
+            }}
+          />
           <button onClick={convert}>Convert</button>
         </div>
         <div className="v-right">
           <textarea
             name="v-plainRequest"
             id="v-plainRequest"
-            cols="30"
-            rows="30"
+            cols="10"
+            rows="10"
             placeholder="明文在此~"
             value={plainRequest}
             readOnly
@@ -336,15 +361,15 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           <textarea
             name="v-plainResponse"
             id="v-plainResponse"
-            cols="30"
-            rows="30"
+            cols="10"
+            rows="10"
             placeholder="明文在此~"
             value={plainResponse}
             readOnly
           ></textarea>
         </div>
       </div>
-    </>
+    </LXLayout>
   )
 }
 

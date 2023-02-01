@@ -1,4 +1,4 @@
-export default function(req, res) {
+const API = (req, res) => {
   const { page } = req.body
 
   const data = mockData
@@ -10,6 +10,8 @@ export default function(req, res) {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
 	"obj": "MX8nobtOkMqB6dJLr6KpkH9cTeKpumQwheCAsz8ybn9PFTzzgqZURq5GVrRH sWa8",

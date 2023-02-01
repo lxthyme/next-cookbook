@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_failure
 } from '@dj/coupon.v2.receive'
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data =
     // mockData_Success
@@ -20,6 +20,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       // res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData_Success = {
   "success": true,

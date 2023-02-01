@@ -16,7 +16,7 @@ import {
 	Slide_all
 } from '@dj/query.html.package'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 	// const mockData = await mockGet('query.html.js', 'mockData_OnlyO2O')
 	// const obj = mockData.mockData_Prd_dj_tab4
 	// const obj = mockData.mockData_Prd_ydj_tab4
@@ -120,3 +120,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 			res.status(200).json(data)
 		})
 }
+
+export default API

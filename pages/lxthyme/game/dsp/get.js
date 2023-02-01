@@ -1,15 +1,19 @@
 import { useEffect } from 'react'
 import { getAllList } from '../../../../plugin/sql'
+import LXLayout from "@layout/lxlayout"
 
 const Blog = props => {
-  useEffect(async () => {
-    // window.ALLOriginInfo = ALLOriginInfo
-    // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
-    // const result = formatStarInfo(ALLOriginInfo)
-    // const result2 = formatStarInfo2(result)
-    window.info = {
-      submitData: submitData
+  useEffect(() => {
+    const fetchData = async () => {
+      // window.ALLOriginInfo = ALLOriginInfo
+      // window.ALLOriginInfo = (await import("../../../../data/dsp/all-star-info-v2")).ALLOriginInfo
+      // const result = formatStarInfo(ALLOriginInfo)
+      // const result2 = formatStarInfo2(result)
+      window.info = {
+        submitData: submitData
+      }
     }
+    fetchData()
   }, [])
   const submitData = async (e, table = 'seedInfo', page = 1, pageSize = 20) => {
     e && e.preventDefault()
@@ -249,7 +253,7 @@ const Blog = props => {
         return { seed, ...result, fmt_star1, fmt_star2, summary }
       })
   }
-  return (<>
+  return (<LXLayout>
     <div className="page">
       <h1>My Blog</h1>
       <button onClick={submitData}>submitData</button>
@@ -275,8 +279,11 @@ const Blog = props => {
         .post + .post {
           margin-top: 2rem;
         }
+        main {
+          overflow: auto;
+        }
       `}</style>
-  </>
+  </LXLayout>
   )
 }
 

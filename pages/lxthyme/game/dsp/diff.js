@@ -1,4 +1,5 @@
 // export const config = { amp: true };
+import LXLayout from "@layout/lxlayout"
 
 const Page = props => {
   const checkNow = async (all, current) => {
@@ -51,7 +52,7 @@ const Page = props => {
     //   [idList.count - detailList.count]: restList
     // }
   }
-  return (<>
+  return (<LXLayout>
     <button onClick={() => checkNow('all', 'now')}>Check Now</button>
     <button onClick={() => checkRestAll()}>Check All</button>
     <button onClick={() => checkRest(15)}>Check 15</button>
@@ -65,7 +66,7 @@ const Page = props => {
     <button onClick={() => checkRest(23)}>Check 23</button>
     <button onClick={() => checkRest(24)}>Check 24</button>
     {/* <style jsx>{``}</style> */}
-  </>)
+  </LXLayout>)
 }
 
 // Page.propTypes = {}

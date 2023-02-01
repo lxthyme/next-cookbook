@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData_扫码购 } from '@dj/findStore'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
   const {obj, ...data_others } = mockData_扫码购
@@ -21,6 +21,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
   "success": true,

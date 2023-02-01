@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { getList } from '../../../../plugin/sql'
 import { formatList } from '../../../../plugin/dsp.format3'
 import { insertList } from "../../../../plugin/sql.insert";
+import LXLayout from "@layout/lxlayout"
 
 // export const config = { amp: true };
 
@@ -13,7 +14,7 @@ const Get3 = props => {
       insertList,
       formatList
     }
-  })
+  }, [])
   const getAllList = async (page = 1, pageSize = 20, idx, to = -1) => {
     return getList(page, pageSize, `detail${idx}`, idx)
       .then(res => {
@@ -60,10 +61,10 @@ const Get3 = props => {
         console.log('-->Error: ', error)
       })
   }
-  return (<>
+  return (<LXLayout>
     <p>123</p>
     {/* <style jsx>{``}</style> */}
-  </>)
+  </LXLayout>)
 }
 
 // Get3.propTypes = {}
