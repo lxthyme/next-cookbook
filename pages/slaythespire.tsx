@@ -129,16 +129,10 @@ const Page = (props) => {
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
-  // const handleOriginChange = () => {
-  //   // console.log('e: ', e)
-  //   // setOriginItem(e.target.value)
-  //   try {
-  //     const newObj = JSON.parse(originItem)
-  //     setGold(newObj.gold ?? 0)
-  //   } catch (error) {
-  //     // console.log('Error: ', error)
-  //   }
-  // }
+  const handleOriginChange = (e) => {
+    // console.log('e: ', e)
+    setOriginItem(e.target.value)
+  }
   const encryptAction = e => {
     const base64 = encrypt(newItem)
     setNewItem(base64)
@@ -187,7 +181,7 @@ const Page = (props) => {
             rows="30"
             placeholder="Origin Item here..."
             value={originItem}
-            // onChange={handleOriginChange}
+            onChange={handleOriginChange}
           ></textarea>
         </div>
         <div className={css.middle}>
