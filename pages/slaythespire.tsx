@@ -5,7 +5,7 @@ import LXLayout from "@layout/lxlayout"
 // import useSWR from 'swr'
 import useSWRMutation from "swr/mutation"
 // import fetcher from '@plugin/fetcher'
-import { decrypt, encrypt} from '@plugin/savethespire'
+import { decrypt, encrypt } from "@plugin/savethespire"
 
 // export const config = { amp: true };
 
@@ -16,8 +16,15 @@ async function sendRequest(url, { arg }) {
     body: JSON.stringify(arg),
   }).then((res) => res.json())
 }
+export async function getStaticProps(context) {
+  return {
+    props: {
+      cwd: process.cwd() || "",
+    }, // will be passed to the page component as props
+  }
+}
 
-const Page = (props) => {
+const Page = ({ cwd }) => {
   const [originItem, setOriginItem] = useState("")
   const [newItem, setNewItem] = useState("")
   const [gold, setGold] = useState(0)
@@ -34,11 +41,14 @@ const Page = (props) => {
 
   useEffect(() => {
     setOriginItem("{\n}")
-    const savefile = localStorage.getItem("savefile") || ""
+    const savefile =
+      localStorage.getItem("savefile") || `${cwd}/mockData/t.json`
     setSavefilePath(savefile)
 
     window.sts = {
-      decrypt, encrypt
+      decrypt,
+      encrypt,
+      cwd,
     }
   }, [])
   useEffect(() => {
@@ -133,7 +143,7 @@ const Page = (props) => {
     // console.log('e: ', e)
     setOriginItem(e.target.value)
   }
-  const encryptAction = e => {
+  const encryptAction = (e) => {
     const base64 = encrypt(newItem)
     setNewItem(base64)
   }
@@ -157,17 +167,16 @@ const Page = (props) => {
     <LXLayout>
       {/* <style jsx>{``}</style> */}
       <div className={css.top}>
-        <label htmlFor="savepath">save path:</label>
-        <textarea
-          name="savepath"
+        <label htmlFor={css.savepath}>save path:</label>
+        <input
+          type="text"
+          name={css.savepath}
           id={css.savepath}
           value={savefilePath}
           onChange={(e) => {
             setSavefilePath(e.target.value || "")
           }}
-          cols="10"
-          rows="1"
-        ></textarea>
+        />
         <button onClick={handleSaveFileChange}>读取</button>
       </div>
       <div className={css.wrapper}>
