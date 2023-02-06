@@ -53,6 +53,7 @@ const Page = (props) => {
 
         <h4>Slay The Spire</h4>
         <Link href="/slaythespire" target="_blank">slaythespire</Link>
+        <Link href="https://save-the-spire.vercel.app" target="_blank">save-the-spire.vercel.app</Link>
         <h4>pvz2</h4>
         <Link href="pvz2/fmt" target="_blank">pvz2/fmt</Link>
         {/* <Link href="" target="_blank"></Link> */}
