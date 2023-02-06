@@ -2,8 +2,20 @@ import React, { useState, useEffect } from "react"
 // import PropTypes from 'prop-types'
 import css from "./slaythespire.module.css"
 import LXLayout from "@layout/lxlayout"
+// import useSWR from 'swr'
+import useSWRMutation from "swr/mutation"
+// import fetcher from '@plugin/fetcher'
+import { decrypt, encrypt} from '@plugin/savethespire'
 
 // export const config = { amp: true };
+
+// const fetcher = (url) => fetch(url).then((res) => res.json());
+async function sendRequest(url, { arg }) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(arg),
+  }).then((res) => res.json())
+}
 
 const Page = (props) => {
   const [originItem, setOriginItem] = useState("")
@@ -17,10 +29,37 @@ const Page = (props) => {
   const [check_罕见, setCheck_罕见] = useState(true)
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
+  const [savefilePath, setSavefilePath] = useState("")
+  const [fileContent, setFileContent] = useState({})
 
   useEffect(() => {
     setOriginItem("{\n}")
+    const savefile = localStorage.getItem("savefile") || ""
+    setSavefilePath(savefile)
+
+    window.sts = {
+      decrypt, encrypt
+    }
   }, [])
+  useEffect(() => {
+    try {
+      const newObj = JSON.parse(originItem)
+      setGold(newObj.gold ?? 0)
+    } catch (error) {
+      // console.log('Error: ', error)
+    }
+  }, [originItem])
+
+  // const fileContent = useSWR({
+  //   url: 'api/lxthyme/readFile',
+  //   // file: 'savefilePath',
+  //   // args: {
+  //   // }
+  // }, fetcher)
+  const { trigger, isMutating } = useSWRMutation(
+    "api/lxthyme/readFile",
+    sendRequest
+  )
 
   const removeD = (newObj, list) => {
     // const all = [
@@ -90,19 +129,53 @@ const Page = (props) => {
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
-  const handleOriginChange = (e) => {
-    // console.log('e: ', e)
-    setOriginItem(e.target.value)
-    try {
-      const newObj = JSON.parse(e.target.value)
-      setGold(newObj.gold ?? 0)
-    } catch (error) {
-      // console.log('Error: ', error)
+  // const handleOriginChange = () => {
+  //   // console.log('e: ', e)
+  //   // setOriginItem(e.target.value)
+  //   try {
+  //     const newObj = JSON.parse(originItem)
+  //     setGold(newObj.gold ?? 0)
+  //   } catch (error) {
+  //     // console.log('Error: ', error)
+  //   }
+  // }
+  const encryptAction = e => {
+    const base64 = encrypt(newItem)
+    setNewItem(base64)
+  }
+  const handleSaveFileChange = async (e) => {
+    if (savefilePath.length > 0) {
+      localStorage.setItem("savefile", savefilePath)
+
+      const xl_readFile = async (path) => {
+        const data = await trigger({ file: path })
+        setFileContent(data)
+        const { content: base64 } = data
+        const json = decrypt(base64)
+        setOriginItem(JSON.stringify(JSON.parse(json), null, 2))
+        // setOriginItem(content)
+      }
+
+      xl_readFile(savefilePath)
     }
   }
   return (
     <LXLayout>
       {/* <style jsx>{``}</style> */}
+      <div className={css.top}>
+        <label htmlFor="savepath">save path:</label>
+        <textarea
+          name="savepath"
+          id={css.savepath}
+          value={savefilePath}
+          onChange={(e) => {
+            setSavefilePath(e.target.value || "")
+          }}
+          cols="10"
+          rows="1"
+        ></textarea>
+        <button onClick={handleSaveFileChange}>读取</button>
+      </div>
       <div className={css.wrapper}>
         <div className={css.left}>
           {/* <label>Origin Item: </label> */}
@@ -114,7 +187,7 @@ const Page = (props) => {
             rows="30"
             placeholder="Origin Item here..."
             value={originItem}
-            onChange={handleOriginChange}
+            // onChange={handleOriginChange}
           ></textarea>
         </div>
         <div className={css.middle}>
@@ -224,6 +297,7 @@ const Page = (props) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
+          <button onClick={encryptAction}>encrypt</button>
           <button onClick={test}>Convert</button>
         </div>
         <div className={css.right}>

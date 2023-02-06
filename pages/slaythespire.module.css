@@ -1,3 +1,13 @@
+.top {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  #savepath {
+    flex: 1 1;
+    margin: 10px;
+    line-height: 30px;
+  }
+}
 .wrapper {
   /* position: fixed;
   top: 0;
