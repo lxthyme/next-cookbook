@@ -112,7 +112,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
           // goodsType: '29',
           tdLable: '48H发货'
         }
-      })
+      }),
+      // goodsList: []
     }
   }
 

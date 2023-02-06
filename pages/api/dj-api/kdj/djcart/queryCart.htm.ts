@@ -80,8 +80,12 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										// ],
 										/// 营促销信息
 										popDetails: popDetails.map((t4, idx4) => {
-											if(idx4 === 2) {
-												t4.popType = '6'
+											if(idx4 === 0) {
+												t4.popType = 4
+												t4.popName += t4.popName
+											}
+											if(idx4 === 1) {
+												t4.popName = '条件折扣'
 											}
 											t4.popName += t4.popName + '>233'
 											// t4.popType = '2'
@@ -166,8 +170,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 		setTimeout(resolve.bind(null, resolve), 1000)
 	})
 		.then(() => {
-			// res.status(200).json(data)
-			res.status(200).json(mockData_test)
+			res.status(200).json(data)
+			// res.status(200).json(mockData_test)
 			// res.status(200).json(mockData_failure.
 			// 	t00100051)
 				// t00100051_2)
