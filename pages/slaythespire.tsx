@@ -6,6 +6,7 @@ import LXLayout from "@layout/lxlayout"
 import useSWRMutation from "swr/mutation"
 // import fetcher from '@plugin/fetcher'
 import { decrypt, encrypt } from "@plugin/savethespire"
+// import { readFile } from "fs/promises"
 
 // export const config = { amp: true };
 
@@ -44,6 +45,14 @@ const Page = ({ cwd }) => {
     const savefile =
       localStorage.getItem("savefile") || `${cwd}/mockData/t.json`
     setSavefilePath(savefile)
+
+    // const fileOf = async (path) => {
+    //   const content = await await readFile(file, {
+    //     encoding: "utf-8",
+    //   })
+    //   setFileContent(content)
+    // }
+    // fileOf(savefile)
 
     window.sts = {
       decrypt,

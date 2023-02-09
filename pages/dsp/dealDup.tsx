@@ -17,7 +17,8 @@ export async function getStaticProps(context) {
   // const file_DSP无带2 = await fileOf(
   //   "/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/data/dsp/DSP无带.md"
   // )
-  const file_DSP无带3 = await fileOf("./data/dsp/DSP无带.md")
+  // const file_DSP无带3 = await fileOf("./data/dsp/DSP无带.md")
+  const file_DSP无带 = await fileOf("/Users/lxthyme/Downloads/dsp/dsp.md")
   // const file_71 = await fileOf("/Users/lxthyme/Downloads/3333/info/7.1.txt")
   // const file_bp = await fileOf("/Users/lxthyme/Downloads/3333/info/bp.txt")
   // const file_dsp = await fileOf("/Users/lxthyme/Downloads/3333/info/dsp.txt")
@@ -25,7 +26,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       // file: files
-      md: file_DSP无带3,
+      md: file_DSP无带,
       // t131: {
       //   t71: file_71,
       //   tbp: file_bp,
