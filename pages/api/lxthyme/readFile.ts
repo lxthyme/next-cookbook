@@ -4,7 +4,15 @@ import { readFile } from "fs/promises"
 
 const API = async(req: NextApiRequest, res: NextApiResponse) => {
 
-  const { file } = JSON.parse(req.body)
+  let body = req.body
+  if(body.length <= 0) {
+    body = '{}'
+  }
+  // console.log('req.body: ', req.body, '\t\t: ', body);
+  let { file = '' } = JSON.parse(body)
+  if(file.length <= 0) {
+    file = req.query['file']
+  }
 
   let data = await  await readFile(file, {
     encoding: "utf-8",
@@ -17,8 +25,8 @@ const API = async(req: NextApiRequest, res: NextApiResponse) => {
   })
     .then(() => {
       res.status(200).json({
-        path: file,
-        content: data
+        path: file ?? '',
+        content: data ?? ''
       })
     })
 }

@@ -95,7 +95,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										goodsName: Array(1).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
-										// typePop: '16',
+										typePop: '16',
 										goodsNumber: '233',
 										/// 库存数
 										// stor: '200',
@@ -106,13 +106,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										// normalSalePrice: '233',
 										/// 0-非篮筐 1-篮筐
 										// basketMark: '0',
-										// comSid: '6000',
-										// goodsType: '30',
-										// reduceTag: '1',
+										comSid: '6000',
+										goodsType: '30',
+										// goodsType: '29',
+										reduceTag: '1',
 										limitBuyPersonSum: '0',
 										// limitBuyPersonSum: '123',
 										// reduceAmout: '233',
-										// minOrder: '233',
+										minOrder: '233',
 										minBuySpec: '包',
 										/// plus
 										// priceType: '35',
@@ -124,11 +125,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										/// 处方药
 										// comSid: '6000',
 										// goodsType: '30',
-										goodsType: '11',
+										// goodsType: '11',
 										/// globalType:0-非全球购 8-全球购物(一般贸易) 85-直邮 86-保税
 										// globalType: '86',
 										/// 托底
-										// isFromButtomShop: '1',
+										isFromButtomShop: '1',
 										showSalePrice: '233.233'
 									}
 									if(idx2 == 1) {
