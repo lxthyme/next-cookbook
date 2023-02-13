@@ -17,8 +17,8 @@ export async function getStaticProps(context) {
   // const file_DSP无带2 = await fileOf(
   //   "/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/data/dsp/DSP无带.md"
   // )
-  const file_DSP无带 = await fileOf("./data/dsp/DSP无带.md")
-  // const file_DSP无带 = await fileOf("/Users/lxthyme/Downloads/dsp/dsp.md")
+  // const file_DSP无带 = await fileOf("./data/dsp/DSP无带.md")
+  const file_DSP无带 = await fileOf("/Users/lxthyme/Downloads/dsp/dsp.md")
   // const file_71 = await fileOf("/Users/lxthyme/Downloads/3333/info/7.1.txt")
   // const file_bp = await fileOf("/Users/lxthyme/Downloads/3333/info/bp.txt")
   // const file_dsp = await fileOf("/Users/lxthyme/Downloads/3333/info/dsp.txt")
@@ -72,7 +72,7 @@ const Page = ({ md, t131 }) => {
         }
         const fmt_t = t.replace("1. ", "")
         list.push(newName)
-        return `echo "${fmt_t}"  > "./DSP无带/${newName}.txt"`
+        return `echo '${fmt_t}'  > "./DSP无带/${newName}.txt"`
       })
     console.log("-->全部文件名list: ", list)
     return result.join("\n")
