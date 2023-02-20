@@ -39,6 +39,7 @@ const Page = (props) => {
         >
           dsp_blueprint_editor
         </Link>
+        <Link href="https://eurydia.github.io/dsp-calculator/" target="_blank">dsp-calculator</Link>
         <Link
           href="https://factoriolab.github.io/list?z=eJxTS.JQSzPU8op3BuJkLff4TC0vtWItLbM6J6M6J986p5A6p.A6p6w6p6I654A655A6.7qIusi6qLrkutK6Ci1nLXctFOClVmYOAG0MGbk_&v=7"
           target="_blank"
