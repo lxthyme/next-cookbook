@@ -17,36 +17,47 @@ export async function getStaticProps(context) {
   // const file_DSP无带2 = await fileOf(
   //   "/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/data/dsp/DSP无带.md"
   // )
-  const file_DSP无带3 = await fileOf("./data/dsp/DSP无带.md")
-  // const file_71 = await fileOf("/Users/lxthyme/Downloads/3333/info/7.1.txt")
-  // const file_bp = await fileOf("/Users/lxthyme/Downloads/3333/info/bp.txt")
-  // const file_dsp = await fileOf("/Users/lxthyme/Downloads/3333/info/dsp.txt")
-  // const file_3rd = await fileOf("/Users/lxthyme/Downloads/3333/info/3rd.txt")
+  const path_3rd = "/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd"
+  const path_无带 = `${path_3rd}/0.DSP无带`
   return {
     props: {
       // file: files
-      md: file_DSP无带3,
-      // t131: {
-      //   t71: file_71,
-      //   tbp: file_bp,
-      //   tdsp: file_dsp,
-      //   t3rd: file_3rd
-      // },
+      file: {
+        // md: file_DSP无带,
+        file_DSP无带: await fileOf("./data/dsp/DSP无带.md"),
+        // test: await fileOf(`${path_无带}/_New/_new/物流运输机_30min.txt`),
+        // 1: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 001.txt"),
+        // 2: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 002.txt"),
+        // 3: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 003.txt"),
+        // 4: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 004.txt"),
+        // 5: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 005.txt"),
+        // 6: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 006.txt"),
+        // 7: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 007.txt"),
+        // 8: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 008.txt"),
+        // 9: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 009.txt"),
+        // 10: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 010.txt"),
+        // file_DSP无带: await fileOf("./data/dsp/DSP无带.md"),
+        // file_DSP无带: await fileOf("/Users/lxthyme/Downloads/dsp/dsp.md"),
+        // file_71: await fileOf("/Users/lxthyme/Downloads/3333/info/7.1.txt"),
+        // file_bp: await fileOf("/Users/lxthyme/Downloads/3333/info/bp.txt"),
+        // file_dsp: await fileOf("/Users/lxthyme/Downloads/3333/info/dsp.txt"),
+        // file_3rd: await fileOf("/Users/lxthyme/Downloads/3333/info/3rd.txt"),
+      },
     },
   }
 }
 
-const Page = ({ md, t131 }) => {
+const Page = ({ file = {} }) => {
   useEffect(() => {
     // const fse = require('fs-extra')
     window.dsp = {
       // fse,
-      md,
-      t131,
+      file,
       checkDup,
       blueprintConvert,
+      getBlueprintInfo,
     }
-  }, [md])
+  }, [file])
 
   /// 1. 把无带流生成的代码(DSP无带.md)批量转换成蓝图文件(DSP无带.sh)
   /// 2. 手动执行 DSP无带.sh, 生成最终的蓝图文件
@@ -71,10 +82,25 @@ const Page = ({ md, t131 }) => {
         }
         const fmt_t = t.replace("1. ", "")
         list.push(newName)
-        return `echo "${fmt_t}"  > "./DSP无带/${newName}.txt"`
+        return `echo '${fmt_t}'  > "./DSP无带/${newName}.txt"`
       })
     console.log("-->全部文件名list: ", list)
     return result.join("\n")
+  }
+  const getBlueprintInfo = (blueprint) => {
+    return blueprint.split(",").map((t, idx) => {
+      if (idx === 10) {
+        return decodeURIComponent(t)
+      } else if (idx === 11) {
+        return t.split('"').map((t2, idx2) => {
+          if (idx2 === 0) {
+            return decodeURIComponent(t2)
+          }
+          return t2
+        })
+      }
+      return t
+    })
   }
   const checkDup = (string) => {
     const fmt = string

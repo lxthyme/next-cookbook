@@ -6,6 +6,8 @@ import LXLayout from "@layout/lxlayout"
 import useSWRMutation from "swr/mutation"
 // import fetcher from '@plugin/fetcher'
 import { decrypt, encrypt } from "@plugin/savethespire"
+import { readFile } from 'fs/promises'
+// import { useRouter } from "next/router"
 
 // export const config = { amp: true };
 
@@ -20,11 +22,12 @@ export async function getStaticProps(context) {
   return {
     props: {
       cwd: process.cwd() || "",
+      // content,
     }, // will be passed to the page component as props
   }
 }
 
-const Page = ({ cwd }) => {
+const Page = ({ cwd, content }) => {
   const [originItem, setOriginItem] = useState("")
   const [newItem, setNewItem] = useState("")
   const [gold, setGold] = useState(0)
@@ -49,6 +52,7 @@ const Page = ({ cwd }) => {
       decrypt,
       encrypt,
       cwd,
+      content,
     }
   }, [])
   useEffect(() => {
@@ -70,6 +74,24 @@ const Page = ({ cwd }) => {
     "api/lxthyme/readFile",
     sendRequest
   )
+
+  const readXXX = () => {
+    const fileOf = async (path) => {
+      console.log('readFile: ', readFile);
+      if (path.length > 0) {
+        const content = await readFile(path, {
+          encoding: "utf-8",
+        })
+        setFileContent(content)
+        console.log("content: ", content)
+      }
+    }
+    // const router = useRouter()
+    // const { path } = router
+    console.log("path: ", savefilePath)
+    // console.log('url: ' + window.location.href);
+    fileOf(savefilePath)
+  }
 
   const removeD = (newObj, list) => {
     // const all = [
@@ -151,16 +173,18 @@ const Page = ({ cwd }) => {
     if (savefilePath.length > 0) {
       localStorage.setItem("savefile", savefilePath)
 
-      const xl_readFile = async (path) => {
-        const data = await trigger({ file: path })
-        setFileContent(data)
-        const { content: base64 } = data
-        const json = decrypt(base64)
-        setOriginItem(JSON.stringify(JSON.parse(json), null, 2))
-        // setOriginItem(content)
-      }
+      // const xl_readFile = async (path) => {
+      //   const data = await trigger({ file: path })
+      //   setFileContent(data)
+      //   const { content: base64 } = data
+      //   const json = decrypt(base64)
+      //   setOriginItem(JSON.stringify(JSON.parse(json), null, 2))
+      //   // setOriginItem(content)
+      // }
 
-      xl_readFile(savefilePath)
+      // xl_readFile(savefilePath)
+
+      readXXX()
     }
   }
   return (

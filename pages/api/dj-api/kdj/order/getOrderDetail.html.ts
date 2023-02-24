@@ -6,6 +6,8 @@ import {
     as mockData
 } from '@dj/getOrderDetail'
 
+import { mockData_订单 } from '@dj/order'
+
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
     // const list = Array.from({ length: 10 }, (t, idx) => ({}))
@@ -24,7 +26,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         showDetailBottonList,
         ...obj_others
     } = obj
-    const data = {
+    let data = {
         ...data_others,
         obj: {
             ...obj_others,
@@ -67,6 +69,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             // outFlag: 2,
         },
     }
+
+    data = mockData_订单.t托底_配送方式不同.t订单详情
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)

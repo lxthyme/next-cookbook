@@ -39,10 +39,19 @@ module.exports = (phase, { defaultConfig }) => {
         }
       ]
     },
-    // future: {
-    //   webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
-    //     // Looks like backward compatibility approach.
-    // },
+    future: {
+      webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
+      // Looks like backward compatibility approach.
+    },
+    webpack5: true,
+    webpack: (config) => {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false
+      };
+
+      return config;
+    },
     // webpack: (config, { isServer }) => {
     //   // Fixes npm packages that depend on `fs` module
     //   if (!isServer) {
