@@ -49,8 +49,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     ...obj_others
   }
 
-  data = mockData_订单.t托底_配送方式不同.t订单详情
-  data = mockData_订单.t托底_配送方式相同.t订单详情
+  // data = mockData_订单.t托底_配送方式不同.t订单详情
+  // data = mockData_订单.t托底_配送方式相同.t订单详情
+  // data = mockData_订单.t扫码购订单.t待校验.t订单详情
+  // data = mockData_订单.t25订单.t已取消.t订单详情
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
