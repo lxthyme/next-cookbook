@@ -64,9 +64,10 @@ const Page = ({ file = {} }) => {
   ///     `sh ./DSP无带.sh`
   /// /Users/lxthyme/Desktop/Lucky/.config/Anything-Backup/Dropbox/Game/DSP/DSP无带.md
   /// /Users/lxthyme/Desktop/Lucky/.config/Anything-Backup/Dropbox/Game/DSP/DSP无带.sh
-  const blueprintConvert = () => {
+  const blueprintConvert = (md) => {
     const list = []
     const result = md
+      .replace(/[\s\S]*?## 02-28/, '')
       .split("\n")
       .filter((t) => t.startsWith("1. "))
       .map((t) => {
