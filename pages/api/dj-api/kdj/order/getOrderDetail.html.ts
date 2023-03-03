@@ -70,7 +70,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         },
     }
 
-    data = mockData_订单.t托底_配送方式不同.t订单详情
+    // data = mockData_订单.t58.t_开具处方单.t订单列表
+    // data = mockData_订单.t58.t_处方单待审核.t订单列表
+    data = mockData_订单.t58.t_待支付.t订单列表
+    // data = mockData_订单.t托底_配送方式不同.t订单列表
+    // data = mockData_订单.t托底_配送方式相同.t订单列表
+    // data = mockData_订单.t25订单.t已取消.t订单列表
+    // data = mockData_订单.t扫码购订单.t待校验.t订单列表
+    // data = mockData_订单.t扫码购订单.t待校验.t订单列表
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)

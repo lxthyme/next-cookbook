@@ -25,6 +25,7 @@ export async function getStaticProps(context) {
       file: {
         // md: file_DSP无带,
         file_DSP无带: await fileOf("./data/dsp/DSP无带.md"),
+        test: await fileOf(`${path_无带}/_New/dsp.md`),
         // test: await fileOf(`${path_无带}/_New/_new/物流运输机_30min.txt`),
         // 1: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 001.txt"),
         // 2: await fileOf("/Users/lxthyme/Library/CloudStorage/Dropbox/Game/DSP/3rd/0.DSP无带/_New/新蓝图 002.txt"),
