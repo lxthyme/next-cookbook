@@ -313,7 +313,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
           </div>
         </div>
         <div className="v-middle">
-          <h2>解密</h2>
+          <h2>decrypt</h2>
           <div className="v-middle-item">
             <label htmlFor="v-check">isTrim:</label>
             <input
@@ -324,7 +324,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
               onChange={(e) => setIsTrim(e.target.checked)}
             />
           </div>
-          <label htmlFor="v-timestamp">时间戳:</label>
+          <label htmlFor="v-timestamp">timestamp:</label>
           <input
             type="text"
             name="v-timestamp"
