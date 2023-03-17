@@ -25,19 +25,20 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 export default API
 
 const mockData = {
-  "success": true,
-  "resCode": "00100000",
-  "obj": {
-    "acctNo": "1001000000209429056",
-    "respTime": "20220119171240",
-    "lstTsfTime": "20211210155804",
-    "respMsg": "成功",
-    "tranNo": "3001",
-    "bal": "20100",
-    "checkId": "dcb8fb3ec7e34a5ab4ddaed024e8c270",
-    "respCode": "0000",
-    "status": "00",
-    "lockFlag": "00",
-    "signature": "dcd53086f68c876d85d6abeb4e5846d1"
-  }
+	"success": true,
+	"resCode": "00100000",
+	"obj": {
+		"acctNo": "1001000000027393450",
+		"respTime": "20230316182850",
+		"lstTsfTime": "20230316163058",
+		"respMsg": "成功",
+		"tranNo": "3001",
+		"bal": "923913",
+		"checkId": "3300486140a74e30b14ef4850316f9ab",
+		"respCode": "0000",
+		"status": "00",
+		"lockFlag": "00",
+		"ecpBal": "9239.13",
+		"signature": "6db876c778b4471a609c8800a8acfcf2"
+	}
 }
