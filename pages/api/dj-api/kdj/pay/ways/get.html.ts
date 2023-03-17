@@ -22,24 +22,24 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 export default API
 
 const mockData = {
-  "success": true,
-  "resCode": "00100000",
-  "obj": {
-    "bizId": "2020",
-    "comSId": "2000",
-    "orderType": "25",
-    "tdType": "1",
-    "fromApp": "IOS",
-    "ecpShow": true,
-    "pointShow": true,
-    "baiLianCardShow": true,
-    "balanceShow": false,
-    "wxCardShow": false,
-    "wxCardFlag": "0",
-    "ecpFlag": "1",
-    "pointFlag": "1",
-    "baiLianCardFlag": "1",
-    "balanceFlag": "0",
-    "payWays": null
-  }
+	"success": true,
+	"resCode": "00100000",
+	"obj": {
+		"bizId": "2020",
+		"comSId": "2000",
+		"orderType": "25",
+		"tdType": "1",
+		"fromApp": "IOS",
+		"ecpShow": true,
+		"pointShow": true,
+		"baiLianCardShow": true,
+		"balanceShow": false,
+		"wxCardShow": false,
+		"wxCardFlag": "0",
+		"ecpFlag": "1",
+		"pointFlag": "1",
+		"baiLianCardFlag": "1",
+		"balanceFlag": "0",
+		"payWays": null
+	}
 }
