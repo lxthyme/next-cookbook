@@ -11,10 +11,12 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 // throw new Error("233");
 
     data = mockDJCart
-          // .t00011支付风控
-          // .t00014未设置过密码
-          .t00013校验密码
-          // .t00015校验支付密码错误
+              // .t00990001前置支付风控
+              // .t00011支付风控
+              // .t00012短信验证码不正确
+              .t00013校验密码
+              // .t00014未设置过密码
+              // .t00015校验支付密码错误
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
