@@ -70,18 +70,20 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         },
     }
 
-    data = mockData_订单.t25.t已取消.t订单详情
-    // data = mockData_订单.tA1.t_配送方式不同.t订单详情
-    // data = mockData_订单.tA1.t_配送方式相同.t订单详情
-    // data = mockData_订单.tA1.t_3子单_配送方式不同.t订单详情
-    // data = mockData_订单.t58.t_开具处方单.t订单详情
-    // data = mockData_订单.t58.t_待支付.t订单详情
-    // data = mockData_订单.t58.t_开具处方单多单.t订单详情
-    // data = mockData_订单.t58.t_部分开具处方单.t订单详情
-    // data = mockData_订单.t58.t_处方单部分待审核多单.t订单详情
-    // data = mockData_订单.t58.t_处方单待审核.t订单详情
-    // data = mockData_订单.t58.t_处方单待付款多单.t订单详情
-    // data = mockData_订单.t46.t待校验.t订单详情
+    data = mockData_订单
+                    // .t25_收银台异常.t订单详情
+                    // .t25.t已取消.t订单详情
+                    // .tA1.t_配送方式不同.t订单详情
+                    // .tA1.t_配送方式相同.t订单详情
+                    // .tA1.t_3子单_配送方式不同.t订单详情
+                    // .t58.t_开具处方单.t订单详情
+                    // .t58.t_待支付.t订单详情
+                    // .t58.t_开具处方单多单.t订单详情
+                    // .t58.t_部分开具处方单.t订单详情
+                    // .t58.t_处方单部分待审核多单.t订单详情
+                    // .t58.t_处方单待审核.t订单详情
+                    .t58.t_处方单待付款多单.t订单详情
+                    // .t46.t待校验.t订单详情
 
     data.obj.orderPayList = mockData_OrderComponent.orderPayList
 
