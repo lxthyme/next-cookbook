@@ -5,6 +5,7 @@ import {
    as mockData,
   // mockData_光明奶卡
  } from '@dj/coupon.v2.list'
+ import { couponItem } from '@dj/coupon'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
   const buttonFlagEnum = {
@@ -28,31 +29,60 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData
   const { list, ...obj_others } = obj
+
   const data = {
     ...data_others,
     obj: {
       ...obj_others,
-      list: list.map((t, idx) => {
-        // t.receiveFlag = '3'
-        // t.receiveFlag = '4'
-        // t.receiveFlag = `${idx % 3}`
-        t.alreadyPercentNum = `${idx * 10 % 100}`
-        if(idx === 0) {
-          // t.plusFlag = '1'
-          // t.mpShopName = "【仅配送】到家抵用券8元【仅配送】到家抵用券8元"
-          // t.couponTypeId = '17'
-          // t.signinAcquire = '0'
-          // t.offsetAmount = '999'
-          // // t.receiveFlag = '3'
-          // t.isTop = '1'
-          // // t.noticeDesc1 = '[1]到家抵用券8元【仅配送】到家抵用券8元'
-          // // t.noticeDesc2 = '[2]到家抵用券8元【仅配送】到家抵用券8元'
-        } else {
-          // t.receiveFlag = '1'
-        }
+      list: [
+        {
+          ...couponItem.base,
+          couponTypeId: '11',
+          offsetAmount: '233',
+          conditionAmount: '99.99'
+        },
+        {
+          ...couponItem.base,
+          couponTypeId: '12',
+          offsetAmount: '233'
+        },
+        {
+          ...couponItem.base,
+          couponTypeId: '16',
+          offsetAmount: '233'
+        },
+        {
+          ...couponItem.base,
+          couponTypeId: '17',
+          offsetAmount: '233'
+        },
+        {
+          ...couponItem.base,
+          couponTypeId: '20',
+          offsetAmount: '233'
+        },
+      //   ...list.map((t, idx) => {
+      //   // t.receiveFlag = '3'
+      //   // t.receiveFlag = '4'
+      //   // t.receiveFlag = `${idx % 3}`
+      //   t.alreadyPercentNum = `${idx * 10 % 100}`
+      //   if(idx === 0) {
+      //     // t.plusFlag = '1'
+      //     // t.mpShopName = "【仅配送】到家抵用券8元【仅配送】到家抵用券8元"
+      //     // t.couponTypeId = '17'
+      //     // t.signinAcquire = '0'
+      //     // t.offsetAmount = '999'
+      //     // // t.receiveFlag = '3'
+      //     // t.isTop = '1'
+      //     // // t.noticeDesc1 = '[1]到家抵用券8元【仅配送】到家抵用券8元'
+      //     // // t.noticeDesc2 = '[2]到家抵用券8元【仅配送】到家抵用券8元'
+      //   } else {
+      //     // t.receiveFlag = '1'
+      //   }
 
-        return t
-      })
+      //   return t
+      // })
+      ]
     }
   }
   return new Promise(function (resolve) {
