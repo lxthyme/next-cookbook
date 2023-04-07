@@ -1,6 +1,8 @@
 *.jsonc filter=lfs diff=lfs merge=lfs -text
 *.json filter=lfs diff=lfs merge=lfs -text
-*.md filter=lfs diff=lfs merge=lfs -text
+# data/**/**/*.json filter=lfs diff=lfs merge=lfs -text
+# mockData/**/**/*.json filter=lfs diff=lfs merge=lfs -text
+# *.md filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.jpg filter=lfs diff=lfs merge=lfs -text
 *.gif filter=lfs diff=lfs merge=lfs -text

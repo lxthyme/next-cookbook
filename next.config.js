@@ -15,9 +15,10 @@ module.exports = (phase, { defaultConfig }) => {
     //   autoprefixer: true,
     //   purge: true,
     // },
-    // experimental: {
-    //   forceSwcTransforms: true,
-    // },
+    experimental: {
+      // forceSwcTransforms: true,
+      // appDir: true,
+    },
     async rewrites() {
       return [
         {
