@@ -1,16 +1,3 @@
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm install
-
-npx prisma generate
-
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3003](http://localhost:3000) with your browser to see the result.
-
+version https://git-lfs.github.com/spec/v1
+oid sha256:8dc12032620be3ce1c70b91b1d25cde59fea03b0d61ecc0a66a2f5827a091285
+size 217
