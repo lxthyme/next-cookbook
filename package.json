@@ -1,3 +1,51 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9530567c1cb6407671c13ebe8e61637fcd5cb5085de292caa0e8b6cc671ad3ca
-size 1074
+{
+  "name": "next-cookbook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3003 next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
+    "@types/react-dom": "18.0.11",
+    "crypto-js": "^4.1.1",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.3.0",
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "faker": "^6.6.6",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "lost": "^9.0.1",
+    "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^8.3.0",
+    "prisma": "^4.12.0",
+    "sass": "^1.61.0",
+    "styled-jsx-plugin-postcss": "^4.0.1",
+    "swr": "^2.1.2"
+  },
+  "postcss": {
+    "plugins": {
+      "lost": {},
+      "postcss-nested": {}
+    }
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}
