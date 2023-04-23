@@ -59,7 +59,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 					...mockData_template.tabBar,
 					tabBarInfoList: mockData_template.tabBar.tabBarInfoList.map((t, idx) => {
 						if(idx === 0) {
-							t.picTop = '0.0.0.0:3003/img/icon_picTop.png'
+							// t.picTop = 'http://0.0.0.0:3003/img/icon_picTop.png'
+							t.picTop = 'https://media.githubusercontent.com/media/lxthyme/next-cookbook/d47f4d1bcedb4d185207b2dc859d602ddc825d9e/public/img/icon_picTop.png'
 						}
 						return t
 					}),
