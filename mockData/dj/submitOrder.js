@@ -43,10 +43,20 @@ export const mockDJCart = {
 	},
 	// 有支付密码，校验支付密码，校验不通过 code=00015 msg=密码不正确
 	t00015校验支付密码错误: {
-		"success": false,
-		"msg": "密码错误, 请重试!",
-		"resCode": "00015"
-	}
+    "success": false,
+    "msg": "密码错误,还剩2次机会",
+    "resCode": "00015"
+  },
+	t00015校验支付密码错误被锁定: {
+    "success": false,
+    "msg": "支付密码被锁定，次日凌晨自动解锁",
+    "resCode": "00015"
+  },
+	t00100000: {
+    "success": true,
+    "msg": "发生错误2",
+    "resCode": "00100000"
+  },
 }
 export const mockData = {
   "success": true,
