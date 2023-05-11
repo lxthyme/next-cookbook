@@ -92,6 +92,25 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     "buyMember": "1",
     "sLabel": "到家PLUS",
     "mLabel": "到家PLUS折扣回归"
+  }, {
+    "rules": [{
+      "desc": "每第1件5.0折",
+      "id": "8241"
+    }],
+    "activityType": "1",
+    "memo": "到家PLUS折扣回归",
+    "labelDesc": "到家PLUS折扣回",
+    "goodsDetSid": "162667",
+    "popDes": "折扣",
+    "ruleid": "49712",
+    "ruletype": "2",
+    "ruleName": "PLUS折扣",
+    "activityDesc": "到家PLUS折扣回归",
+    "activityId": "49715",
+    "shopid": "007780",
+    "buyMember": "1",
+    "sLabel": "到家PLUS折扣回",
+    "mLabel": "到家PLUS折扣回归"
   }]
   const data = {
     ...data_others,
