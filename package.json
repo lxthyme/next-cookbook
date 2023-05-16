@@ -21,6 +21,8 @@
     "typescript": "5.0.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.1",
+    "@prisma/client": "^4.14.0",
     "faker": "^6.6.6",
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.1",
@@ -29,7 +31,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^8.3.0",
-    "prisma": "^4.12.0",
+    "prisma": "^4.14.0",
     "sass": "^1.61.0",
     "styled-jsx-plugin-postcss": "^4.0.1",
     "swr": "^2.1.2"
