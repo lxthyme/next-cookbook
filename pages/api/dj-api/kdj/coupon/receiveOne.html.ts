@@ -1,8 +1,9 @@
+import { mockData_failure } from '@dj/coupon.v2.receive'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-  const data = mockData_riskControl
+  const data = mockData_failure.t00990001
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
@@ -13,5 +14,3 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export default API
-
-const mockData_riskControl = {"success":false,"msg":"好运与你擦肩而过","riskType":"233","resCode":"00990001"}
