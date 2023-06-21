@@ -1,4 +1,4 @@
-import { mockData_failure } from '@dj/coupon.v2.receive'
+import { mockData_failure } from '@dj/hack.coupon.v2.receive'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {

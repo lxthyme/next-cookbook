@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_failure
-} from '@dj/coupon.v2.receive'
+} from '@dj/hack.coupon.v2.receive'
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data =

@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail'
-import { mockData_订单 } from '@dj/order'
+import { mockData_订单 } from '@dj/hack.order'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData, mockDJCart } from '@dj/submitOrder'
+import { mockData, mockDJCart } from '@dj/hack.submitOrder'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
