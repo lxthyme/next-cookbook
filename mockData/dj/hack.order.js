@@ -1,16 +1,26 @@
-const orderPayListItem = {
-  "bizType": null,
-  "storeCodes": null,
-  "isReturnNull": 0,
-  "name": null,
-  "orderNo": "LAZ20230313375426",
-  "payAmount": 0.02,
-  "payCode": "58",
-  "payName": "积分",
-  "cardNo": null,
-  "blchannelid": "1",
-  "tranType": null,
-  "cardNoList": null
+
+export const hack_Order = {
+  orderPayListItem: {
+    "bizType": null,
+    "storeCodes": null,
+    "isReturnNull": 0,
+    "name": null,
+    "orderNo": "LAZ20230313375426",
+    "payAmount": 0.02,
+    "payCode": "58",
+    "payName": "积分",
+    "cardNo": null,
+    "blchannelid": "1",
+    "tranType": null,
+    "cardNoList": null
+  },
+  freightInfos: [
+    { desc: "首重运费", price: "6" },
+    { desc: "距离运费", price: "33.45" },
+    { desc: "服务费", price: "1" },
+    { desc: "特殊运费", price: "5" },
+    { "desc": "超重运费", "price": "5.5" }
+  ]
 }
 export const mockData_OrderComponent = {
   orderPayList: [

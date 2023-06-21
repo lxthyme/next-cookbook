@@ -6,7 +6,7 @@ import {
     as mockData
 } from '@dj/getOrderDetail'
 
-import { mockData_OrderComponent, mockData_订单 } from '@dj/hack.order'
+import { hack_Order, mockData_OrderComponent, mockData_订单 } from '@dj/hack.order'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -37,6 +37,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         logisticsHistory,
         showBottonList,
         showDetailBottonList,
+        freightInfos,
         ...obj_others
     } = obj
     let data = {
@@ -50,13 +51,18 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                         // goodsType: '30',
                         // goodsType: '29',
                         goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
-                        reWeightMoney: '233',
+                        // reWeightMoney: '233',
                         // purchaseType: '16',
                         // priceType: '34',
                         // medicineDirectionShow: 1,
                         goodsStan: 'goodsStan 22222',
                         goodsColor: 'goodsColor 2333',
-                        canReturnFlag: 3,
+                        /// 是否可售后
+                        ///     0: 不展示(默认)
+                        ///     1: 可售后
+                        ///     2: 所有商品已售后
+                        ///     3: 商品已超售后期
+                        // canReturnFlag: 3,
                     }
                 }
                 return t;
@@ -64,7 +70,6 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             orderInvoiceDto,
             orderPromotionList,
             orderHistroryList,
-            orderPayList,
             orderPackageList,
             dcSpTypes,
             stallDTOList,
@@ -78,12 +83,20 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             // orderStatusDesc: "配送中...233",
             orderStatus: '1007',
             orderTypeCode: '58',
-            fulfillStatusDesc: '233',
+            fulfillStatusDesc: '药师开具处方，请尽快支付233',
+            freightInfos: hack_Order.freightInfos,
+            orderPayList: mockData_OrderComponent.orderPayList,
             // outFlag: 2,
+            /// 运费
+            originSendCost: 2.33,
+            sendCost: 2.33,
+            deliveryServiceCharge: 2.33,
+            reWeightMoney: 2.33,
+            plusDiscountPrice: 2.33,
         },
     }
 
-    data.obj.orderPayList = mockData_OrderComponent.orderPayList
+    // data.obj.orderPayList = mockData_OrderComponent.orderPayList
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
