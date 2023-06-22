@@ -1,4 +1,4 @@
-import { mockDJCart } from '@dj/submitOrder'
+import { mockDJCart } from '@dj/hack.submitOrder'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {

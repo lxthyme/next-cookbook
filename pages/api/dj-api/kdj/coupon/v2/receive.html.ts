@@ -1,13 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   mockData_failure
-} from '@dj/coupon.v2.receive'
+} from '@dj/hack.coupon.v2.receive'
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data =
     // mockData_Success
     // mockData_Failure
-    mockData_failure.t00100051
+    mockData_failure
+                // .t00100051
+                .t00990001
 
     data.resCode = '00100000'
     data.success = true

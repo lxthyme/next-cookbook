@@ -17,7 +17,12 @@ module.exports = (phase, { defaultConfig }) => {
     // },
     experimental: {
       // forceSwcTransforms: true,
-      // appDir: true,
+      appDir: true,
+      // future: {
+      //   webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
+      //   // Looks like backward compatibility approach.
+      // },
+      webpack5: true,
     },
     async rewrites() {
       return [
@@ -40,11 +45,6 @@ module.exports = (phase, { defaultConfig }) => {
         }
       ]
     },
-    future: {
-      webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
-      // Looks like backward compatibility approach.
-    },
-    webpack5: true,
     webpack: (config) => {
       config.resolve.fallback = {
         ...config.resolve.fallback,

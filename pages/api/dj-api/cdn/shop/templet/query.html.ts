@@ -15,7 +15,7 @@ import {
 	Category_all,
 	Notify_all,
 	Slide_all
-} from '@dj/query.html.package'
+} from '@dj/hack.query.html.package'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 	// const mockData = await mockGet('query.html.js', 'mockData_OnlyO2O')
