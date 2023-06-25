@@ -51,10 +51,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                         // goodsType: '30',
                         // goodsType: '29',
                         goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
-                        // reWeightMoney: '233',
-                        // purchaseType: '16',
-                        // priceType: '34',
-                        // medicineDirectionShow: 1,
+                        reWeightMoney: '233',
+                        purchaseType: '16',
+                        priceType: '34',
+                        medicineDirectionShow: 1,
                         goodsStan: 'goodsStan 22222',
                         goodsColor: 'goodsColor 2333',
                         /// 是否可售后
@@ -70,10 +70,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             orderInvoiceDto,
             orderPromotionList,
             orderHistroryList,
+            // orderPayList,
             orderPackageList,
             dcSpTypes,
             stallDTOList,
-            logisticsHistory,
+            logisticsHistory: mockData_OrderComponent.logisticsHistory,
             showBottonList,
             showDetailBottonList,
             // orderStatus: "1005",
@@ -86,17 +87,16 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             fulfillStatusDesc: '药师开具处方，请尽快支付233',
             freightInfos: hack_Order.freightInfos,
             orderPayList: mockData_OrderComponent.orderPayList,
-            // outFlag: 2,
+            sendCost: 2.37,
             /// 运费
-            originSendCost: 2.33,
-            sendCost: 2.33,
-            deliveryServiceCharge: 2.33,
-            reWeightMoney: 2.33,
-            plusDiscountPrice: 2.33,
+            originSendCost: 3.33,
+            deliveryServiceCharge: 3.44,
+            discountTransport: 3.46,
+            plusDiscountPrice: 3.47,
+            reWeightMoney: 3.48,
+            // outFlag: 2,
         },
     }
-
-    // data.obj.orderPayList = mockData_OrderComponent.orderPayList
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)
