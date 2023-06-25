@@ -51,9 +51,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                         // goodsType: '29',
                         goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
                         reWeightMoney: '233',
-                        // purchaseType: '16',
-                        // priceType: '34',
-                        // medicineDirectionShow: 1,
+                        purchaseType: '16',
+                        priceType: '34',
+                        medicineDirectionShow: 1,
                         goodsStan: 'goodsStan 22222',
                         goodsColor: 'goodsColor 2333',
                         canReturnFlag: 3,
@@ -64,11 +64,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             orderInvoiceDto,
             orderPromotionList,
             orderHistroryList,
-            orderPayList,
+            orderPayList: mockData_OrderComponent.orderPayList,
             orderPackageList,
             dcSpTypes,
             stallDTOList,
-            logisticsHistory,
+            logisticsHistory: mockData_OrderComponent.logisticsHistory,
             showBottonList,
             showDetailBottonList,
             // orderStatus: "1005",
@@ -79,11 +79,15 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             orderStatus: '1007',
             orderTypeCode: '58',
             fulfillStatusDesc: '233',
+            sendCost: 2.37,
+            originSendCost: 3.33,
+            deliveryServiceCharge: 3.44,
+            discountTransport: 3.46,
+            plusDiscountPrice: 3.47,
+            reWeightMoney: 3.48,
             // outFlag: 2,
         },
     }
-
-    data.obj.orderPayList = mockData_OrderComponent.orderPayList
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)

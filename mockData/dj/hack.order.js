@@ -50,8 +50,21 @@ export const mockData_OrderComponent = {
     "cardNo": null,
     "blchannelid": "1",
     "tranType": null,
-    "cardNoList": null
-  }]
+    "cardNoList": [{
+      'cardNo': '1234567890',
+      'payName': '积点卡/会员卡',
+      'payAmount': '2.33',
+    }, {
+      'cardNo': '1234567890',
+      'payName': '积点卡/会员卡',
+      'payAmount': '2.33',
+    }, {
+      'cardNo': '1234567890',
+      'payName': '积点卡/会员卡',
+      'payAmount': '2.33',
+    }]
+  }],
+  logisticsHistory: [{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1007","packageStatusDesc":"已完成","packageDesc":"您的订单已签收.感谢您在百联购物,欢迎您再次光临.","timeStatusUpdate":1672387201000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"16:00:01"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1005","packageStatusDesc":"配送中","packageDesc":"您的订单已经出库,物流配送中","timeStatusUpdate":1672386823000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:53:43"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1004","packageStatusDesc":"待出库","packageDesc":"您的订单配货完成","timeStatusUpdate":1672386439000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:47:19"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1003","packageStatusDesc":"待拣货","packageDesc":"您的订单审核通过，等待配货","timeStatusUpdate":1672386364000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:46:04"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1092","packageStatusDesc":"订单传输成功","packageDesc":"订单已提交等待系统确认","timeStatusUpdate":1672386359000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:45:59"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1002","packageStatusDesc":"待审核","packageDesc":"您的订单支付成功,等待系统审核","timeStatusUpdate":1672386358000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:45:58"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1035","packageStatusDesc":"处理中","packageDesc":"您的订单已经支付完成，正在处理中","timeStatusUpdate":1672386358000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:45:58"},{"sid":null,"deliveryNo":null,"orderNo":null,"packageStatus":"1001","packageStatusDesc":"待支付","packageDesc":"您的订单已经生成，等待付款","timeStatusUpdate":1672386347000,"riderCode":null,"serviceType":null,"riderName":null,"riderLat":null,"riderLng":null,"riderMobile":null,"timePositionUpdate":null,"cancleType":null,"cancelReason":null,"orderInfoContent":null,"updateTime":null,"context":null,"areaCode":null,"areaName":null,"statusDate":"2022.12.30","statusTime":"15:45:47"}]
 }
 
 /**
