@@ -78,5 +78,19 @@ export const hackData_Invoice = {
       "invoiceUrl": ""
     }
   },
-  t_4排队中: {}
+  t_4排队中: {
+    "success": true,
+    "resCode": "00100000",
+    "obj": {
+      "invoiceH5Url": null,
+      "invoiceFlag": "4",
+      "orderTypeCode": "25",
+      "checkMsg": "该订单已申请开票！",
+      "orderNo": "LAZ20230609384804",
+      "orderTime": "2023-06-09 17:38:47",
+      "freightInvoiceUrl": "",
+      "statusDesc": "排队中, 请稍后",
+      "invoiceUrl": ""
+    }
+  }
 }
