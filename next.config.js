@@ -22,7 +22,7 @@ module.exports = (phase, { defaultConfig }) => {
       //   webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
       //   // Looks like backward compatibility approach.
       // },
-      webpack5: true,
+      // webpack5: true,
     },
     async rewrites() {
       return [
