@@ -2,8 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import {
     mockData_已完成
-    // mockData_test
-    as mockData
+        // mockData_test
+        as mockData
 } from '@dj/getOrderDetail'
 
 import { hack_Order, mockData_OrderComponent, mockData_订单 } from '@dj/hack.order'
@@ -26,8 +26,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         // .t58.t_处方单待审核.t订单详情
         // .t58.t_处方单待付款多单.t订单详情
         // .t46.t待校验.t订单详情
-        .t46.t_单商品.t_已取消.t订单详情
-        // .t25.t_多商品_配送.t_已取消.t订单详情
+        // .t46.t_单商品.t_已取消.t订单详情
+        .t25.t_多商品_配送.t_已取消.t订单详情
     const {
         orderDetailList,
         orderInvoiceDto,
@@ -65,7 +65,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                         ///     1: 可售后
                         ///     2: 所有商品已售后
                         ///     3: 商品已超售后期
-                        // canReturnFlag: 3,
+                        canReturnFlag: 3,
                         /// Y: 扫码购称重商品，N: 非称重商品
                         reserveInfo1: 'Y',
                     }
@@ -111,6 +111,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     })
         .then(() => {
             res.status(200).json(data)
+            // res.status(200).json({
+            //     "msg": "中台数据异常!",
+            //     "resCode": "00100951",
+            //     "success": false
+            // })
         })
 }
 
