@@ -9,9 +9,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     // .t__1不可开票
     // .t_0未申请
     // .t_1已申请
-    // .t_2成功
+    .t_2成功
     // .t_3失败
-    .t_4排队中
+    // .t_4排队中
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
