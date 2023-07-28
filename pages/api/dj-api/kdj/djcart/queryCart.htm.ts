@@ -92,10 +92,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 											// t4.isMatch = true
 											return t4
 										}),
-										goodsName: Array(1).fill(goodsName).join(''),
+										goodsName: Array(3).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
-										typePop: '16',
+										// typePop: '16',
 										goodsNumber: '233',
 										/// 库存数
 										// stor: '200',
@@ -113,7 +113,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										limitBuyPersonSum: '0',
 										// limitBuyPersonSum: '123',
 										// reduceAmout: '233',
-										minOrder: '233',
+										// minOrder: '233',
 										minBuySpec: '包',
 										/// plus
 										// priceType: '35',
@@ -130,7 +130,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										// globalType: '86',
 										/// 托底
 										isFromButtomShop: '1',
-										showSalePrice: '233.233'
+										showSalePrice: '233.233',
+										delTimeLabel: "即时达",
+										delTimeSwitch: 1,
 									}
 									if(idx2 == 1) {
 										return [f_t3, f_t3]
