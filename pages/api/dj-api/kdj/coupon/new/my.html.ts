@@ -1,3 +1,4 @@
+import { mock_coupon } from '@dj/coupon.v2.list'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
@@ -8,9 +9,16 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         ...obj_others,
         obj: {
             ...obj_others,
-            list: list.map(t => {
+            list: list.map((t, idx1) => {
                 let tmp = t
-                if (tmp.couponCode === '1672058349733') {
+                if(idx1 === 0) {
+                    return [
+                        mock_coupon.t11,
+                        mock_coupon.t17,
+                        mock_coupon.t18,
+                        mock_coupon.t20
+                    ]
+                } else if (tmp.couponCode === '1672058349733') {
                     tmp = {
                         ...tmp,
                         couponStatus: '已领取',
@@ -94,7 +102,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                     }]
                 }
                 return tmp
-            }).flat()
+            }).flat().map(t => {
+                t.couponName = Array(2).fill(t.couponName).join('')
+                return t
+            }).slice(0, 1)
         }
     }
 
