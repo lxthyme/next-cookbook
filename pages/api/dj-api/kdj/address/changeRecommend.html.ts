@@ -1,9 +1,9 @@
-import { mockData_failure } from '@dj/hack.coupon.v2.receive'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-  const data = mockData_failure.t04111005
+  const data = mockData
+  data.obj.receiverList = []
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
@@ -14,3 +14,15 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export default API
+
+const mockData = {
+	"success": true,
+	"resCode": "00100000",
+	"obj": {
+		"storeInfo": null,
+		"receiverList": null,
+		"recommendAddressId": null,
+		"distanceFlag": 1,
+		"useSourceStoreFlag": 0
+	}
+}
