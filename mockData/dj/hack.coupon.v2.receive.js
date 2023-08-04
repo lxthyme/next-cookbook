@@ -8,5 +8,10 @@ export const mockData_failure = {
     "riskType": "233",
     "r-lot-number": "r-233",
     "r-verify-mode": "mode-233",
+  },
+  t04111005: {
+    "success": false,
+    "msg": "超过当天最大领券次数，请明天再试!",
+    "resCode": "04111005"
   }
 }
