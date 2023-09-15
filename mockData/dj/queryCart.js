@@ -1,3 +1,113 @@
+export const mockData_queryCart_Component = {
+  popDetails: () => {
+    const item = {
+      "xyMakeUpCount": 0,
+      "xyCount": 0,
+      "orderLimit": 0,
+      "xyMakeUpAmount": 0,
+      "discountAmount": 0.0,
+      "popName": "药到家兜底满赠120药到家兜底满赠120药到家兜底满赠120药到家兜底满赠120药到家兜底满赠120药到家兜底满赠120",
+      "isJoin": "0",
+      "activityId": "48523",
+      "promotionDiscount": 0.00,
+      "qtyCondition": 0,
+      "conditionAmount": 0.00,
+      "labelDesc": "满赠120",
+      "moneyCondition": 0.00,
+      "popType": "6",
+      "isCrossShoppeSupport": "1",
+      "fqConditionAmount": 0.00,
+      "popDesc": "药到家兜底满赠120",
+      "isMatch": true,
+      "memberLimit": 0,
+      "popTimes": 1,
+      "maxSkus": 0,
+      "popRuleId": "48523",
+      "isGroupPop": "0",
+      "promotionConditionAmount": 0.00,
+      "maxQty": 0,
+      "couponCode": "-1",
+      "promotionLimit": 0.00
+    }
+    return [{
+      ...item,
+      popType: 2,
+      isMatch: 0,
+    }, {
+      ...item,
+      popType: 2,
+      isMatch: 1,
+    }, {
+      ...item,
+      popType: 2,
+      isMatch: 1,
+      buyMember: 0,
+    }, {
+      ...item,
+      popType: 4,
+      isMatch: 0,
+      buyMember: 1
+    }, {
+      ...item,
+      popType: 4,
+      isMatch: 1,
+    }, {
+      ...item,
+      popType: 6,
+    }]
+  },
+  /// 超值换购
+  topPopList: () => {
+    const item = {
+      "xyMakeUpCount": 0,
+      "xyCount": 0,
+      "orderLimit": 0,
+      "xyMakeUpAmount": 0.00,
+      "discountAmount": 0.0,
+      "popName": "满额120",
+      "isJoin": "0",
+      "promotionConditionType": "1",
+      "activityId": "48526",
+      "promotionDiscount": 0.00,
+      "qtyCondition": 0,
+      "conditionAmount": 0.00,
+      "labelDesc": "满额120",
+      "moneyCondition": 0.00,
+      "popType": "16",
+      "isCrossShoppeSupport": "1",
+      "fqConditionAmount": 0.00,
+      "popDesc": "满额120",
+      "isMatch": false,
+      "memberLimit": 0,
+      "popTimes": 1,
+      "maxSkus": 2,
+      "popRuleId": "48526",
+      "isGroupPop": "0",
+      "promotionConditionAmount": 10,
+      "maxQty": 0,
+      "couponCode": "-1",
+      "promotionLimit": 0
+    }
+    return [{
+      ...item,
+      promotionConditionType: 0,
+      promotionLimit: 0,
+      promotionConditionAmount: 23,
+      isJoin: 0,
+    }, {
+      ...item,
+      promotionConditionType: 0,
+      promotionLimit: 0,
+      promotionConditionAmount: 23,
+      isJoin: 1,
+    }, {
+      ...item,
+      promotionConditionType: 1,
+      promotionLimit: 233,
+      promotionConditionAmount: 23,
+    }]
+  },
+}
 export const mock_giftInfoList = [{
 	"gifGoods": {
 		"shoppingCartType": "1",

@@ -7,6 +7,7 @@ import {
 	mockData_Only,
 	mockData_group,
 	mockData_test,
+	mockData_queryCart_Component,
  } from '@dj/queryCart'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
@@ -89,19 +90,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										// 	}
 										// ],
 										/// 营促销信息
-										popDetails: popDetails.map((t4, idx4) => {
-											if(idx4 === 0) {
-												t4.popType = 4
-												t4.popName += t4.popName
-											}
-											if(idx4 === 1) {
-												t4.popName = '条件折扣'
-											}
-											t4.popName += t4.popName + '>233'
-											// t4.popType = '2'
-											// t4.isMatch = true
-											return t4
-										}),
+										popDetails: mockData_queryCart_Component.popDetails(),
 										goodsName: Array(3).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
@@ -159,10 +148,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 				}
 				return t1
 			}),
-			topPopList: [
-				...topPopList,
-				...topPopList,
-			],
+			topPopList: mockData_queryCart_Component.topPopList(),
 			"customField": {
 				"delTimedesc": "最快30分钟送达",
 				"tdDelTimeDesc": "48小时内发货",
