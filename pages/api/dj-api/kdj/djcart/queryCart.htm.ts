@@ -6,6 +6,8 @@ import {
 	mock_giftInfoList,
 	mockData_Only,
 	mockData_group,
+	mockData_test,
+	mockData_queryCart_Component,
  } from '@dj/queryCart'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
@@ -15,13 +17,22 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 	const { goodsGroupDtoList, topPopList, kdjStoreInfo, ...other_obj } = obj
 	const data = {
 		obj: {
-			goodsGroupDtoList: goodsGroupDtoList.map(t1 => {
-				if(t1.groupType === '20') {
-					return mockData_group.g20
-				} else if(t1.groupType === '22') {
-					return mockData_group.g22
-				} else if(t1.groupType === '21') {
-					const { freightImbodyMap, goodsGroupList, freeFreightMoney, ...other_goodsGroupList } = goodsGroupDtoList[0]
+			goodsGroupDtoList: goodsGroupDtoList
+			.map(t1 => {
+				console.log(`-->: ${t1.groupType}\t${t1.groupType === '21'}`)
+				if(t1.groupType === '21') {
+					return [t1, mockData_group.g20, mockData_group.g22]
+				}
+				return undefined
+			}).flat()
+			.map(t1 => {
+				// if(t1.groupType === '20') {
+				// 	return mockData_group.g20
+				// } else if(t1.groupType === '22') {
+				// 	return mockData_group.g22
+				// } else if(t1.groupType === '21') {
+				if(1 == 1) {
+					const { freightImbodyMap, goodsGroupList, freeFreightMoney, ...other_goodsGroupList } = t1
 					return {
 						freightImbodyMap,
 						...other_goodsGroupList,
@@ -79,24 +90,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										// 	}
 										// ],
 										/// 营促销信息
-										popDetails: popDetails.map((t4, idx4) => {
-											if(idx4 === 0) {
-												t4.popType = 4
-												t4.popName += t4.popName
-											}
-											if(idx4 === 1) {
-												t4.popName = '条件折扣'
-											}
-											t4.popName += t4.popName + '>233'
-											// t4.popType = '2'
-											// t4.isMatch = true
-											return t4
-										}),
+										popDetails: mockData_queryCart_Component.popDetails(),
 										goodsName: Array(3).fill(goodsName).join(''),
 										// freedelivery: 0,
 										/// 换购
 										// typePop: '16',
-										goodsNumber: '233',
+										goodsNumber: '99',
+										salePrice: '8888.88',
+										normalSalePrice: '9999.99',
 										/// 库存数
 										// stor: '200',
 										// stor: '-1',
@@ -110,14 +111,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										goodsType: '30',
 										// goodsType: '29',
 										reduceTag: '1',
-										limitBuyPersonSum: '0',
+										limitBuyPersonSum: '99',
 										// limitBuyPersonSum: '123',
 										// reduceAmout: '233',
 										// minOrder: '233',
 										minBuySpec: '包',
 										/// plus
 										// priceType: '35',
-										// priceType: '58',
+										priceType: '58',
 										/// 套餐
 										// goodsType: '11',
 										/// 库存
@@ -133,6 +134,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 										showSalePrice: '233.233',
 										delTimeLabel: "即时达",
 										delTimeSwitch: 1,
+										originBuyNumber: 5,
+										limitBuyNumber: 5
 									}
 									if(idx2 == 1) {
 										return [f_t3, f_t3]
@@ -144,17 +147,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 					}
 				}
 				return t1
-			}).map(t1 => {
-				console.log(`-->: ${t1.groupType}\t${t1.groupType === '21'}`)
-				if(t1.groupType === '21') {
-					return [t1, mockData_group.g20, mockData_group.g22]
-				}
-				return undefined
-			}).flat(),
-			topPopList: [
-				...topPopList,
-				...topPopList,
-			],
+			}),
+			topPopList: mockData_queryCart_Component.topPopList(),
+			"customField": {
+				"delTimedesc": "最快30分钟送达",
+				"tdDelTimeDesc": "48小时内发货",
+				"delTimeLabel": "即时达",
+				"tdDelTimeLabel": "全城配"
+			},
 			kdjStoreInfo,
 			...other_obj
 		},
@@ -165,22 +165,24 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 	//     t2.typePop = '16'
 	//   })
 	// })
-	// obj.obj.goodsGroupDtoList[0].goodsGroupList[0].typePop = '16'
-	// obj.obj.goodsGroupDtoList[0].goodsGroupList[0].reduceTag = '1'
-	// obj.obj.goodsGroupDtoList[0].goodsGroupList[0].limitBuyPersonSum = '21'
+	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].typePop = '16'
+	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].reduceTag = '0'
+	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].limitBuyPersonSum = '21'
 
 	return new Promise(function (resolve) {
 		setTimeout(resolve.bind(null, resolve), 1000)
 	})
 		.then(() => {
-			res.status(200).json(data)
-			// res.status(200).json(mockData_test)
 			res.status(200).json(
-				mockData_failure
-											.t00100051
+				data
+				// mockData_test
+				// mockData_failure
+											// .t00100051_访问量过大
+											// .t00100051_未查询到任何结果
+											// .t400112002_查询购物车失败
 				)
-				// t00100051_2)
-			// t400112002)
+			// res.status(200).json(
+			// 	)
 		})
 }
 
