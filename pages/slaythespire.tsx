@@ -150,11 +150,11 @@ const Page = ({ cwd, content }) => {
     setNewItem(base64)
   }
   const handleSaveFileChange = async (e) => {
-    if (savefilePath.length > 0) {
-      localStorage.setItem("savefile", savefilePath)
+    // if (savefilePath.length > 0) {
+    //   localStorage.setItem("savefile", savefilePath)
 
-      readXXX()
-    }
+    //   readXXX()
+    // }
   }
   return (
     <LXLayout>
@@ -162,15 +162,33 @@ const Page = ({ cwd, content }) => {
       <div className={css.top}>
         <label htmlFor={css.savepath}>save path:</label>
         <input
-          type="text"
+          // type="text"
+          type="file"
           name={css.savepath}
           id={css.savepath}
-          value={savefilePath}
-          onChange={(e) => {
-            setSavefilePath(e.target.value || "")
+          // value={savefilePath}
+          onChange={async (e) => {
+            const file = e.target.files.item(0)
+            const text = await file.text();
+            console.log('-->uploadfile: ', e.target.value)
+            console.log('-->uploadfile: ', text)
+            setSavefilePath(e.target.value)
+            setOriginItem(text)
           }}
         />
-        <button onClick={handleSaveFileChange}>读取</button>
+        {/* <input
+          type="file"
+          name='uploadfile'
+          id="uploadfile"
+          onChange={async (e) => {
+            // setSavefilePath(e.target.value || "")
+            const file = e.target.files.item(0)
+            const text = await file.text();
+            console.log('-->uploadfile: ', e.target.value)
+            console.log('-->uploadfile: ', text)
+          }}
+        /> */}
+        {/* <button onClick={handleSaveFileChange}>读取</button> */}
       </div>
       <div className={css.wrapper}>
         <div className={css.left}>
@@ -293,9 +311,9 @@ const Page = ({ cwd, content }) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
+          <button onClick={test}>Convert</button>
           <button onClick={decryptAction}>decrypt</button>
           <button onClick={encryptAction}>encrypt</button>
-          <button onClick={test}>Convert</button>
         </div>
         <div className={css.right}>
           {/* <label>New Item: </label> */}
@@ -332,7 +350,7 @@ const pre_unknown = [
 ]
 const pre_初始 = [
   /// 初始
-  "Ring of the Snake",
+  // "Ring of the Snake",
 ]
 const pre_BOSS = [
   /// BOSS
