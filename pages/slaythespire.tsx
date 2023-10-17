@@ -57,7 +57,7 @@ const Page = ({ cwd, content }) => {
     console.log("path: ", savefilePath)
     // sendRequest('', { path: savefilePath })
     // http://0.0.0.0:3003/api/lxthyme/readFile?path=/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/mockData/calDelivery.htm.json
-    fetch("http://0.0.0.0:3003/api/lxthyme/readFile", {
+    fetch("/api/lxthyme/readFile", {
       method: "POST",
       body: JSON.stringify({ path: savefilePath }),
     })
