@@ -9,14 +9,18 @@ const API = async(req: NextApiRequest, res: NextApiResponse) => {
     body = '{}'
   }
   // console.log('req.body: ', req.body, '\t\t: ', body);
-  let { file = '' } = JSON.parse(body)
-  if(file.length <= 0) {
-    file = req.query['file']
+  let { path = '' } = JSON.parse(body)
+  console.log('path1: ', path)
+  if(path.length <= 0) {
+    path = req.query['path']
+    console.log('path2: ', path)
   }
-
-  let data = await  await readFile(file, {
-    encoding: "utf-8",
-  })
+  let data = ''
+  if(path.length > 0) {
+    data = await  await readFile(path, {
+      encoding: "utf-8",
+    })
+  }
 
   // console.log('-->file path: ', file);
   // console.log('-->file content: ', data);
@@ -25,7 +29,7 @@ const API = async(req: NextApiRequest, res: NextApiResponse) => {
   })
     .then(() => {
       res.status(200).json({
-        path: file ?? '',
+        path: path ?? '',
         content: data ?? ''
       })
     })

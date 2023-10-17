@@ -6,16 +6,17 @@ import LXLayout from "@layout/lxlayout"
 import useSWRMutation from "swr/mutation"
 // import fetcher from '@plugin/fetcher'
 import { decrypt, encrypt } from "@plugin/savethespire"
-import { readFile } from 'fs/promises'
+import fs, { readFile } from 'fs/promises'
 // import { useRouter } from "next/router"
 
 // export const config = { amp: true };
 
 // const fetcher = (url) => fetch(url).then((res) => res.json());
-async function sendRequest(url, { arg }) {
-  return fetch(url, {
+async function sendRequest(url, body) {
+  // http://0.0.0.0:3003/api/lxthyme/readFile?path=/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/mockData/calDelivery.htm.json
+  return fetch('http://0.0.0.0:3003/api/lxthyme/readFile', {
     method: "POST",
-    body: JSON.stringify(arg),
+    body: JSON.stringify(body),
   }).then((res) => res.json())
 }
 export async function getStaticProps(context) {
@@ -53,6 +54,8 @@ const Page = ({ cwd, content }) => {
       encrypt,
       cwd,
       content,
+      readFile,
+      fs,
     }
   }, [])
   useEffect(() => {
@@ -76,21 +79,34 @@ const Page = ({ cwd, content }) => {
   )
 
   const readXXX = () => {
-    const fileOf = async (path) => {
-      console.log('readFile: ', readFile);
-      if (path.length > 0) {
-        const content = await readFile(path, {
-          encoding: "utf-8",
-        })
-        setFileContent(content)
-        console.log("content: ", content)
-      }
-    }
+    // const fileOf = async (uri) => {
+    //   console.log('readFile: ', readFile);
+    //   console.log('fs.readFile: ', fs, fs.readFile);
+    //   if (uri.length > 0) {
+    //     // const content = await readFile(path, {
+    //     //   encoding: "utf-8",
+    //     // })
+    //     // setFileContent(content)
+    //     // console.log("content: ", content)
+    //     fs.readFile(uri, {
+    //       encoding: "utf-8",
+    //     }).then(res => {
+    //       console.log('res: ', res)
+    //     })
+    //   }
+    // }
     // const router = useRouter()
     // const { path } = router
     console.log("path: ", savefilePath)
     // console.log('url: ' + window.location.href);
-    fileOf(savefilePath)
+    // fileOf(savefilePath)
+    sendRequest('', { path: savefilePath })
+    .then(res => {
+      console.log("res: ", res)
+      const content = res.content
+      // setFileContent(content)
+      setOriginItem(content)
+    })
   }
 
   const removeD = (newObj, list) => {
@@ -164,6 +180,10 @@ const Page = ({ cwd, content }) => {
   const handleOriginChange = (e) => {
     // console.log('e: ', e)
     setOriginItem(e.target.value)
+  }
+  const decryptAction = (e) => {
+    const base64 = decrypt(originItem)
+    setOriginItem(base64)
   }
   const encryptAction = (e) => {
     const base64 = encrypt(newItem)
@@ -324,6 +344,7 @@ const Page = ({ cwd, content }) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
+          <button onClick={decryptAction}>decrypt</button>
           <button onClick={encryptAction}>encrypt</button>
           <button onClick={test}>Convert</button>
         </div>
