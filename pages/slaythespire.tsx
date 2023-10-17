@@ -3,22 +3,9 @@ import React, { useState, useEffect } from "react"
 import css from "./slaythespire.module.css"
 import LXLayout from "@layout/lxlayout"
 // import useSWR from 'swr'
-import useSWRMutation from "swr/mutation"
-// import fetcher from '@plugin/fetcher'
+// import useSWRMutation from "swr/mutation"
 import { decrypt, encrypt } from "@plugin/savethespire"
-import fs, { readFile } from 'fs/promises'
-// import { useRouter } from "next/router"
 
-// export const config = { amp: true };
-
-// const fetcher = (url) => fetch(url).then((res) => res.json());
-async function sendRequest(url, body) {
-  // http://0.0.0.0:3003/api/lxthyme/readFile?path=/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/mockData/calDelivery.htm.json
-  return fetch('http://0.0.0.0:3003/api/lxthyme/readFile', {
-    method: "POST",
-    body: JSON.stringify(body),
-  }).then((res) => res.json())
-}
 export async function getStaticProps(context) {
   return {
     props: {
@@ -41,7 +28,6 @@ const Page = ({ cwd, content }) => {
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
   const [savefilePath, setSavefilePath] = useState("")
-  const [fileContent, setFileContent] = useState({})
 
   useEffect(() => {
     setOriginItem("{\n}")
@@ -54,8 +40,8 @@ const Page = ({ cwd, content }) => {
       encrypt,
       cwd,
       content,
-      readFile,
-      fs,
+      // readFile,
+      // fs,
     }
   }, [])
   useEffect(() => {
@@ -67,46 +53,20 @@ const Page = ({ cwd, content }) => {
     }
   }, [originItem])
 
-  // const fileContent = useSWR({
-  //   url: 'api/lxthyme/readFile',
-  //   // file: 'savefilePath',
-  //   // args: {
-  //   // }
-  // }, fetcher)
-  const { trigger, isMutating } = useSWRMutation(
-    "api/lxthyme/readFile",
-    sendRequest
-  )
-
   const readXXX = () => {
-    // const fileOf = async (uri) => {
-    //   console.log('readFile: ', readFile);
-    //   console.log('fs.readFile: ', fs, fs.readFile);
-    //   if (uri.length > 0) {
-    //     // const content = await readFile(path, {
-    //     //   encoding: "utf-8",
-    //     // })
-    //     // setFileContent(content)
-    //     // console.log("content: ", content)
-    //     fs.readFile(uri, {
-    //       encoding: "utf-8",
-    //     }).then(res => {
-    //       console.log('res: ', res)
-    //     })
-    //   }
-    // }
-    // const router = useRouter()
-    // const { path } = router
     console.log("path: ", savefilePath)
-    // console.log('url: ' + window.location.href);
-    // fileOf(savefilePath)
-    sendRequest('', { path: savefilePath })
-    .then(res => {
-      console.log("res: ", res)
-      const content = res.content
-      // setFileContent(content)
-      setOriginItem(content)
+    // sendRequest('', { path: savefilePath })
+    // http://0.0.0.0:3003/api/lxthyme/readFile?path=/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/mockData/calDelivery.htm.json
+    fetch("http://0.0.0.0:3003/api/lxthyme/readFile", {
+      method: "POST",
+      body: JSON.stringify({ path: savefilePath }),
     })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("res: ", res)
+        const content = res.content
+        setOriginItem(content)
+      })
   }
 
   const removeD = (newObj, list) => {
@@ -192,17 +152,6 @@ const Page = ({ cwd, content }) => {
   const handleSaveFileChange = async (e) => {
     if (savefilePath.length > 0) {
       localStorage.setItem("savefile", savefilePath)
-
-      // const xl_readFile = async (path) => {
-      //   const data = await trigger({ file: path })
-      //   setFileContent(data)
-      //   const { content: base64 } = data
-      //   const json = decrypt(base64)
-      //   setOriginItem(JSON.stringify(JSON.parse(json), null, 2))
-      //   // setOriginItem(content)
-      // }
-
-      // xl_readFile(savefilePath)
 
       readXXX()
     }
