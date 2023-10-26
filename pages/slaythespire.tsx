@@ -27,17 +27,17 @@ const Page = ({ cwd, content }) => {
   const [check_罕见, setCheck_罕见] = useState(true)
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
-  const [savefilePath, setSavefilePath] = useState("")
 
   useEffect(() => {
+    console.log('originItem 1. {}')
     setOriginItem("{\n}")
-    const savefile =
-      localStorage.getItem("savefile") || `${cwd}/mockData/t.json`
-    setSavefilePath(savefile)
 
     window.sts = {
       decrypt,
       encrypt,
+      saveAction,
+      oneKeyAction,
+      originItem,
       cwd,
       content,
       // readFile,
@@ -46,28 +46,13 @@ const Page = ({ cwd, content }) => {
   }, [])
   useEffect(() => {
     try {
+      console.log('originItem changed: ', originItem)
       const newObj = JSON.parse(originItem)
       setGold(newObj.gold ?? 0)
     } catch (error) {
       // console.log('Error: ', error)
     }
   }, [originItem])
-
-  const readXXX = () => {
-    console.log("path: ", savefilePath)
-    // sendRequest('', { path: savefilePath })
-    // http://0.0.0.0:3003/api/lxthyme/readFile?path=/Users/lxthyme/Desktop/Lucky/Demo.React/next-cookbook/mockData/calDelivery.htm.json
-    fetch("/api/lxthyme/readFile", {
-      method: "POST",
-      body: JSON.stringify({ path: savefilePath }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("res: ", res)
-        const content = res.content
-        setOriginItem(content)
-      })
-  }
 
   const removeD = (newObj, list) => {
     // const all = [
@@ -139,22 +124,36 @@ const Page = ({ cwd, content }) => {
   }
   const handleOriginChange = (e) => {
     // console.log('e: ', e)
+    console.log('originItem 3. handleOriginChange')
     setOriginItem(e.target.value)
   }
-  const decryptAction = (e) => {
+  const decryptAction = () => {
     const base64 = decrypt(originItem)
     setOriginItem(base64)
+    console.log('originItem 4. decryptAction: ', originItem)
   }
-  const encryptAction = (e) => {
+  const encryptAction = () => {
     const base64 = encrypt(newItem)
     setNewItem(base64)
   }
-  const handleSaveFileChange = async (e) => {
-    // if (savefilePath.length > 0) {
-    //   localStorage.setItem("savefile", savefilePath)
-
-    //   readXXX()
-    // }
+  const oneKeyAction = () => {
+    decryptAction()
+    setTimeout(() => {
+      test()
+    }, 2000);
+  }
+  const saveAction = (e) => {
+    let inputItem = document.querySelector(`#${css.savepath}`)
+    if(!inputItem.files) {
+      console.log('文件读取失败!')
+      return
+    }
+    let originFile = inputItem.files[0]
+    let newFile = new File([newItem || '233'], originFile.name,{type:originFile.type, lastModified:new Date().getTime()});
+    let container = new DataTransfer();
+    container.items.add(newFile);
+    inputItem.files = container.files;
+    return newFile
   }
   return (
     <LXLayout>
@@ -166,29 +165,15 @@ const Page = ({ cwd, content }) => {
           type="file"
           name={css.savepath}
           id={css.savepath}
-          // value={savefilePath}
           onChange={async (e) => {
             const file = e.target.files.item(0)
             const text = await file.text();
             console.log('-->uploadfile: ', e.target.value)
             console.log('-->uploadfile: ', text)
-            setSavefilePath(e.target.value)
+            console.log('originItem 5. onChange')
             setOriginItem(text)
           }}
         />
-        {/* <input
-          type="file"
-          name='uploadfile'
-          id="uploadfile"
-          onChange={async (e) => {
-            // setSavefilePath(e.target.value || "")
-            const file = e.target.files.item(0)
-            const text = await file.text();
-            console.log('-->uploadfile: ', e.target.value)
-            console.log('-->uploadfile: ', text)
-          }}
-        /> */}
-        {/* <button onClick={handleSaveFileChange}>读取</button> */}
       </div>
       <div className={css.wrapper}>
         <div className={css.left}>
@@ -314,6 +299,7 @@ const Page = ({ cwd, content }) => {
           <button onClick={test}>Convert</button>
           <button onClick={decryptAction}>decrypt</button>
           <button onClick={encryptAction}>encrypt</button>
+          <button onClick={oneKeyAction}>one key</button>
         </div>
         <div className={css.right}>
           {/* <label>New Item: </label> */}
