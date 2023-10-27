@@ -3,21 +3,9 @@ import React, { useState, useEffect } from "react"
 import css from "./slaythespire.module.css"
 import LXLayout from "@layout/lxlayout"
 // import useSWR from 'swr'
-import useSWRMutation from "swr/mutation"
-// import fetcher from '@plugin/fetcher'
+// import useSWRMutation from "swr/mutation"
 import { decrypt, encrypt } from "@plugin/savethespire"
-import { readFile } from 'fs/promises'
-// import { useRouter } from "next/router"
 
-// export const config = { amp: true };
-
-// const fetcher = (url) => fetch(url).then((res) => res.json());
-async function sendRequest(url, { arg }) {
-  return fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  }).then((res) => res.json())
-}
 export async function getStaticProps(context) {
   return {
     props: {
@@ -39,59 +27,32 @@ const Page = ({ cwd, content }) => {
   const [check_罕见, setCheck_罕见] = useState(true)
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
-  const [savefilePath, setSavefilePath] = useState("")
-  const [fileContent, setFileContent] = useState({})
 
   useEffect(() => {
+    console.log('originItem 1. {}')
     setOriginItem("{\n}")
-    const savefile =
-      localStorage.getItem("savefile") || `${cwd}/mockData/t.json`
-    setSavefilePath(savefile)
 
     window.sts = {
       decrypt,
       encrypt,
+      saveAction,
+      oneKeyAction,
+      originItem,
       cwd,
       content,
+      // readFile,
+      // fs,
     }
   }, [])
   useEffect(() => {
     try {
+      console.log('originItem changed: ', originItem)
       const newObj = JSON.parse(originItem)
       setGold(newObj.gold ?? 0)
     } catch (error) {
       // console.log('Error: ', error)
     }
   }, [originItem])
-
-  // const fileContent = useSWR({
-  //   url: 'api/lxthyme/readFile',
-  //   // file: 'savefilePath',
-  //   // args: {
-  //   // }
-  // }, fetcher)
-  const { trigger, isMutating } = useSWRMutation(
-    "api/lxthyme/readFile",
-    sendRequest
-  )
-
-  const readXXX = () => {
-    const fileOf = async (path) => {
-      console.log('readFile: ', readFile);
-      if (path.length > 0) {
-        const content = await readFile(path, {
-          encoding: "utf-8",
-        })
-        setFileContent(content)
-        console.log("content: ", content)
-      }
-    }
-    // const router = useRouter()
-    // const { path } = router
-    console.log("path: ", savefilePath)
-    // console.log('url: ' + window.location.href);
-    fileOf(savefilePath)
-  }
 
   const removeD = (newObj, list) => {
     // const all = [
@@ -163,29 +124,36 @@ const Page = ({ cwd, content }) => {
   }
   const handleOriginChange = (e) => {
     // console.log('e: ', e)
+    console.log('originItem 3. handleOriginChange')
     setOriginItem(e.target.value)
   }
-  const encryptAction = (e) => {
+  const decryptAction = () => {
+    const base64 = decrypt(originItem)
+    setOriginItem(base64)
+    console.log('originItem 4. decryptAction: ', originItem)
+  }
+  const encryptAction = () => {
     const base64 = encrypt(newItem)
     setNewItem(base64)
   }
-  const handleSaveFileChange = async (e) => {
-    if (savefilePath.length > 0) {
-      localStorage.setItem("savefile", savefilePath)
-
-      // const xl_readFile = async (path) => {
-      //   const data = await trigger({ file: path })
-      //   setFileContent(data)
-      //   const { content: base64 } = data
-      //   const json = decrypt(base64)
-      //   setOriginItem(JSON.stringify(JSON.parse(json), null, 2))
-      //   // setOriginItem(content)
-      // }
-
-      // xl_readFile(savefilePath)
-
-      readXXX()
+  const oneKeyAction = () => {
+    decryptAction()
+    setTimeout(() => {
+      test()
+    }, 2000);
+  }
+  const saveAction = (e) => {
+    let inputItem = document.querySelector(`#${css.savepath}`)
+    if(!inputItem.files) {
+      console.log('文件读取失败!')
+      return
     }
+    let originFile = inputItem.files[0]
+    let newFile = new File([newItem || '233'], originFile.name,{type:originFile.type, lastModified:new Date().getTime()});
+    let container = new DataTransfer();
+    container.items.add(newFile);
+    inputItem.files = container.files;
+    return newFile
   }
   return (
     <LXLayout>
@@ -193,15 +161,19 @@ const Page = ({ cwd, content }) => {
       <div className={css.top}>
         <label htmlFor={css.savepath}>save path:</label>
         <input
-          type="text"
+          // type="text"
+          type="file"
           name={css.savepath}
           id={css.savepath}
-          value={savefilePath}
-          onChange={(e) => {
-            setSavefilePath(e.target.value || "")
+          onChange={async (e) => {
+            const file = e.target.files.item(0)
+            const text = await file.text();
+            console.log('-->uploadfile: ', e.target.value)
+            console.log('-->uploadfile: ', text)
+            console.log('originItem 5. onChange')
+            setOriginItem(text)
           }}
         />
-        <button onClick={handleSaveFileChange}>读取</button>
       </div>
       <div className={css.wrapper}>
         <div className={css.left}>
@@ -324,8 +296,10 @@ const Page = ({ cwd, content }) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
-          <button onClick={encryptAction}>encrypt</button>
           <button onClick={test}>Convert</button>
+          <button onClick={decryptAction}>decrypt</button>
+          <button onClick={encryptAction}>encrypt</button>
+          <button onClick={oneKeyAction}>one key</button>
         </div>
         <div className={css.right}>
           {/* <label>New Item: </label> */}
@@ -362,7 +336,7 @@ const pre_unknown = [
 ]
 const pre_初始 = [
   /// 初始
-  "Ring of the Snake",
+  // "Ring of the Snake",
 ]
 const pre_BOSS = [
   /// BOSS
