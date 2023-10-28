@@ -27,6 +27,7 @@ const Page = ({ cwd, content }) => {
   const [check_罕见, setCheck_罕见] = useState(true)
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
+  const [check_loadout, setCheck_loadout] = useState(true)
 
   useEffect(() => {
     console.log('originItem 1. {}')
@@ -71,6 +72,13 @@ const Page = ({ cwd, content }) => {
     )
     newObj.boss_relics = newObj.boss_relics?.filter((t) => !list.includes(t))
     newObj.shop_relics = newObj.shop_relics?.filter((t) => !list.includes(t))
+
+    newObj.uncommon_relics = Array.from(new Set(newObj.uncommon_relics))
+    newObj.relics = Array.from(new Set(newObj.relics))
+    newObj.rare_relics = Array.from(new Set(newObj.rare_relics))
+    newObj.common_relics = Array.from(new Set(newObj.common_relics))
+    newObj.boss_relics = Array.from(new Set(newObj.boss_relics))
+    newObj.shop_relics = Array.from(new Set(newObj.shop_relics))
   }
 
   const test = () => {
@@ -113,12 +121,17 @@ const Page = ({ cwd, content }) => {
     newObj.gold = gold
     fmt_relics = [...(newObj.relics ?? []), ...fmt_relics]
     fmt_relics = Array.from(new Set(fmt_relics))
-    newObj.relics = fmt_relics
-    newObj.metric_items_purchased = [
+    let metric_items_purchased = Array.from(new Set([
       ...(newObj.metric_items_purchased ?? []),
       ...fmt_relics,
-    ]
-    removeD(newObj, fmt_relics)
+    ]))
+    if(check_loadout) {
+      fmt_relics = fmt_relics.filter(t => !t.startsWith('loadout'))
+      metric_items_purchased = metric_items_purchased.filter(t => !t.startsWith('loadout'))
+    }
+    newObj.relics = fmt_relics
+    newObj.metric_items_purchased = metric_items_purchased
+    // removeD(newObj, fmt_relics)
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
@@ -296,6 +309,16 @@ const Page = ({ cwd, content }) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
+          <div className={css.checkItem}>
+            <label htmlFor="check_loadout">remove loadout:</label>
+            <input
+              type="checkbox"
+              name="check_loadout"
+              id="check_loadout"
+              checked={check_loadout}
+              onChange={(e) => setCheck_loadout(e.target.checked)}
+            />
+          </div>
           <button onClick={test}>Convert</button>
           <button onClick={decryptAction}>decrypt</button>
           <button onClick={encryptAction}>encrypt</button>
@@ -330,72 +353,125 @@ export default Page
 
 const pre_unknown = [
   "Necronomicon",
-  "Red Mask",
   // "Ssserpent Head",
   // "Warped Tongs",
 ]
 const pre_初始 = [
   /// 初始
   // "Ring of the Snake",
+  /// [new]
+  "PureWater",
+  "Ring of the Snake"
 ]
 const pre_BOSS = [
   /// BOSS
-  "Runic Pyramid",
-  "Ring of the Serpent",
-  "Question Card",
-  "Lizard Tail",
+  // "Ring of the Serpent",
+  // "Question Card",
+  // "Lizard Tail",
+  // "Black Blood",
+  /// [new]
   "Black Star",
-  "Black Blood",
+  "Coffee Dripper",
+  "HolyWater",
+  "HoveringKite",
+  "Runic Pyramid",
+  "SacredBark",
+  "SlaversCollar",
+  "VioletLotus",
+  "WristBlade"
 ]
 const pre_商店 = [
   /// 商店
+  /// [new]
+  "ClockworkSouvenir",
+  "HandDrill",
   "Medical Kit",
   "Membership Card",
-  "Strange Spoon",
+  "OrangePellets",
+  "PrismaticShard",
+  "Sling",
+  "Strange Spoon"
 ]
 const pre_稀有 = [
   /// 稀有
-  "Unceasing Top",
-  "Shovel",
-  "Peace Pipe",
-  "Ice Cream",
-  "Ginger",
-  "Dead Branch",
-  "Champion Belt",
+  /// [new]
   "Calipers",
+  "Champion Belt",
+  "Charon's Ashes",
+  "Dead Branch",
+  "Du-Vu Doll",
+  "Ginger",
+  "Ice Cream",
+  "Lizard Tail",
+  "Peace Pipe",
+  "Prayer Wheel",
+  "Shovel",
+  "Test 4",
+  "Tingsha",
+  "Turnip",
+  "Unceasing Top"
 ]
 const pre_罕见 = [
   /// 罕见
-  "Toolbox",
-  "Smiling Mask",
-  "Paper Frog",
-  "Paper Crane",
-  "Pantograph",
-  "Mummified Hand",
-  "Discerning Monocle",
-  "The Courier",
-  "Chemical X",
+  // "Toolbox",
+  // "Smiling Mask",
+  // "Pantograph",
+  // "Discerning Monocle",
+  // "Chemical X",
+  /// [new]
   "Blue Candle",
+  "Darkstone Periapt",
+  "Dodecahedron",
+  "Frozen Egg 2",
+  "Gremlin Horn",
+  "InkBottle",
+  "Kunai",
+  "Letter Opener",
+  "Molten Egg 2",
+  "Mummified Hand",
+  "Ornamental Fan",
+  "Paper Crane",
+  "Paper Frog",
+  "Question Card",
+  "Shuriken",
+  "Singing Bowl",
+  "StrikeDummy",
+  "Sundial",
+  "TeardropLocket",
+  "The Courier",
+  "Toxic Egg 2",
+  "White Beast Statue",
+  "Yang",
+  "Yin"
 ]
 const pre_事件 = [
   /// 事件
-  "Odd Mushroom",
-  "Nloth's Gift",
-  "Golden Idol",
-  // 'Golden Idol (Relic)',
+  /// [new]
   "Enchiridion",
+  "Golden Idol",
+  "Nloth's Gift",
+  "Odd Mushroom",
+  "Red Mask"
 ]
 const pre_普通 = [
   /// 普通
-  "Ring of the Snake",
-  "Singing Bowl",
-  "Snake Skull",
-  "Prayer Wheel",
-  "Pen Nib",
-  "Lantern",
-  "Juzu Bracelet",
-  "Bag of Preparation",
+  // "Ring of the Snake",
+  // "Singing Bowl",
+  // "Snake Skull",
+  // "Prayer Wheel",
+  /// [new]
   "Bag of Marbles",
+  "Bag of Preparation",
+  "CeramicFish",
+  "Happy Flower",
+  "Juzu Bracelet",
+  "Lantern",
+  "Nunchaku",
+  "Oddly Smooth Stone",
+  "Pen Nib",
+  "Potion Belt",
+  "PreservedInsect",
+  "Smiling Mask"
 ]
 
 const mockData = {
@@ -429,36 +505,36 @@ const mockData = {
   merchant_seed_count: 0,
   floor_num: 1,
   uncommon_relics: [
-    "Darkstone Periapt",
+    // "Darkstone Periapt",
     "Bottled Lightning",
-    "Frozen Egg 2",
-    "Yang",
-    "Molten Egg 2",
-    "Question Card",
+    // "Frozen Egg 2",
+    // "Yang",
+    // "Molten Egg 2",
+    // "Question Card",
     "HornCleat",
     "Letter Opener",
-    "InkBottle",
-    "Ornamental Fan",
+    // "InkBottle",
+    // "Ornamental Fan",
     "StrikeDummy",
-    "Toxic Egg 2",
+    // "Toxic Egg 2",
     "White Beast Statue",
     "Mercury Hourglass",
-    "Meat on the Bone",
-    "Shuriken",
+    // "Meat on the Bone",
+    // "Shuriken",
     "Pantograph",
-    "Mummified Hand",
+    // "Mummified Hand",
     "Eternal Feather",
-    "The Courier",
-    "Kunai",
+    // "The Courier",
+    // "Kunai",
     "Matryoshka",
-    "Singing Bowl",
-    "Bottled Tornado",
-    "TeardropLocket",
+    // "Singing Bowl",
+    // "Bottled Tornado",
+    // "TeardropLocket",
     "Bottled Flame",
-    "Blue Candle",
-    "Sundial",
+    // "Blue Candle",
+    // "Sundial",
     "Pear",
-    "Gremlin Horn",
+    // "Gremlin Horn",
   ],
   post_combat: false,
   combo: false,
@@ -475,10 +551,10 @@ const mockData = {
     // /// common
     // "Tiny Chest",
     // "Lantern",
-    // "Juzu Bracelet",
+    "Juzu Bracelet",
     // "Dream Catcher",
-    // "Bag of Preparation",
-    // "Bag of Marbles",
+    "Bag of Preparation",
+    "Bag of Marbles",
     // /// uncommon
     // "Singing Bowl",
     // "Mummified Hand",
@@ -501,6 +577,65 @@ const mockData = {
 
     // "Golden Idol",
     // "Odd Mushroom",
+    "CeramicFish",
+    "Happy Flower",
+    "Lantern",
+    "Nunchaku",
+    "Oddly Smooth Stone",
+    "Pen Nib",
+    "Potion Belt",
+    "PreservedInsect",
+    "Smiling Mask",
+    "Blue Candle",
+    "Darkstone Periapt",
+    "Circlet",
+    "Frozen Egg 2",
+    "Gremlin Horn",
+    "InkBottle",
+    "Kunai",
+    "Molten Egg 2",
+    "Mummified Hand",
+    "Ornamental Fan",
+    "Paper Crane",
+    "Paper Frog",
+    "Question Card",
+    "Shuriken",
+    "Singing Bowl",
+    "Sundial",
+    "TeardropLocket",
+    "The Courier",
+    "Toxic Egg 2",
+    "Yang",
+    "Calipers",
+    "Champion Belt",
+    "Charon's Ashes",
+    "Dead Branch",
+    "Du-Vu Doll",
+    "Ginger",
+    "Ice Cream",
+    "Peace Pipe",
+    "Prayer Wheel",
+    "Shovel",
+    "Turnip",
+    "Unceasing Top",
+    "Black Star",
+    "Coffee Dripper",
+    "HolyWater",
+    "HoveringKite",
+    "Runic Pyramid",
+    "SlaversCollar",
+    "VioletLotus",
+    "WristBlade",
+    "Medical Kit",
+    "Membership Card",
+    "OrangePellets",
+    "PrismaticShard",
+    "Strange Spoon",
+    "Enchiridion",
+    "Golden Idol",
+    "Nloth's Gift",
+    "Odd Mushroom",
+    "Red Mask"
   ],
   rare_relics: [
     "CaptainsWheel",
@@ -530,6 +665,23 @@ const mockData = {
     "Girya",
     "GoldenEye",
     "Bird Faced Urn",
+    "Bird Faced Urn",
+    "GoldenEye",
+    "Old Coin",
+    "TungstenRod",
+    "Pocketwatch",
+    "Gambling Chip",
+    "StoneCalendar",
+    "CloakClasp",
+    "Mango",
+    "FossilizedHelix",
+    "Thread and Needle",
+    "Torii",
+    "Lizard Tail",
+    "Girya",
+    "Incense Burner",
+    "CaptainsWheel",
+    "WingedGreaves",
   ],
   level_name: "Exordium",
   metric_campfire_rested: 0,
@@ -571,6 +723,26 @@ const mockData = {
     "PreservedInsect",
     "Juzu Bracelet",
     "Bag of Preparation",
+    "Centennial Puzzle",
+    "Art of War",
+    "Akabeko",
+    "Vajra",
+    "Boot",
+    "Ancient Tea Set",
+    "Dream Catcher",
+    "Damaru",
+    "War Paint",
+    "Bronze Scales",
+    "Regal Pillow",
+    "Orichalcum",
+    "Whetstone",
+    "MawBank",
+    "Tiny Chest",
+    "Strawberry",
+    "Blood Vial",
+    "Toy Ornithopter",
+    "Anchor",
+    "MealTicket",
   ],
   monsters_killed: 0,
   gold: 99,
@@ -608,6 +780,21 @@ const mockData = {
     "VioletLotus",
     "Busted Crown",
     "Coffee Dripper",
+    "Fusion Hammer",
+    "SacredBark",
+    "Cursed Key",
+    "Philosopher's Stone",
+    "Tiny House",
+    "Runic Dome",
+    "Busted Crown",
+    "Ectoplasm",
+    "Pandora's Box",
+    "Snecko Eye",
+    "Sozu",
+    "Empty Cage",
+    "Astrolabe",
+    "Calling Bell",
+    "Velvet Choker",
   ],
   blue: 0,
   path_y: [0],
@@ -696,6 +883,17 @@ const mockData = {
     // "Chemical X",
     "HandDrill",
     "Cauldron",
+    "Lee's Waffle",
+    "Cauldron",
+    "Melange",
+    "HandDrill",
+    "Frozen Eye",
+    "ClockworkSouvenir",
+    "Chemical X",
+    "DollysMirror",
+    "Toolbox",
+    "Sling",
+    "Orrery",
   ],
   custom_mods: [],
   metric_path_taken: ["M"],
