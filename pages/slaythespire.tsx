@@ -19,6 +19,7 @@ const Page = ({ cwd, content }) => {
   const [originItem, setOriginItem] = useState("")
   const [newItem, setNewItem] = useState("")
   const [gold, setGold] = useState(0)
+  const [check_All, setCheck_All] = useState(false)
   const [check_unknown, setCheck_unknown] = useState(true)
   const [check_初始, setCheck_初始] = useState(true)
   const [check_BOSS, setCheck_BOSS] = useState(true)
@@ -27,9 +28,10 @@ const Page = ({ cwd, content }) => {
   const [check_罕见, setCheck_罕见] = useState(true)
   const [check_事件, setCheck_事件] = useState(true)
   const [check_普通, setCheck_普通] = useState(true)
+  const [check_loadout, setCheck_loadout] = useState(true)
 
   useEffect(() => {
-    console.log('originItem 1. {}')
+    console.log("originItem 1. {}")
     setOriginItem("{\n}")
 
     window.sts = {
@@ -46,44 +48,38 @@ const Page = ({ cwd, content }) => {
   }, [])
   useEffect(() => {
     try {
-      console.log('originItem changed: ', originItem)
+      console.log("originItem changed: ", originItem)
       const newObj = JSON.parse(originItem)
       setGold(newObj.gold ?? 0)
     } catch (error) {
       // console.log('Error: ', error)
     }
   }, [originItem])
-
-  const removeD = (newObj, list) => {
-    // const all = [
-    //   ...(newObj.uncommon_relics ?? []),
-    //   ...(newObj.rare_relics ?? []),
-    //   ...(newObj.common_relics ?? []),
-    //   ...(newObj.boss_relics ?? []),
-    //   ...(newObj.shop_relics ?? []),
-    // ]
-    newObj.uncommon_relics = newObj.uncommon_relics?.filter(
-      (t) => !list.includes(t)
+  useEffect(() => {
+    setCheck_All(
+      check_unknown &&
+        check_初始 &&
+        check_BOSS &&
+        check_商店 &&
+        check_稀有 &&
+        check_罕见 &&
+        check_事件 &&
+        check_普通 &&
+        check_loadout
     )
-    newObj.rare_relics = newObj.rare_relics?.filter((t) => !list.includes(t))
-    newObj.common_relics = newObj.common_relics?.filter(
-      (t) => !list.includes(t)
-    )
-    newObj.boss_relics = newObj.boss_relics?.filter((t) => !list.includes(t))
-    newObj.shop_relics = newObj.shop_relics?.filter((t) => !list.includes(t))
-  }
+  }, [
+    check_unknown,
+    check_初始,
+    check_BOSS,
+    check_商店,
+    check_稀有,
+    check_罕见,
+    check_事件,
+    check_普通,
+    check_loadout,
+  ])
 
   const test = () => {
-    let {
-      uncommon_relics,
-      relics,
-      rare_relics,
-      common_relics,
-      boss_relics,
-      shop_relics,
-      ...mockData_others
-    } = mockData
-
     let fmt_relics = []
     if (check_unknown) {
       fmt_relics = [...fmt_relics, ...pre_unknown]
@@ -111,26 +107,47 @@ const Page = ({ cwd, content }) => {
     }
     const newObj = JSON.parse(originItem)
     newObj.gold = gold
-    fmt_relics = [...(newObj.relics ?? []), ...fmt_relics]
     fmt_relics = Array.from(new Set(fmt_relics))
-    newObj.relics = fmt_relics
+    if (check_loadout) {
+      fmt_relics = fmt_relics.filter((t) => !t.startsWith("loadout"))
+    }
+    const relics = newObj.relics ?? []
+    fmt_relics = fmt_relics.filter((t) => !relics.includes(t))
+    newObj.relics = [...relics, ...fmt_relics]
+
+    const metric_items_purchased = newObj.metric_items_purchased ?? []
+    const fmt_relics_purchased = fmt_relics.filter(
+      (t) => !metric_items_purchased.includes(t)
+    )
     newObj.metric_items_purchased = [
-      ...(newObj.metric_items_purchased ?? []),
-      ...fmt_relics,
+      ...metric_items_purchased,
+      ...fmt_relics_purchased,
     ]
-    removeD(newObj, fmt_relics)
+    // removeD(newObj, fmt_relics)
     setNewItem(JSON.stringify(newObj, null, 2))
     console.log("New Item: ", newObj)
   }
+  const refreshFileInfo = async () => {
+    const files = document.querySelector(`#${css.savepath}`)?.files
+    if (!files || files?.length <= 0) {
+      return
+    }
+    const file = files?.item(0)
+    const text = await file.text()
+    console.log("-->uploadfile: ", file)
+    console.log("-->uploadfile: ", text)
+    console.log("originItem 5. onChange")
+    setOriginItem(text)
+  }
   const handleOriginChange = (e) => {
     // console.log('e: ', e)
-    console.log('originItem 3. handleOriginChange')
+    console.log("originItem 3. handleOriginChange")
     setOriginItem(e.target.value)
   }
   const decryptAction = () => {
     const base64 = decrypt(originItem)
     setOriginItem(base64)
-    console.log('originItem 4. decryptAction: ', originItem)
+    console.log("originItem 4. decryptAction: ", originItem)
   }
   const encryptAction = () => {
     const base64 = encrypt(newItem)
@@ -140,19 +157,22 @@ const Page = ({ cwd, content }) => {
     decryptAction()
     setTimeout(() => {
       test()
-    }, 2000);
+    }, 2000)
   }
   const saveAction = (e) => {
     let inputItem = document.querySelector(`#${css.savepath}`)
-    if(!inputItem.files) {
-      console.log('文件读取失败!')
+    if (!inputItem.files) {
+      console.log("文件读取失败!")
       return
     }
     let originFile = inputItem.files[0]
-    let newFile = new File([newItem || '233'], originFile.name,{type:originFile.type, lastModified:new Date().getTime()});
-    let container = new DataTransfer();
-    container.items.add(newFile);
-    inputItem.files = container.files;
+    let newFile = new File([newItem || "233"], originFile.name, {
+      type: originFile.type,
+      lastModified: new Date().getTime(),
+    })
+    let container = new DataTransfer()
+    container.items.add(newFile)
+    inputItem.files = container.files
     return newFile
   }
   return (
@@ -165,15 +185,9 @@ const Page = ({ cwd, content }) => {
           type="file"
           name={css.savepath}
           id={css.savepath}
-          onChange={async (e) => {
-            const file = e.target.files.item(0)
-            const text = await file.text();
-            console.log('-->uploadfile: ', e.target.value)
-            console.log('-->uploadfile: ', text)
-            console.log('originItem 5. onChange')
-            setOriginItem(text)
-          }}
+          onChange={refreshFileInfo}
         />
+        {/* <button onClick={refreshFileInfo}>Refresh</button> */}
       </div>
       <div className={css.wrapper}>
         <div className={css.left}>
@@ -203,6 +217,7 @@ const Page = ({ cwd, content }) => {
               type="checkbox"
               name="allChecked"
               id="allChecked"
+              checked={check_All}
               onChange={(e) => {
                 const checked = e.target.checked
                 setCheck_unknown(checked)
@@ -213,6 +228,7 @@ const Page = ({ cwd, content }) => {
                 setCheck_罕见(checked)
                 setCheck_事件(checked)
                 setCheck_普通(checked)
+                setCheck_loadout(checked)
               }}
             />
           </div>
@@ -296,6 +312,16 @@ const Page = ({ cwd, content }) => {
               onChange={(e) => setCheck_普通(e.target.checked)}
             />
           </div>
+          <div className={css.checkItem}>
+            <label htmlFor="check_loadout">remove loadout:</label>
+            <input
+              type="checkbox"
+              name="check_loadout"
+              id="check_loadout"
+              checked={check_loadout}
+              onChange={(e) => setCheck_loadout(e.target.checked)}
+            />
+          </div>
           <button onClick={test}>Convert</button>
           <button onClick={decryptAction}>decrypt</button>
           <button onClick={encryptAction}>encrypt</button>
@@ -324,547 +350,129 @@ const Page = ({ cwd, content }) => {
 // export const getStaticProps = async ({ params, preview, previewData }) => { return { props: { } }; }
 // export const getServerSideProps = async ({ params, req, res, query, preview, previewData }) => {}
 // Page.getInitialProps = async ({ req }) => {}
-Page.displayName = "📌 Page - PAGE"
+Page.displayName = "📌 Page - slaythespire"
 
 export default Page
 
 const pre_unknown = [
   "Necronomicon",
-  "Red Mask",
   // "Ssserpent Head",
   // "Warped Tongs",
 ]
 const pre_初始 = [
   /// 初始
   // "Ring of the Snake",
+  /// [new]
+  "PureWater",
+  "Ring of the Snake",
 ]
 const pre_BOSS = [
   /// BOSS
-  "Runic Pyramid",
-  "Ring of the Serpent",
-  "Question Card",
-  "Lizard Tail",
+  // "Ring of the Serpent",
+  // "Question Card",
+  // "Lizard Tail",
+  // "Black Blood",
+  /// [new]
   "Black Star",
-  "Black Blood",
+  "Coffee Dripper",
+  "HolyWater",
+  "HoveringKite",
+  "Runic Pyramid",
+  "SacredBark",
+  "SlaversCollar",
+  "VioletLotus",
+  "WristBlade",
 ]
 const pre_商店 = [
   /// 商店
+  /// [new]
+  "ClockworkSouvenir",
+  "HandDrill",
   "Medical Kit",
   "Membership Card",
+  "OrangePellets",
+  "PrismaticShard",
+  "Sling",
   "Strange Spoon",
 ]
 const pre_稀有 = [
   /// 稀有
-  "Unceasing Top",
-  "Shovel",
-  "Peace Pipe",
-  "Ice Cream",
-  "Ginger",
-  "Dead Branch",
-  "Champion Belt",
+  /// [new]
   "Calipers",
+  "Champion Belt",
+  "Charon's Ashes",
+  "Dead Branch",
+  "Du-Vu Doll",
+  "Ginger",
+  "Ice Cream",
+  "Lizard Tail",
+  "Peace Pipe",
+  "Prayer Wheel",
+  "Shovel",
+  "Test 4",
+  "Tingsha",
+  "Turnip",
+  "Unceasing Top",
 ]
 const pre_罕见 = [
   /// 罕见
-  "Toolbox",
-  "Smiling Mask",
-  "Paper Frog",
-  "Paper Crane",
-  "Pantograph",
-  "Mummified Hand",
-  "Discerning Monocle",
-  "The Courier",
-  "Chemical X",
+  // "Toolbox",
+  // "Smiling Mask",
+  // "Pantograph",
+  // "Discerning Monocle",
+  // "Chemical X",
+  /// [new]
   "Blue Candle",
+  "Darkstone Periapt",
+  "Dodecahedron",
+  "Frozen Egg 2",
+  "Gremlin Horn",
+  "InkBottle",
+  "Kunai",
+  "Letter Opener",
+  "Molten Egg 2",
+  "Mummified Hand",
+  "Ornamental Fan",
+  "Paper Crane",
+  "Paper Frog",
+  "Question Card",
+  "Shuriken",
+  "Singing Bowl",
+  "StrikeDummy",
+  "Sundial",
+  "TeardropLocket",
+  "The Courier",
+  "Toxic Egg 2",
+  "White Beast Statue",
+  "Yang",
+  "Yin",
 ]
 const pre_事件 = [
   /// 事件
-  "Odd Mushroom",
-  "Nloth's Gift",
-  "Golden Idol",
-  // 'Golden Idol (Relic)',
+  /// [new]
   "Enchiridion",
+  "Golden Idol",
+  "Nloth's Gift",
+  "Odd Mushroom",
+  "Red Mask",
 ]
 const pre_普通 = [
   /// 普通
-  "Ring of the Snake",
-  "Singing Bowl",
-  "Snake Skull",
-  "Prayer Wheel",
-  "Pen Nib",
-  "Lantern",
-  "Juzu Bracelet",
-  "Bag of Preparation",
+  // "Ring of the Snake",
+  // "Singing Bowl",
+  // "Snake Skull",
+  // "Prayer Wheel",
+  /// [new]
   "Bag of Marbles",
+  "Bag of Preparation",
+  "CeramicFish",
+  "Happy Flower",
+  "Juzu Bracelet",
+  "Lantern",
+  "Nunchaku",
+  "Oddly Smooth Stone",
+  "Pen Nib",
+  "Potion Belt",
+  "PreservedInsect",
+  "Smiling Mask",
 ]
-
-const mockData = {
-  shuffle_seed_count: 0,
-  metric_purchased_purges: 0,
-  metric_path_per_floor: [],
-  monster_list: [
-    "2 Louse",
-    "Small Slimes",
-    "Jaw Worm",
-    "2 Fungi Beasts",
-    "Looter",
-    "Exordium Thugs",
-    "3 Louse",
-    "Red Slaver",
-    "2 Fungi Beasts",
-    "Gremlin Gang",
-    "Looter",
-    "Exordium Wildlife",
-    "Large Slime",
-    "Looter",
-    "2 Fungi Beasts",
-    "Exordium Thugs",
-  ],
-  metric_potions_floor_spawned: [],
-  daily_mods: ["Allstar", "Hoarder", "Midas"],
-  metric_campfire_choices: [],
-  is_ascension_mode: false,
-  metric_items_purchased: [],
-  is_endless_mode: false,
-  merchant_seed_count: 0,
-  floor_num: 1,
-  uncommon_relics: [
-    "Darkstone Periapt",
-    "Bottled Lightning",
-    "Frozen Egg 2",
-    "Yang",
-    "Molten Egg 2",
-    "Question Card",
-    "HornCleat",
-    "Letter Opener",
-    "InkBottle",
-    "Ornamental Fan",
-    "StrikeDummy",
-    "Toxic Egg 2",
-    "White Beast Statue",
-    "Mercury Hourglass",
-    "Meat on the Bone",
-    "Shuriken",
-    "Pantograph",
-    "Mummified Hand",
-    "Eternal Feather",
-    "The Courier",
-    "Kunai",
-    "Matryoshka",
-    "Singing Bowl",
-    "Bottled Tornado",
-    "TeardropLocket",
-    "Bottled Flame",
-    "Blue Candle",
-    "Sundial",
-    "Pear",
-    "Gremlin Horn",
-  ],
-  post_combat: false,
-  combo: false,
-  relics: [
-    "PureWater",
-    "Ring of the Snake",
-    "Smiling Mask",
-    "Paper Frog",
-    "Paper Crane",
-    "Discerning Monocle",
-    "Champion Belt",
-    "Nloth's Gift",
-    "Black Blood",
-    // /// common
-    // "Tiny Chest",
-    // "Lantern",
-    // "Juzu Bracelet",
-    // "Dream Catcher",
-    // "Bag of Preparation",
-    // "Bag of Marbles",
-    // /// uncommon
-    // "Singing Bowl",
-    // "Mummified Hand",
-    // "The Courier",
-    // /// rare
-    // "Prayer Wheel",
-    // "Unceasing Top",
-    // "Shovel",
-    // "Peace Pipe",
-    // "Ice Cream",
-    // "Dead Branch",
-    // "Calipers",
-    // /// shop
-    // "Membership Card",
-    // "Strange Spoon",
-    // /// boss
-    // "Ring of the Serpent",
-    // "Runic Pyramid",
-    // "Black Star",
-
-    // "Golden Idol",
-    // "Odd Mushroom",
-  ],
-  rare_relics: [
-    "CaptainsWheel",
-    "Mango",
-    // "Dead Branch",
-    // "Ginger",
-    // "Shovel",
-    "Old Coin",
-    "StoneCalendar",
-    "FossilizedHelix",
-    // "Ice Cream",
-    "Thread and Needle",
-    // "Peace Pipe",
-    "CloakClasp",
-    "TungstenRod",
-    "Pocketwatch",
-    "Gambling Chip",
-    // "Turnip",
-    // "Prayer Wheel",
-    // "Unceasing Top",
-    // "Lizard Tail",
-    "WingedGreaves",
-    "Torii",
-    "Du-Vu Doll",
-    "Incense Burner",
-    // "Calipers",
-    "Girya",
-    "GoldenEye",
-    "Bird Faced Urn",
-  ],
-  level_name: "Exordium",
-  metric_campfire_rested: 0,
-  max_orbs: 0,
-  boss: "Hexaghost",
-  seed: 6282479434097199000,
-  metric_current_hp_per_floor: [],
-  current_health: 72,
-  common_relics: [
-    "Strawberry",
-    "Regal Pillow",
-    "Toy Ornithopter",
-    "Centennial Puzzle",
-    "Vajra",
-    "Potion Belt",
-    "Damaru",
-    "Orichalcum",
-    "Nunchaku",
-    "CeramicFish",
-    "Pen Nib",
-    "Blood Vial",
-    "Lantern",
-    "War Paint",
-    "Happy Flower",
-    "MealTicket",
-    "Bag of Marbles",
-    "Omamori",
-    "Anchor",
-    "Akabeko",
-    "Bronze Scales",
-    "Whetstone",
-    "MawBank",
-    "Ancient Tea Set",
-    "Boot",
-    "Oddly Smooth Stone",
-    "Tiny Chest",
-    "Dream Catcher",
-    "Art of War",
-    "PreservedInsect",
-    "Juzu Bracelet",
-    "Bag of Preparation",
-  ],
-  monsters_killed: 0,
-  gold: 99,
-  neow_bonus: "",
-  card_random_seed_count: 0,
-  card_seed_count: 10,
-  is_daily: true,
-  metric_campfire_rituals: 0,
-  metric_card_choices: [],
-  metric_potions_obtained: [],
-  is_final_act_on: false,
-  treasure_seed_count: 0,
-  metric_event_choices: [],
-  current_room: "com.megacrit.cardcrawl.rooms.MonsterRoom",
-  has_emerald_key: false,
-  boss_relics: [
-    "Snecko Eye",
-    "Tiny House",
-    // "Black Star",
-    "Cursed Key",
-    "Calling Bell",
-    "Runic Dome",
-    "Pandora's Box",
-    "HolyWater",
-    "Empty Cage",
-    "Astrolabe",
-    // "Sozu",
-    // "SacredBark",
-    // "Runic Pyramid",
-    "SlaversCollar",
-    "Philosopher's Stone",
-    "Fusion Hammer",
-    "Ectoplasm",
-    "Velvet Choker",
-    "VioletLotus",
-    "Busted Crown",
-    "Coffee Dripper",
-  ],
-  blue: 0,
-  path_y: [0],
-  path_x: [0],
-  metric_item_purchase_floors: [],
-  gold_gained: 0,
-  ascension_level: 0,
-  one_time_event_list: [
-    "Accursed Blacksmith",
-    "Bonfire Elementals",
-    "Designer",
-    "Duplicator",
-    "FaceTrader",
-    "Fountain of Cleansing",
-    "Knowing Skull",
-    "Lab",
-    "N'loth",
-    "SecretPortal",
-    "The Joust",
-    "WeMeetAgain",
-    "The Woman in Blue",
-  ],
-  card_random_seed_randomizer: 5,
-  metric_campfire_meditates: 0,
-  perfect: 0,
-  mugged: false,
-  metric_build_version: "2022-12-18",
-  event_list: [
-    "Big Fish",
-    "The Cleric",
-    "Dead Adventurer",
-    "Golden Idol",
-    "Golden Wing",
-    "World of Goop",
-    "Liars Game",
-    "Living Wall",
-    "Mushrooms",
-    "Scrap Ooze",
-    "Shining Light",
-  ],
-  elite_monster_list: [
-    "3 Sentries",
-    "Lagavulin",
-    "3 Sentries",
-    "Lagavulin",
-    "Gremlin Nob",
-    "3 Sentries",
-    "Gremlin Nob",
-    "Lagavulin",
-    "Gremlin Nob",
-    "Lagavulin",
-  ],
-  metric_seed_played: "6282479434097199189",
-  red: 3,
-  elites3_killed: 0,
-  relic_counters: [-1],
-  seed_set: false,
-  elites2_killed: 0,
-  metric_items_purged_floors: [],
-  potion_seed_count: 0,
-  blights: [],
-  elites1_killed: 0,
-  overkill: false,
-  neow_cost: "",
-  metric_floor_reached: 1,
-  champions: 0,
-  smoked: false,
-  spirit_count: 0,
-  special_seed: 19351,
-  potion_chance: 0,
-  shop_relics: [
-    "Sling",
-    "Lee's Waffle",
-    "Frozen Eye",
-    // "Membership Card",
-    "Medical Kit",
-    "Orrery",
-    "ClockworkSouvenir",
-    "TheAbacus",
-    "OrangePellets",
-    "Toolbox",
-    // "Melange",
-    // "Strange Spoon",
-    "DollysMirror",
-    "PrismaticShard",
-    // "Chemical X",
-    "HandDrill",
-    "Cauldron",
-  ],
-  custom_mods: [],
-  metric_path_taken: ["M"],
-  name: "Damon",
-  has_ruby_key: false,
-  metric_playtime: 9,
-  has_sapphire_key: false,
-  is_trial: false,
-  metric_max_hp_per_floor: [],
-  save_date: 1671957290069,
-  cards: [
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Strike_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Strike_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Strike_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Strike_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Defend_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Defend_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Defend_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Defend_P",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Eruption",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Vigilance",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Impatience",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Impatience",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Impatience",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Swift Strike",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Swift Strike",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Swift Strike",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Mayhem",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Deep Breath",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Deep Breath",
-    },
-    {
-      upgrades: 0,
-      misc: 0,
-      id: "Deep Breath",
-    },
-  ],
-  endless_increments: [],
-  metric_items_purged: [],
-  purgeCost: 75,
-  room_x: 0,
-  blight_counters: [],
-  room_y: 0,
-  metric_gold_per_floor: [],
-  metric_potions_floor_usage: [],
-  boss_list: ["Hexaghost", "Slime Boss", "The Guardian"],
-  ai_seed_count: 0,
-  event_chances: [0, 0.1, 0.03, 0.02],
-  metric_boss_relics: [],
-  relic_seed_count: 5,
-  act_num: 1,
-  metric_damage_taken: [],
-  green: 0,
-  mystery_machine: 0,
-  metric_campfire_upgraded: 0,
-  potion_slots: 3,
-  chose_neow_reward: false,
-  event_seed_count: 0,
-  metric_relics_obtained: [],
-  daily_date: 19351,
-  obtained_cards: {
-    Impatience: 1,
-    "Swift Strike": 1,
-    "Deep Breath": 1,
-    Mayhem: 2,
-  },
-  play_time: 9,
-  hand_size: 5,
-  max_health: 72,
-  monster_seed_count: 35,
-  potions: ["Potion Slot", "Potion Slot", "Potion Slot"],
-}
