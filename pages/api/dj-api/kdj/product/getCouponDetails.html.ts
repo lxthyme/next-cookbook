@@ -2,19 +2,25 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
+	const body = req.body
+	console.log('-->body: ', body)
   const { obj, ...obj_ex } = mockData
   const data = {
     ...obj_ex,
     obj: [
       ...obj,
-      {
-        ...obj[1],
-        receiveFlag: '4',
-      }
+      ...(body.couponTemplateIds ?? []).map(t => {
+				const tmp = {
+					...obj[0],
+					couponTemplateId: t,
+					receiveFlag: '2',
+				}
+				return tmp
+			})
     ].map(t => {
-      if (t.couponTemplateId === '386339932') {
+      if (t.couponTemplateId === '395535543') {
         t.receiveFlag = '4'
-      } else if (t.couponTemplateId === '354138030') {
+      } else {
         t.receiveFlag = '2'
       }
       return t
