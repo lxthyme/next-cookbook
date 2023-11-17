@@ -18,7 +18,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 				return tmp
 			})
     ].map(t => {
-      if (t.couponTemplateId === '395535543') {
+      if (t.couponTemplateId === '379936549') {
         t.receiveFlag = '4'
       } else {
         t.receiveFlag = '2'
