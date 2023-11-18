@@ -63,6 +63,8 @@ const Page = (props) => {
         <Link href="https://nms.center/" target="_blank">nms.center</Link>
         {/* `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;` */}
         <Link href="https://github.com/zencq/Pi" target="_blank">Collection of CSV files with values of every procedural item in No Man&apos;s Sky.</Link>
+        <h4>Dead Cells</h4>
+        <Link href="https://deadcells.wiki.gg/wiki/Biomes_map" target="_blank">Dead Cells Roadmap</Link>
         {/* <Link href="" target="_blank"></Link> */}
       </div>
     </>
