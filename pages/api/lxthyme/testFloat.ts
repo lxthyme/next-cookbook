@@ -1,5 +1,6 @@
-import { mock_1_110_float } from '@mock/float'
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { mock_1_110_float } from '@mock/float'
+import { lxkit } from '@mock/lxkit'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -27,8 +28,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     .then(() => {
       res.status(200).json({
         success: true,
+        code: lxkit.kLXSuccessCode,
         msg: '233 msg',
-        obj: data
+        data: data
       })
     })
 }
