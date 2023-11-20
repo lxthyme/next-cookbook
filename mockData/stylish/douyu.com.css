@@ -1,0 +1,28 @@
+.IconCardAdBoundsBox,
+.RechangeJulyPopups,
+.layout-Player-announce,
+.DiamondsFansRankList-anniversary,
+.DiamondsFansRankList-policyText,
+#js-room-activity,
+Treasure, ActBase, js-room-activity {
+    display: none !important;
+}
+.layout-Player-rank,
+.ChatRank {
+	height: 60px;
+}
+.ChatRankWeek-listItem,
+.FansMedalBox,
+.Barrage-listItem,
+.Barrage--paddedBarrage,
+.DiamondsFansRankList-anniversary,
+.DiamondsFansRankList-nickName,
+.DiamondsFansRankList-policyText,
+.js-user-level {
+	margin: 0 !important;
+ 	padding: 0 !important;
+}
+.Barrage-notice--normalBarrage {
+	padding: 0 !important;
+	font-size: 12px;
+}
