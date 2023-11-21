@@ -1,0 +1,20 @@
+.xf-window, .container h1, .footer-nav, .html-footer,
+.xf2-gg-left {
+  display: none !important;
+}
+.load-indicator {
+  height: 80vh;
+}
+.container.t-small-margin,
+#content-wrapper,
+#jsonformatter {
+  height: 100% !important;
+}
+.container.t-small-margin {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.t-big-margin,
+.recent-use-box {
+  margin: 0px !important;
+}
