@@ -3,11 +3,20 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
+  const { cateIds } = req.body
+
   const { obj, ...obj_other } = mockData
   const emptyCateIds = [
     // ...t_盛夏美食.map(t => t.cateId),
-    '15671promotion',
-    '16425',
+    // '15671promotion'
+    /// 新品
+    // '16425',
+    /// 夏日开胃
+    // '16426',
+    /// 快手菜快手菜
+    // '16427',
+    /// 小龙虾/蟹
+    // '16430',
     // '-1',
     '16428',
     // '16429',
