@@ -1,14 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   // mockData_限购,
-  mockData
-   as mockData
+  mockData,
+  // mockData_all
+  //  as mockData
 } from '@dj/product.v2.info'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const { obj, ...data_others } = mockData
-  const { supplier, pictures, product, ...obj_others } = obj
+  const { supplier, pictures, product, labels, ...obj_others } = obj
   // const { brand, mdmCategory, ...product_others } = product
   const data = {
     ...data_others,
@@ -18,6 +19,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       supplier,
       pictures,
       product,
+      labels: labels.map((t, idx) => {
+        if(idx === 0) {
+          console.log(`-->[${idx}]: ${t}`)
+        t.bigPopDes = '龙年大吉'
+        t.smallPopDes = '加购同享N折'
+        }
+        return t
+      }),
       ...obj_others,
       // goodsSalesName: Array(8).fill(obj.goodsSalesName).join(''),
       /// 副标题
@@ -54,6 +63,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       /// Plus会员价
       // plusPrice: "44.44",
       // priceType: '12',
+      waterMark: '新品120000005460001\t新品120000005460001\t新品120000005460001\t新品120000005460001\t新品120000005460001'
 
     },
   }

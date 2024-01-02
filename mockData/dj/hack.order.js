@@ -10928,6 +10928,12 @@ export const mockData_订单 = {
   //       t订单详情: ,
   //     },
   //   },
+      t_Merge1: {
+        t_orderNo: '1231501237067',
+        /// 取消订单后立即刷新, 可能会出现 merge = 1 状态的已取消订单
+        t订单列表: {"parentOrderNo":"1231501237067","allNeedMoney":143.01,"orderList":[{"orderTypeCode":"25","orderNo":"PAZ20231215426856","orderStatus":"1029","needMoney":13.84,"allNeedMoney":143.01,"orderTime":"2023-12-15 13:35:10","orderStatusDesc":"已取消","mchId":"100090150505415","extrFlag":0,"storeCode":"001456","storeIndustrySid":"6010","storeName":"上海市第一医药商店","activeTime":15,"sendTimeFlag":5,"saleAllSum":1,"orderDetailList":[{"goodsCode":"4964677","picUrl":"https://Img.iblimg.com/fast2homemethod-13/offlinegoods/goods/SP_523911952_200x200.jpg","goodsName":"汇丰牌胖大海15克","merchantId":"601000145601","salePrice":9.9,"saleSum":1,"price":7.84}],"showBottonList":[5],"parentOrderNo":"1231501237067","packageId":"4018DYSD0","memberId":"100000020942905","sendTypeSid":1,"industrySid":"6000","omsNotifyUrl":"http://oms.iblidc.com:8090/oms-core/order/payedCallBack.htm","sendTimeDesc":"24小时内发货","orderStatusFlag":0,"payJump":0,"excludeTemplate":"","specialOrder":0,"orderLabel":"24小时发货"},{"orderTypeCode":"25","orderNo":"PAZ20231215426858","orderStatus":"1001","needMoney":129.17,"allNeedMoney":143.01,"orderTime":"2023-12-15 13:35:10","orderStatusDesc":"待付款","mchId":"100090150505415","extrFlag":0,"storeCode":"001100","storeIndustrySid":"6020","storeName":"第一医药云南南路店","activeTime":15,"sendTimeFlag":3,"saleAllSum":1,"orderDetailList":[{"goodsCode":"5346521","picUrl":"https://Img.iblimg.com/fast2homemethod-13/offlinegoods/goods/SP_562441342_200x200.jpg","goodsName":"可复美黄金肌肽紧致面膜25g*5片","merchantId":"60200011001","salePrice":198,"saleSum":1,"price":129.17}],"showBottonList":[1],"parentOrderNo":"1231501237067","packageId":"4018DYSD0","memberId":"100000020942905","sendTypeSid":1,"industrySid":"6000","omsNotifyUrl":"http://oms.iblidc.com:8090/oms-core/order/payedCallBack.htm","sendTimeDesc":"立即配送","orderStatusFlag":0,"payJump":0,"excludeTemplate":"","specialOrder":0}],"allOrderList":[],"showBottonList":[5],"showDetailBottonList":[5,8,9],"merge":1,"status":"1029","statusDesc":"已取消","activeTime":15,"orderTime":"2023-12-15 13:35:10","payMet":"在线支付","originSendCost":0,"discountTransport":0,"reWeightMoney":0,"saleAllSum":2,"merId":"100090150505415","payJump":0,"excludeTemplate":""},
+        // t订单详情: {},
+      },
     t_单商品_配送方式不同: {
       t_orderNo: '',
       t_待付款: {
