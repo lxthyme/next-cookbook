@@ -308,6 +308,14 @@ export const mockData_OrderComponent = {
   ],
 }
 
+export const orderDetail_failure = {
+  t_未查询到订单: {
+    "success": false,
+    "msg": "未查询到订单!",
+    "resCode": "00100051"
+  }
+}
+
 /**
 t: {
   t订单列表:
