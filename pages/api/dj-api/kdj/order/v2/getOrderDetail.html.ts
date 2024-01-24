@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail'
-import { hack_Order, mockData_OrderComponent, mockData_订单 } from '@dj/hack.order'
+import { hack_Order, mockData_OrderComponent, mockData_订单, orderDetail_failure } from '@dj/hack.order'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
@@ -145,6 +145,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       orderPayList: mockData_OrderComponent.orderPayList,
     },
   }
+
+  data = orderDetail_failure.t_未查询到订单;
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
