@@ -4,6 +4,9 @@ module.exports = (phase, { defaultConfig }) => {
   // console.log(`-->defaultConfig[${phase}]: `, defaultConfig)
   return {
     reactStrictMode: true,
+    // devServer: {
+    //   port: 3003,
+    // },
     typescript: {
       // !! WARN !!
       // Dangerously allow production builds to successfully complete even if
