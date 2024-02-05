@@ -65,6 +65,13 @@ const Page = (props) => {
         <Link href="https://github.com/zencq/Pi" target="_blank">Collection of CSV files with values of every procedural item in No Man&apos;s Sky.</Link>
         <h4>Dead Cells</h4>
         <Link href="https://deadcells.wiki.gg/wiki/Biomes_map" target="_blank">Dead Cells Roadmap</Link>
+        <h4>PalWorld</h4>
+        <Link href="https://palworld.caimogu.cc/breed.html" target="_blank">踩蘑菇论坛社区: 里面有地图, 图鉴, 配种, 词条, 技能, mod</Link>
+        <Link href="https://docs.qq.com/sheet/DT05PeVVoekZiamlh?tab=000001" target="_blank">Excel表格: https://docs.qq.com/sheet/DT05PeVVoekZiamlh?tab=000001</Link>
+        <Link href="https://map.caimogu.cc/palworld/paru_islands.html" target="_blank">地图攻略: https://map.caimogu.cc/palworld/paru_islands.html</Link>
+        <Link href="https://www.caimogu.cc/circle/426.html" target="_blank">幻兽帕鲁MOD圈: https://www.caimogu.cc/circle/426.html</Link>
+        <Link href="https://palworld.caimogu.cc/skill.html" target="_blank">技能查询: https://palworld.caimogu.cc/skill.html</Link>
+        <Link href="https://docs.qq.com/sheet/DT05PeVVoekZiamlh?tab=000001" target="_blank">Excel表格: https://docs.qq.com/sheet/DT05PeVVoekZiamlh?tab=000001</Link>
         {/* <Link href="" target="_blank"></Link> */}
       </div>
     </>
