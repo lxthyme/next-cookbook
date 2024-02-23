@@ -30,9 +30,8 @@ const Page = (props) => {
         <Link href="lxthyme/game/dsp/get2" target="_blank">dsp/get2</Link>
         <Link href="lxthyme/game/dsp/get3" target="_blank">dsp/get3</Link>
         <h6>外链</h6>
-        <Link href="https://www.svlik.com/t/dsq" target="_blank">
-          svlik.com/t/dsq
-        </Link>
+        <Link href="https://www.svlik.com/t/dsq" target="_blank">svlik.com/t/dsq</Link>
+        <Link href="https://dsp-calc.pro/" target="_blank">dsp-calc.pro</Link>
         <Link
           href="https://huww98.github.io/dsp_blueprint_editor"
           target="_blank"
@@ -52,6 +51,7 @@ const Page = (props) => {
         {/* <Link href="" target="_blank"></Link> */}
         <h4>GTA 5</h4>
         <Link href="https://gtaweb.eu" target="_blank">gtaWeb.eu</Link>
+        <Link href="https://github.com/CrazyZhang666/GTA5OnlineTools/releases" target="_blank">GTA5线上小助手</Link>
 
         <h4>Slay The Spire</h4>
         <Link href="/slaythespire" target="_blank">slaythespire</Link>
