@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData_异常订单, mockData_订单 } from '@dj/hack.order'
+import { mock_orderInfo } from '@dj/hack.order'
+import { getCurrentDateBefore } from '@tools/common'
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
+  const orderTime = getCurrentDateBefore()
   const data = {
     "success": true,
     "resCode": "00100000",
@@ -12,30 +14,21 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       "start": 1,
       "end": 20,
       "pages": 1,
-      list: [
-        // mockData_订单.tA1.t_单商品_配送方式不同.t_待付款2.t订单列表,
-        // mockData_异常订单.t_无OK支付.t订单列表,
-        mockData_订单
-        // .tA1.t_配送方式不同.t订单列表,
-        // t25_收银台异常.t订单列表,
-        // t25.t已取消.t订单列表,
-        // .t25.t_代付款_配送.t订单列表,
-        // .t25.t_多商品_配送.t_已取消.t订单列表
-        .tA1.t_Merge1.t订单列表,
-        // .tA1.t_单商品_配送方式不同.t_待付款.t订单列表
-        // .tA1.t_单商品_配送方式不同.t_已取消.t订单列表
-        // .tA1.t_配送方式相同.t订单列表,
-        // tA1.t_3子单_配送方式不同.t订单列表,
-        // t58.t_开具处方单.t订单列表,
-        // t58.t_待支付.t订单列表,
-        // t58.t_开具处方单多单.t订单列表,
-        // t58.t_部分开具处方单.t订单列表,
-        // t58.t_处方单部分待审核多单.t订单列表,
-        // t58.t_处方单待审核.t订单列表,
-        // t58.t_处方单待付款多单.t订单列表,
-        // t46.t待校验.t订单列表,
-        // .t46.t_单商品.t_已取消.t订单列表
-      ]
+      list: mock_orderInfo.orderList
+      .map((t1, idx1) => {
+        // if(idx1 === 0) {
+          t1.orderTime = orderTime
+          t1.orderList.forEach((t2, idx2) => {
+            t2.orderTime = orderTime
+            t2.medicalInsuranceFlag = 1
+          })
+          t1.allOrderList.forEach((t2, idx2) => {
+            t2.orderTime = orderTime
+            t2.medicalInsuranceFlag = 1
+          })
+        // }
+        return t1
+      })
     }
   }
 
