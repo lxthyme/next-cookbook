@@ -5,29 +5,13 @@ import {
         // mockData_test
         as mockData
 } from '@dj/getOrderDetail'
+import { getCurrentDateBefore } from '@tools/common'
 
 import { hack_Order, mockData_OrderComponent, mockData_订单, orderDetail_failure } from '@dj/hack.order'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-    // const list = Array.from({ length: 10 }, (t, idx) => ({}))
-    const { obj, ...data_others } = mockData_订单
-        // .t25_收银台异常.t订单详情
-        // .t25.t已取消.t订单详情
-        // .t25.t_代付款_配送.t订单详情
-        // .tA1.t_配送方式不同.t订单详情
-        // .tA1.t_配送方式相同.t订单详情
-        // .tA1.t_3子单_配送方式不同.t订单详情
-        // .t58.t_开具处方单.t订单详情
-        // .t58.t_待支付.t订单详情
-        // .t58.t_开具处方单多单.t订单详情
-        // .t58.t_部分开具处方单.t订单详情
-        // .t58.t_处方单部分待审核多单.t订单详情
-        // .t58.t_处方单待审核.t订单详情
-        // .t58.t_处方单待付款多单.t订单详情
-        // .t46.t待校验.t订单详情
-        // .t46.t_单商品.t_已取消.t订单详情
-        .t25.t_多商品_配送.t_已取消.t订单详情
+    const { obj, ...data_others } = mockData_订单.t25.t_单商品_自提.t_待付款.t订单详情
     const {
         orderDetailList,
         orderInvoiceDto,
@@ -43,14 +27,15 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         freightInfos,
         ...obj_others
     } = obj
+    const orderTime = getCurrentDateBefore()
     let data = {
         ...data_others,
         obj: {
             ...obj_others,
-            orderDetailList: orderDetailList.map((t, idx) => {
-                if (idx === 0) {
-                    t = {
-                        ...t,
+            orderDetailList: orderDetailList.map((t1, idx1) => {
+                if (idx1 === 0) {
+                    t1 = {
+                        ...t1,
                         // goodsType: '30',
                         // goodsType: '29',
                         goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
@@ -70,7 +55,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                         reserveInfo1: 'Y',
                     }
                 }
-                return t;
+                return t1;
             }),
             orderInvoiceDto,
             orderPromotionList,
@@ -103,10 +88,12 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
             plusDiscountPrice: 3.47,
             reWeightMoney: 3.48,
             // outFlag: 2,
+          medicalInsuranceFlag: 1,
+          orderTime,
         },
     }
 
-    data = orderDetail_failure.t_未查询到订单;
+    // data = orderDetail_failure.t_未查询到订单;
 
     return new Promise(function (resolve) {
         setTimeout(resolve.bind(null, resolve), 1000)

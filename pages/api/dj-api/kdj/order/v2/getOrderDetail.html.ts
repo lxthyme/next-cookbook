@@ -1,35 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { mockData_2022_01_20 } from '@dj/v2.getOrderDetail'
 import { hack_Order, mockData_OrderComponent, mockData_订单, orderDetail_failure } from '@dj/hack.order'
+import { getCurrentDateBefore } from '@tools/common'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
   const { page } = req.body
 
-  const { obj, ...obj_others } = mockData_订单
-      // .t25_收银台异常.t订单详情
-      // .t25.t已取消.t订单详情
-      // .tA1.t_单商品_配送方式不同.t_已取消.t订单详情
-      // .tA1.t_配送方式不同.t订单详情
-      // .tA1.t_单商品_配送方式不同.t_待付款.t订单详情
-      // .tA1.t_多商品_配送方式不同.t_已取消.t订单详情
-      .tA1.t_单商品_配送方式不同.t_待付款2.t订单详情
-      // .tA1.t_配送方式相同.t订单详情
-      // .tA1.t_3子单_配送方式不同.t订单详情
-      // .t58.t_开具处方单.t订单详情
-      // .t58.t_待支付.t订单详情
-      // .t58.t_开具处方单多单.t订单详情
-      // .t58.t_部分开具处方单.t订单详情
-      // .t58.t_处方单部分待审核多单.t订单详情
-      // .t58.t_处方单待审核.t订单详情
-      // .t58.t_处方单待付款多单.t订单详情
-      // .t46.t待校验.t订单详情
+  const { obj, ...obj_others } = mockData_订单.tA1.t_多商品_配送方式相同.t_待付款.t订单详情
 
   const { orderList, allOrderList, showBottonList, showDetailBottonList, logisticsHistory, ...obj_tmp_others } = obj
+  const orderTime = getCurrentDateBefore()
   let data = {
     ...obj_others,
     obj: {
       ...obj_tmp_others,
-      orderList: orderList.map(t => {
+      orderList: orderList.map((t1, idx1) => {
         const {
           orderDetailList,
           orderInvoiceDto,
@@ -42,14 +27,19 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
           logisticsHistory,
           showBottonList,
           showDetailBottonList,
-          ...t_others
-        } = t
+          ...t1_others
+        } = t1
+        if(idx1 === 0) {
+          t1.medicalInsuranceFlag = 0
+        } else {
+          t1.medicalInsuranceFlag = 1
+        }
         return {
-          ...t_others,
-          orderDetailList: orderDetailList.map((t, idx) => {
-            if (idx === 0) {
-                t = {
-                    ...t,
+          ...t1_others,
+          orderDetailList: orderDetailList.map((t2, idx2) => {
+            if (idx2 === 0) {
+                t2 = {
+                    ...t2,
                     goodsType: '30',
                     // goodsType: '29',
                     goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
@@ -66,9 +56,9 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                     ///     3: 商品已超售后期
                     canReturnFlag: 3,
                 }
-            } else if (idx === 1) {
-              t = {
-                  ...t,
+            } else if (idx2 === 1) {
+              t2 = {
+                  ...t2,
                   // goodsType: '30',
                   // // goodsType: '29',
                   // goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
@@ -83,11 +73,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                   ///     1: 可售后
                   ///     2: 所有商品已售后
                   ///     3: 商品已超售后期
-                  canReturnFlag: 3,
+                  // canReturnFlag: 3,
               }
-            } else if (idx === 2) {
-              t = {
-                  ...t,
+            } else if (idx2 === 2) {
+              t2 = {
+                  ...t2,
                   // goodsType: '30',
                   // // goodsType: '29',
                   // goodsName: Array(2).fill('马来西亚进口 福多巧克力瑞士卷 108g').join(','),
@@ -105,7 +95,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
                   // canReturnFlag: 3,
               }
             }
-            return t;
+            return t2;
         }),
           orderInvoiceDto,
           orderPromotionList,
@@ -135,8 +125,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
           plusDiscountPrice: 3.12,
           reWeightMoney: 3.13,
           // outFlag: 2,
+          // medicalInsuranceFlag: 0,
+          medicalInsuranceFlag: t1.medicalInsuranceFlag,
         }
       }),
+      orderTime,
       allOrderList,
       showBottonList,
       showDetailBottonList,
@@ -146,7 +139,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     },
   }
 
-  data = orderDetail_failure.t_未查询到订单;
+  // data = orderDetail_failure.t_未查询到订单;
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
