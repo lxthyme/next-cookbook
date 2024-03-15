@@ -7,7 +7,8 @@ import {
 	// mockData_2022_01_26 as mockData,
 	// mockData_ALL_B2C as mockData
 	// mockData_分类球合并优化 as mockData
-	mockData, mockData_template
+	mockData, mockData_template,
+	mockData_极速版
 	// mockData_API_瀑布流OneTab as mockData
 } from "@dj/query";
 
@@ -42,7 +43,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 	const { obj, ...data_others } = mockData
 	const { tabBar, moduleList, config, ...f_templetOthers } = obj.templet
 	const { tabBarInfoList, ...f_tabBarOthers } = tabBar
-	const data = {
+	const data2 = {
 		...data_others,
 		obj: {
 			onOff: obj.onOff,
@@ -125,6 +126,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 			}
 		}
 	}
+	const data = mockData_极速版
+	console.log('-->data2: ', data)
 	return new Promise(function (resolve) {
 		setTimeout(resolve.bind(null, resolve), 100)
 	})
