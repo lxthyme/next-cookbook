@@ -15,7 +15,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 
 	const { obj, ...others_mockData } = JSON.parse(JSON.stringify(mockData))
 	const { goodsGroupDtoList, topPopList, kdjStoreInfo, ...other_obj } = obj
-	const data = {
+	let data = {
 		obj: {
 			goodsGroupDtoList: goodsGroupDtoList
 			.map(t1 => {
@@ -168,7 +168,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].typePop = '16'
 	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].reduceTag = '0'
 	// data.obj.goodsGroupDtoList[0].goodsGroupList[0].limitBuyPersonSum = '21'
-
+	// data = mockData233
+	// data.obj.goodsGroupDtoList[0].goodsGroupList = data.obj.goodsGroupDtoList[0].goodsGroupList.slice(1, -1)
 	return new Promise(function (resolve) {
 		setTimeout(resolve.bind(null, resolve), 1000)
 	})

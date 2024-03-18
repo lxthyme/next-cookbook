@@ -1,10 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { mockData_武宁店 } from '@dj/hack.category'
+import {
+  mockData_武宁店,
+  mockData_很多二级目录,
+ } from '@dj/hack.category'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-  const { obj, ...data_others } = mockData_武宁店
+  const { obj, ...data_others } =
+    // mockData_武宁店
+    mockData_很多二级目录
   const { categoryList, ...obj_others } = obj;
   const data = {
     ...data_others,
