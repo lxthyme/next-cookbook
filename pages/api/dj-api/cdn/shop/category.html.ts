@@ -11,7 +11,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     // mockData_武宁店
     mockData_很多二级目录
   const { categoryList, ...obj_others } = obj;
-  const data = {
+  let data = {
     ...data_others,
     obj: {
       ...obj_others,
@@ -19,6 +19,10 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     //   categoryList: categoryList.slice(0, 10)
     }
   }
+  // data = {}
+  // data.obj.categoryList = [];
+  // data.obj.categoryList[1].rywCategorys = [];
+  // data.obj.categoryList[1].rywCategorys = [];
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
