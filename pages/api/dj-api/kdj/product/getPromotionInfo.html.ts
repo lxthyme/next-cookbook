@@ -41,7 +41,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       memDiscount,
     }
   }
-  const result = updateData(DJPlusStatus.NoPlus_HasPoints_NoPlusActivity, data.obj.memDiscount, data.obj.discountAll)
+  const result = updateData(DJPlusStatus.hsPoints, data.obj.memDiscount, data.obj.discountAll)
   data.obj.memDiscount = result.memDiscount
   data.obj.discountAll = result.discountAll
 

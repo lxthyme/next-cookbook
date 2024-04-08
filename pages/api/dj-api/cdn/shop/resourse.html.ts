@@ -5,11 +5,12 @@ import {
  } from '@dj/resources'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
-
-    const { obj, ...data_others } = mockData
+    const { resourceIds } = req.query
+    const { obj, ...data_others } = mockData2
     const data = {
         ...data_others,
         obj: obj.map(t => {
+            t.resourceId = resourceIds
             return t
         })
     }
