@@ -52,6 +52,9 @@ const Page = (props) => {
         <h4>GTA 5</h4>
         <Link href="https://gtaweb.eu" target="_blank">gtaWeb.eu</Link>
         <Link href="https://github.com/CrazyZhang666/GTA5OnlineTools/releases" target="_blank">GTA5线上小助手</Link>
+        <Link href="https://gtacars.net" target="_blank">https://gtacars.net</Link>
+        <Link href="https://gtalens.com/?page=1&platforms=pc" target="_blank">https://gtalens.com/?page=1&platforms=pc</Link>
+        {/* <Link href="" target="_blank"></Link> */}
 
         <h4>Slay The Spire</h4>
         <Link href="/slaythespire" target="_blank">slaythespire</Link>
