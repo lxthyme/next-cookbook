@@ -23,6 +23,7 @@ const Page = ({ base }: Props) => {
   const [currentBase, setCurrentBase] = useState(base)
   useEffect(() => {
     mockData.base = base
+    setCurrentBase(base)
     window.x = {
       encrypt,
       decrypt,
@@ -89,7 +90,7 @@ data=%2BPJG02lm5sB7ahjF0gPblTz0sdIELvVSBlmvY50O19BILLhPApFiXap8KqhL%20vEvcW2MX%2
   const getDesKey = (timestamp: string) => {
     let md5 = CryptoJS.MD5(timestamp).toString().toString()
     let flag = (parseInt(md5.slice(-2), 16) % 100) * 8
-    let key = mockData.base.slice(flag, flag + 8)
+    let key = currentBase.slice(flag, flag + 8)
     // console.log(`MD5: ${md5}\nkey: ${key}`);
     console.log(`desKeyQ8H900B4: ${key}`)
     return key
