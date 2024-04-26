@@ -6,6 +6,7 @@ import {
   //  as mockData
   serviceList
 } from '@dj/product.v3.info'
+import { mockError } from '@dj/hack.errorResponse'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -20,16 +21,28 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       supplier,
       pictures,
       product,
-      labels: labels?.map((t, idx) => {
-        // if(idx === 0) {
-        //   console.log(`-->[${idx}]: ${t}`)
-        // t.bigPopDes = '龙年大吉'
-        // t.smallPopDes = '加购同享N折'
-        // }
-        return t
-      }),
+      // labels: labels?.map((t, idx) => {
+      //   // if(idx === 0) {
+      //   //   console.log(`-->[${idx}]: ${t}`)
+      //   // t.bigPopDes = '龙年大吉'
+      //   // t.smallPopDes = '加购同享N折'
+      //   // }
+      //   return t
+      // }),
+      // labels: [
+      //   {
+      //   "labelType": 1,
+      //   "name": "新品",
+      //   "pic": "https://Img.iblimg.com/fast2home-2/images/kdj/index/2022/10/40135307.png"
+      // },
+      // {
+      //   "labelType": 2,
+      //   "name": "自定义",
+      //   "pic": "https://blqqd-pa-filemanager-sit-pub.st.iblimg.com/daojia_osp_public/offlinegoods/desc/DESC_/20231121094547664/源头直采.png"
+      // }],
       ...obj_others,
       // goodsSalesName: Array(8).fill(obj.goodsSalesName).join(''),
+      goodsSalesName: '酸奶 隆力奇花露水 195ml隆力奇花露水 195mll',
       /// 副标题
       // goodsSubtitle: Array(6).fill(obj.goodsSalesName).join(''),
       // goodsType: '1',
@@ -73,8 +86,8 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         ...promotion,
         xgActNo: '233',
         actStock: {
-          activeStockSum: 99,
-          stockPercent: 10,
+          activeStockSum: 0,
+          stockPercent: 66,
         }
       }
     },
@@ -107,6 +120,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
   })
     .then(() => {
       res.status(200).json(data)
+      // mockError(res, 400, 1)
     })
 }
 
