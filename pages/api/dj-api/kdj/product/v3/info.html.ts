@@ -96,7 +96,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     /// ①无N倍积分+开通
   // .NoPlus_NoPoints
   /// ②有N倍积分+开通
-  // .NoPlus_HasPoints
+  .NoPlus_HasPoints
   /// ②有N倍积分+开通(无plus活动)
   // .NoPlus_HasPoints_NoPlusActivity
   /// ② 无N倍积分
@@ -110,7 +110,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
   /// ⑥ 无N倍积分+提示续费
   // .noPoints_XF
   /// ⑤ 有N倍积分+提示续费
-  .hsPoints_XF
+  // .hsPoints_XF
   , data.obj.memDiscount, data.obj.discount)
   data.obj.memDiscount = result.memDiscount
   data.obj.discount = result.discount
@@ -147,6 +147,7 @@ enum DJPlusStatus {
   hsPoints_XF,
 }
 const updateData = (status: DJPlusStatus, memDiscount: [string: any], discount: [string: any]) => {
+  let plusType = 'discount'
   if(status === DJPlusStatus.NoPlus_NoPoints) {
     /// ①无N倍积分+开通
     // discount && discount.discountPreAmount.floatValue > 0
@@ -164,6 +165,7 @@ const updateData = (status: DJPlusStatus, memDiscount: [string: any], discount: 
     /// ②有N倍积分+开通
     // discount && discount.discountPreAmount.floatValue > 0
     // memDiscount.plusPointRate.integerValue > 0
+    // plusType = ''
     memDiscount = {
       ...memDiscount,
       isPlus: 0,
@@ -249,7 +251,7 @@ const updateData = (status: DJPlusStatus, memDiscount: [string: any], discount: 
     }
     return {discount: {
       ...discount,
-      plusType: 'discount',
+      plusType,
       discountPreAmount: discount.isPlus === 1 ? '234.3' : discount.discountPreAmount,
     }, memDiscount: {
       ...memDiscount,
