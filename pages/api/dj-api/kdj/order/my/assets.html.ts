@@ -1,13 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import { webviewContent, mockData, goodsCertificateDtos } from '@dj/hack.queryGoodsDesc.html'
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockData
-  // data.obj.videoSupport = '0'
-  // odatabj.obj.videoSupport = '1'
-  data.obj.goodsCertificateDtos = goodsCertificateDtos
-  data.obj.content = webviewContent.t1
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
@@ -18,3 +13,13 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export default API
+
+const mockData = {
+	"success": true,
+	"resCode": "00100000",
+	"obj": {
+		"baiLianCardBal": "849.0",
+		"memebrPoint": "39651.0",
+		"ecpBal": "0"
+	}
+}

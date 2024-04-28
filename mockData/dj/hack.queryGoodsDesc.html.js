@@ -1,21 +1,18 @@
-const goodsCertificateDtos = [
-  {
-    "name": "广告批准文号",
-    "desc": "acv12345678;1212222;anshg3g322acv12345678;1212222;anshg3g322acv12345678;1212222;anshg3g322"
-  },
-  {
-    "name": "广告批准文号",
-    "desc": "acv12345678;1212222;anshg3g322"
-  },
-  {
-    "name": "注册证号/备案凭证号",
-    "desc": "acv12345678;1212222;anshg3g322"
-  },
-  {
-    "name": "注册证号/备案凭证号",
-    "desc": "acv12345678;1212222;anshg3g322"
-  }
-]
+const goodsCertificateDtos = [{
+  "name": "广告批准文号",
+  "desc": "鲁械广审（文）鲁械广审（文）第2021122750975号"
+  // "desc": "鲁械广审文鲁械广审文第2021122750975号"
+}, {
+  "name": "注册证号/备案凭证号",
+  "desc": "沪械注准20172460645"
+}, {
+  "name": "通用名",
+  "desc": "药品通用名测试2"
+}, {
+  "name": "生产厂家",
+  "desc": "生产业企业测试2 2222"
+}]
+
 const videoSupport = {
   "videoThumbnail": "https://Img.st.iblimg.com/fast2homemethod-3/offlinegoods/goods/SP_1564447799.jpg",
   "videoAddressTemp": "http://1253388398.vod2.myqcloud.com/e0236119vodtransgzp1253388398/7a12b2ae3701925919534749704/v.f30.mp4",
