@@ -5,12 +5,28 @@
 .DiamondsFansRankList-policyText,
 .CoinRedPacketPop-wrap,
 #js-room-activity,
+.PlayerToolbar-ContentRow:nth-of-type(2),
+/**.PlayerToolbar-ContentRow,*/
+/**.layout-Player-toolbar,*/
+/**#js-player-toolbar,*/
 Treasure, ActBase, js-room-activity {
     display: none !important;
+}
+.layout-Player-rank {
+    display: block !important;
 }
 .layout-Player-rank,
 .ChatRank {
 	height: 60px;
+}
+/*
+.PlayerToolbar {
+  padding: 0;
+}
+*/
+
+#js-player-toolbar {
+  height: 30px !important;
 }
 .ChatRankWeek-listItem,
 .FansMedalBox,
@@ -19,6 +35,7 @@ Treasure, ActBase, js-room-activity {
 .DiamondsFansRankList-anniversary,
 .DiamondsFansRankList-nickName,
 .DiamondsFansRankList-policyText,
+.PlayerToolbar,
 .js-user-level {
 	margin: 0 !important;
  	padding: 0 !important;
@@ -27,3 +44,9 @@ Treasure, ActBase, js-room-activity {
 	padding: 0 !important;
 	font-size: 12px;
 }
+/**/
+
+.layout-Player-video {
+  bottom: 0px !important;
+}
+/**/
