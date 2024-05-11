@@ -80,13 +80,14 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       waterMark: '新品120000005460001\t新品120000005460001\t新品120000005460001\t新品120000005460001\t新品120000005460001',
       services: serviceList,
       showPriceType: "到手2",
-      /// 限时购
-      endTime: (new Date().getTime() + (2 * 3600 + 10 * 60 + 15) * 1000),
+      /// 限时购倒计时
+      limitBuyPersonSum: 1,
+      endTime: (new Date().getTime() + (0 * 3600 + 10 * 60 + 10) * 1000),
       promotion: {
         ...promotion,
         xgActNo: '233',
         actStock: {
-          activeStockSum: 0,
+          activeStockSum: 20,
           stockPercent: 66,
         }
       }
