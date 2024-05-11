@@ -1,0 +1,17 @@
+#player-gift-wrap,
+#wrap-ext,
+div[class*=box-noble-level-],
+#player-subscribe-wap {
+  display: none !important;
+}
+#player-wrap {
+  height: 100% !important;
+}
+#player-ctrl-wrap {
+  bottom: 0 !important;
+}
+span.colon,
+.msg-normal {
+  padding: 0 !important;
+  margin: 0 !important;
+}
