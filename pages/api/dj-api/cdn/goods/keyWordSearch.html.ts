@@ -2,12 +2,27 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 
-  const data = mockData
+  let data = mockData
   data.obj.againSearchWord.searchWord = '鲜香香辣羊蝎子火锅'
   data.obj.againSearchWord.recommendWord = [
     '羊蝎子',
     '羊蝎子火锅'
   ]
+data = {
+	"success": false,
+	"resCode": "00100000",
+	"obj": {
+		"count1": 1,
+		"count2": 0,
+		"pages": 0,
+		"pageNo": 0,
+		"searchCount": 2,
+		"reassureShopCursor": 0,
+		"count": 0,
+		"pageSize": 120,
+		"mainShopCursor": 0
+	}
+}
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
@@ -22,7 +37,8 @@ const mockData = {
 	"resCode": "00100000",
 	"obj": {
 		"againSearchWord": {
-			"searchWord": "饮用水"
+			"searchWord": "饮用水",
+			"recommendWord": ["饮用水"]
 		},
 		"pages": 1,
 		"pageNo": 0,
