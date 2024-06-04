@@ -49,4 +49,7 @@ Treasure, ActBase, js-room-activity {
 .layout-Player-video {
   bottom: 0px !important;
 }
+#js-player-video {
+    bottom: 30px !important;
+}
 /**/
