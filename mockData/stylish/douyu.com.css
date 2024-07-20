@@ -5,10 +5,14 @@
 .DiamondsFansRankList-policyText,
 .CoinRedPacketPop-wrap,
 #js-room-activity,
+.Live-Act-Annual-Answer,
+.liveActivityNotification,
+.EffectPlayerDom,
 .PlayerToolbar-ContentRow:nth-of-type(2),
 /**.PlayerToolbar-ContentRow,*/
 /**.layout-Player-toolbar,*/
 /**#js-player-toolbar,*/
+.DanmuEffectDom,
 Treasure, ActBase, js-room-activity {
     display: none !important;
 }
