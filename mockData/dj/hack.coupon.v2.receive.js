@@ -6,8 +6,10 @@ export const mockData_failure = {
     "resCode": "00990001",
     "msg": "好运与你擦肩而过",
     "riskType": "233",
-    "r-lot-number": "r-233",
-    "r-verify-mode": "mode-233",
+    obj: {
+      "r-lot-number": "r-233",
+      "r-verify-mode": "slide",
+    }
   },
   t04111005: {
     "success": false,

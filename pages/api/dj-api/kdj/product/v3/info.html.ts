@@ -87,7 +87,7 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         ...promotion,
         xgActNo: '233',
         actStock: {
-          activeStockSum: 20,
+          activeStockSum: 0,
           stockPercent: 66,
         }
       }

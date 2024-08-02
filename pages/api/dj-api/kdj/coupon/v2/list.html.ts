@@ -38,28 +38,29 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
         {
           ...couponItem.base,
           couponTypeId: '11',
-          offsetAmount: '233',
+          offsetAmount: '119',
           conditionAmount: '99.99'
         },
         {
           ...couponItem.base,
           couponTypeId: '12',
-          offsetAmount: '233'
+          offsetAmount: '1299'
         },
         {
           ...couponItem.base,
           couponTypeId: '16',
-          offsetAmount: '233'
+          offsetAmount: '16999'
         },
         {
           ...couponItem.base,
           couponTypeId: '17',
-          offsetAmount: '233'
+          plusWeightFlag: 1,
+          offsetAmount: '179'
         },
         {
           ...couponItem.base,
           couponTypeId: '20',
-          offsetAmount: '233'
+          offsetAmount: '20999'
         },
       //   ...list.map((t, idx) => {
       //   // t.receiveFlag = '3'
