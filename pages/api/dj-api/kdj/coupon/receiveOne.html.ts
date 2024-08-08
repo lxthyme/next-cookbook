@@ -3,7 +3,9 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
-  const data = mockData_failure.t04111005
+  const data = mockData_failure
+                        // .t04111005
+                        .t00990001
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)

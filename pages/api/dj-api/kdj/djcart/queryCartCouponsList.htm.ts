@@ -11,7 +11,12 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
       const { cartCouponInfoList, ...t1_others } = t1
       return {
         ...t1_others,
-        cartCouponInfoList,
+        cartCouponInfoList: cartCouponInfoList.map((t2, idx2) => {
+          if(idx2 == 1) {
+            t2.buttonFlag = 2
+          }
+          return t2
+        }),
         // cartCouponInfoList: []
       }
     })

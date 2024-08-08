@@ -9,10 +9,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
     // mockData_Failure
     mockData_failure
                 // .t00100051
+                // .t00990001
                 .t00990001
 
-    data.resCode = '00100000'
-    data.success = true
+    // data.resCode = '00100000'
+    // data.success = true
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
