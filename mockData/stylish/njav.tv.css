@@ -1,0 +1,12 @@
+.box-item .detail a {
+  overflow: auto !important;
+  white-space: normal !important;
+  max-height: max-content !important;
+  }
+
+
+
+  Array.from(document.querySelectorAll('.box-item .detail a'))
+  .map(t => t.style = `overflow: auto !important;
+  white-space: normal !important;
+  max-height: max-content !important;`)
