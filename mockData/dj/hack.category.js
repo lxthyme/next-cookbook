@@ -6,7 +6,7 @@ export const mockData_武宁店 = {
       "categoryList": [
           {
               "categoryId": "15660",
-              "categoryName": "餐饮熟食",
+              "categoryName": "餐饮熟食餐饮熟食",
               "showAll": 0,
               "showProm": 0,
               "categoryIcon": null,
@@ -16,7 +16,7 @@ export const mockData_武宁店 = {
               "rywCategorys": [
                   {
                       "categoryId": "15671",
-                      "categoryName": "盛夏美食",
+                      "categoryName": "盛夏美食盛夏美食",
                       "showAll": 1,
                       "showProm": 1,
                       "categoryIcon": "https://Img.st.iblimg.com/fast2home-2/images/fastgoGoods/category/2018/10/240022674.jpg",
@@ -38,7 +38,7 @@ export const mockData_武宁店 = {
                           },
                           {
                               "categoryId": "15671promotion",
-                              "categoryName": "促销",
+                              "categoryName": "1234567890促销",
                               "showAll": null,
                               "showProm": null,
                               "categoryIcon": null,
@@ -50,7 +50,7 @@ export const mockData_武宁店 = {
                           },
                           {
                               "categoryId": "16424",
-                              "categoryName": "美味热卖",
+                              "categoryName": "餐饮熟食餐饮熟食餐饮熟食",
                               "showAll": 0,
                               "showProm": 0,
                               "categoryIcon": null,
@@ -125,7 +125,7 @@ export const mockData_武宁店 = {
                   },
                   {
                       "categoryId": "15672",
-                      "categoryName": "龙虾烧烤",
+                      "categoryName": "12345678龙虾烧烤",
                       "showAll": 1,
                       "showProm": 0,
                       "categoryIcon": null,
