@@ -11,11 +11,13 @@
 .Live-Act-Annual-Answer,
 .liveActivityNotification,
 .EffectPlayerDom,
+.PrivilegeGiftTreasure,
 .PlayerToolbar-ContentRow:nth-of-type(2),
 /**.PlayerToolbar-ContentRow,*/
 /**.layout-Player-toolbar,*/
 /**#js-player-toolbar,*/
 .layout-Player-effect,
+img.Baby-image,
 .DanmuEffectDom,
 .PrivilegeGiftTreasure-container,
 Treasure, ActBase, js-room-activity {
