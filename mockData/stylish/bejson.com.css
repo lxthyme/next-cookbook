@@ -19,3 +19,29 @@
 .recent-use-box {
   margin: 0px !important;
 }
+
+
+
+
+.recent-use-box,
+.footer-nav,
+.html-footer,
+.container > h1 {
+  display: none !important;
+}
+
+.t-small-margin,
+.t-big-margin {
+  margin: 0 !important;
+}
+
+.container.t-small-margin {
+  max-width: none !important;
+  width: auto !important;
+}
+#content-wrapper {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100% !important;
+}
