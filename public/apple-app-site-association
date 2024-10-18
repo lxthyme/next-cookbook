@@ -1,0 +1,15 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "6C6JHMW46K.com.blo2o.ibl",
+                "paths": ["/static/*"]
+            },
+            {
+                "appID": "2KWAGZM2TW.com.bailian.ibl",
+                "paths": ["/static/*"]
+            }
+        ]
+    }
+}
