@@ -2,11 +2,27 @@
   overflow: auto !important;
   white-space: normal !important;
   max-height: max-content !important;
-  }
+}
 
+#page-video {
+  margin: 0 !important;
+  max-width: max-content !important;
+}
+.col.col-sidebar {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 430px !important;
+}
 
+div[style*="z-index: 999"],
+.ad-floating,
+.d-lg-block {
+  display: none !important;
+}
 
-  Array.from(document.querySelectorAll('.box-item .detail a'))
+/*
+Array.from(document.querySelectorAll('.box-item .detail a'))
   .map(t => t.style = `overflow: auto !important;
   white-space: normal !important;
   max-height: max-content !important;`)
+ */

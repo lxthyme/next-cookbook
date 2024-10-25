@@ -21,14 +21,14 @@ img.Baby-image,
 .DanmuEffectDom,
 .PrivilegeGiftTreasure-container,
 Treasure, ActBase, js-room-activity {
-    display: none !important;
+  display: none !important;
 }
 .layout-Player-rank {
-    display: block !important;
+  display: block !important;
 }
 .layout-Player-rank,
 .ChatRank {
-	height: 60px;
+  height: 60px;
 }
 /*
 .PlayerToolbar {
@@ -48,12 +48,12 @@ Treasure, ActBase, js-room-activity {
 .DiamondsFansRankList-policyText,
 .PlayerToolbar,
 .js-user-level {
-	margin: 0 !important;
- 	padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .Barrage-notice--normalBarrage {
-	padding: 0 !important;
-	font-size: 12px;
+  padding: 0 !important;
+  font-size: 12px;
 }
 /**/
 
@@ -61,6 +61,6 @@ Treasure, ActBase, js-room-activity {
   bottom: 0px !important;
 }
 #js-player-video {
-    bottom: 30px !important;
+  bottom: 30px !important;
 }
 /**/

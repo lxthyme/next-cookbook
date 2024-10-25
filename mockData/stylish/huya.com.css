@@ -1,9 +1,9 @@
 #player-gift-wrap,
 #wrap-ext,
-#chat-room__list>div:first-child,
+#chat-room__list > div:first-child,
 #tipsOrchat,
 .room-profileNotice,
-div[class*=box-noble-level-],
+div[class*="box-noble-level-"],
 #wrap-income,
 #player-subscribe-wap {
   display: none !important;

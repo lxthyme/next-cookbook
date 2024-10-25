@@ -1,4 +1,7 @@
 #web-player__bottom-bar__container,
+.web-player-icon-roomStatus,
+#gift-control-vm,
+#web-player__bottom-bar__container,
 #gift-control-vm {
   display: none !important;
 }
