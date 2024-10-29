@@ -19,11 +19,7 @@ const mockData = {
       "apps": [],
       "details": [
           {
-              "appID": "6C6JHMW46K.com.blo2o.ibl",
-              "paths": ["/ulink/invokeapp/*"]
-          },
-          {
-              "appID": "2KWAGZM2TW.com.bailian.ibl",
+              "appID": "2KWAGZM2TW.com.lx.bl.lxtoolkit",
               "paths": ["/ulink/invokeapp/*"]
           }
       ]
