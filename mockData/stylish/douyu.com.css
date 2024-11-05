@@ -55,7 +55,6 @@ Treasure, ActBase, js-room-activity {
   padding: 0 !important;
   font-size: 12px;
 }
-/**/
 
 .layout-Player-video {
   bottom: 0px !important;
@@ -63,4 +62,3 @@ Treasure, ActBase, js-room-activity {
 #js-player-video {
   bottom: 30px !important;
 }
-/**/
