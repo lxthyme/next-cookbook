@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         lx.bejson.com
 // @namespace    http://tampermonkey.net/
-// @version      v1.0.0
+// @version      v1.0.1
 // @description  try to take over the world!
 // @author       lxthyme
 // @match        https://www.bejson.com/jsoneditoronline/
