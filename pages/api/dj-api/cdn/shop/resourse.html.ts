@@ -6,7 +6,7 @@ import {
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
     const { resourceIds } = req.query
-    const { obj, ...data_others } = mockData2
+    const { obj, ...data_others } = mockData
     const data = {
         ...data_others,
         obj: obj.map(t => {

@@ -1,4 +1,9 @@
 export const mockData_failure = {
+  tSuccess: {
+    "success": true,
+    "resCode": "00100000",
+    "obj": {}
+  },
   t00100051: { "success": false, "msg": "对不起，该券已被领完，下次早点吧", "resCode": "00100051" },
   t04111014: { "success": false, "msg": "超过最大领券次数，不能领取!", "resCode": "04111014" },
   t00990001: {
