@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         lx.douyu.com
 // @namespace    http://tampermonkey.net/
-// @version      v1.0.4
+// @version      v1.0.5
 // @description  try to take over the world!
 // @author       lxthyme
 // @match			*://*.douyu.com/0*

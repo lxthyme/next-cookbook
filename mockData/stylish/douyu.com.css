@@ -20,6 +20,7 @@
 img.Baby-image,
 .DanmuEffectDom,
 .PrivilegeGiftTreasure-container,
+[class^="broadcastDiv-"],
 Treasure, ActBase, js-room-activity {
   display: none !important;
 }
