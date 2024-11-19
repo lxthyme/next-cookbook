@@ -4,3 +4,7 @@
 #git-project-container {
   width: 80% !important;
 }
+
+#git-readme {
+  width: 120%;
+}
