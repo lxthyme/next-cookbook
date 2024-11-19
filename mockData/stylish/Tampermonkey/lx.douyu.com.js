@@ -16,7 +16,7 @@
 // @match			*://*.douyu.com/9*
 // @match			*://*.douyu.com/topic/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=douyu.com
-// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/v14/mockData/stylish/douyu.com.css
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/douyu.com.css
 // @run-at       document-start
 // @grant        GM_getResourceText
 // @grant        GM_addStyle

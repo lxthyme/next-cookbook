@@ -6,7 +6,7 @@
 // @author       You
 // @match        https://gitbook.swiftgg.team/swift/swift-jiao-cheng/02_basic_operators
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=swiftgg.team
-// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/v14/mockData/stylish/swiftgg.gitbook.io.css
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/swiftgg.gitbook.io.css
 // @run-at       document-start
 // @grant        GM_getResourceText
 // @grant        GM_addStyle

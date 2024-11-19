@@ -6,7 +6,7 @@
 // @author       lxthyme
 // @match        https://www.bejson.com/jsoneditoronline/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bejson.com
-// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/v14/mockData/stylish/bejson.com.css
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/bejson.com.css
 // @run-at       document-start
 // @grant        GM_getResourceText
 // @grant        GM_addStyle

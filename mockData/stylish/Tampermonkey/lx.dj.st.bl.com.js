@@ -6,7 +6,7 @@
 // @author       You
 // @match        https://dj.st.bl.com/dj-api/view/tools/index.html
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=bl.com
-// @require      https://raw.githubusercontent.com/lxthyme/next-cookbook/v14/mockData/stylish/dj.st.bl.com.js
+// @require      https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/dj.st.bl.com.js
 // ==/UserScript==
 
 (function() {
