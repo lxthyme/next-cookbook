@@ -6,15 +6,23 @@
 // @author       You
 // @match        https://book.flutterchina.club/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=flutterchina.club
-// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/book.flutterchina.club.css
 // @run-at       document-start
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // ==/UserScript==
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/book.flutterchina.club.css
 
 (function() {
     'use strict';
 
     // Your code here...
-    GM_addStyle(GM_getResourceText("customCSS"));
+    // GM_addStyle(GM_getResourceText("customCSS"));
+
+const css = `
+.theme-container > .navbar {
+  display: none !important;
+}
+
+`
+GM_addStyle(css)
 })();

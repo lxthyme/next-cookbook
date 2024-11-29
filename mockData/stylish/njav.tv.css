@@ -1,3 +1,4 @@
+section .box-item-list .box-item .detail a,
 .box-item .detail a {
   overflow: auto !important;
   white-space: normal !important;

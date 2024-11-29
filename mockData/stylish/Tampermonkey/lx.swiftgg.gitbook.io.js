@@ -6,13 +6,21 @@
 // @author       You
 // @match        https://gitbook.swiftgg.team/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=swiftgg.team
-// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/swiftgg.gitbook.io.css
 // @run-at       document-start
 // @grant        GM_getResourceText
 // @grant        GM_addStyle
 // ==/UserScript==
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/swiftgg.gitbook.io.css
 
 (function() {
     'use strict';
-    GM_addStyle(GM_getResourceText("customCSS"));
+    // GM_addStyle(GM_getResourceText("customCSS"));
+
+const css = `
+header a.css-4rbku5 {
+  visibility: hidden;
+}
+
+`
+GM_addStyle(css)
 })();

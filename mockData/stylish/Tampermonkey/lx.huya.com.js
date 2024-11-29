@@ -1,0 +1,44 @@
+// ==UserScript==
+// @name         lx.huya.com
+// @namespace    http://tampermonkey.net/
+// @version      1.0.1
+// @description  try to take over the world!
+// @author       lxthyme
+// @match        https://huya.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=huya.com
+// @run-at       document-end
+// @grant        GM_getResourceText
+// @grant        GM_addStyle
+// ==/UserScript==
+// @resource     customCSS https://raw.githubusercontent.com/lxthyme/next-cookbook/refs/heads/v14/mockData/stylish/huya.com.css
+
+(function() {
+    'use strict';
+    // GM_addStyle(GM_getResourceText("customCSS"));
+
+const css = `
+#player-gift-wrap,
+#wrap-ext,
+#chat-room__list > div:first-child,
+#tipsOrchat,
+.room-profileNotice,
+div[class*="box-noble-level-"],
+#wrap-income,
+#player-subscribe-wap {
+  display: none !important;
+}
+#player-wrap {
+  height: 100% !important;
+}
+#player-ctrl-wrap {
+  bottom: 0 !important;
+}
+span.colon,
+.msg-normal {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+`
+GM_addStyle(css)
+})();
