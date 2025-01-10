@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   let data = mockData
   data.obj.againSearchWord.searchWord = '鲜香香辣羊蝎子火锅'
@@ -31,6 +31,8 @@ data = {
       res.status(200).json(data)
     })
 }
+
+export default API
 
 const mockData = {
 	"success": true,

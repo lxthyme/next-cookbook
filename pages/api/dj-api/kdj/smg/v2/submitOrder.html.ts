@@ -1,7 +1,7 @@
 import { mockDJCart } from '@dj/hack.submitOrder'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = mockDJCart
                 .t00011支付风控
@@ -18,3 +18,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       res.status(200).json(data)
     })
 }
+
+export default API

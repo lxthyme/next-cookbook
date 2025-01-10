@@ -13,7 +13,6 @@ const Page = ({ md }) => {
         return <div dangerouslySetInnerHTML={html}></div>
     }
   }
-  console.log('-->md: ', md);
   return (<>
   {!!md?.error ? <div>{JSON.stringify(md.error)}</div> : <div dangerouslySetInnerHTML={{ __html: md?.mdContent }}></div>}
       {/* <style jsx>{``}</style> */}
@@ -33,8 +32,8 @@ Page.displayName = "🌍 Page - LAYOUT"
   const mdPathList = [
     // 'test',
     // 'md-test',
-    'components/ai.mdx',
-    'components/game.mdx',
+    'ai.mdx',
+    'game.mdx',
     // 'md-test1',
     // 'md-test2',
     // 'md-test3',
@@ -64,7 +63,7 @@ export async function getStaticProps({ params }) {
     // params: {
       type: 'md',
       // path: '../../components/ai.mdx',
-      path: `mdx/${name}.mdx`,
+      path: `data/mdx/${name}.mdx`,
     // },
   })
   // const json = await result.json()
