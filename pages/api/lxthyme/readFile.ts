@@ -1,8 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import markdownit from 'markdown-it'
 import { readFile } from "fs/promises"
-
-const md = markdownit()
+import { parseMD } from '@plugin/markdown'
 
 
 const API = async(req: NextApiRequest, res: NextApiResponse) => {
@@ -37,9 +35,9 @@ const API = async(req: NextApiRequest, res: NextApiResponse) => {
   }
 
   if(type === 'md') {
-    const md = markdownit()
-    const mdContent = md.render(data)
-    result['mdContent'] = mdContent
+    const cleanDom = parseMD(data)
+    result['mdContent'] = cleanDom
+    // result['mdContent'] = mdContent
   }
 } catch(e) {
   result['error'] = e

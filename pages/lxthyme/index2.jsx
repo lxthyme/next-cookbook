@@ -1,8 +1,6 @@
 import React from "react";
 import MarkdownLayout from "../../components/markdown/markdownRender";
 import Content from '@data/mdx/game.mdx';
-// import '@components/markdown/markdown.module.css';
-import '@components/game/game.module.css';
 
 const Page = props => {
   return (<>

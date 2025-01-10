@@ -1,6 +1,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import axios from 'axios';
+import MarkdownLayout from "@components/markdown/markdownRender";
 
 // export const config = { amp: true };
 
@@ -9,12 +10,12 @@ const Page = ({ md }) => {
     if(md?.error) {
       return <div>{md.error}</div>
     } else {
-      const html = { __html: md?.mdContent }
-        return <div dangerouslySetInnerHTML={html}></div>
+        return <MarkdownLayout html={md?.mdContent}/>
+        // return <MarkdownLayout html={md?.content}/>
     }
   }
   return (<>
-  {!!md?.error ? <div>{JSON.stringify(md.error)}</div> : <div dangerouslySetInnerHTML={{ __html: md?.mdContent }}></div>}
+  {!!md?.error ? <div>{JSON.stringify(md.error)}</div> : getMdView(md)}
       {/* <style jsx>{``}</style> */}
     </>)
 }
@@ -32,8 +33,9 @@ Page.displayName = "🌍 Page - LAYOUT"
   const mdPathList = [
     // 'test',
     // 'md-test',
-    'ai.mdx',
-    'game.mdx',
+    'ai.md',
+    'game.md',
+    'demo.md',
     // 'md-test1',
     // 'md-test2',
     // 'md-test3',
@@ -63,7 +65,7 @@ export async function getStaticProps({ params }) {
     // params: {
       type: 'md',
       // path: '../../components/ai.mdx',
-      path: `data/mdx/${name}.mdx`,
+      path: `data/mdx/${name}.md`,
     // },
   })
   // const json = await result.json()
