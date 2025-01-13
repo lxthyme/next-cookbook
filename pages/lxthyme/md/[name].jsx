@@ -2,6 +2,7 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import axios from 'axios';
 import MarkdownLayout from "@components/markdown/markdownRender";
+import { getAllFilesPath } from '@plugin/file';
 
 // export const config = { amp: true };
 
@@ -29,21 +30,12 @@ Page.displayName = "🌍 Page - LAYOUT"
 // 1. 获取需要生成的路径
 // export const getStaticPaths = async () => {
   export async function getStaticPaths() {
-
-  const mdPathList = [
-    // 'test',
-    // 'md-test',
-    'ai.md',
-    'game.md',
-    'demo.md',
-    // 'md-test1',
-    // 'md-test2',
-    // 'md-test3',
-  ]
+    const fileList = await getAllFilesPath('data/mdx')
+  const mdPathList = fileList
   .map(t => {
     return {
       params: {
-        mdPath: t,
+        // mdPath: t,
         name: t.split('/').slice(-1)[0].split('.')[0],
       }
     }
