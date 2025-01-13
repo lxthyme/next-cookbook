@@ -1,0 +1,9 @@
+#__next {
+  padding: 20px;
+}
+.v-markdown-render {
+h4,
+h6 {
+  padding: 0 20px;
+}
+}

@@ -45,7 +45,7 @@ const Page = ({ cwd, content }) => {
       // readFile,
       // fs,
     }
-  }, [])
+  }, [originItem])
   useEffect(() => {
     try {
       console.log("originItem changed: ", originItem)

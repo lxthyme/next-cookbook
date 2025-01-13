@@ -15,6 +15,11 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 export default API
 
 const mockData = {
-	"success": true,
-	"resCode": "00100000"
+  "success": true,
+  "resCode": "00100000",
+  "obj": {
+      "kwSkus": [],
+      "transKws": [],
+      "transType": 2,
+  }
 }

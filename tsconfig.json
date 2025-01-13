@@ -115,7 +115,7 @@
   //   "demo.ts"
   // ],
   /// 指定一个匹配列表（属于自动指定该路径下的所有ts相关文件）
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prisma/prisma.prisma",],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prisma/prisma.prisma", "pages/lxthyme/index2.tsx", "components/markdown/markdownRender.jsx", "pages/lxthyme/index2.tjsx", "pages/lxthyme/ai.jsx", "plugin/markdown.js",],
   /// 指定一个排除列表（include的反向操作）
   "exclude": ["node_modules"]
 }

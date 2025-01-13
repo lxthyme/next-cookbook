@@ -1,3 +1,73 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5f45baa789d01c98d2cca65f2b6510a74ac2dbab7ea79803bc6e35341cc5580d
-size 1345
+{
+  "name": "next-cookbook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3003 next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.1.4",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "18.15.11",
+    "@types/react": "18.0.33",
+    "@types/react-dom": "18.0.11",
+    "axios": "^1.7.9",
+    "big.js": "^6.2.1",
+    "bignumber.js": "^9.1.2",
+    "bootstrap": "^5.3.3",
+    "child_process": "^1.0.2",
+    "crypto-js": "^4.1.1",
+    "decimal.js": "^10.4.3",
+    "dompurify": "^3.2.3",
+    "eslint": "8.37.0",
+    "eslint-config-next": "13.3.0",
+    "highcharts": "^11.4.8",
+    "highcharts-react-official": "^3.2.1",
+    "highlight.js": "^11.11.1",
+    "jsdom": "^26.0.0",
+    "markdown-it": "^14.1.0",
+    "marked": "^15.0.6",
+    "moment": "^2.30.1",
+    "net": "^1.0.2",
+    "next": "^14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tls": "^0.0.1",
+    "typescript": "5.0.3"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.0.1",
+    "@prisma/client": "^4.14.0",
+    "faker": "^6.6.6",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "lost": "^9.0.1",
+    "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^8.3.0",
+    "prisma": "^4.14.0",
+    "sass": "^1.61.0",
+    "styled-jsx-plugin-postcss": "^4.0.1",
+    "swr": "^2.1.2"
+  },
+  "postcss": {
+    "plugins": {
+      "lost": {},
+      "postcss-nested": {}
+    }
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}

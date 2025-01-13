@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { mockData } from '@dj/hack.detailsByIdsV2.html'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -13,8 +14,3 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 export default API
-
-const mockData = {
-	"success": true,
-	"resCode": "00100000"
-}
