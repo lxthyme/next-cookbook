@@ -127,7 +127,6 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
 		}
 	}
 	const data = mockData_极速版
-	console.log('-->data2: ', data)
 	return new Promise(function (resolve) {
 		setTimeout(resolve.bind(null, resolve), 100)
 	})

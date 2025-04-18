@@ -1,5 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+import { mock_访问量过大 } from '@dj/hack.errorResponse'
+
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 
   let data = mockData
@@ -28,7 +30,8 @@ data = {
     setTimeout(resolve.bind(null, resolve), 1000)
   })
     .then(() => {
-      res.status(200).json(data)
+      // res.status(200).json(data)
+      res.status(200).json(mock_访问量过大)
     })
 }
 

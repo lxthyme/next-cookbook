@@ -1,3 +1,5 @@
+import { mock_访问量过大 } from './hack.errorResponse'
+
 export const mockData_queryCart_Component = {
   popDetails: () => {
     const item = {
@@ -371,11 +373,7 @@ export const mockData_failure = {
 		"msg": "查询购物车失败",
 		"resCode": "400112002"
 	},
-	t00100051_访问量过大: {
-		"success": false,
-		"msg": "当前访问量过大，暂时无法访问，请稍后再试！",
-		"resCode": "00100051"
-	},
+	t00100051_访问量过大: mock_访问量过大,
 	t00100051_未查询到任何结果: {
 		"success": false,
 		"msg": "未查询到任何结果!",
