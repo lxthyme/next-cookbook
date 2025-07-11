@@ -106,7 +106,7 @@ const mockData = {
 			"medicalPayCate": 0
 		}, {
 			"categoryId": "30636",
-			"categoryName": "521测试目录",
+			"categoryName": "0521测试目录",
 			"showAll": 0,
 			"showProm": 0,
 			"categoryIcon": null,
@@ -130,7 +130,8 @@ const mockData = {
 			"medicalPayCate": 0
 		}, {
 			"categoryId": "30640",
-			"categoryName": "排行榜选择否",
+			// "categoryName": "排行0521榜选择否",
+			"categoryName": "MP排行榜选择否",
 			"showAll": 0,
 			"showProm": 0,
 			"categoryIcon": null,
@@ -139,7 +140,7 @@ const mockData = {
 			"categoryPicture": null,
 			"rywCategorys": [{
 				"categoryId": "30640",
-				"categoryName": "排行榜选择否",
+				"categoryName": "MP排行榜选择否",
 				"showAll": null,
 				"showProm": null,
 				"categoryIcon": null,
@@ -154,7 +155,7 @@ const mockData = {
 			"medicalPayCate": 0
 		}, {
 			"categoryId": "30635",
-			"categoryName": "预售目录",
+			"categoryName": "mp预售目录233",
 			"showAll": 0,
 			"showProm": 0,
 			"categoryIcon": null,
