@@ -1,6 +1,14 @@
 import fse from 'fs-extra'
 import path from 'path'
 
+
+export const mdxFileRootPath = path.join(process.cwd(), "data/mdx");
+
+export const allMdxFilePathList = fse
+  .readdirSync(mdxFileRootPath)
+  // Only include md(x) files
+  .filter((path) => /\.mdx?$/.test(path));
+
 export const getAllFilesPath = async (dir) => {
   const rootPath = process.cwd();
   const directoryPath = path.join(rootPath, dir)
