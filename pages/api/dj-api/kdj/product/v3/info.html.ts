@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import {
   // mockData_限购,
   mockData,
+  mockData_ydj,
+  mockData_lh,
   // mockData_all
   //  as mockData
   serviceList
@@ -9,11 +11,12 @@ import {
 import { mockError } from '@dj/hack.errorResponse'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
+  const { storeType } = req.body
 
   const { obj, ...data_others } = mockData
   const { supplier, pictures, product, labels, promotion, ...obj_others } = obj
   // const { brand, mdmCategory, ...product_others } = product
-  const data = {
+  let data = {
     ...data_others,
     // success: false,
     // msg: '233',
@@ -115,6 +118,32 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
   , data.obj.memDiscount, data.obj.discount)
   data.obj.memDiscount = result.memDiscount
   data.obj.discount = result.discount
+
+  if(storeType.startWith('6')) {
+    // 药到家商品
+    data = mockData_ydj
+  } else {
+    // 联华到家商品
+    data = mockData_lh
+  }
+  // data = mockData4
+  // const d = data.obj.memDiscount
+  // d.isPlus = true
+  // d.plusPointRate = ''
+  // d.isAllowContinue = true
+  // d.isAllowContinue = true
+  // d.plusTime = 2
+  // d.plusTimeUnit = '年'
+  // d.totalRights = 23
+  // d.openPlusRights=1
+
+  // d.membershipModel = 1
+  // d.membershipModel = 2
+  // d.membershipModel = 3
+
+  // 领券加车
+  data.obj.discount.checkCalcUsedCoupon = 1
+  data.obj.discount.calcUsedCouponTempId = '2'
 
   return new Promise(function (resolve) {
     setTimeout(resolve.bind(null, resolve), 1000)
