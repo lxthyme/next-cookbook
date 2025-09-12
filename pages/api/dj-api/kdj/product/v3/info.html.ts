@@ -4,6 +4,7 @@ import {
   mockData,
   mockData_ydj,
   mockData_lh,
+  mockData_lh_dgg,
   // mockData_all
   //  as mockData
   serviceList
@@ -12,6 +13,7 @@ import { mockError } from '@dj/hack.errorResponse'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
   const { storeType } = req.body
+  console.log('-->[body]storeType: ', storeType);
 
   const { obj, ...data_others } = mockData
   const { supplier, pictures, product, labels, promotion, ...obj_others } = obj
@@ -119,12 +121,13 @@ const API = (req: NextApiRequest, res: NextApiResponse) => {
   data.obj.memDiscount = result.memDiscount
   data.obj.discount = result.discount
 
-  if(storeType.startWith('6')) {
+  if(storeType.startsWith('6')) {
     // 药到家商品
     data = mockData_ydj
   } else {
     // 联华到家商品
     data = mockData_lh
+    // data = mockData_lh_dgg
   }
   // data = mockData4
   // const d = data.obj.memDiscount
