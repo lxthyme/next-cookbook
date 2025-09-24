@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/note"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/note.db"
+  // provider = "mysql"
+  // url      = "mysql://root:root@localhost:3306/Seed"
+}
+
+model note_game {
+  id                Int @id @default(autoincrement())
+  type              String
+  type2              String @default("")
+  url               String
+  url_desc          String
+  name              String @default("")
+}

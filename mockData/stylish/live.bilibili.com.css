@@ -2,6 +2,35 @@
 .web-player-icon-roomStatus,
 #gift-control-vm,
 #web-player__bottom-bar__container,
+#rank-list-ctnr-box .tabs .pilot,
+#rank-list-ctnr-box .tab-content.tab-content-pilot,
+#brush-prompt,
 #gift-control-vm {
   display: none !important;
+}
+
+#rank-list-ctnr-box .tabs .tab-list {
+  display: flex;
+  align-items: center;
+}
+
+#chat-history-list,
+#rank-list-ctnr-box .tabs .tab-list,
+.chat-item > i.msg-icon,
+.danmaku-item .danmaku-item-left .title-label,
+#control-panel-ctnr-box,
+.chat-input-ctnr,
+.bottom-actions,
+.danmaku-item {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#chat-control-panel-vm {
+  min-height: auto !important;
+}
+
+#rank-list-vm,
+#rank-list-ctnr-box {
+  height: auto !important;
 }
