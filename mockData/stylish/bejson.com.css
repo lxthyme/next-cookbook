@@ -34,6 +34,13 @@ body {
 #saveAsEditorOnline,
 .top1-link,
 .xf-window,
+.adsbygoogle,
+ins.adsbygoogle,
+.adsbygoogle.adsbygoogle-noablate,
+#google_esf,
+.wwads-cn.wwads-horizontal,
+ins.adsbygoogle-noablate,
+ins,
 .container > h1 {
   display: none !important;
 }
@@ -41,6 +48,10 @@ body {
 .t-small-margin,
 .t-big-margin {
   margin: 0 !important;
+}
+
+.load-indicator {
+  padding: 0 !important;
 }
 
 .container.t-small-margin {
@@ -55,4 +66,9 @@ body {
   width: 100% !important;
   height: 100% !important;
   padding-left: 10px;
+}
+
+.container {
+  width: unset !important;
+  max-width: unset !important;
 }
