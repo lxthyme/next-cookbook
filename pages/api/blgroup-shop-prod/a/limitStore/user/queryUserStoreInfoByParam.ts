@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { mockData } from '@mock/store.st.bl.com/blgroup-shop-prod/a/goods/queryGoodsInfo'
+import { mockData } from '@mock/store.st.bl.com/blgroup-shop-prod/a/limitStore/user/queryUserStoreInfoByParam'
 
 const API = (req: NextApiRequest, res: NextApiResponse) => {
 

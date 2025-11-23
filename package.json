@@ -70,8 +70,8 @@
   },
   "postcss": {
     "plugins": {
-      "lost": {},
-      "postcss-nested": {}
+      "lost": { },
+      "postcss-nested": { }
     }
   },
   "browser": {
